@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="validateModel.CompilerOptionsController">
+   <center>
+      <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane maxWidth="349.0" minHeight="0.0" minWidth="349.0" prefHeight="160.0" prefWidth="349.0">
+               <children>
+                  <Pane layoutX="7.0" layoutY="42.0" prefHeight="269.0" prefWidth="336.0" style="-fx-border-color: darkgray; -fx-border-radius: 15px;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="45.0" />
+                  <CheckBox layoutX="20.0" layoutY="60.0" mnemonicParsing="false" text="*auto complete fieldset*" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="60.0" />
+                  <ListView layoutX="20.0" layoutY="113.0" prefHeight="183.0" prefWidth="210.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="110.0" />
+                  <Button layoutX="234.0" layoutY="113.0" mnemonicParsing="false" text="*Add model (.ili)*" AnchorPane.rightAnchor="10.0" />
+                  <Button layoutX="234.0" layoutY="176.0" mnemonicParsing="false" text="*Move up*" />
+                  <Button layoutX="234.0" layoutY="208.0" mnemonicParsing="false" text="*Move down" />
+                  <Button layoutX="234.0" layoutY="271.0" mnemonicParsing="false" text="*Remove*" AnchorPane.bottomAnchor="40.0" />
+                  <Label layoutX="20.0" layoutY="93.0" text="*Files*" AnchorPane.topAnchor="93.0" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="102.0" layoutY="6.0" prefHeight="17.0" prefWidth="146.0" text="*Input*" textAlignment="CENTER" AnchorPane.topAnchor="25.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane maxWidth="349.0" minHeight="0.0" minWidth="349.0" prefHeight="160.0" prefWidth="349.0">
+               <children>
+                  <Pane layoutX="7.0" layoutY="46.0" prefHeight="269.0" prefWidth="336.0" style="-fx-border-color: darkgray; -fx-border-radius: 15px;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="45.0" />
+                  <ChoiceBox layoutX="20.0" layoutY="110.0" prefWidth="150.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="110.0" />
+                  <TextField layoutX="17.0" layoutY="184.0" prefHeight="25.0" prefWidth="232.0" />
+                  <RadioButton layoutX="19.0" layoutY="251.0" mnemonicParsing="false" text="*Report errors and warnings*" AnchorPane.bottomAnchor="65.0" />
+                  <RadioButton layoutX="19.0" layoutY="275.0" mnemonicParsing="false" text="*Report only errors*" AnchorPane.bottomAnchor="40.0" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="99.0" layoutY="6.0" prefHeight="17.0" prefWidth="152.0" text="*Output*" textAlignment="CENTER" AnchorPane.topAnchor="25.0" />
+                  <Label layoutX="20.0" layoutY="93.0" text="*Kind of output*" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="93.0" />
+                  <Label layoutX="17.0" layoutY="167.0" text="*Filename*" />
+                  <Button layoutX="260.0" layoutY="184.0" mnemonicParsing="false" text="*Browse...*" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </center>
+</BorderPane>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="validateData.FinishDataValidationController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextFlow layoutX="18.0" layoutY="14.0" prefHeight="61.0" prefWidth="671.0" AnchorPane.bottomAnchor="265.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Click finish to continue with the data validation, or click back if you want ro review or change any settings*" />
+               </children>
+            </TextFlow>
+            <ScrollPane fitToWidth="true" layoutX="250.0" layoutY="68.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
+               <content>
+                  <TextFlow prefHeight="234.0" prefWidth="645.0">
+                     <children>
+                        <Text fx:id="txtConsole" strokeType="OUTSIDE" strokeWidth="0.0" text="Property 1: value of the property 1,..." />
+                     </children>
+                  </TextFlow>
+               </content>
+            </ScrollPane>
+         </children></AnchorPane>
+   </center>
+</BorderPane>
