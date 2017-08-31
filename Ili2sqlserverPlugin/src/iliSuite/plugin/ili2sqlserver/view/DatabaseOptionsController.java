@@ -57,6 +57,10 @@ public class DatabaseOptionsController implements IController, Initializable {
 		listOfRequired.add(txt_databaseName);
 		//listOfRequired.add(txt_user);
 		//listOfRequired.add(txt_password);
+		
+		txt_host.setPromptText(applicationBundle.getString("default.database.host"));
+		txt_port.setPromptText(applicationBundle.getString("default.database.port"));
+		txt_instance.setPromptText(applicationBundle.getString("default.database.instance"));
 	}
 
 	@Override
