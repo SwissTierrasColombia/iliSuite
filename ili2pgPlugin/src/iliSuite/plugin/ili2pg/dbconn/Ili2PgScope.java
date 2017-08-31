@@ -36,7 +36,7 @@ public class Ili2PgScope implements Ili2DbScope {
 				schema += ".";
 			
 			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery("SELECT DISTINCT datasetname FROM "+schema+"t_ili2db_dataset");
+			ResultSet rs = statement.executeQuery("SELECT DISTINCT datasetname FROM "+schema+"t_ili2db_dataset WHERE datasetname IS NOT NULL");
 			while(rs.next()){
 				String name = rs.getString("datasetname");
 				result.add(name);

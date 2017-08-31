@@ -1,7 +1,6 @@
 package iliSuite.plugin.ili2pg;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -9,7 +8,6 @@ import base.IPluginDb;
 import base.controller.IController;
 import base.dbconn.AbstractConnection;
 import base.dbconn.Ili2DbScope;
-import ch.ehi.ili2db.AbstractMain;
 import ch.ehi.ili2pg.PgMain;
 import iliSuite.plugin.ili2pg.dbconn.Ili2PgScope;
 import iliSuite.plugin.ili2pg.dbconn.PostgresConnection;
