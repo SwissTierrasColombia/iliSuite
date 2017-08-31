@@ -120,6 +120,8 @@ public class Ili2PgScope implements Ili2DbScope {
 			ResultSet rs = statement.executeQuery("SELECT DISTINCT modelname FROM "+schema+"t_ili2db_model");
 			while(rs.next()){
 				String name = rs.getString("modelname");
+				if(name.indexOf('{') != -1)
+					name = name.substring(0, name.indexOf('{'));
 				result.add(name);
 			}
 		}finally{
