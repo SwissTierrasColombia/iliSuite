@@ -63,7 +63,7 @@ public class Ili2PgScope implements Ili2DbScope {
 				schema += ".";
 			
 			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery("SELECT DISTINCT t_id FROM "+schema+"t_ili2db_basket");
+			ResultSet rs = statement.executeQuery("SELECT DISTINCT t_ili_tid FROM "+schema+"t_ili2db_basket");
 			while(rs.next()){
 				String name = rs.getString("t_id");
 				result.add(name);
