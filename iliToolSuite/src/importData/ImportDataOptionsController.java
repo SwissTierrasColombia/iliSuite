@@ -1,6 +1,7 @@
 package importData;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import application.data.AppData;
+import application.dialog.ModelDirDialog;
 import application.dialog.MultipleSelectionDialog;
 import application.util.navigation.EnumPaths;
 import application.util.navigation.Navigable;
@@ -56,6 +58,8 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 	private TextField tf_datasetEditable;
 	@FXML
 	private TextField tf_datasetSelectable;
+	@FXML
+	private TextField tf_modelDir;
 	@FXML
 	private Button btn_browseDataset;
 	@FXML
@@ -250,6 +254,26 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 		File selectedFile = fileChooser.showOpenDialog(window);
 		if (selectedFile != null)
 			tf_xtfPath.setText(selectedFile.getAbsolutePath());
+	}
+	
+	@FXML
+	private void handleBrowseModelDir(ActionEvent e){
+		try {
+	        ModelDirDialog dialog = new ModelDirDialog();
+			dialog.setTitle(applicationBundle.getString("dialog.modeldir.title"));
+            
+	        if (tf_modelDir.getText() != null && !tf_modelDir.getText().isEmpty())
+	        	dialog.setData(Arrays.asList(tf_modelDir.getText().split(";")));
+            
+            Optional<List<String>> result = dialog.showAndWait();
+	        
+            if(result.isPresent()){
+				tf_modelDir.setText(String.join(";", result.get()));
+            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
 	}
 	
 	@FXML
