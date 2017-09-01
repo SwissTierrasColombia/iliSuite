@@ -314,6 +314,13 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 		HashMap<String,String> params = paramsContainer.getParamsMap();
 		
 		paramsContainer.setFinalPath(tf_xtfPath.getText());
+		
+		if(!tf_modelDir.getText().isEmpty()){
+			params.put(EnumParams.MODEL_DIR.getName(), tf_modelDir.getText());
+		}else{
+			params.remove(EnumParams.MODEL_DIR.getName());
+		}
+		
 		if (radio_import.isSelected()) {
 			params.put(EnumParams.DATA_IMPORT.getName(), "true");
 			params.remove(EnumParams.REPLACE.getName());
