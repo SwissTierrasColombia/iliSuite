@@ -5,6 +5,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/pluginbase"/>
 	<classpathentry kind="lib" path="libs/postgresql-9.1-901.jdbc4.jar"/>
 	<classpathentry kind="lib" path="libs/postgresql-9.4.1208.jre6.jar"/>
-	<classpathentry kind="lib" path="libs/ili2pg.jar"/>
+	<classpathentry kind="lib" path="libs/ili2pg.jar" sourcepath="/ili2db/src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

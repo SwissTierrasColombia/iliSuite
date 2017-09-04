@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import base.Iplugin;
-//import iliSuite.plugin.ili2pg.Ili2pgPlugin;
+import iliSuite.plugin.ili2pg.Ili2pgPlugin;
 import iliSuite.plugin.ili2sqlserver.Ili2sqlserverPlugin;
 
 public class PluginsLoader {
@@ -19,8 +19,8 @@ public class PluginsLoader {
 	}
 
 	private static void LoadMainPlugins() {
-		// Ili2pgPlugin unico = new Ili2pgPlugin();
-		// plugins.put(unico.getName(), unico);
+		 Ili2pgPlugin unico = new Ili2pgPlugin();
+		 plugins.put(unico.getName(), unico);
 		 Ili2sqlserverPlugin unicoS = new Ili2sqlserverPlugin();
 		 plugins.put(unicoS.getName(), unicoS);
 	}

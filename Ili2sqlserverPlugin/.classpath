@@ -4,6 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_131"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/pluginbase"/>
 	<classpathentry kind="lib" path="libs/sqljdbc42.jar"/>
-	<classpathentry kind="lib" path="libs/ili2sqlserver.jar">
+	<classpathentry kind="lib" path="libs/ili2sqlserver.jar" sourcepath="/ili2sqlserver/src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
