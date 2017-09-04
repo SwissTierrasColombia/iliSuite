@@ -70,7 +70,7 @@
               <MenuItem mnemonicParsing="false" onAction="#onClick_MenuItemModelDir" text="%menu.item.modelDir" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" onAction="#onClick_MenuItemHelpContents" text="%menu.mainitem.help">
+          <Menu mnemonicParsing="false" text="%menu.mainitem.help">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#onClick_MenuItemHelpContents" text="%menu.item.helpContents" />
             </items>
