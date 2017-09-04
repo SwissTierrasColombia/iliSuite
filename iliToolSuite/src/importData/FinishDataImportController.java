@@ -40,8 +40,10 @@ public class FinishDataImportController implements Navigable, Initializable {
 			paramsContainer.getParamsMap().put(EnumParams.PROXY_PORT.getName(), config.getProxyPort() + "");
 		}
 
-		command = paramsContainer.getCommand(EnumParams.DATA_IMPORT.getName());
+		command = paramsContainer.getCommand(null);
 		txtConsole.setText(String.join(" ", command));
+		
+		System.out.println(String.join(" ", command));
 	}
 
 	@Override

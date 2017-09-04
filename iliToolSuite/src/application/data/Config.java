@@ -85,7 +85,8 @@ public class Config {
 				properties.setProperty("proxyport", ""+config.proxyPort);
 				properties.setProperty("proxyhost", config.proxyHost);
 		}
-		properties.setProperty("modeldir", config.modelDir);
+		if(config.modelDir != null)
+			properties.setProperty("modeldir", config.modelDir);
 		
         OutputStream out = new FileOutputStream(file);
         properties.store(out, "Config");
