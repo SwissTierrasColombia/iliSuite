@@ -42,6 +42,8 @@ public class FinishDataExportController implements Navigable, Initializable {
 
 		command = paramsContainer.getCommand(EnumParams.DATA_EXPORT.getName());
 		txtConsole.setText(String.join(" ", command));
+		
+		System.out.println(String.join(" ", command));
 	}
 
 	@Override
