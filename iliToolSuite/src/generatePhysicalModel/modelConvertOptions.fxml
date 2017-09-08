@@ -18,9 +18,9 @@
                <children>
                   <GridPane layoutX="-18.0" layoutY="8.0" prefHeight="105.0" prefWidth="698.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="534.0" minWidth="10.0" prefWidth="110.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="547.0" minWidth="10.0" prefWidth="441.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="342.0" minWidth="10.0" prefWidth="164.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="534.0" minWidth="10.0" prefWidth="141.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="547.0" minWidth="10.0" prefWidth="421.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="342.0" minWidth="10.0" prefWidth="136.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -161,7 +161,7 @@
                                                 <Label layoutX="9.0" layoutY="76.0" text="%generatePhysicalModel.geometry.defaultSrsCode" />
                                                 <CheckBox fx:id="chk_strokeArgs" layoutX="10.0" layoutY="125.0" mnemonicParsing="false" text="%generatePhysicalModel.geometry.strokeArgs">
                                                    <tooltip>
-                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.geometry.strokeArgs" />
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.geometry.strokeArcs" />
                                                    </tooltip></CheckBox>
                                                 <CheckBox fx:id="chk_oneGeomPerTable" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" text="%generatePhysicalModel.geometry.oneGeomPerTable">
                                                    <tooltip>
