@@ -1,5 +1,5 @@
 package application;
-	
+
 import java.io.File;
 
 import application.data.Config;
@@ -14,29 +14,41 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-
 public class Main extends Application {
+
 	@Override
-	public void start(Stage primaryStage) {
+	public void init() throws InterruptedException {
+		Thread.sleep(2000 * 3);
 		try {
 			Config config = Config.getInstance();
-			
-			//TODO Nombre en string
+
+			// TODO Nombre en string
 			File file = new File(".config.properties");
-			
-			if(file.exists()){
+
+			if (file.exists()) {
 				Config.loadConfig(file, config);
-			}else{
+			} else {
 				// TODO Excepción si no puede crear el archivo
 				file.createNewFile();
 			}
-			
+
 			setUserAgentStylesheet(STYLESHEET_CASPIAN);
-			
-			VisualResource rootLayout = ResourceUtil.loadResource(getClass(), EnumPaths.GENERAL_LAYOUT, EnumPaths.RESOURCE_BUNDLE);
+			// ...::
+			PluginsLoader.Load();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void start(Stage primaryStage) {
+
+		try {
+			VisualResource rootLayout = ResourceUtil.loadResource(getClass(), EnumPaths.GENERAL_LAYOUT,
+					EnumPaths.RESOURCE_BUNDLE);
 			NavigationUtil.setMainScreen(rootLayout);
-			
-			
+
 			Scene scene = new Scene(rootLayout.getComponent());
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
@@ -44,24 +56,18 @@ public class Main extends Application {
 			primaryStage.setTitle("IliSuite");
 			String url = getClass().getResource("/resources/images/icon64.png").toExternalForm();
 			primaryStage.getIcons().add(new Image(url));
-			
-			VisualResource mainOptions = ResourceUtil.loadResource(getClass(), EnumPaths.MAIN_OPTIONS, EnumPaths.RESOURCE_BUNDLE);
+
+			VisualResource mainOptions = ResourceUtil.loadResource(getClass(), EnumPaths.MAIN_OPTIONS,
+					EnumPaths.RESOURCE_BUNDLE);
 			NavigationUtil.setNextScreen(mainOptions);
-			
-			
-			// ...::
-			PluginsLoader.Load();
-			
-			
-			
-//			scene.getStylesheets().add(getClass().getResource("view/application.css").toExternalForm());
-			
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		// scene.getStylesheets().add(getClass().getResource("view/application.css").toExternalForm());
+
 	}
-	
-	
+
 	public static void main(String[] args) {
 		System.setSecurityManager(new IliSuiteSecurityManager());
 		launch(args);

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import application.about.AboutDialog;
 import application.data.AppData;
 import application.data.Config;
 import application.dialog.HelpDialog;
@@ -199,6 +200,13 @@ public class GeneralLayoutController implements Navigable, Initializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@FXML
+	private void onClick_MenuItemAbout() throws IOException{
+		AboutDialog about = new AboutDialog();
+		about.setTitle(bundle.getString("menu.item.about"));
+		about.show();
 	}
 	
 	

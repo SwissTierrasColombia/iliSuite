@@ -73,6 +73,7 @@
           <Menu mnemonicParsing="false" text="%menu.mainitem.help">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#onClick_MenuItemHelpContents" text="%menu.item.helpContents" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClick_MenuItemAbout" text="%menu.item.about" />
             </items>
           </Menu>
         </menus>
