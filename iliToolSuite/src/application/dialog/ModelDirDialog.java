@@ -98,7 +98,7 @@ public class ModelDirDialog extends Dialog<List<String>> implements Initializabl
 			
 			alertDialog.setTitle(bundle.getString("dialog.modeldir.confirmDeleteDialogTitle"));
 			alertDialog.setHeaderText("");
-			alertDialog.setContentText(bundle.getString("dialog.modeldir.confirmDeleteDialogTitle") + " "+lstData.getItems().get(index));
+			alertDialog.setContentText(bundle.getString("dialog.modeldir.confirmDeleteDialogMessage") + " "+lstData.getItems().get(index));
 			
 			Optional<ButtonType> result = alertDialog.showAndWait();
 			
