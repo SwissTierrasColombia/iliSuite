@@ -156,7 +156,7 @@ public class ExportDataOptionsController implements Navigable, Initializable {
 				
 				MultipleSelectionDialog dialog = new MultipleSelectionDialog(scope.getDatasetList(), selectedValues, SelectionMode.SINGLE);
 
-				dialog.setTitle("* DATASET *");
+				dialog.setTitle(applicationBundle.getString("general.dataset"));
 				Optional<List<String>> result = dialog.showAndWait();
 
 				if(result.isPresent()){
@@ -182,7 +182,7 @@ public class ExportDataOptionsController implements Navigable, Initializable {
 				MultipleSelectionDialog dialog = 
 						new MultipleSelectionDialog(baskets, selectedValues, SelectionMode.MULTIPLE);
 				
-				dialog.setTitle("* BASKETS *");
+				dialog.setTitle(applicationBundle.getString("general.baskets"));
 				
 				Optional<List<String>> result = dialog.showAndWait();
 
@@ -209,7 +209,7 @@ public class ExportDataOptionsController implements Navigable, Initializable {
 				MultipleSelectionDialog dialog = 
 						new MultipleSelectionDialog(topics, selectedValues, SelectionMode.MULTIPLE);
 				
-				dialog.setTitle("* TOPICS *");
+				dialog.setTitle(applicationBundle.getString("general.topics"));
 				
 				Optional<List<String>> result = dialog.showAndWait();
 
@@ -234,7 +234,7 @@ public class ExportDataOptionsController implements Navigable, Initializable {
 				MultipleSelectionDialog dialog = 
 						new MultipleSelectionDialog(models, selectedValues, SelectionMode.MULTIPLE);
 				
-				dialog.setTitle("* MDOELS *");
+				dialog.setTitle(applicationBundle.getString("general.models"));
 				
 				Optional<List<String>> result = dialog.showAndWait();
 

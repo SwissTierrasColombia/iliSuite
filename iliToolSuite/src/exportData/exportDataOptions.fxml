@@ -62,22 +62,22 @@
                               <Button fx:id="btn_addDataset" mnemonicParsing="false" onAction="#handleAddButtons" text="%buttons.add" GridPane.columnIndex="2" />
                               <Button fx:id="btn_addBaskets" mnemonicParsing="false" onAction="#handleAddButtons" text="%buttons.add" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                               <Button fx:id="btn_addTopics" mnemonicParsing="false" onAction="#handleAddButtons" text="%buttons.add" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <RadioButton fx:id="radio_dataset" mnemonicParsing="false" text="%export.dataset">
+                              <RadioButton fx:id="radio_dataset" mnemonicParsing="false" text="%general.dataset">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="tg_selectedScope" />
                                  </toggleGroup>
                                  <tooltip>
                                     <Tooltip text="%help.tooltip.exportData.exportScope.dataset" />
                                  </tooltip></RadioButton>
-                              <RadioButton fx:id="radio_topics" mnemonicParsing="false" text="%export.topics" toggleGroup="$tg_selectedScope" GridPane.rowIndex="2">
+                              <RadioButton fx:id="radio_topics" mnemonicParsing="false" text="%general.topics" toggleGroup="$tg_selectedScope" GridPane.rowIndex="2">
                                  <tooltip>
                                     <Tooltip text="%help.tooltip.exportData.exportScope.topics" />
                                  </tooltip></RadioButton>
-                              <RadioButton fx:id="radio_models" mnemonicParsing="false" text="%export.models" toggleGroup="$tg_selectedScope" GridPane.rowIndex="3">
+                              <RadioButton fx:id="radio_models" mnemonicParsing="false" text="%general.models" toggleGroup="$tg_selectedScope" GridPane.rowIndex="3">
                                  <tooltip>
                                     <Tooltip text="%help.tooltip.exportData.exportScope.models" />
                                  </tooltip></RadioButton>
-                              <RadioButton fx:id="radio_baskets" mnemonicParsing="false" text="%export.baskets" toggleGroup="$tg_selectedScope" GridPane.rowIndex="1">
+                              <RadioButton fx:id="radio_baskets" mnemonicParsing="false" text="%general.baskets" toggleGroup="$tg_selectedScope" GridPane.rowIndex="1">
                                  <tooltip>
                                     <Tooltip text="%help.tooltip.exportData.exportScope.baskets" />
                                  </tooltip>

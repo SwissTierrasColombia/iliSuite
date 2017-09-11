@@ -21,6 +21,8 @@ public class EditItemDialog extends Dialog<String> {
 	@FXML
 	private TextField txtValue;
 	
+	ResourceBundle resourceBundle;
+	
 	// TODO Revisar si se deben enviar opciones
 	public EditItemDialog() throws IOException {
 		this("");
@@ -30,7 +32,7 @@ public class EditItemDialog extends Dialog<String> {
 		loadContent();
 		txtValue.setText(data);
 		
-		// TODO botones por par�metros??
+		// TODO botones por parametros??
 		this.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 		this.getDialogPane().getButtonTypes().add(ButtonType.OK);
 		
@@ -47,14 +49,14 @@ public class EditItemDialog extends Dialog<String> {
 	}
 	
 	private void loadContent() throws IOException{
-		ResourceBundle resourceBundle = ResourceBundle.getBundle(EnumPaths.RESOURCE_BUNDLE.getPath());
+		resourceBundle = ResourceBundle.getBundle(EnumPaths.RESOURCE_BUNDLE.getPath());
 		FXMLLoader loader = new FXMLLoader(EditItemDialog.class.getResource("editItemDialog.fxml"),resourceBundle);
 		loader.setController(this);
 		BorderPane page;
 
 		page = (BorderPane) loader.load();
 
-		// TODO obtiene el recurso visual. �Poner en c�digo?
+		// TODO obtiene el recurso visual. Poner en codigo?
 		this.getDialogPane().setContent(page);
 	}
 
@@ -64,7 +66,7 @@ public class EditItemDialog extends Dialog<String> {
 
 		DirectoryChooser directoryChooser = new DirectoryChooser();
 
-		directoryChooser.setTitle("...Seleccione...");
+		directoryChooser.setTitle(resourceBundle.getString("dialog.editItem.selectFolder"));
 
 		File selectedDirectory = directoryChooser.showDialog(ownerWindow);
 

@@ -231,7 +231,7 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 			MultipleSelectionDialog dialog = new MultipleSelectionDialog(scope.getDatasetList(), selectedValues,
 					SelectionMode.SINGLE);
 
-			dialog.setTitle("* DATASET *");
+			dialog.setTitle(applicationBundle.getString("general.dataset"));
 			Optional<List<String>> result = dialog.showAndWait();
 
 			if (result.isPresent()) {
