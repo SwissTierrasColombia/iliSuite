@@ -159,7 +159,7 @@
                                                       <Tooltip text="%help.tooltip.generatePhysicalModel.geometry.defaultSrsCode" />
                                                    </tooltip></TextField>
                                                 <Label layoutX="9.0" layoutY="76.0" text="%generatePhysicalModel.geometry.defaultSrsCode" />
-                                                <CheckBox fx:id="chk_strokeArgs" layoutX="10.0" layoutY="125.0" mnemonicParsing="false" text="%generatePhysicalModel.geometry.strokeArgs">
+                                                <CheckBox fx:id="chk_strokeArgs" layoutX="10.0" layoutY="125.0" mnemonicParsing="false" text="%generatePhysicalModel.geometry.strokeArcs">
                                                    <tooltip>
                                                       <Tooltip text="%help.tooltip.generatePhysicalModel.geometry.strokeArcs" />
                                                    </tooltip></CheckBox>
