@@ -119,6 +119,8 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 		addInitListeners();
 		
 		tf_modelDir.setText(Config.getInstance().getModelDir());
+		tf_srsAuth.setPromptText("EPSG");
+		tf_srsCode.setPromptText("21781");
 	}
 
 	@Override

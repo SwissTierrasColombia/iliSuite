@@ -44,7 +44,8 @@ public class Ili2sqlserverPlugin implements IPluginDb {
 
 	@Override
 	public String getHelpText() {
-		return "El texto de ayuda para ili to sql server";
+		ResourceBundle bundle = ResourceBundle.getBundle("iliSuite.plugin.ili2sqlserver.resources.application");
+		return bundle.getString("database.description");
 	}
 
 	@Override
