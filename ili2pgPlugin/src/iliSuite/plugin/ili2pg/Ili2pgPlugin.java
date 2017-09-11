@@ -46,7 +46,8 @@ public class Ili2pgPlugin implements IPluginDb {
 
 	@Override
 	public String getHelpText() {
-		return "El texto de ayuda para postgis";
+		ResourceBundle bundle = ResourceBundle.getBundle("iliSuite.plugin.ili2pg.resources.application");
+		return bundle.getString("database.description");
 	}
 
 	@Override
