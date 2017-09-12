@@ -1,7 +1,9 @@
 package application;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
+import application.util.navigation.EnumPaths;
 import javafx.application.Preloader;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,7 +14,7 @@ import javafx.stage.StageStyle;
 import javafx.application.Preloader.StateChangeNotification.Type;
 
 public class SplashScreenLoader extends Preloader {
-
+	private ResourceBundle bundle;
 	private Stage splashScreen;
 
 	@Override
@@ -27,7 +29,8 @@ public class SplashScreenLoader extends Preloader {
 	}
 
 	public Scene createScene() throws IOException {
-		FXMLLoader loader = new FXMLLoader(SplashScreenLoader.class.getResource("splashScreenLoader.fxml"));
+		bundle = ResourceBundle.getBundle(EnumPaths.RESOURCE_BUNDLE.getPath());
+		FXMLLoader loader = new FXMLLoader(SplashScreenLoader.class.getResource("splashScreenLoader.fxml"), bundle);
 
 		Parent root = (Parent) loader.load();
 

@@ -1,6 +1,8 @@
 package application;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import application.data.Config;
 import application.exception.IliSuiteSecurityManager;
@@ -18,7 +20,7 @@ public class Main extends Application {
 
 	@Override
 	public void init() throws InterruptedException {
-		Thread.sleep(2000 * 3);
+		Thread.sleep(1000 * 3);
 		try {
 			Config config = Config.getInstance();
 
@@ -53,9 +55,17 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.show();
-			primaryStage.setTitle("IliSuite");
-			String url = getClass().getResource("/resources/images/icon64.png").toExternalForm();
-			primaryStage.getIcons().add(new Image(url));
+			primaryStage.setTitle("iliSuite");
+			
+			List<Image> icons = new ArrayList<Image>();
+			icons.add(new Image(getClass().getResource("/resources/images/icon128.png").toExternalForm()));
+			icons.add(new Image(getClass().getResource("/resources/images/icon64.png").toExternalForm()));
+			icons.add(new Image(getClass().getResource("/resources/images/icon32.png").toExternalForm()));
+			icons.add(new Image(getClass().getResource("/resources/images/icon48.png").toExternalForm()));
+			icons.add(new Image(getClass().getResource("/resources/images/icon16.png").toExternalForm()));
+			
+			
+			primaryStage.getIcons().addAll(icons);
 
 			VisualResource mainOptions = ResourceUtil.loadResource(getClass(), EnumPaths.MAIN_OPTIONS,
 					EnumPaths.RESOURCE_BUNDLE);
