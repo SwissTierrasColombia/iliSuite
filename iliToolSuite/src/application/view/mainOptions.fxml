@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.MainOptionsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.MainOptionsController">
    <center>
       <SplitPane dividerPositions="0.4" BorderPane.alignment="CENTER">
          <items>
@@ -17,7 +20,7 @@
                <children>
                   <VBox alignment="CENTER" layoutX="25.0" layoutY="50.0" prefHeight="274.0" prefWidth="210.0">
                      <children>
-                        <ToggleButton fx:id="btn_openUmlEditor" mnemonicParsing="false" prefHeight="45.0" prefWidth="210.0" text="%main.openUmlEditor" wrapText="true">
+                        <ToggleButton fx:id="btn_openUmlEditor" mnemonicParsing="false" prefHeight="45.0" prefWidth="210.0" text="%main.openUmlEditor" textAlignment="CENTER" wrapText="true">
                            <toggleGroup>
                               <ToggleGroup fx:id="tg_mainOptions" />
                            </toggleGroup>
@@ -25,20 +28,20 @@
                               <Insets bottom="10.0" top="10.0" />
                            </VBox.margin>
                         </ToggleButton>
-                        <ToggleButton fx:id="btn_generatePhysicalModel" mnemonicParsing="false" prefHeight="45.0" prefWidth="210.0" text="%main.generatePhysicalModel" toggleGroup="$tg_mainOptions" wrapText="true">
+                        <ToggleButton fx:id="btn_generatePhysicalModel" mnemonicParsing="false" prefHeight="45.0" prefWidth="210.0" text="%main.generatePhysicalModel" textAlignment="CENTER" toggleGroup="$tg_mainOptions" wrapText="true">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin></ToggleButton>
-                        <ToggleButton fx:id="btn_importData" mnemonicParsing="false" prefHeight="45.0" prefWidth="210.0" text="%main.importOrModifyData" toggleGroup="$tg_mainOptions" wrapText="true">
+                        <ToggleButton fx:id="btn_importData" mnemonicParsing="false" prefHeight="45.0" prefWidth="210.0" text="%main.importOrModifyData" textAlignment="CENTER" toggleGroup="$tg_mainOptions" wrapText="true">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin></ToggleButton>
-                        <ToggleButton fx:id="btn_validateData" mnemonicParsing="false" prefHeight="45.0" prefWidth="210.0" text="%main.validateData" toggleGroup="$tg_mainOptions" wrapText="true">
+                        <ToggleButton fx:id="btn_validateData" mnemonicParsing="false" prefHeight="45.0" prefWidth="210.0" text="%main.validateData" textAlignment="CENTER" toggleGroup="$tg_mainOptions" wrapText="true">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </ToggleButton>
-                        <ToggleButton fx:id="btn_exportData" mnemonicParsing="false" prefHeight="45.0" prefWidth="210.0" text="%main.exportData" toggleGroup="$tg_mainOptions" wrapText="true" />
+                        <ToggleButton fx:id="btn_exportData" mnemonicParsing="false" prefHeight="45.0" prefWidth="210.0" text="%main.exportData" textAlignment="CENTER" toggleGroup="$tg_mainOptions" wrapText="true" />
                      </children>
                   </VBox>
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" prefHeight="20.0" prefWidth="256.0" text="%general.chooseMainOption" textAlignment="CENTER">
