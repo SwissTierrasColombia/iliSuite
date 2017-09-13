@@ -13,7 +13,7 @@
          <children>
             <TextFlow layoutX="18.0" layoutY="14.0" prefHeight="61.0" prefWidth="671.0" AnchorPane.bottomAnchor="265.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Click finish to continue with the export, or click back if you want ro review or change any settings*" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%general.finishMessage" />
                </children>
             </TextFlow>
             <ScrollPane fitToWidth="true" layoutX="250.0" layoutY="68.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">

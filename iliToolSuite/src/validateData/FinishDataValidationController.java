@@ -55,9 +55,8 @@ public class FinishDataValidationController implements Navigable, Initializable 
 			Main.main(arg);
 			return true;
 		} catch (ExitException e) {
-
 			System.out.println(e.status);
-			return false;
+			return e.status==0;
 		}
 	}
 
