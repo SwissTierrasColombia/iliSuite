@@ -20,7 +20,8 @@ public class Main extends Application {
 
 	@Override
 	public void init() throws InterruptedException {
-		Thread.sleep(1000 * 3);
+		System.setSecurityManager(new IliSuiteSecurityManager());
+		Thread.sleep(1000 * 2);
 		try {
 			Config config = Config.getInstance();
 
@@ -30,7 +31,7 @@ public class Main extends Application {
 			if (file.exists()) {
 				Config.loadConfig(file, config);
 			} else {
-				// TODO Excepción si no puede crear el archivo
+				// TODO Excepcion si no puede crear el archivo
 				file.createNewFile();
 			}
 
@@ -79,7 +80,6 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
-		System.setSecurityManager(new IliSuiteSecurityManager());
 		launch(args);
 	}
 }
