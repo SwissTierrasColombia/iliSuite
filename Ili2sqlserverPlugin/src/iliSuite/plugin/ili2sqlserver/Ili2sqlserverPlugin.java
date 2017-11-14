@@ -8,7 +8,7 @@ import base.IPluginDb;
 import base.controller.IController;
 import base.dbconn.AbstractConnection;
 import base.dbconn.Ili2DbScope;
-import ili2sqlserver.SqlServerMain;
+import ch.ehi.ili2mssql.MsSqlMain;
 import iliSuite.plugin.ili2sqlserver.dbconn.Ili2SqlserverScope;
 import iliSuite.plugin.ili2sqlserver.dbconn.SqlserverConnection;
 import iliSuite.plugin.ili2sqlserver.view.DatabaseOptionsController;
@@ -85,7 +85,7 @@ public class Ili2sqlserverPlugin implements IPluginDb {
 	@Override
 	public int runMain(String[] args) {
 
-		(new SqlServerMain()).domain(args);
+		(new MsSqlMain()).domain(args);
 		
 		return 0;
 	}

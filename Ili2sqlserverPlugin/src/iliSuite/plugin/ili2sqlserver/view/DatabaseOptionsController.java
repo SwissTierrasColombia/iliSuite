@@ -78,7 +78,7 @@ public class DatabaseOptionsController implements IController, Initializable {
 			String instance = txt_instance.getText() != null && !txt_instance.getText().isEmpty()
 					? txt_instance.getText() : null;
 
-			boolean isWindowsAuth = chkIsWindowsAuth.isSelected();
+			boolean isWindowsAuth = false; //chkIsWindowsAuth.isSelected();
 
 			String user = txt_user.getText() != null && !txt_user.getText().isEmpty() ? txt_user.getText() : null;
 			String pass = txt_password.getText() != null && !txt_password.getText().isEmpty() ? txt_password.getText()
