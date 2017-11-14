@@ -1,15 +1,15 @@
 package log.util;
 
+
+import ch.ehi.basics.logging.AbstractFilteringListener;
 import javafx.scene.text.Text;
 
-public class LogListener extends ch.interlis.iox_j.logging.StdLogger {
+public class LogListenerExt extends AbstractFilteringListener {
 
 	private Text out;
-	public LogListener(Text out,String logfileName) {
-		super(logfileName);
+	public LogListenerExt(Text out,String logfileName) {
 		this.out = out;
 	}
-	
 	@Override
 	public void outputMsgLine(int arg0, int arg1, String msg) {
 		if(msg.endsWith("\n")){
@@ -18,4 +18,6 @@ public class LogListener extends ch.interlis.iox_j.logging.StdLogger {
 			out.setText(out.getText() + msg +"\n");
 		}
 	}
+
+
 }

@@ -5,9 +5,8 @@
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/pluginbase"/>
 	<classpathentry kind="lib" path="libs/iliValidator.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Ili2sqlserverPlugin"/>
-	<classpathentry kind="lib" path="libs/ehibasics.jar"/>
-	<classpathentry kind="lib" path="libs/iox-ili.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ili2mssqlPlugin"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ili2pgPlugin"/>
+	<classpathentry kind="lib" path="libs/ehibasics.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -14,22 +14,24 @@ import application.util.params.ParamsContainer;
 import application.util.plugin.PluginsLoader;
 import base.IPluginDb;
 import ch.ehi.basics.logging.EhiLogger;
+import ch.ehi.basics.logging.LogEvent;
+import ch.ehi.basics.logging.LogListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
-import log.util.LogListener;
+import log.util.LogListenerExt;
 
 public class FinishDataExportController implements Navigable, Initializable {
 
 	@FXML
 	private Text txtConsole;
-	private LogListener log;
+	private LogListenerExt log;
 	private List<String> command;
 	IPluginDb plugin;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		log = new LogListener(txtConsole, "");
+		log = new LogListenerExt(txtConsole, "");
 		EhiLogger.getInstance().addListener(log);
 		Config config = Config.getInstance();
 

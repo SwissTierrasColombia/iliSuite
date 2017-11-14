@@ -17,21 +17,21 @@ import ch.ehi.basics.logging.EhiLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
-import log.util.LogListener;
+import log.util.LogListenerExt;
 
 public class FinishDataValidationController implements Navigable, Initializable {
 
 	@FXML
 	private Text txtConsole;
 	
-	private LogListener log;
+	private LogListenerExt log;
 	
 	// TODO Verificar si es el lugar correcto de la variable
 	private List<String> command;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		log = new LogListener(txtConsole, "");
+		log = new LogListenerExt(txtConsole, "");
 		EhiLogger.getInstance().addListener(log);
 		
 		Config config = Config.getInstance();
