@@ -1,6 +1,6 @@
-package iliSuite.plugin.ili2sqlserver;
+package iliSuite.plugin.ili2mssql;
 
-public enum EnumIli2SqlserverParams {
+public enum EnumIli2MsSqlParams {
 	/******************
 	 * ili2db Params
 	 ******************/
@@ -16,7 +16,7 @@ public enum EnumIli2SqlserverParams {
 	private final String name;
 	private final boolean needParam;
 
-	EnumIli2SqlserverParams(String name, boolean needParam) {
+	EnumIli2MsSqlParams(String name, boolean needParam) {
 			this.name = name;
 			this.needParam = needParam;
 		}

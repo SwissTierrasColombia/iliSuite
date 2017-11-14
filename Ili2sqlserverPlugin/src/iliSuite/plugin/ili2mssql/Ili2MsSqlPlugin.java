@@ -1,4 +1,4 @@
-package iliSuite.plugin.ili2sqlserver;
+package iliSuite.plugin.ili2mssql;
 
 import java.io.IOException;
 import java.util.Map;
@@ -9,13 +9,13 @@ import base.controller.IController;
 import base.dbconn.AbstractConnection;
 import base.dbconn.Ili2DbScope;
 import ch.ehi.ili2mssql.MsSqlMain;
-import iliSuite.plugin.ili2sqlserver.dbconn.Ili2SqlserverScope;
-import iliSuite.plugin.ili2sqlserver.dbconn.SqlserverConnection;
-import iliSuite.plugin.ili2sqlserver.view.DatabaseOptionsController;
+import iliSuite.plugin.ili2mssql.dbconn.Ili2MsSqlScope;
+import iliSuite.plugin.ili2mssql.dbconn.MsSqlConnection;
+import iliSuite.plugin.ili2mssql.view.DatabaseOptionsController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
-public class Ili2sqlserverPlugin implements IPluginDb {
+public class Ili2MsSqlPlugin implements IPluginDb {
 
 	private IController controllerDbConfigPanel;
 	private Parent dbConfigPanel;
@@ -34,7 +34,7 @@ public class Ili2sqlserverPlugin implements IPluginDb {
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return "Ili2sqlserverPlugin";
+		return "Ili2MsSqlPlugin";
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class Ili2sqlserverPlugin implements IPluginDb {
 
 	@Override
 	public String getHelpText() {
-		ResourceBundle bundle = ResourceBundle.getBundle("iliSuite.plugin.ili2sqlserver.resources.application");
+		ResourceBundle bundle = ResourceBundle.getBundle("iliSuite.plugin.ili2mssql.resources.application");
 		return bundle.getString("database.description");
 	}
 
@@ -64,11 +64,11 @@ public class Ili2sqlserverPlugin implements IPluginDb {
 	@Override
 	public void loadDbConfigPanel() {
 		//TODO instancia no en constructor
-		connection = new SqlserverConnection();
+		connection = new MsSqlConnection();
 		
 		// TODO verificar rutas
-		ResourceBundle bundle = ResourceBundle.getBundle("iliSuite.plugin.ili2sqlserver.resources.application");
-		FXMLLoader loader = new FXMLLoader(Ili2sqlserverPlugin.class.getResource("/iliSuite/plugin/ili2sqlserver/view/DatabaseOptions.fxml"), bundle);
+		ResourceBundle bundle = ResourceBundle.getBundle("iliSuite.plugin.ili2mssql.resources.application");
+		FXMLLoader loader = new FXMLLoader(Ili2MsSqlPlugin.class.getResource("/iliSuite/plugin/ili2mssql/view/DatabaseOptions.fxml"), bundle);
 		
 		loader.setController(new DatabaseOptionsController());
 		
@@ -92,6 +92,6 @@ public class Ili2sqlserverPlugin implements IPluginDb {
 
 	@Override
 	public Ili2DbScope getScope(){
-		return new Ili2SqlserverScope(connection);
+		return new Ili2MsSqlScope(connection);
 	}
 }

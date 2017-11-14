@@ -1,4 +1,4 @@
-package iliSuite.plugin.ili2sqlserver.view;
+package iliSuite.plugin.ili2mssql.view;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 
 import base.controller.IController;
 import base.dbconn.AbstractConnection;
-import iliSuite.plugin.ili2sqlserver.EnumIli2SqlserverParams;
+import iliSuite.plugin.ili2mssql.EnumIli2MsSqlParams;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -114,28 +114,28 @@ public class DatabaseOptionsController implements IController, Initializable {
 					result = new HashMap<String, String>();
 
 					if (host != null)
-						result.put(EnumIli2SqlserverParams.DB_HOST.getName(), host);
+						result.put(EnumIli2MsSqlParams.DB_HOST.getName(), host);
 
 					if (port != null)
-						result.put(EnumIli2SqlserverParams.DB_PORT.getName(), port);
+						result.put(EnumIli2MsSqlParams.DB_PORT.getName(), port);
 
 					if (databaseName != null)
-						result.put(EnumIli2SqlserverParams.DB_DATABASE.getName(), databaseName);
+						result.put(EnumIli2MsSqlParams.DB_DATABASE.getName(), databaseName);
 
 					if (databaseSchema != null)
-						result.put(EnumIli2SqlserverParams.DB_SCHEMA.getName(), databaseSchema);
+						result.put(EnumIli2MsSqlParams.DB_SCHEMA.getName(), databaseSchema);
 
 					if (instance != null)
-						result.put(EnumIli2SqlserverParams.DB_INSTANCE.getName(), instance);
+						result.put(EnumIli2MsSqlParams.DB_INSTANCE.getName(), instance);
 
 					if (isWindowsAuth) {
-						result.put(EnumIli2SqlserverParams.DB_WINDOWS_AUTH.getName(), "true");
+						result.put(EnumIli2MsSqlParams.DB_WINDOWS_AUTH.getName(), "true");
 					} else {
 						if (user != null)
-							result.put(EnumIli2SqlserverParams.DB_USER.getName(), user);
+							result.put(EnumIli2MsSqlParams.DB_USER.getName(), user);
 
 						if (pass != null)
-							result.put(EnumIli2SqlserverParams.DB_PWD.getName(), pass);
+							result.put(EnumIli2MsSqlParams.DB_PWD.getName(), pass);
 					}
 				}
 			}

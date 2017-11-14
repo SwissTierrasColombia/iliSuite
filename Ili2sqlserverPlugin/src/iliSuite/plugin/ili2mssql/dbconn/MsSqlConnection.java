@@ -1,11 +1,11 @@
-package iliSuite.plugin.ili2sqlserver.dbconn;
+package iliSuite.plugin.ili2mssql.dbconn;
 
 import java.sql.SQLException;
 import java.util.Map;
 
 import base.dbconn.AbstractConnection;
 
-public class SqlserverConnection extends AbstractConnection {
+public class MsSqlConnection extends AbstractConnection {
 
 	@Override
 	protected String getDriver() {

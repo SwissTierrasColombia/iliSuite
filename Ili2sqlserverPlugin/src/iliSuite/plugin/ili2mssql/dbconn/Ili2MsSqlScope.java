@@ -1,4 +1,4 @@
-package iliSuite.plugin.ili2sqlserver.dbconn;
+package iliSuite.plugin.ili2mssql.dbconn;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,11 +11,11 @@ import base.dbconn.AbstractConnection;
 import base.dbconn.Ili2DbScope;
 
 // TODO igual a la implementación de ili2pg. ¿Cambiar interfaz por clase abstracta?
-public class Ili2SqlserverScope implements Ili2DbScope {
+public class Ili2MsSqlScope implements Ili2DbScope {
 
 	private AbstractConnection connection;
 	
-	public Ili2SqlserverScope(AbstractConnection connection){
+	public Ili2MsSqlScope(AbstractConnection connection){
 		this.connection = connection;
 	}
 	
