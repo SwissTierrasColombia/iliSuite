@@ -34,6 +34,19 @@ public class NavigationUtil {
 		
 		NavigationUtil.currentScreen = previous;
 	}
+	
+	public static void setFirstScreen(){
+		VisualResource first = stepStack.firstElement();
+		stepStack.clear();
+		stepStack.push(first);
+		
+		Parent main = NavigationUtil.mainScreen.getComponent();
+		BorderPane borderPane = (BorderPane) main.getChildrenUnmodifiable().get(0);
+		borderPane.setCenter(first.getComponent());
+		
+		NavigationUtil.currentScreen = first;
+		
+	}
 
 	public static VisualResource getMainScreen() {
 		return mainScreen;

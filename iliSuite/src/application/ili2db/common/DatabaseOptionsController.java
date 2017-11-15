@@ -64,6 +64,9 @@ public class DatabaseOptionsController implements Navigable, Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		AppData data = AppData.getInstance();
+		data.getParamsContainer().getParamsMap().clear();
+		
 		String pluginKey = AppData.getInstance().getPlugin();
 		
 		// TODO Verificar si es null

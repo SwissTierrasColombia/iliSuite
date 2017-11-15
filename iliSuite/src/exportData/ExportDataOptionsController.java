@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import application.data.AppData;
+import application.data.Config;
 import application.dialog.ModelDirDialog;
 import application.dialog.MultipleSelectionDialog;
 import application.util.navigation.EnumPaths;
@@ -273,6 +274,8 @@ public class ExportDataOptionsController implements Navigable, Initializable {
 		disableList.add(btn_addModels);
 		disableFields(disableList);
 		addInitListeners();
+		
+		tf_modelDir.setText(Config.getInstance().getModelDir());
 		
 	}
 	

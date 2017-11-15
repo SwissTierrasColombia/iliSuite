@@ -49,6 +49,8 @@ public class GeneralLayoutController implements Navigable, Initializable {
 		Navigable currentController = (Navigable) NavigationUtil.getCurrentScreen().getController();
 		EnumPaths nextPath = currentController.getNextPath();
 		boolean isFinalPage = currentController.isFinalPage();
+		if(nextPath!=null && !btnCancel.getText().equals(bundle.getString("buttons.cancel")))
+			btnCancel.setText(bundle.getString("buttons.cancel"));
 
 		if (isFinalPage && btnNext.getText().equals(bundle.getString("buttons.finish"))) {
 
@@ -67,7 +69,6 @@ public class GeneralLayoutController implements Navigable, Initializable {
 				Navigable nextController = (Navigable) nextScreen.getController();
 				changeNextButtonLabel(nextController.isFinalPage());
 				
-				//TODO: Cambiar forma de poner titulo e icono, se pone de manera temporal:
 				switch(nextPath){
 				case OPEN_UML_EDITOR: 
 					changeTitle(EnumPaths.UMLEDITOR_ICON, bundle.getString("main.function.openUml.title"));
@@ -97,17 +98,25 @@ public class GeneralLayoutController implements Navigable, Initializable {
 		if (NavigationUtil.getStepStack().size() > 1) {
 			NavigationUtil.setPreviousScreen();
 			Navigable currentController = (Navigable) NavigationUtil.getCurrentScreen().getController();
-			//TODO: Cambiar forma de poner icono y titulo
 			if(NavigationUtil.getStepStack().size()==1){
 				changeTitle(EnumPaths.APP_ICON, bundle.getString("main.function.home.title"));
+				btnCancel.setText(bundle.getString("buttons.exit"));
 			}
 			changeNextButtonLabel(currentController.isFinalPage());
 		}
 	}
 
 	public void cancel() {
-		Stage s = (Stage) NavigationUtil.getMainScreen().getComponent().getScene().getWindow();
-		s.close();
+		if(NavigationUtil.getStepStack().size()>1){
+			NavigationUtil.setFirstScreen();
+			
+			changeTitle(EnumPaths.APP_ICON, bundle.getString("main.function.home.title"));
+			changeNextButtonLabel(false);
+			btnCancel.setText(bundle.getString("buttons.exit"));
+		}else{
+			Stage s = (Stage) NavigationUtil.getMainScreen().getComponent().getScene().getWindow();
+			s.close();
+		}
 	}
 
 	@Override
@@ -149,6 +158,7 @@ public class GeneralLayoutController implements Navigable, Initializable {
 
 			if (result.isPresent()) {
 				config.setModelDir(String.join(";", result.get()));
+				Config.saveConfig(new File(".config.properties"), config);
 			}
 
 			// return controller.isOkButton();

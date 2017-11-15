@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import application.data.AppData;
+import application.data.Config;
 import application.dialog.ModelDirDialog;
 import application.dialog.MultipleSelectionDialog;
 import application.util.navigation.EnumPaths;
@@ -104,6 +105,8 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		applicationBundle = resources;
 		addInitListeners();
+		
+		tf_modelDir.setText(Config.getInstance().getModelDir());
 	}
 
 	private void addInitListeners() {

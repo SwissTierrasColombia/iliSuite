@@ -1,6 +1,5 @@
 package application.view;
 
-import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.data.AppData;
@@ -12,7 +11,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Toggle;
@@ -20,7 +18,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 
-public class MainOptionsController implements Initializable, Navigable {
+public class MainOptionsController implements Navigable {
 
 	private EnumPaths nextPath = null;
 
@@ -52,8 +50,8 @@ public class MainOptionsController implements Initializable, Navigable {
 	@FXML
 	private Text txt_helpContent;
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	@FXML
+	public void initialize(/*URL arg0, ResourceBundle arg1*/) {
 
 		applicationBundle = ResourceBundle.getBundle("resources.languages.application");
 		loader = new FXMLLoader(getClass().getResource("mainOptions.fxml"), applicationBundle);

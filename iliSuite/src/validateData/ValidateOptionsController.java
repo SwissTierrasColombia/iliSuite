@@ -93,8 +93,12 @@ public class ValidateOptionsController implements Navigable, Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		AppData data = AppData.getInstance();
+		data.getParamsContainer().getParamsMap().clear();
+		
 		applicationBundle = resources;
 		addInitListeners();
+		
 
 		tf_configFile.setDisable(true);
 		tf_logFile.setDisable(true);
