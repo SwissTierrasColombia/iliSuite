@@ -13,7 +13,7 @@ public abstract class AbstractConnection {
 	
 	private Map<String,String> connectionParams;
 	
-	public boolean isValid() throws SQLException, ClassNotFoundException {//String host, String port, String databaseName, String databaseSchema, String instance, String user, String pass, boolean isWindowsAuth) throws ClassNotFoundException, SQLException{
+	public boolean isValid() throws SQLException, ClassNotFoundException {
 		boolean result = false;
 		Connection conn = getConnection();
 		
@@ -32,7 +32,7 @@ public abstract class AbstractConnection {
 		Map<String,String> params = getConnectionParams();
 		
 		if(params.containsKey("user")&&params.containsKey("password"))
-			conn = DriverManager.getConnection(getUrl(),params.get("user"),params.get("password")); //host, port, databaseName, instance, isWindowsAuth)
+			conn = DriverManager.getConnection(getUrl(),params.get("user"),params.get("password"));
 		else{
 			conn = DriverManager.getConnection(getUrl()); 
 		}
@@ -40,7 +40,7 @@ public abstract class AbstractConnection {
 		return conn;
 	}
 	
-	protected abstract String getUrl();//String host, String port, String databaseName, String instance, boolean isWindowsAuth);
+	protected abstract String getUrl();
 	
 	protected abstract boolean checkSchema(String databaseSchema) throws SQLException, ClassNotFoundException;
 	

@@ -62,27 +62,27 @@ public class DatabaseOptionsController implements IController, Initializable {
 		Map<String, String> result = null;
 		
 		if (validateRequiredFields()) {
-		String host = txt_host.getText() != null && !txt_host.getText().isEmpty() ? txt_host.getText() : null;
-		String port = txt_port.getText() != null && !txt_port.getText().isEmpty() ? txt_port.getText() : null;
-		String databaseName = txt_databaseName.getText() != null && !txt_databaseName.getText().isEmpty() ? txt_databaseName.getText() : null;
-		String databaseSchema = txt_databaseSchema.getText() != null && !txt_databaseSchema.getText().isEmpty() ? txt_databaseSchema.getText() : null;
-
-		String user = txt_user.getText() != null && !txt_user.getText().isEmpty() ? txt_user.getText() : null;
-		String pass = txt_password.getText() != null && !txt_password.getText().isEmpty() ? txt_password.getText() : null;
-		
-		
-		Map<String,String> params = new HashMap<String,String>();
-		
-		// TODO parametros en enumeracion
-		params.put("host", host);
-		params.put("port", port);
-		params.put("databaseName", databaseName);
-		params.put("databaseSchema", databaseSchema);
-		
-		params.put("user", user);
-		params.put("password", pass);
-		
-		connection.setConnectionParams(params);
+			String host = txt_host.getText() != null && !txt_host.getText().isEmpty() ? txt_host.getText() : null;
+			String port = txt_port.getText() != null && !txt_port.getText().isEmpty() ? txt_port.getText() : null;
+			String databaseName = txt_databaseName.getText() != null && !txt_databaseName.getText().isEmpty() ? txt_databaseName.getText() : null;
+			String databaseSchema = txt_databaseSchema.getText() != null && !txt_databaseSchema.getText().isEmpty() ? txt_databaseSchema.getText() : null;
+	
+			String user = txt_user.getText() != null && !txt_user.getText().isEmpty() ? txt_user.getText() : null;
+			String pass = txt_password.getText() != null && !txt_password.getText().isEmpty() ? txt_password.getText() : null;
+			
+			
+			Map<String,String> params = new HashMap<String,String>();
+			
+			// TODO parametros en enumeracion
+			params.put("host", host);
+			params.put("port", port);
+			params.put("databaseName", databaseName);
+			params.put("databaseSchema", databaseSchema);
+			
+			params.put("user", user);
+			params.put("password", pass);
+			
+			connection.setConnectionParams(params);
 		
 			boolean validConnection=false;
 			try {
@@ -110,6 +110,7 @@ public class DatabaseOptionsController implements IController, Initializable {
 					
 					if(pass!=null)
 						result.put(EnumIli2pgParams.DB_PWD.getName(), pass);
+					
 						
 				}
 			}
