@@ -14,6 +14,9 @@ import application.util.params.ParamsContainer;
 import application.util.plugin.PluginsLoader;
 import base.IPluginDb;
 import ch.ehi.basics.logging.EhiLogger;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
@@ -25,12 +28,14 @@ public class FinishModelGenerationController implements Navigable, Initializable
 	private Text txtConsole;
 
 	private LogListenerExt log;
+	private SimpleBooleanProperty booleanResult;
 
 	// TODO Verificar si es el lugar correcto de la variable
 	private List<String> command;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		booleanResult = new SimpleBooleanProperty();
 		log = new LogListenerExt(txtConsole, "");
 		EhiLogger.getInstance().addListener(log);
 		Config config = Config.getInstance();
@@ -63,14 +68,26 @@ public class FinishModelGenerationController implements Navigable, Initializable
 
 		String[] args = command.toArray(new String[0]);
 
-		try {
-			plugin.runMain(args);
-			return true;
-		} catch (ExitException e) {
+		Task<Boolean> task = new Task<Boolean>(){
 
-			System.out.println(e.status);
-			return false;
-		}
+			@Override
+			protected Boolean call() throws Exception {
+				
+				try {
+					plugin.runMain(args);
+					return true;
+				} catch (ExitException e) {
+					
+					System.out.println(e.status);
+					return false;
+				}
+			}
+			
+		};
+		
+		booleanResult.bind(task.valueProperty());
+		new Thread(task).start();
+		return booleanResult.getValue();
 	}
 
 	@Override
