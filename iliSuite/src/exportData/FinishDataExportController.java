@@ -16,6 +16,8 @@ import base.IPluginDb;
 import ch.ehi.basics.logging.EhiLogger;
 import ch.ehi.basics.logging.LogEvent;
 import ch.ehi.basics.logging.LogListener;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
@@ -27,10 +29,12 @@ public class FinishDataExportController implements Navigable, Initializable {
 	private Text txtConsole;
 	private LogListenerExt log;
 	private List<String> command;
+	private SimpleBooleanProperty booleanResult;
 	IPluginDb plugin;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		booleanResult = new SimpleBooleanProperty();
 		log = new LogListenerExt(txtConsole, "");
 		EhiLogger.getInstance().addListener(log);
 		Config config = Config.getInstance();
@@ -62,14 +66,27 @@ public class FinishDataExportController implements Navigable, Initializable {
 
 		String[] args = command.toArray(new String[0]);
 
-		try {
-			plugin.runMain(args);
-			return true;
-		} catch (ExitException e) {
+		Task<Boolean> task = new Task<Boolean>(){
 
-			System.out.println(e.status);
-			return false;
-		}
+			@Override
+			protected Boolean call() throws Exception {
+				
+				try {
+					plugin.runMain(args);
+					return true;
+				} catch (ExitException e) {
+					
+					System.out.println(e.status);
+					return false;
+				}
+			}
+			
+		};
+		
+		booleanResult.bind(task.valueProperty());
+		new Thread(task).start();
+		return booleanResult.getValue();
+		
 	}
 
 	@Override

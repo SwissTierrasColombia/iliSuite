@@ -14,6 +14,8 @@ import application.util.navigation.Navigable;
 import application.util.params.EnumParams;
 import application.util.params.ParamsContainer;
 import ch.ehi.basics.logging.EhiLogger;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
@@ -28,9 +30,12 @@ public class FinishDataValidationController implements Navigable, Initializable 
 	
 	// TODO Verificar si es el lugar correcto de la variable
 	private List<String> command;
+
+	private SimpleBooleanProperty booleanResult;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		booleanResult =  new SimpleBooleanProperty();
 		log = new LogListenerExt(txtConsole, "");
 		EhiLogger.getInstance().addListener(log);
 		
@@ -51,13 +56,29 @@ public class FinishDataValidationController implements Navigable, Initializable 
 	public boolean validate() {
 		String[] arg = command.toArray(new String[0]);
 		
-		try{
-			Main.main(arg);
-			return true;
-		} catch (ExitException e) {
-			System.out.println(e.status);
-			return e.status==0;
-		}
+		
+		
+		Task<Boolean> task = new Task<Boolean>(){
+
+			@Override
+			protected Boolean call() throws Exception {
+				
+				try{
+					Main.main(arg);
+					return true;
+				} catch (ExitException e) {
+					System.out.println(e.status);
+					return e.status==0;
+				}
+			}
+			
+		};
+		
+		booleanResult.bind(task.valueProperty());
+		new Thread(task).start();
+		return booleanResult.getValue();
+		
+		
 	}
 
 	@Override
