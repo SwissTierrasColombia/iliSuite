@@ -56,27 +56,13 @@ public class FinishDataValidationController implements Navigable, Initializable 
 	public boolean validate() {
 		String[] arg = command.toArray(new String[0]);
 		
-		
-		
-		Task<Boolean> task = new Task<Boolean>(){
-
-			@Override
-			protected Boolean call() throws Exception {
-				
-				try{
-					Main.main(arg);
-					return true;
-				} catch (ExitException e) {
-					System.out.println(e.status);
-					return e.status==0;
-				}
-			}
-			
-		};
-		
-		booleanResult.bind(task.valueProperty());
-		new Thread(task).start();
-		return booleanResult.getValue();
+		try{
+			Main.main(arg);
+			return true;
+		} catch (ExitException e) {
+			System.out.println(e.status);
+			return e.status==0;
+		}
 		
 		
 	}

@@ -19,6 +19,8 @@ import application.util.navigation.Navigable;
 import application.util.navigation.NavigationUtil;
 import application.util.navigation.ResourceUtil;
 import application.util.navigation.VisualResource;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -54,12 +56,33 @@ public class GeneralLayoutController implements Navigable, Initializable {
 
 		if (isFinalPage && btnNext.getText().equals(bundle.getString("buttons.finish"))) {
 
-			VisualResource mainOptions = ResourceUtil.loadResource(getClass(), EnumPaths.MAIN_OPTIONS, EnumPaths.RESOURCE_BUNDLE);
-			NavigationUtil.setNextScreen(mainOptions);
+			NavigationUtil.setFirstScreen();
+			
+			changeTitle(EnumPaths.APP_ICON, bundle.getString("main.function.home.title"));
+			changeNextButtonLabel(false);
+			btnCancel.setText(bundle.getString("buttons.exit"));
+		} else if(isFinalPage && !btnNext.getText().equals(bundle.getString("buttons.finish"))){
+			SimpleBooleanProperty booleanResult = new SimpleBooleanProperty();
+			Task<Boolean> task = new Task<Boolean>(){
+				@Override
+				protected Boolean call() throws Exception {
 
-			Navigable nextController = (Navigable) mainOptions.getController();
-			changeNextButtonLabel(nextController.isFinalPage());
-		} else {
+					boolean isValid = currentController.validate();
+					return isValid;
+				}
+			};
+			task.setOnSucceeded(workerStateEvent ->{
+				btnNext.setDisable(false);
+				if(booleanResult.getValue()==true){
+					btnNext.setText(bundle.getString("buttons.finish"));
+				}
+				});
+			booleanResult.bind(task.valueProperty());
+			btnNext.setDisable(true);
+			new Thread(task).start();
+			
+
+		}else {
 			boolean isValid = currentController.validate();
 			if (isValid && isFinalPage) {
 				btnNext.setText(bundle.getString("buttons.finish"));
