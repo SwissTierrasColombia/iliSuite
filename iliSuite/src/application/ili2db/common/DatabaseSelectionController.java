@@ -95,7 +95,7 @@ public class DatabaseSelectionController implements Navigable, Initializable {
 			}
 		}
 		int columns = 2;
-		int rows= (elements/columns)+ (columns%2 > 0 ? 1 : 0);
+		int rows= (elements/columns)+ (elements%2 > 0 ? 1 : 0);
 		
 		
 		float percentHeight = 100f/rows;
