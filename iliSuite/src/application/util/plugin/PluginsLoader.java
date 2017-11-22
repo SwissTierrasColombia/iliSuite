@@ -7,6 +7,7 @@ import java.net.URLClassLoader;
 import java.util.HashMap;
 import java.util.Map;
 
+import base.IPluginDb;
 import base.Iplugin;
 import iliSuite.plugin.ili2mssql.Ili2MsSqlPlugin;
 import iliSuite.plugin.ili2pg.Ili2pgPlugin;
@@ -19,10 +20,14 @@ public class PluginsLoader {
 	}
 
 	private static void LoadMainPlugins() {
-		 Ili2pgPlugin unico = new Ili2pgPlugin();
-		 plugins.put(unico.getName(), unico);
-		 Ili2MsSqlPlugin unicoS = new Ili2MsSqlPlugin();
-		 plugins.put(unicoS.getName(), unicoS);
+		
+		IPluginDb item;
+		
+		item = new Ili2pgPlugin();
+		plugins.put(item.getName(), item);
+		
+		item = new Ili2MsSqlPlugin();
+		plugins.put(item.getName(), item);
 	}
 
 	public static void Load() {
