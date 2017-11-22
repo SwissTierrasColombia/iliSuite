@@ -58,6 +58,8 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 	@FXML
 	private CheckBox chk_coalesceMultisurface;
 	@FXML
+	private CheckBox chk_coalesceMultiLine;
+	@FXML
 	private CheckBox chk_expandMultiLingual;
 	@FXML
 	private TextField tf_srsAuth;
@@ -97,6 +99,8 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 	private CheckBox chk_createBasketCol;
 	@FXML
 	private CheckBox chk_createDatasetCol;
+	@FXML
+	private CheckBox chk_createMetaInfo;
 	@FXML
 	private CheckBox chk_ver4translation;
 	@FXML
@@ -391,6 +395,10 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 			params.put(EnumParams.EXPAND_MULTILINGUAL.getName(), "true");
 		else
 			params.remove(EnumParams.EXPAND_MULTILINGUAL.getName());
+		if(chk_coalesceMultiLine.isSelected())
+			params.put(EnumParams.COALESCE_MULTILINE.getName(), "true");
+		else
+			params.remove(EnumParams.COALESCE_MULTILINE.getName(), "true");
 		if(tf_srsAuth.getText()!=null && !tf_srsAuth.getText().equals(""))
 			params.put(EnumParams.DEFAULT_SRS_AUTH.getName(), tf_srsAuth.getText());
 		else
@@ -469,6 +477,10 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 			params.put(EnumParams.CREATE_DATASET_COL.getName(), "true");
 		else
 			params.remove(EnumParams.CREATE_DATASET_COL.getName());
+		if(chk_createMetaInfo.isSelected())
+			params.put(EnumParams.CREATE_METAINFO.getName(), "true");
+		else
+			params.remove(EnumParams.CREATE_METAINFO.getName());
 		if(chk_ver4translation.isSelected())
 			params.put(EnumParams.VER4_TRANSLATION.getName(), "true");
 		else

@@ -62,6 +62,7 @@ public enum EnumParams {
 	COALESCE_CATALOGUE_REF("--coalesceCatalogueRef", false),
 	COALESCE_MULTISURFACE("--coalesceMultiSurface", false),
 	EXPAND_MULTILINGUAL("--expandMultilingual", false),
+	COALESCE_MULTILINE("--coalesceMultiLine",false),
 	STRUCT_WITH_GENERIC_REF("--structWithGenericRef", false),//deprecated
 	//
 	CREATE_GEOM_IDX("--createGeomIdx", false),
@@ -83,6 +84,7 @@ public enum EnumParams {
 	IMPORT_TID("--importTid", false),
 	CREATE_BASKET_COL("--createBasketCol", false),
 	CREATE_DATASET_COL("--createDatasetCol", false),
+	CREATE_METAINFO("--createMetaInfo", false),
 	//Misellaneous
 	VER4_TRANSLATION("--ver4-translation", false),
 	ID_SEQ_MIN("--idSeqMin", true), //number
