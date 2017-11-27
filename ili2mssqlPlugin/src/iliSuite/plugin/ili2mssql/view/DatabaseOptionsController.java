@@ -174,4 +174,10 @@ public class DatabaseOptionsController implements IController, Initializable {
 		txt_password.setDisable(checked);
 
 	}
+
+	@Override
+	public void setCreateSchema(boolean createSchema) {
+		// TODO Auto-generated method stub
+		
+	}
 }

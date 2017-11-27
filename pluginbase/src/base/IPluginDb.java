@@ -9,7 +9,7 @@ public interface IPluginDb extends Iplugin{
 	public String getNameDB();
 	public String getHelpText();
 	public Parent getDbConfigPanel();
-	public void loadDbConfigPanel();
+	public void loadDbConfigPanel(boolean createSchema);
 	public Map<String,String> getConnectionsParams();
 	public Ili2DbScope getScope();
 	

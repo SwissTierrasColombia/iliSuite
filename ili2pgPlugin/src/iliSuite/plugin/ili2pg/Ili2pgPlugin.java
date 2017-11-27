@@ -64,7 +64,7 @@ public class Ili2pgPlugin implements IPluginDb {
 	}
 
 	@Override
-	public void loadDbConfigPanel() {
+	public void loadDbConfigPanel(boolean createSchema) {
 		// TODO verificar rutas
 		ResourceBundle bundle = ResourceBundle.getBundle("iliSuite.plugin.ili2pg.resources.application");
 		FXMLLoader loader = new FXMLLoader(Ili2pgPlugin.class.getResource("/iliSuite/plugin/ili2pg/view/DatabaseOptions.fxml"), bundle);

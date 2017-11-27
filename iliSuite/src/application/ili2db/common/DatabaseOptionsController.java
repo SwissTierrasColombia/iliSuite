@@ -23,6 +23,7 @@ public class DatabaseOptionsController implements Navigable, Initializable{
 	@FXML
 	private BorderPane mainPane;
 	
+	private EnumPaths action;
 
 	@Override
 	public boolean validate() {
@@ -38,23 +39,7 @@ public class DatabaseOptionsController implements Navigable, Initializable{
 
 	@Override
 	public EnumPaths getNextPath() {
-		EnumPaths result = null;
-		
-		EnumActionIli2Db action = AppData.getInstance().getActionIli2Db();
-		
-		switch(action){
-		case EXPORT:
-			result = EnumPaths.EXP_DATA_EXPORT_DATA_OPTIONS;
-			break;
-		case IMPORT:
-			result = EnumPaths.IMP_DATA_IMPORT_OPTIONS;
-			break;
-		case IMPORT_SCHEMA:
-			result = EnumPaths.MODEL_CONVERT_OPTIONS;
-			break;
-		}
-		
-		return result;
+		return action;
 	}
 
 	@Override
@@ -64,6 +49,22 @@ public class DatabaseOptionsController implements Navigable, Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		EnumActionIli2Db actionSelected = AppData.getInstance().getActionIli2Db();
+		
+		switch(actionSelected){
+		case EXPORT:
+			action = EnumPaths.EXP_DATA_EXPORT_DATA_OPTIONS;
+			break;
+		case IMPORT:
+			action = EnumPaths.IMP_DATA_IMPORT_OPTIONS;
+			break;
+		case IMPORT_SCHEMA:
+			action = EnumPaths.MODEL_CONVERT_OPTIONS;
+			break;
+		}
+		
+		boolean createSchema = (action == EnumPaths.MODEL_CONVERT_OPTIONS);
+		
 		AppData data = AppData.getInstance();
 		data.getParamsContainer().getParamsMap().clear();
 		
@@ -72,7 +73,7 @@ public class DatabaseOptionsController implements Navigable, Initializable{
 		// TODO Verificar si es null
 		plugin = (IPluginDb) PluginsLoader.getPluginByKey(pluginKey);
 		
-		plugin.loadDbConfigPanel();
+		plugin.loadDbConfigPanel(createSchema);
 		
 		mainPane.setCenter(plugin.getDbConfigPanel());
 		

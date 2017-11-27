@@ -140,4 +140,9 @@ public class DatabaseOptionsController implements IController, Initializable {
 	public void setConnection(AbstractConnection connection) {
 		this.connection = connection; 
 	}
+
+	@Override
+	public void setCreateSchema(boolean createSchema) {
+		// TODO Auto-generated method stub
+	}
 }

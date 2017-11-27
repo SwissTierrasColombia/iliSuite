@@ -62,7 +62,7 @@ public class Ili2MsSqlPlugin implements IPluginDb {
 	}
 
 	@Override
-	public void loadDbConfigPanel() {
+	public void loadDbConfigPanel(boolean createSchema) {
 		//TODO instancia no en constructor
 		connection = new MsSqlConnection();
 		
