@@ -1,0 +1,49 @@
+General
+========
+
+¿Qué es iliSuite?
+-----------------
+
+iliSuite es una aplicación diseñada para facilitar el trabajo con Interlis. Integra varias herramientas para la gestión de información con Interlis en una única interfaz gráfica tipo Wizard que lo guiará en cada proceso. iliSuite es multiplataforma y está disponible en 3 idiomas: español, alemán e inglés.
+
+Funcionalidades de iliSuite
+^^^^^^^^^^^^^^^^^^^^
+
+iliSuite presenta 5 funcionalidades que corresponden con los procesos de interlis?
+
+======================================================	===========================
+Proceso													Opción
+======================================================	===========================
+Diseñar el modelo conceptual							Abrir UMLEditor
+Convertir el modelo conceptual en un modelo físico		Generar modelo físico	
+Importar datos al modelo desde otra fuente (un xtf)		Importar o modificar datos
+Validar los datos desde un archivo de transferencia		Validar datos
+Exportar los datos que tiene el modelo					Exportar datos
+======================================================	===========================
+
+Requerimientos del sistema
+--------------------------
+
+iliSuite requiere tener instalado en su sistema Java Runtime Environment (JRE) versión 8 o superior.
+
+Licencia
+--------
+
+iliSuite está publicado bajo los términos de la GNU Lesser General Public License v3.0
+
+Créditos (reconocimientos)
+--------------------------
+.. image:: resources/logoSecoTransparent.png 
+
+Esta aplicación incluye software de otros proyectos:
+
++--------------+-------------------------------------------+
+| Aplicación   | URL                                       |
++==============+===========================================+
+| Uml editor   | http://www.umleditor.org/                 |
++--------------+-------------------------------------------+
+| | ili2pg     | https://github.com/claeis/ili2db          |
+| | ili2mssql  |                                           |
++--------------+-------------------------------------------+
+| iliValidator | https://github.com/claeis/ilivalidator    |
++--------------+-------------------------------------------+

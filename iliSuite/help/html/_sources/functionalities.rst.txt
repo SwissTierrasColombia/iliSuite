@@ -1,0 +1,62 @@
+Funcionalidades
+===========================
+
+En la interfaz principal de la aplicación se pueden apreciar las siguientes secciones:
+
+#.	Barra de menú
+#.	Menú de funcionalidades principales
+#.	Región de descripciones
+#.	Botones de navegación
+
+.. image:: resources/main_interface.png
+
+En la barra de menú se pueden encontrar dos menús principales:
+
+* **Menú Configuración**: Permite realizar configuraciones del uso de la aplicación como son:
+
+.. topic:: Ajustes de proxy
+
+   Permite configurar el servidor y puerto del proxy
+   
+   (imagen de ajustes de proxy)
+   
+.. topic:: Repositorios predeterminados de modelos
+   
+   Permite gestionar las rutas predeterminadas donde se almacenan los modelos a usar durante la ejecución de las diferentes funciones de la aplicación
+   
+   (imagen de repositorios predeterminados de modelos)
+   
+   :::explicación de uso:::
+
+* **Menú Ayuda**: Permite a acceder a la ayuda de la aplicación y a información sobre la misma
+
+
+---------------------------------------------------------------------------------------------
+
+Cada que se selecciona una funcionalidad del menú de funcionalidades principales se actualiza la descripción en la región de descripciones, de manera que se tenga claridad sobre cada ejecución. 
+
+Las funcionalidades principales de la aplicación son:
+
+
+:ref:`Abrir UML Editor <open_uml_editor>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+:ref:`Generar modelo físico <generate_physical_model>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:ref:`Importar o modificar datos <import_data>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:ref:`Validar datos <validate_data>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:ref:`Exportar datos <export_data>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   
+   
+
+=======
+:ref:`open_uml_editor`
+
+:ref:`generate_physical_model`

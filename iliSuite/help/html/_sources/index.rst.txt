@@ -1,0 +1,21 @@
+.. image:: resources/logo.png 
+
+Bienvenido a la ayuda de iliSuite
+====================================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contenido:
+
+   general
+   installation
+   functionalities
+   util_information
+
+Índices y tablas
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+

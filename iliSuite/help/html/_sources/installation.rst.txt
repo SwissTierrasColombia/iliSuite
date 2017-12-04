@@ -1,0 +1,52 @@
+Instalación
+===========================
+
+Windows
+-------
+
+1.	Ingrese a la carpeta donde tiene el archivo de instalación iliSuite_setup.exe y haga doble clic sobre éste.
+
+.. image:: resources/win01.png
+
+2.	El instalador inicia desplegando el diálogo de selección de idioma que se utiliza en el resto de la instalación. Seleccione una opción y haga clic en Aceptar.
+
+.. image:: resources/win02.png
+.. image:: resources/win03.png
+	 
+3.	El instalador muestra la pantalla de bienvenida indicándole la versión de ilisuite que se instalará y algunas recomendaciones adicionales. Haga clic en Siguiente.
+
+.. image:: resources/win04.png 
+
+4.	Este paso se omite si el instalador detecta solo una instalación de Java Runtime Enviroment (JRE). Si hay más de una instalación del JRE el instalador le mostrará una lista de versiones del JRE instalados para que seleccione con cuál se ejecutará iliSuite. Seleccione una opción y haga clic en Siguiente.
+
+.. image:: resources/win05.png
+ 
+5.	Para seleccionar la carpeta de instalación de iliSuite digite la ubicación en el cuadro de texto o selecciónela haciendo clic en el botón Examinar y haga clic en siguiente. La carpeta predeterminada es c:\iliSuite.
+
+.. image:: resources/win06.png
+
+
+
+6.	Digite la carpeta del menú inicio en la que se pondrá el acceso directo de iliSuite. Si desea colocarlo en una carpeta existente, haga clic en examinar.
+
+.. sidebar:: Carpeta del menú inicio
+	
+	.. image:: resources/win07.png
+
+.. image:: resources/win08.png
+
+7.	El instalador le permite elegir si desea crear un acceso directo a iliSuite en su escritorio. Si desea hacerlo, marque la opción “Crear un icono en el escritorio” y haga clic en siguiente.
+
+.. image:: resources/win09.png
+
+8.	Antes de comenzar el proceso de instalación aparece el resumen de las opciones elegidas en el proceso. Si la información es correcta, haga clic en el botón Instalar. En caso contrario, haga clic en el botón Atrás para cambiar las opciones deseadas.
+ 
+.. image:: resources/win10.png
+
+9.	Espere a que se instalen los archivos de iliSuite en su sistema
+
+.. image:: resources/win11.png
+ 
+10.	El instalador le indicará que el proceso finalizó correctamente. Si desea que la aplicación se ejecute justo después de finalizar el instalador, seleccione la opción Ejecutar iliSuite. Por último, haga clic en el botón Finalizar.
+
+.. image:: resources/win12.png

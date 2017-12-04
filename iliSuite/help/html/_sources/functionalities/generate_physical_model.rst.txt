@@ -1,0 +1,75 @@
+.. _generate_physical_model:
+
+Generar modelo físico
+======================
+
+Esta funcionalidad permite crear un esquema físico de base de datos a partir de un modelo Interlis. La aplicación permite seleccionar el motor de base de datos y las opciones de mapeo del modelo en la base de datos.
+
+Para poder realizar la generación de modelo físico se deben realizar los siguientes pasos:
+
+1. Seleccionar la opción "Generar modelo físico" en el menú de funcionalidades principales y hacer clic en el botón "Siguiente" ubicado en la sección de botones de navegación
+
+(imagen selección de opción)
+
+La aplicación mostrará las diferentes opciones de motor de base de datos disponibles para ejecutar la acción.
+
+(imagen selección de motor)
+
+
+2. Seleccionar el motor de base de datos deseado (la aplicación mostrará observaciones a tener en cuenta sobre el motor seleccionado, tal como la versión) y hacer clic en el botón "Siguiente".
+
+(imagen formulario)
+
+La aplicación mostrará un formulario para ingresar los datos de conexión a la base de datos, este formulario es diferente para cada motor de base de datos y por lo tanto depende de la opción seleccionada en el paso anterior.
+
+3. Diligenciar los datos de conexión en el formulario, teniendo en cuenta que la base de datos debe existir previamente, y hacer clic en el botón "Siguiente"
+
+(imagen formulario diligenciado)
+
+El formulario puede tener algunos campos con valores en color gris, esto significa que este será el valor del campo de manera predeterminada en caso de no ingresar valor en él. 
+
+Tambien existen campos que se deben diligenciar de manera obligatoria, estos se marcarán con un borde en color rojo en caso de no ser diligenciados.
+
+
+	3.a. En caso de no ser exitosa la conexión se podrá ver el error en la consola de eventos ubicada en la parte inferior de la pantalla de la aplicación
+	
+	(imagen errores)
+	
+	3.b. En caso de que la conexión se realice de manera correcta, la aplicación mostrará la pantalla de ingreso de parametros para la generación del modelo físico los cuales son:
+	
+		* La ruta del archivo Interlis (en formato .ili) que contiene el modelo con base en el cual se va a generar el esquema de base de datos.
+		
+		* Repositorios de modelos, en donde se definen las rutas de las carpetas, o URLs, que contienen los archivos Interlis con los modelos que referencia el modelo con el cual se va a generar el esquema de base de datos.
+		
+		* Las opciones de generación de la base de datos, entre las que se encuentran las opciones de mapeo, opciones de definición de datos y opciones de metainformación.  
+	
+	(imagen parametros gen mod fis)
+	
+4. Diligenciar los parametros para la generación del modelo físico y hacer clic en el botón "Siguiente"
+
+	* Para diligenciar la ruta del archivo Interlis se debe hacer clic el botón "Examinar" correspondiente y seleccionar el archivo usando el dialogo de selección de archivos que es desplegado
+		
+		(imagen selección archivo ili)
+		
+	* Para diligenciar los repositorios de modelos se debe:
+	
+		* Hacer clic en el botón "Examinar" correspondiente, lo cual despliega una ventana de dialogo donde es posible gestionar los repositorios
+		
+		(imagen dialogo repositorios)
+		
+		* Agregar, editar o eliminar repositorios a la lista, haciendo uso de los botones de las opcionnes de gestión, se debe tener en cuenta que los repositorios pueden ser carpetas en el sistema o URLs externas
+		
+		(imagen dialogo agregar/editar repo)
+		
+		En caso de haber agregado repositorios previamente por medio del Menú Configuración, el repositorio de modelos tendrá estos valores diligenciados
+	
+	* Para diligenciar las opciones de generación de la base de datos es necesario seleccionar las opciones deseadas en cada una de las secciones, al mantener el cursor sobre cada opción aparece un mensaje de información que muestra qué hace. 
+	Para información detallada ver:  :ref:`Opciones de generación de modelo físico <generate_physical_model_options>`
+
+5. Revisar que los parametros del comando a ejecutar sean correctos y hacer clic en el botón "Ejecutar"
+
+(imagen consola llena)
+
+	5.a. La ejecución del comando de generación de modelo físico realiza validaciones, por lo tanto en caso de presentarse alguna inconsistencia durante la validación esta se describe en la consola de eventos.
+
+

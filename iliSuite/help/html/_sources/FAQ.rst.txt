@@ -1,0 +1,4 @@
+¿Qué es el repositorio de modelos?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Un repositorio de modelos es un repositorio donde se encuentran los modelos de datos, es decir, los distintos archivos ili del cual hereda.
