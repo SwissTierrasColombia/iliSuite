@@ -129,5 +129,32 @@ public class Ili2geopakageScope implements Ili2DbScope {
 		}
 		return result;
 	}
+	
+	@Override
+	public boolean isScoped() throws ClassNotFoundException, SQLException {
+		boolean result = false;
+		Connection conn = null;
+		try{
+			conn = connection.getConnection();
+			String schema = connection.getConnectionParams().get("databaseSchema");
+			
+			if(schema==null)
+				schema = "";
+			else
+				schema += ".";
+			
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery("SELECT setting FROM "+schema+"t_ili2db_settings" + " WHERE tag = 'ch.ehi.ili2db.BasketHandling'");
+			while(rs.next()){
+				String setting = rs.getString("setting");
+				if(setting!=null && setting.equals("readWrite"))
+					result = true;
+			}
+		}finally{
+		
+			conn.close();
+		}
+		return result;	
+	}
 
 }

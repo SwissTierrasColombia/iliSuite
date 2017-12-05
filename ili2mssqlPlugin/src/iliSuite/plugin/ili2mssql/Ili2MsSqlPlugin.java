@@ -39,7 +39,7 @@ public class Ili2MsSqlPlugin implements IPluginDb {
 
 	@Override
 	public String getNameDB() {
-		return "Sql Server";
+		return "MS SQL Server";
 	}
 
 	@Override

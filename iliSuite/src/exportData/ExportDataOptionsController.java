@@ -76,9 +76,117 @@ public class ExportDataOptionsController implements Navigable, Initializable {
 	@FXML
 	private TextField tf_modelDir;
 	
+	private  Ili2DbScope scope;
 	
 	private ArrayList<Node> disableList;
 
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		applicationBundle = resources;
+		
+		String pluginKey = AppData.getInstance().getPlugin();
+		// TODO Verificar si es null
+		IPluginDb plugin = (IPluginDb) PluginsLoader.getPluginByKey(pluginKey);
+		scope = plugin.getScope();
+		
+		disableList = new ArrayList<>();
+		disableList.add(tf_dataset);
+		disableList.add(tf_baskets);
+		disableList.add(tf_topics);
+		disableList.add(tf_models);
+		disableList.add(btn_addDataset);
+		disableList.add(btn_addBaskets);
+		disableList.add(btn_addTopics);
+		disableList.add(btn_addModels);
+		try{
+			if(!scope.isScoped()){
+				disableList.add(radio_baskets);
+				disableList.add(radio_dataset);
+				disableList.add(radio_topics);
+			}
+		}catch(SQLException|ClassNotFoundException e){
+			e.printStackTrace();
+		}finally{		
+			disableFields(disableList);
+		}
+		addInitListeners();
+		
+		tf_modelDir.setText(Config.getInstance().getModelDir());
+		
+	}
+	
+	private void addInitListeners(){
+				
+		tg_selectedScope.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
+		         if (tg_selectedScope.getSelectedToggle() == radio_dataset){
+		        	 enableOnly(tf_dataset, btn_addDataset);
+		        	 tf_dataset.setStyle(null);
+		        	 tf_baskets.setStyle(null);
+		        	 tf_models.setStyle(null);
+		        	 tf_topics.setStyle(null);
+		         }
+		         else if(tg_selectedScope.getSelectedToggle() == radio_baskets){
+		        	 enableOnly(tf_baskets, btn_addBaskets);
+		        	 tf_dataset.setStyle(null);
+		        	 tf_baskets.setStyle(null);
+		        	 tf_models.setStyle(null);
+		        	 tf_topics.setStyle(null);
+		         }
+		         else if(tg_selectedScope.getSelectedToggle() == radio_topics){
+		        	 enableOnly(tf_topics, btn_addTopics);
+		        	 tf_dataset.setStyle(null);
+		        	 tf_baskets.setStyle(null);
+		        	 tf_models.setStyle(null);
+		        	 tf_topics.setStyle(null);
+		         }
+		         else if(tg_selectedScope.getSelectedToggle() == radio_models){
+		        	 enableOnly(tf_models, btn_addModels);
+		        	 tf_dataset.setStyle(null);
+		        	 tf_baskets.setStyle(null);
+		        	 tf_models.setStyle(null);
+		        	 tf_topics.setStyle(null);
+		         }
+		     } 
+		});
+		tf_xtfFilePath.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+				if(newValue!=null && !newValue.isEmpty() && newValue.endsWith(".xtf"))
+					tf_xtfFilePath.setStyle(null);
+			}
+		});
+		tf_dataset.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+				if(newValue!=null && !newValue.isEmpty())
+					tf_dataset.setStyle(null);
+			}
+		});
+		tf_baskets.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+				if(newValue!=null && !newValue.isEmpty())
+					tf_baskets.setStyle(null);
+			}
+		});
+		tf_topics.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+				if(newValue!=null && !newValue.isEmpty())
+					tf_topics.setStyle(null);
+			}
+		});
+		tf_models.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+				if(newValue!=null && !newValue.isEmpty())
+					tf_models.setStyle(null);
+			}
+		});
+		
+	}
+	
 	@Override
 	public boolean validate() {
 		
@@ -137,13 +245,6 @@ public class ExportDataOptionsController implements Navigable, Initializable {
 
 	public void handleAddButtons(ActionEvent e) throws IOException {
 		Button source = (Button) e.getSource();
-		
-		String pluginKey = AppData.getInstance().getPlugin();
-		
-		// TODO Verificar si es null
-		IPluginDb plugin = (IPluginDb) PluginsLoader.getPluginByKey(pluginKey);
-		
-		Ili2DbScope scope = plugin.getScope();
 		
 		if (source == btn_addDataset) {
 			enableOnly(tf_dataset, btn_addDataset);
@@ -260,95 +361,6 @@ public class ExportDataOptionsController implements Navigable, Initializable {
 			tf_xtfFilePath.setText(selectedFile.getAbsolutePath());
 	}
 	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		applicationBundle = resources;
-		disableList = new ArrayList<>();
-		disableList.add(tf_dataset);
-		disableList.add(tf_baskets);
-		disableList.add(tf_topics);
-		disableList.add(tf_models);
-		disableList.add(btn_addDataset);
-		disableList.add(btn_addBaskets);
-		disableList.add(btn_addTopics);
-		disableList.add(btn_addModels);
-		disableFields(disableList);
-		addInitListeners();
-		
-		tf_modelDir.setText(Config.getInstance().getModelDir());
-		
-	}
-	
-	private void addInitListeners(){
-		tg_selectedScope.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
-		         if (tg_selectedScope.getSelectedToggle() == radio_dataset){
-		        	 enableOnly(tf_dataset, btn_addDataset);
-		        	 tf_dataset.setStyle(null);
-		        	 tf_baskets.setStyle(null);
-		        	 tf_models.setStyle(null);
-		        	 tf_topics.setStyle(null);
-		         }
-		         else if(tg_selectedScope.getSelectedToggle() == radio_baskets){
-		        	 enableOnly(tf_baskets, btn_addBaskets);
-		        	 tf_dataset.setStyle(null);
-		        	 tf_baskets.setStyle(null);
-		        	 tf_models.setStyle(null);
-		        	 tf_topics.setStyle(null);
-		         }
-		         else if(tg_selectedScope.getSelectedToggle() == radio_topics){
-		        	 enableOnly(tf_topics, btn_addTopics);
-		        	 tf_dataset.setStyle(null);
-		        	 tf_baskets.setStyle(null);
-		        	 tf_models.setStyle(null);
-		        	 tf_topics.setStyle(null);
-		         }
-		         else if(tg_selectedScope.getSelectedToggle() == radio_models){
-		        	 enableOnly(tf_models, btn_addModels);
-		        	 tf_dataset.setStyle(null);
-		        	 tf_baskets.setStyle(null);
-		        	 tf_models.setStyle(null);
-		        	 tf_topics.setStyle(null);
-		         }
-		     } 
-		});
-		tf_xtfFilePath.textProperty().addListener(new ChangeListener<String>() {
-			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
-				if(newValue!=null && !newValue.isEmpty() && newValue.endsWith(".xtf"))
-					tf_xtfFilePath.setStyle(null);
-			}
-		});
-		tf_dataset.textProperty().addListener(new ChangeListener<String>() {
-			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
-				if(newValue!=null && !newValue.isEmpty())
-					tf_dataset.setStyle(null);
-			}
-		});
-		tf_baskets.textProperty().addListener(new ChangeListener<String>() {
-			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
-				if(newValue!=null && !newValue.isEmpty())
-					tf_baskets.setStyle(null);
-			}
-		});
-		tf_topics.textProperty().addListener(new ChangeListener<String>() {
-			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
-				if(newValue!=null && !newValue.isEmpty())
-					tf_topics.setStyle(null);
-			}
-		});
-		tf_models.textProperty().addListener(new ChangeListener<String>() {
-			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
-				if(newValue!=null && !newValue.isEmpty())
-					tf_models.setStyle(null);
-			}
-		});
-		
-	}
 	
 	private void enableOnly(Node... fields){
 		
