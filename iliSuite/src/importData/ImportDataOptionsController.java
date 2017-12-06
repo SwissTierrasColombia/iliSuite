@@ -81,6 +81,8 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 	private TextField tf_validConfigFile;
 	@FXML
 	private Button btn_browseValidConfig;
+	private boolean isScoped = false;
+	
 
 	@Override
 	public boolean validate() {
@@ -104,6 +106,25 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		applicationBundle = resources;
+		
+		String pluginKey = AppData.getInstance().getPlugin();
+		// TODO Verificar si es null
+		IPluginDb plugin = (IPluginDb) PluginsLoader.getPluginByKey(pluginKey);
+		Ili2DbScope scope = plugin.getScope();
+		try{
+			isScoped = scope.isScoped();
+		}catch(SQLException|ClassNotFoundException e){
+			e.printStackTrace();
+		}finally{
+			if(!isScoped){
+				tf_datasetEditable.setDisable(true);
+				tf_datasetSelectable.setDisable(true);
+				btn_browseDataset.setDisable(true);
+				radio_update.setDisable(true);
+				radio_replace.setDisable(true);
+				radio_delete.setDisable(true);
+			}
+		}
 		addInitListeners();
 		
 		tf_modelDir.setText(Config.getInstance().getModelDir());
@@ -123,6 +144,7 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 				if (newValue == radio_import) {
 					chk_deleteData.setDisable(false);
 					tf_datasetSelectable.setDisable(true);
+					tf_datasetEditable.setEditable(isScoped);
 					btn_browseDataset.setDisable(true);
 				} else {
 					chk_deleteData.setDisable(true);
