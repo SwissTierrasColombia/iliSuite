@@ -2,12 +2,10 @@ package iliSuite.plugin.ili2gpkg.view;
 
 import java.io.File;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 import base.controller.IController;
@@ -16,12 +14,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.stage.FileChooser;
-import javafx.stage.Window;
 import javafx.stage.FileChooser.ExtensionFilter;
-import javafx.scene.control.Button;
+import javafx.stage.Window;
 
 public class DatabaseOptionsController implements IController, Initializable {
 	@FXML
