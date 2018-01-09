@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="335.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iliSuite.plugin.ili2fgdb.view.DatabaseOptionsController">
+<BorderPane prefHeight="335.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -19,7 +19,7 @@
         </rowConstraints>
          <children>
             <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="%datafolder.databaseFolder" textAlignment="RIGHT" />
-            <TextField fx:id="txtFile" GridPane.columnIndex="1" />
+            <TextField fx:id="tf_folder" GridPane.columnIndex="1" />
             <Button fx:id="btnBrowse" mnemonicParsing="false" onAction="#onClickBrowse" text="%datafolder.browse" GridPane.columnIndex="2" />
          </children>
       </GridPane>
