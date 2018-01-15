@@ -22,6 +22,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/ilisuite.ico"/>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
    
@@ -41,6 +42,44 @@
             
   <div class="section" id="validar-datos">
 <span id="validate-data"></span><h1>Validar datos<a class="headerlink" href="#validar-datos" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Esta funcionalidad permite verificar que los datos de un archivo de transferencia de Interlis (.itf o .xtf) sean validos de acuerdo a un determinado modelo de Interlis (.ili). La aplicación permite seleccionar las opciones de validación y de registro de eventos (<em>log</em>).</p>
+<p>Para validar datos se deben realizar los siguientes pasos:</p>
+<ol class="arabic simple">
+<li>Seleccionar la opción «Validar datos» en el menú de funcionalidades principales y hacer clic en el botón «Siguiente» ubicado en la sección de botones de navegación</li>
+</ol>
+<blockquote>
+<div><img alt="functionalities\./resources/functionalities/04_validate_01.png" src="functionalities\./resources/functionalities/04_validate_01.png" />
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Diligenciar los parametros de validación de datos, los cuales son los siguientes:</li>
+</ol>
+<blockquote>
+<div><img alt="functionalities\./resources/functionalities/04_validate_02.png" src="functionalities\./resources/functionalities/04_validate_02.png" />
+<ul class="simple">
+<li><strong>Ruta del archivo de datos</strong> (en formato .xtf): Ruta del archivo de transferencia de Interlis que contiene los datos que serán validados. Para diligenciar la ruta del archivo de datos se debe hacer clic el botón «Examinar» correspondiente y seleccionar el archivo usando el diálogo de selección de archivos que es desplegado.</li>
+<li><strong>Repositorio de modelos</strong>: Rutas de las carpetas, o <em>URLs</em>, que contienen los archivos Interlis (.ili) con los modelos de referencia con base en los cuales se va a validar el archivo de transferencia de datos. Para diligenciar el repositorio de modelos se debe hacer clic en el botón «Examinar» correspondiente, lo cual despliega el <a class="reference internal" href="../user_interface.html#model-dialog-box"><span class="std std-ref">Cuadro de diálogo repositorio de modelos</span></a>. En caso de haber agregado repositorios previamente por medio del Menú Configuración, el repositorio de modelos tendrá estos valores diligenciados.</li>
+<li><strong>Opciones de validación de datos</strong>: Permite seleccionar las opciones de validación y registro de eventos.</li>
+</ul>
+<p>Para información detallada ver:  <a class="reference internal" href="../util_information/validation_options.html#validation-options"><span class="std std-ref">Opciones para validar datos</span></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Al mantener el cursor sobre cada opción aparece un tooltip con información de la opción correspondiente.</p>
+</div>
+</div></blockquote>
+<blockquote>
+<div>Para continuar haga clic en «Siguiente».</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Revisar el comando de ejecución (generado de acuerdo a las opciones elegidas en los pasos anteriores) y, en caso de ser correcto, hacer clic en el botón «Ejecutar».</li>
+</ol>
+<blockquote>
+<div><img alt="functionalities\./resources/functionalities/04_validate_03.png" src="functionalities\./resources/functionalities/04_validate_03.png" />
+<p>La aplicación mostrará el estado de la ejecución y los mensajes de validación correspondientes</p>
+<img alt="functionalities\./resources/functionalities/04_validate_04.png" src="functionalities\./resources/functionalities/04_validate_04.png" />
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">En caso de haber seleccionado alguna opción de generación de registro de eventos en archivo, la ejecución del comando generará de manera adicional el archivo que contiene el resultado de la validación.</p>
+</div>
+</div></blockquote>
 </div>
 
 
@@ -48,13 +87,7 @@
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
-  </ul></li>
-</ul>
-</div>
+        <div class="sphinxsidebarwrapper">
 <div id="searchbox" style="display: none" role="search">
   <h3>Búsqueda rápida</h3>
     <form class="search" action="../search.html" method="get">
@@ -65,6 +98,16 @@
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+<h3><a href="../index.html">Tabla de Contenidos</a></h3>
+<p class="caption"><span class="caption-text">Contenido:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">2. Instalación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_interface.html">3. Interfaz de usuario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functionalities.html">4. Funcionalidades</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util_information.html">5. Información Útil</a></li>
+</ul>
+
         </div>
       </div>
       <div class="clearer"></div>

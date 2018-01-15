@@ -1,0 +1,32 @@
+.. _import_options:
+
+Opciones para importar o modificar datos
+-----------------------------------------
+
+Las opciones para *importar o modificar datos* controlan la forma en que los datos que contiene el archivo xtf suministrado son almacenados en la base de datos. Algunas opciones requiren que la base de datos se haya generado con la opción *createBasketCol*. Las opciones disponibles en iliSuite son:
+
+=======================  ====================
+Opción                   Descripción
+=======================  ====================
+import                   Los datos del archivo xtf seleccionado son agregados a la base de datos.
+delete data              Usado con la opción import, borra los datos existentes en las tablas.
+.. update                   --
+replace                  Reemplaza los datos del dataset especificado (opción *dataset*), con los datos del archivos xtf. Requiere que la base de datos se haya generado con la opción createBasketCol.
+delete                   Elimina los datos asociados al dataset especificado (opción *dataset*). Requiere que la base de datos se haya generado con la opción createBasketCol.
+dataset                  El nombre del dataset sobre el que se va a aplicar la modificación de los datos: import, update, replace o delete.
+*Validación de datos*
+---------------------------------------------
+disable validation       Desactiva la validación de los datos.
+disable area validation  Desactiva la validación de la topología AREA.
+skip geometry errors     Los errores de geometría se ignoran (y no se informan).
+config file              Archivo de configuración que se utilizará para la validación.
+force type validation    Únicamente la multiplicidad puede ser omitida en el archivo de configuración.
+=======================  ====================
+
+.. FALTE
+.. force type validation
+.. update
+
+.. disable	validation desactiva la validación de área?
+.. disable area validation Falta una descripción más detallada
+.. disable validation .. cuales validaciones

@@ -1,0 +1,18 @@
+.. _validation_options:
+
+Opciones para validar datos
+------------------------------
+
+Las opciones para *validar datos* permiten forzar o deshabilitar ciertas validaciones; agregar validaciones adicionales y almacenar el resultado de las validaciones en archivos de log. Las opciones disponible en iliSuite son:
+
+=======================  ====================
+Opción                   Descripción
+=======================  ====================
+disable area validation  Desactiva la validación de la topología AREA.
+force type validation    Únicamente la multiplicidad puede ser omitida en el archivo de configuración.
+config file              Archivo de configuración que se utilizará para la validación.
+trace                    Escribe mensajes de log más detallados
+log in file              Si se habilita, guarda los mensajes del log en el archivo especificado en formato de transferencia de interlis
+log in xtf               Si se habilita, guarda los mensajes del log en el archivo especificado
+plugins folder           Carpeta con archivos *jar* con validaciones adicionales. Para especificar esta carpeta, se debe habilitar la opción *Additional functionality*.
+=======================  ====================

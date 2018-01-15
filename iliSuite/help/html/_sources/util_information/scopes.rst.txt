@@ -1,0 +1,38 @@
+.. _scopes:
+
+Alcances
+----------
+
+Interlis define 4 niveles jerárquicos de agrupación de la información, los cuales son usados por las herramientas de iliSuite, estos niveles son:
+
+* Basket
+
+* Dataset
+
+* Topic
+
+* Model
+
+
+
+Basket
+^^^^^^^^
+Un "basket" es una colección compacta de objetos, por lo tanto contiene objetos relacionados entre sí dentro de un tema.
+
+Típicamente un "basket" es usado como contenedor de los objetos pertenecientes a un area geografica (ej: municipio) o pertenecientes a un dominio especifico (ej: turismo).
+
+Los objetos de un "basket" son tratados habitualmente como una unidad, tanto para almacenamiento como para revisión (o modificación).
+
+Dataset
+^^^^^^^^
+Un "dataset" es un conjunto de datos que puede contener uno o varios baskets.
+
+Topic
+^^^^^^
+Un "topic" contiene todas las definiciones necesarias para describir parte de la realidad dentro de un modelo. Este puede contener "datasets" y/o "baskets"
+
+Ademas de los datos, en un "topic" se pueden definir los tipos como unidades de medida, dominios o estructuras y tambien se pueden usar los tipos definidos en modelos importados.
+
+Model
+^^^^^^
+Un "Model" es la base de la arquitectura basada en modelos, por lo tanto en él se describe una imagen de la realidad que tiene significado para una aplicación especifica. Un "model" puede contener uno o varios "topics"

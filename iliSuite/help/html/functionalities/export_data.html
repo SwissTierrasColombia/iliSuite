@@ -22,6 +22,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/ilisuite.ico"/>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
    
@@ -41,6 +42,71 @@
             
   <div class="section" id="exportar-datos">
 <span id="export-data"></span><h1>Exportar datos<a class="headerlink" href="#exportar-datos" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Esta opción permite exportar datos de la base de datos a un archivo de intercambio de Interlis (xtf).</p>
+<p>Para poder exportar datos se deben realizar los siguientes pasos:</p>
+<ol class="arabic simple">
+<li>Seleccionar la opción «Exportar datos» en el menú de funcionalidades principales y hacer clic en el botón «Siguiente» ubicado en la sección de botones de navegación</li>
+</ol>
+<blockquote>
+<div><img alt="functionalities\./resources/functionalities/05_export_01.png" src="functionalities\./resources/functionalities/05_export_01.png" />
+<p>La aplicación mostrará las diferentes opciones de motor de base de datos disponibles para ejecutar la acción.</p>
+<img alt="functionalities\./resources/functionalities/05_export_02.png" src="functionalities\./resources/functionalities/05_export_02.png" />
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Seleccionar el motor de base de datos deseado. La aplicación mostrará observaciones a tener en cuenta sobre el motor seleccionado. Hacer clic en el botón <em>Siguiente</em>.</li>
+</ol>
+<blockquote>
+<div><p>La aplicación mostrará un formulario para ingresar los datos de conexión a la base de datos. Este formulario es diferente para cada motor de base de datos y por lo tanto depende de la opción seleccionada en el paso anterior.</p>
+<img alt="functionalities\./resources/functionalities/05_export_03.png" src="functionalities\./resources/functionalities/05_export_03.png" />
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Diligenciar los datos de conexión en el formulario y hacer clic en el botón «Siguiente».</li>
+</ol>
+<blockquote>
+<div><img alt="functionalities\./resources/functionalities/05_export_04.png" src="functionalities\./resources/functionalities/05_export_04.png" />
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">El formulario puede tener algunos campos con valores en color gris. Esto significa que éste será el valor predeterminado del campo en caso de no ingresar valor en él.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Los campos obligatorios se marcarán en rojo en caso de no ser diligenciados.</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Importante</p>
+<p>En caso de no ser exitosa la conexión se podrá ver el error en la consola de eventos ubicada en la parte inferior de la pantalla de la aplicación</p>
+<a class="last reference internal image-reference" href="functionalities\./resources/functionalities/05_export_04a.png"><img alt="functionalities\./resources/functionalities/05_export_04a.png" src="functionalities\./resources/functionalities/05_export_04a.png" /></a>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Diligenciar los parámetros para gestionar los datos a exportar teniendo en cuenta lo siguiente:</li>
+</ol>
+<blockquote>
+<div><img alt="functionalities\./resources/functionalities/05_export_05.png" src="functionalities\./resources/functionalities/05_export_05.png" />
+<ul>
+<li><p class="first"><strong>El nombre y la ruta del archivo de transferencia Interlis</strong> (xls) en el que se exportan los datos. Para diligenciar la ruta del archivo de intercambio se debe hacer clic en el botón «Examinar» correspondiente y especificar nombre del archivo xtf y su ubicación.</p>
+</li>
+<li><p class="first"><strong>Repositorios de modelos,</strong> en donde se definen las rutas de las carpetas, o URLs, que contienen los archivos Interlis con los modelos que referencia el modelo con el cual se generó el esquema de base de datos. Hacer clic en el botón «Examinar» correspondiente, lo cual despliega el <a class="reference internal" href="../user_interface.html#model-dialog-box"><span class="std std-ref">Cuadro de diálogo repositorio de modelos</span></a>. En caso de haber agregado repositorios previamente por medio del Menú Configuración, el repositorio de modelos tendrá estos valores diligenciados.</p>
+</li>
+<li><p class="first"><strong>El alcance de los datos a exportar: dataset, topics, baskets y models.</strong> Algunos alcances pueden estar desactivados. Esto depende de las opciones con las que se generó el esquema de la base de datos. Seleccionar un tipo de <em>alcance</em> de los datos a exportar y hacer clic en el botón agregar. Aparecerá un cuadro de diálogo con los valores disponibles para el respectivo alcance.</p>
+<a class="reference internal image-reference" href="functionalities\./resources/functionalities/05_export_05a.png"><img alt="functionalities\./resources/functionalities/05_export_05a.png" src="functionalities\./resources/functionalities/05_export_05a.png" /></a>
+</li>
+</ul>
+<blockquote>
+<div>Para más información ver: <a class="reference internal" href="../util_information/scopes.html#scopes"><span class="std std-ref">Alcances</span></a> y <a class="reference internal" href="generate_physical_model.html#generate-physical-model"><span class="std std-ref">Generar modelo físico</span></a>.</div></blockquote>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li>Revisar el comando de ejecución (generado de acuerdo a las opciones elegidas en los pasos anteriores) y, en caso de ser correcto, hacer clic en el botón «Ejecutar».</li>
+</ol>
+<blockquote>
+<div><img alt="functionalities\./resources/functionalities/05_export_06.png" src="functionalities\./resources/functionalities/05_export_06.png" />
+<p>La aplicación mostrará el estado de la ejecución de los comandos e indicará si tuvo éxito.</p>
+<img alt="functionalities\./resources/functionalities/05_export_07.png" src="functionalities\./resources/functionalities/05_export_07.png" />
+<div class="admonition important">
+<p class="first admonition-title">Importante</p>
+<p class="last">La aplicación muestra en la consola de eventos el estado de la ejecución del comando. Por lo tanto, si se presenta alguna inconsistencia, esta se mostrará en la consola.</p>
+</div>
+</div></blockquote>
 </div>
 
 
@@ -48,13 +114,7 @@
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
-  </ul></li>
-</ul>
-</div>
+        <div class="sphinxsidebarwrapper">
 <div id="searchbox" style="display: none" role="search">
   <h3>Búsqueda rápida</h3>
     <form class="search" action="../search.html" method="get">
@@ -65,6 +125,16 @@
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+<h3><a href="../index.html">Tabla de Contenidos</a></h3>
+<p class="caption"><span class="caption-text">Contenido:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">2. Instalación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_interface.html">3. Interfaz de usuario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functionalities.html">4. Funcionalidades</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util_information.html">5. Información Útil</a></li>
+</ul>
+
         </div>
       </div>
       <div class="clearer"></div>

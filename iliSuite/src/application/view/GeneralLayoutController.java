@@ -29,7 +29,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class GeneralLayoutController implements Navigable, Initializable {
 
@@ -229,6 +231,9 @@ public class GeneralLayoutController implements Navigable, Initializable {
 		try {
 			dialog = new HelpDialog();
 			dialog.setTitle(bundle.getString("dialog.help.title"));
+			dialog.initModality(Modality.NONE);
+			dialog.initStyle(StageStyle.DECORATED);
+			dialog.resizableProperty().setValue(true);
 			dialog.show();
 		} catch (IOException e) {
 			e.printStackTrace();

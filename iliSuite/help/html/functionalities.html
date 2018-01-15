@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Funcionalidades &#8212; documentación de iliSuite - 0.1.0</title>
+    <title>4. Funcionalidades &#8212; documentación de iliSuite - 0.1.0</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -22,10 +22,11 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="shortcut icon" href="_static/ilisuite.ico"/>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
-    <link rel="next" title="Información Útil" href="util_information.html" />
-    <link rel="prev" title="Instalación" href="installation.html" />
+    <link rel="next" title="5. Información Útil" href="util_information.html" />
+    <link rel="prev" title="3. Interfaz de usuario" href="user_interface.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -42,51 +43,284 @@
           <div class="body" role="main">
             
   <div class="section" id="funcionalidades">
-<h1>Funcionalidades<a class="headerlink" href="#funcionalidades" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>En la interfaz principal de la aplicación se pueden apreciar las siguientes secciones:</p>
-<ol class="arabic simple">
-<li>Barra de menú</li>
-<li>Menú de funcionalidades principales</li>
-<li>Región de descripciones</li>
-<li>Botones de navegación</li>
-</ol>
-<img alt="_images/main_interface.png" src="_images/main_interface.png" />
-<p>En la barra de menú se pueden encontrar dos menús principales:</p>
-<ul class="simple">
-<li><strong>Menú Configuración</strong>: Permite realizar configuraciones del uso de la aplicación como son:</li>
-</ul>
-<div class="topic">
-<p class="topic-title first">Ajustes de proxy</p>
-<p>Permite configurar el servidor y puerto del proxy</p>
-<p>(imagen de ajustes de proxy)</p>
-</div>
-<div class="topic">
-<p class="topic-title first">Repositorios predeterminados de modelos</p>
-<p>Permite gestionar las rutas predeterminadas donde se almacenan los modelos a usar durante la ejecución de las diferentes funciones de la aplicación</p>
-<p>(imagen de repositorios predeterminados de modelos)</p>
-<p>:::explicación de uso::</p>
-</div>
-<ul class="simple">
-<li><strong>Menú Ayuda</strong>: Permite a acceder a la ayuda de la aplicación y a información sobre la misma</li>
-</ul>
-<hr class="docutils" />
-<p>Cada que se selecciona una funcionalidad del menú de funcionalidades principales se actualiza la descripción en la región de descripciones, de manera que se tenga claridad sobre cada ejecución.</p>
+<span id="functionalities-main"></span><h1>4. Funcionalidades<a class="headerlink" href="#funcionalidades" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>Las funcionalidades principales de la aplicación son:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#abrir-uml-editor">Abrir UML Editor</a></li>
+<li><a class="reference internal" href="#generar-modelo-fisico">Generar modelo físico</a></li>
+<li><a class="reference internal" href="#importar-o-modificar-datos">Importar o modificar datos</a></li>
+<li><a class="reference internal" href="#validar-datos">Validar datos</a></li>
+<li><a class="reference internal" href="#exportar-datos">Exportar datos</a></li>
+</ul>
 <div class="section" id="abrir-uml-editor">
-<h2><a class="reference internal" href="functionalities/uml_editor.html#open-uml-editor"><span class="std std-ref">Abrir UML Editor</span></a><a class="headerlink" href="#abrir-uml-editor" title="Enlazar permanentemente con este título">¶</a></h2>
+<span id="open-uml-editor"></span><h2>4.1. Abrir UML Editor<a class="headerlink" href="#abrir-uml-editor" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>UML Editor es una herramienta que permite generar modelos conceptuales utilizando el lenguaje de modelado unificado (UML) y además funciona como puente entre el lenguaje de modelado y el lenguaje Interlis por medio de su interfaz intuitiva y fácil de usar.</p>
+<p>Para poder usarla se deben realizar los siguientes pasos:</p>
+<ol class="arabic simple">
+<li>Seleccionar la opción «Abrir UML Editor» en el menú de funcionalidades principales y hacer clic en el botón «Siguiente» ubicado en la sección de botones de navegación</li>
+</ol>
+<blockquote>
+<div><img alt="_images/01_uml_editor_01.png" src="_images/01_uml_editor_01.png" />
+<p>En la pantalla mostrada por la aplicación se verá la versión de UML Editor a ejecutar, así como la versión del lenguaje Interlis y la versión del compilador que esta utiliza.</p>
+<img alt="_images/01_uml_editor_02.png" src="_images/01_uml_editor_02.png" />
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Hacer clic en el botón «Ejecutar» ubicado en la sección de botones de navegación</li>
+</ol>
+<blockquote>
+<div><p>Esto ejecutará la herramienta UML Editor sin necesidad de instalar algo más</p>
+<img alt="_images/01_uml_editor_03.png" src="_images/01_uml_editor_03.png" />
+</div></blockquote>
 </div>
 <div class="section" id="generar-modelo-fisico">
-<h2><a class="reference internal" href="functionalities/generate_physical_model.html#generate-physical-model"><span class="std std-ref">Generar modelo físico</span></a><a class="headerlink" href="#generar-modelo-fisico" title="Enlazar permanentemente con este título">¶</a></h2>
+<span id="generate-physical-model"></span><h2>4.2. Generar modelo físico<a class="headerlink" href="#generar-modelo-fisico" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Esta funcionalidad permite crear un esquema físico de base de datos a partir de un modelo Interlis. La aplicación permite seleccionar el motor de base de datos y las opciones de mapeo del modelo en la base de datos.</p>
+<p>Para generar el modelo físico se deben realizar los siguientes pasos:</p>
+<ol class="arabic simple">
+<li>Seleccionar la opción «Generar modelo físico» en el menú de funcionalidades principales y hacer clic en el botón «Siguiente» ubicado en la sección de botones de navegación</li>
+</ol>
+<blockquote>
+<div><img alt="_images/02_generate_01.png" src="_images/02_generate_01.png" />
+<p>La aplicación mostrará las diferentes opciones de motor de base de datos disponibles para ejecutar la acción.</p>
+<img alt="_images/02_generate_02.png" src="_images/02_generate_02.png" />
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Seleccionar el motor de base de datos deseado. La aplicación mostrará observaciones a tener en cuenta sobre el motor seleccionado como, por ejemplo, la versión. Hacer clic en el botón «Siguiente».</li>
+</ol>
+<blockquote>
+<div><img alt="_images/02_generate_03.png" src="_images/02_generate_03.png" />
+<p>La aplicación mostrará un formulario para ingresar los datos de conexión a la base de datos. Este formulario es diferente para cada motor de base de datos y por lo tanto depende de la opción seleccionada en el paso anterior.</p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Diligenciar los datos de conexión en el formulario, teniendo en cuenta que la base de datos debe existir, y hacer clic en el botón «Siguiente».</li>
+</ol>
+<blockquote>
+<div><img alt="_images/02_generate_04.png" src="_images/02_generate_04.png" />
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">El formulario puede tener algunos campos con valores en color gris. Esto significa que éste será el valor predeterminado del campo en caso de no ingresar valor en él.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Los campos obligatorios se marcarán en rojo en caso de no ser diligenciados.</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Importante</p>
+<p>En caso de no ser exitosa la conexión se podrá ver el error en la consola de eventos ubicada en la parte inferior de la pantalla de la aplicación</p>
+<a class="last reference internal image-reference" href="_images/02_generate_04a.png"><img alt="_images/02_generate_04a.png" src="_images/02_generate_04a.png" style="width: 487.2px; height: 316.2px;" /></a>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Diligenciar los parámetros para la generación del modelo físico, teniendo en cuenta lo siguiente:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><strong>Ruta del archivo Interlis</strong> (en formato .ili): Ruta del archivo que contiene el modelo con base en el cual se va a generar el esquema de base de datos. Para diligenciar la ruta del archivo Interlis se debe hacer clic el botón «Examinar» correspondiente y seleccionar el archivo usando el diálogo de selección de archivos que es desplegado.</li>
+<li><strong>Repositorios de modelos</strong>: Rutas de las carpetas, o URLs, que contienen los archivos Interlis con los modelos que referencia el modelo con el cual se va a generar el esquema de base de datos. Hacer clic en el botón «Examinar» correspondiente, lo cual despliega el <a class="reference internal" href="user_interface.html#model-dialog-box"><span class="std std-ref">Cuadro de diálogo repositorio de modelos</span></a>. En caso de haber agregado repositorios previamente por medio del Menú Configuración, el repositorio de modelos tendrá estos valores diligenciados.</li>
+<li><strong>Opciones de generación de la base de datos</strong>: Entre las que se encuentran las opciones de mapeo, opciones de definición de datos y opciones de metainformación. Para diligenciar las opciones de generación de la base de datos, es necesario seleccionar las opciones deseadas en cada una de las secciones.</li>
+</ul>
+<blockquote>
+<div><p>Para información detallada ver:  <a class="reference internal" href="util_information/generate_physical_model_options.html#generate-physical-model-options"><span class="std std-ref">Opciones de generación de modelo físico</span></a>.</p>
+<img alt="_images/02_generate_05.png" src="_images/02_generate_05.png" />
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Al mantener el cursor sobre cada opción aparece un tooltip con información de la opción correspondiente.</p>
+</div>
+</div></blockquote>
+<blockquote>
+<div>Para continuar haga clic en «Siguiente».</div></blockquote>
+<ol class="arabic simple" start="5">
+<li>Revisar el comando de ejecución (generado de acuerdo a las opciones elegidas en los pasos anteriores) y, en caso de estar correcto, hacer clic en el botón «Ejecutar».</li>
+</ol>
+<blockquote>
+<div><blockquote>
+<div><img alt="_images/02_generate_06.png" src="_images/02_generate_06.png" />
+</div></blockquote>
+<p>La aplicación mostrará el estado de la ejecución de los comandos e indicará si tuvo éxito.</p>
+<blockquote>
+<div><img alt="_images/02_generate_07.png" src="_images/02_generate_07.png" />
+</div></blockquote>
+<div class="admonition important">
+<p class="first admonition-title">Importante</p>
+<p class="last">La aplicación muestra en la consola de eventos el estado de la ejecución del comando. Por lo tanto, si se presenta alguna inconsistencia, esta se mostrará en la consola.</p>
+</div>
+</div></blockquote>
 </div>
 <div class="section" id="importar-o-modificar-datos">
-<h2><a class="reference internal" href="functionalities/import_data.html#import-data"><span class="std std-ref">Importar o modificar datos</span></a><a class="headerlink" href="#importar-o-modificar-datos" title="Enlazar permanentemente con este título">¶</a></h2>
+<span id="import-data"></span><h2>4.3. Importar o modificar datos<a class="headerlink" href="#importar-o-modificar-datos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Esta funcionalidad permite realizar 2 operaciones:</p>
+<ul class="simple">
+<li>Importar datos dentro de una base de datos (previamente creada usando la herramienta de generación de modelo físico) a partir de un archivo de intercambio de datos Interlis (xtf). Estos datos pueden agregarse como nuevos en la base de datos, o tambien pueden reemplazar o actualizar datos ya existentes.</li>
+<li>Eliminar datos existentes en la base de datos.</li>
+</ul>
+<p>Para poder importar o modificar datos se deben realizar los siguientes pasos:</p>
+<ol class="arabic simple">
+<li>Seleccionar la opción «Importar o modificar datos» en el menú de funcionalidades principales y hacer clic en el botón «Siguiente» ubicado en la sección de botones de navegación</li>
+</ol>
+<blockquote>
+<div><img alt="_images/03_import_01.png" src="_images/03_import_01.png" />
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Seleccionar el motor de base de datos deseado. La aplicación mostrará observaciones a tener en cuenta sobre el motor seleccionado como, por ejemplo, la versión. Hacer clic en el botón «Siguiente».</li>
+</ol>
+<blockquote>
+<div><img alt="_images/03_import_02.png" src="_images/03_import_02.png" />
+<p>La aplicación mostrará un formulario para ingresar los datos de conexión a la base de datos. Este formulario es diferente para cada motor de base de datos y por lo tanto depende de la opción seleccionada en el paso anterior.</p>
+<img alt="_images/03_import_03.png" src="_images/03_import_03.png" />
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Diligenciar los datos de conexión en el formulario y hacer clic en el botón «Siguiente»</li>
+</ol>
+<blockquote>
+<div><img alt="_images/03_import_04.png" src="_images/03_import_04.png" />
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">El formulario puede tener algunos campos con valores en color gris. Esto significa que éste será el valor predeterminado del campo en caso de no ingresar valor en él.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Los campos obligatorios se marcarán en rojo en caso de no ser diligenciados.</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Importante</p>
+<p>En caso de no ser exitosa la conexión se podrá ver el error en la consola de eventos ubicada en la parte inferior de la pantalla de la aplicación</p>
+<a class="last reference internal image-reference" href="_images/03_import_04a.png"><img alt="_images/03_import_04a.png" src="_images/03_import_04a.png" style="width: 487.2px; height: 316.2px;" /></a>
+</div>
+<ol class="arabic simple" start="4">
+<li>La aplicación mostrará la pantalla de ingreso de parametros para la importación o modificación de datos dentro de la base de datos, los cuales son:</li>
+</ol>
+<blockquote>
+<div><img alt="_images/03_import_05.png" src="_images/03_import_05.png" />
+<ul class="simple">
+<li>La ruta del archivo de transferencia de datos (en formato .xtf) que contiene los datos a ser importados.</li>
+<li>Repositorios de modelos, en donde se definen las rutas de las carpetas, o URLs, que contienen los archivos Interlis con los modelos base del xtf a importar.</li>
+<li>Las opciones de importación o modificación de datos, entre las que se encuentran la acción a realizar y las opciones de validación que son realizadas a los datos al momento de importar.</li>
+</ul>
+<p>Para información detallada ver:  <a class="reference internal" href="util_information/import_options.html#import-options"><span class="std std-ref">Opciones de importar o modificar datos</span></a></p>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li>Finalmente, se mostrará el comando que se ejecutará de acuerdo a las opciones elegidas en los pasos anteriores. Si los parámetros son correctos, hacer clic en el botón «Ejecutar».</li>
+</ol>
+<blockquote>
+<div><img alt="_images/03_import_06.png" src="_images/03_import_06.png" />
+<p>La aplicación mostrará el estado de la ejecución de los comandos e indicará si tuvo éxito.</p>
+<img alt="_images/03_import_07.png" src="_images/03_import_07.png" />
+</div></blockquote>
+<div class="admonition important">
+<p class="first admonition-title">Importante</p>
+<p class="last">La aplicación muestra en la consola de eventos el estado de la ejecución del comando. Por lo tanto, si se presenta alguna inconsistencia, esta se mostrará en la consola.</p>
+</div>
 </div>
 <div class="section" id="validar-datos">
-<h2><a class="reference internal" href="functionalities/validate_data.html#validate-data"><span class="std std-ref">Validar datos</span></a><a class="headerlink" href="#validar-datos" title="Enlazar permanentemente con este título">¶</a></h2>
+<span id="validate-data"></span><h2>4.4. Validar datos<a class="headerlink" href="#validar-datos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Esta funcionalidad permite verificar que los datos de un archivo de transferencia de Interlis (.itf o .xtf) sean validos de acuerdo a un determinado modelo de Interlis (.ili). La aplicación permite seleccionar las opciones de validación y de registro de eventos (<em>log</em>).</p>
+<p>Para validar datos se deben realizar los siguientes pasos:</p>
+<ol class="arabic simple">
+<li>Seleccionar la opción «Validar datos» en el menú de funcionalidades principales y hacer clic en el botón «Siguiente» ubicado en la sección de botones de navegación</li>
+</ol>
+<blockquote>
+<div><img alt="_images/04_validate_01.png" src="_images/04_validate_01.png" />
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Diligenciar los parametros de validación de datos, los cuales son los siguientes:</li>
+</ol>
+<blockquote>
+<div><img alt="_images/04_validate_02.png" src="_images/04_validate_02.png" />
+<ul class="simple">
+<li><strong>Ruta del archivo de datos</strong> (en formato .xtf): Ruta del archivo de transferencia de Interlis que contiene los datos que serán validados. Para diligenciar la ruta del archivo de datos se debe hacer clic el botón «Examinar» correspondiente y seleccionar el archivo usando el diálogo de selección de archivos que es desplegado.</li>
+<li><strong>Repositorio de modelos</strong>: Rutas de las carpetas, o <em>URLs</em>, que contienen los archivos Interlis (.ili) con los modelos de referencia con base en los cuales se va a validar el archivo de transferencia de datos. Para diligenciar el repositorio de modelos se debe hacer clic en el botón «Examinar» correspondiente, lo cual despliega el <a class="reference internal" href="user_interface.html#model-dialog-box"><span class="std std-ref">Cuadro de diálogo repositorio de modelos</span></a>. En caso de haber agregado repositorios previamente por medio del Menú Configuración, el repositorio de modelos tendrá estos valores diligenciados.</li>
+<li><strong>Opciones de validación de datos</strong>: Permite seleccionar las opciones de validación y registro de eventos.</li>
+</ul>
+<p>Para información detallada ver:  <a class="reference internal" href="util_information/validation_options.html#validation-options"><span class="std std-ref">Opciones para validar datos</span></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Al mantener el cursor sobre cada opción aparece un tooltip con información de la opción correspondiente.</p>
+</div>
+</div></blockquote>
+<blockquote>
+<div>Para continuar haga clic en «Siguiente».</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Revisar el comando de ejecución (generado de acuerdo a las opciones elegidas en los pasos anteriores) y, en caso de ser correcto, hacer clic en el botón «Ejecutar».</li>
+</ol>
+<blockquote>
+<div><img alt="_images/04_validate_03.png" src="_images/04_validate_03.png" />
+<p>La aplicación mostrará el estado de la ejecución y los mensajes de validación correspondientes</p>
+<img alt="_images/04_validate_04.png" src="_images/04_validate_04.png" />
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">En caso de haber seleccionado alguna opción de generación de registro de eventos en archivo, la ejecución del comando generará de manera adicional el archivo que contiene el resultado de la validación.</p>
+</div>
+</div></blockquote>
 </div>
 <div class="section" id="exportar-datos">
-<h2><a class="reference internal" href="functionalities/export_data.html#export-data"><span class="std std-ref">Exportar datos</span></a><a class="headerlink" href="#exportar-datos" title="Enlazar permanentemente con este título">¶</a></h2>
-<p><a class="reference internal" href="functionalities/generate_physical_model.html#generate-physical-model"><span class="std std-ref">Generar modelo físico</span></a></p>
+<span id="export-data"></span><h2>4.5. Exportar datos<a class="headerlink" href="#exportar-datos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Esta opción permite exportar datos de la base de datos a un archivo de intercambio de Interlis (xtf).</p>
+<p>Para poder exportar datos se deben realizar los siguientes pasos:</p>
+<ol class="arabic simple">
+<li>Seleccionar la opción «Exportar datos» en el menú de funcionalidades principales y hacer clic en el botón «Siguiente» ubicado en la sección de botones de navegación</li>
+</ol>
+<blockquote>
+<div><img alt="_images/05_export_01.png" src="_images/05_export_01.png" />
+<p>La aplicación mostrará las diferentes opciones de motor de base de datos disponibles para ejecutar la acción.</p>
+<img alt="_images/05_export_02.png" src="_images/05_export_02.png" />
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Seleccionar el motor de base de datos deseado. La aplicación mostrará observaciones a tener en cuenta sobre el motor seleccionado. Hacer clic en el botón <em>Siguiente</em>.</li>
+</ol>
+<blockquote>
+<div><p>La aplicación mostrará un formulario para ingresar los datos de conexión a la base de datos. Este formulario es diferente para cada motor de base de datos y por lo tanto depende de la opción seleccionada en el paso anterior.</p>
+<img alt="_images/05_export_03.png" src="_images/05_export_03.png" />
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Diligenciar los datos de conexión en el formulario y hacer clic en el botón «Siguiente».</li>
+</ol>
+<blockquote>
+<div><img alt="_images/05_export_04.png" src="_images/05_export_04.png" />
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">El formulario puede tener algunos campos con valores en color gris. Esto significa que éste será el valor predeterminado del campo en caso de no ingresar valor en él.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Los campos obligatorios se marcarán en rojo en caso de no ser diligenciados.</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Importante</p>
+<p>En caso de no ser exitosa la conexión se podrá ver el error en la consola de eventos ubicada en la parte inferior de la pantalla de la aplicación</p>
+<a class="last reference internal image-reference" href="_images/05_export_04a.png"><img alt="_images/05_export_04a.png" src="_images/05_export_04a.png" style="width: 487.2px; height: 316.2px;" /></a>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Diligenciar los parámetros para gestionar los datos a exportar teniendo en cuenta lo siguiente:</li>
+</ol>
+<blockquote>
+<div><img alt="_images/05_export_05.png" src="_images/05_export_05.png" />
+<ul>
+<li><p class="first"><strong>El nombre y la ruta del archivo de transferencia Interlis</strong> (xls) en el que se exportan los datos. Para diligenciar la ruta del archivo de intercambio se debe hacer clic en el botón «Examinar» correspondiente y especificar nombre del archivo xtf y su ubicación.</p>
+</li>
+<li><p class="first"><strong>Repositorios de modelos,</strong> en donde se definen las rutas de las carpetas, o URLs, que contienen los archivos Interlis con los modelos que referencia el modelo con el cual se generó el esquema de base de datos. Hacer clic en el botón «Examinar» correspondiente, lo cual despliega el <a class="reference internal" href="user_interface.html#model-dialog-box"><span class="std std-ref">Cuadro de diálogo repositorio de modelos</span></a>. En caso de haber agregado repositorios previamente por medio del Menú Configuración, el repositorio de modelos tendrá estos valores diligenciados.</p>
+</li>
+<li><p class="first"><strong>El alcance de los datos a exportar: dataset, topics, baskets y models.</strong> Algunos alcances pueden estar desactivados. Esto depende de las opciones con las que se generó el esquema de la base de datos. Seleccionar un tipo de <em>alcance</em> de los datos a exportar y hacer clic en el botón agregar. Aparecerá un cuadro de diálogo con los valores disponibles para el respectivo alcance.</p>
+<a class="reference internal image-reference" href="_images/05_export_05a.png"><img alt="_images/05_export_05a.png" src="_images/05_export_05a.png" style="width: 313.2px; height: 328.8px;" /></a>
+</li>
+</ul>
+<blockquote>
+<div>Para más información ver: <a class="reference internal" href="util_information/scopes.html#scopes"><span class="std std-ref">Alcances</span></a> y <a class="reference internal" href="functionalities/generate_physical_model.html#generate-physical-model"><span class="std std-ref">Generar modelo físico</span></a>.</div></blockquote>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li>Revisar el comando de ejecución (generado de acuerdo a las opciones elegidas en los pasos anteriores) y, en caso de ser correcto, hacer clic en el botón «Ejecutar».</li>
+</ol>
+<blockquote>
+<div><img alt="_images/05_export_06.png" src="_images/05_export_06.png" />
+<p>La aplicación mostrará el estado de la ejecución de los comandos e indicará si tuvo éxito.</p>
+<img alt="_images/05_export_07.png" src="_images/05_export_07.png" />
+<div class="admonition important">
+<p class="first admonition-title">Importante</p>
+<p class="last">La aplicación muestra en la consola de eventos el estado de la ejecución del comando. Por lo tanto, si se presenta alguna inconsistencia, esta se mostrará en la consola.</p>
+</div>
+</div></blockquote>
 </div>
 </div>
 
@@ -95,15 +329,7 @@
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="installation.html" title="capítulo anterior">Instalación</a></li>
-      <li>Next: <a href="util_information.html" title="próximo capítulo">Información Útil</a></li>
-  </ul></li>
-</ul>
-</div>
+        <div class="sphinxsidebarwrapper">
 <div id="searchbox" style="display: none" role="search">
   <h3>Búsqueda rápida</h3>
     <form class="search" action="search.html" method="get">
@@ -114,6 +340,23 @@
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+<h3><a href="index.html">Tabla de Contenidos</a></h3>
+<p class="caption"><span class="caption-text">Contenido:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">2. Instalación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_interface.html">3. Interfaz de usuario</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Funcionalidades</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#abrir-uml-editor">4.1. Abrir UML Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generar-modelo-fisico">4.2. Generar modelo físico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#importar-o-modificar-datos">4.3. Importar o modificar datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#validar-datos">4.4. Validar datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exportar-datos">4.5. Exportar datos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="util_information.html">5. Información Útil</a></li>
+</ul>
+
         </div>
       </div>
       <div class="clearer"></div>

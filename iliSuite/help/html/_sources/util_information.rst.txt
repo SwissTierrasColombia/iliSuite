@@ -1,3 +1,14 @@
 Información Útil
 ===========================
 
+.. include:: util_information/scopes.rst
+
+.. include:: util_information/generate_physical_model_options.rst
+
+.. include:: util_information/import_options.rst
+
+.. include:: util_information/validation_options.rst
+
+.. include:: util_information/export_options.rst
+
+.. include:: util_information/FAQ.rst

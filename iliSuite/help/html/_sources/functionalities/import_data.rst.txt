@@ -1,4 +1,58 @@
 .. _import_data:
 
 Importar o modificar datos
-===========================
+----------------------------
+
+Esta funcionalidad permite realizar 2 operaciones:
+
+* Importar datos dentro de una base de datos (previamente creada usando la herramienta de generación de modelo físico) a partir de un archivo de intercambio de datos Interlis (xtf). Estos datos pueden agregarse como nuevos en la base de datos, o tambien pueden reemplazar o actualizar datos ya existentes.
+* Eliminar datos existentes en la base de datos.
+
+Para poder importar o modificar datos se deben realizar los siguientes pasos:
+
+1. Seleccionar la opción "Importar o modificar datos" en el menú de funcionalidades principales y hacer clic en el botón "Siguiente" ubicado en la sección de botones de navegación 
+
+ .. image:: ./resources/functionalities/03_import_01.png
+
+2. Seleccionar el motor de base de datos deseado. La aplicación mostrará observaciones a tener en cuenta sobre el motor seleccionado como, por ejemplo, la versión. Hacer clic en el botón "Siguiente".
+
+ .. image:: ./resources/functionalities/03_import_02.png
+
+ La aplicación mostrará un formulario para ingresar los datos de conexión a la base de datos. Este formulario es diferente para cada motor de base de datos y por lo tanto depende de la opción seleccionada en el paso anterior.
+
+ .. image:: ./resources/functionalities/03_import_03.png
+
+3. Diligenciar los datos de conexión en el formulario y hacer clic en el botón "Siguiente"
+
+  .. image:: ./resources/functionalities/03_import_04.png
+
+.. note:: El formulario puede tener algunos campos con valores en color gris. Esto significa que éste será el valor predeterminado del campo en caso de no ingresar valor en él. 
+
+.. note:: Los campos obligatorios se marcarán en rojo en caso de no ser diligenciados.
+
+.. important:: En caso de no ser exitosa la conexión se podrá ver el error en la consola de eventos ubicada en la parte inferior de la pantalla de la aplicación
+ 
+  .. image:: ./resources/functionalities/03_import_04a.png
+      :scale: 60 %
+..
+
+4. La aplicación mostrará la pantalla de ingreso de parametros para la importación o modificación de datos dentro de la base de datos, los cuales son:
+
+ .. image:: ./resources/functionalities/03_import_05.png
+  
+ * La ruta del archivo de transferencia de datos (en formato .xtf) que contiene los datos a ser importados.
+
+ * Repositorios de modelos, en donde se definen las rutas de las carpetas, o URLs, que contienen los archivos Interlis con los modelos base del xtf a importar.
+
+ * Las opciones de importación o modificación de datos, entre las que se encuentran la acción a realizar y las opciones de validación que son realizadas a los datos al momento de importar.
+ Para información detallada ver:  :ref:`Opciones de importar o modificar datos <import_options>`
+
+5. Finalmente, se mostrará el comando que se ejecutará de acuerdo a las opciones elegidas en los pasos anteriores. Si los parámetros son correctos, hacer clic en el botón "Ejecutar".
+
+ .. image:: ./resources/functionalities/03_import_06.png
+
+ La aplicación mostrará el estado de la ejecución de los comandos e indicará si tuvo éxito.
+ 
+ .. image:: ./resources/functionalities/03_import_07.png
+
+.. important:: La aplicación muestra en la consola de eventos el estado de la ejecución del comando. Por lo tanto, si se presenta alguna inconsistencia, esta se mostrará en la consola.

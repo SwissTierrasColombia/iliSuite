@@ -1,3 +1,9 @@
+.. _faq:
+
+Preguntas frecuentes
+----------------------
+
+
 ¿Qué es el repositorio de modelos?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

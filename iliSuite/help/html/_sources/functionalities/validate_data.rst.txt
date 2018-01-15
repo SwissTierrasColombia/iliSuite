@@ -1,4 +1,37 @@
 .. _validate_data:
 
 Validar datos
-==============
+-------------
+
+Esta funcionalidad permite verificar que los datos de un archivo de transferencia de Interlis (.itf o .xtf) sean validos de acuerdo a un determinado modelo de Interlis (.ili). La aplicación permite seleccionar las opciones de validación y de registro de eventos (*log*).
+
+Para validar datos se deben realizar los siguientes pasos:
+
+1. Seleccionar la opción "Validar datos" en el menú de funcionalidades principales y hacer clic en el botón "Siguiente" ubicado en la sección de botones de navegación
+
+ .. image:: ./resources/functionalities/04_validate_01.png
+ 
+2. Diligenciar los parametros de validación de datos, los cuales son los siguientes:
+
+ .. image:: ./resources/functionalities/04_validate_02.png
+
+ * **Ruta del archivo de datos** (en formato .xtf): Ruta del archivo de transferencia de Interlis que contiene los datos que serán validados. Para diligenciar la ruta del archivo de datos se debe hacer clic el botón "Examinar" correspondiente y seleccionar el archivo usando el diálogo de selección de archivos que es desplegado.
+ * **Repositorio de modelos**: Rutas de las carpetas, o *URLs*, que contienen los archivos Interlis (.ili) con los modelos de referencia con base en los cuales se va a validar el archivo de transferencia de datos. Para diligenciar el repositorio de modelos se debe hacer clic en el botón "Examinar" correspondiente, lo cual despliega el :ref:`model_dialog_box`. En caso de haber agregado repositorios previamente por medio del Menú Configuración, el repositorio de modelos tendrá estos valores diligenciados.
+ * **Opciones de validación de datos**: Permite seleccionar las opciones de validación y registro de eventos. 
+ Para información detallada ver:  :ref:`validation_options`.
+ 
+ .. note:: Al mantener el cursor sobre cada opción aparece un tooltip con información de la opción correspondiente.
+
+..
+ 
+ Para continuar haga clic en "Siguiente".
+ 
+3. Revisar el comando de ejecución (generado de acuerdo a las opciones elegidas en los pasos anteriores) y, en caso de ser correcto, hacer clic en el botón "Ejecutar".
+
+ .. image:: ./resources/functionalities/04_validate_03.png
+ 
+ La aplicación mostrará el estado de la ejecución y los mensajes de validación correspondientes
+
+ .. image:: ./resources/functionalities/04_validate_04.png
+
+ .. note:: En caso de haber seleccionado alguna opción de generación de registro de eventos en archivo, la ejecución del comando generará de manera adicional el archivo que contiene el resultado de la validación.

@@ -1,4 +1,67 @@
 .. _generate_physical_model_options:
 
 Opciones de generación de modelo físico
-========================================
+-----------------------------------------
+
+Las opciones de generación de modelo físico son usadas por ili2db para configurar la creación de la base de datos, las diferentes opciones y su descripción son las siguientes:
+
+=======================  ====================
+Opción                   Descripción
+=======================  ====================
+  *Mapeos*
+---------------------------------------------
+noSmartMapping           Todas las optimizaciones de mapeo estructural están deshabilitadas, por lo tanto se crearán en la base de datos todas las tablas del modelo
+smart1Inheritance        Mapea la jerarquía de herencia con una estrategia dinámica, aplicando las siguientes reglas:
+
+                         * Para las clases abstractas no referenciadas crea una tabla por cada subclase de menor jerarquía, agregando como campos de la cada tabla los atributos de sus  super  clases
+                         * Para las clases abstractas referenciadas y no tienen una super clase que haya sido creada, crea las tablas respectivas.
+                         * Para las clases concretas que no tienen una super clase que haya sido creada, crea las tablas respectivas.
+                         * Para todas las otras clases crea las tablas de las super clases, agregando como campos de la tabla los atributos de todas sus subclases.
+smart2Inheritance	     Mapea la jerarquía de herencia con una estrategia dinámica, aplicando las siguientes reglas:
+					
+					     * Para todas las clases abstractas crea una tabla por cada subclase de menor jerarquía, agregando como campos de la cada tabla los atributos de sus super clases.
+					     * Para todas las clases concretas se crea una tabla por cada clase, agregando como campos de cada tabla los atributos de sus super clases.
+createEnumTabs		     Crea una tabla por cada enumeración (dominio) definida en el modelo, esta tabla contiene los diferentes valores posibles de la respectiva enumeración.
+createSingleEnumTab	     Crea una tabla única con todos los valores de enumeraciones definidas en el modelo
+createEnumTxtCol	     Crea una columna adicional con el nombre del valor enumerado para los atributos de enumeración.
+beautifyEnumDispName     Mejora el texto que se muestra para el elemento enumerado. Al importar, la columna del código XTF se rellena sin guión bajo
+coalesceCatalogueRef     Los atributos de estructura cuya máxima cardinalidad es 1, cuyo tipo de base es CHBase:CatalogReference o CHBase:MandatoryCatalogueReference y que no 
+                         tienen otros atributos que no sean "Reference", se mapean directamente con una clave foránea a la tabla de destino, es decir, sin registro en la tabla para la estructura con el atributo "Referencia".
+coalesceMultiSurface     Los atributos de estructura cuya máxima cardinalidad es 1, cuyo tipo de base es CHBase:MultiSurface y que no tienen otros atributos que no sean "Surfaces"
+                         se mapean directamente como columna con el tipo MULTISURFACE (o MULTIPOLYGON, si se habilita la opción "strokeArcs").
+expandMultilingual       Los atributos de estructura cuya máxima cardinalidad es 1, cuyo tipo de base es LocalizationCH_V1.MultilingualText o LocalizationCH_V1.MultilingualMText y que no 
+                         tienen otros atributos que no sean "LocalizedText", se mapean directamente como columnas en la tabla del atributo, es decir, sin registros en las tablas para las estructuras multilingües.
+coalesceMultiLine	     Los atributos de estructura cuya máxima cardinalidad es 1, cuyo tipo de base es CHBase:MultiLine y que no tienen otros atributos que no sean "Lines",                 se mapean directamente como columna con el tipo MULTICURVE (o MULTILINESTRING, si se habilita la opción strokeArcs).
+defaultSrsAuth 		     SRS Authority para columnas de geometría, donde este valor no se puede determinar (siempre es el caso para Interlis 1 e Interlis 2.3). La capitalización es                       significativa. El valor por defecto es EPSG.
+defaultSrsCode		     Código de SRS para columnas de geometrias, donde este valor no se puede determinar (siempre es el caso para Interlis 1 e Interlis 2.3). El valor por defecto                  es 21781.
+strokeArcs			     Segmenta los Arcos durante el import de datos. El radio se pierde. Los arcos están segmentados de tal manera que la desviación de las líneas generadas                es menor que la precisión de coordenadas de los puntos de interpolación.
+oneGeomPerTable		     **Solo aplica para PostGIS**: Crea tablas de ayuda si hay más de un atributo de geometría en una clase/tabla, de modo que sólo haya una columna de geometría                por tabla de la base de datos.
+
+*DDL*
+---------------------------------------------
+disableNameOptimization  Desactiva el uso de nombres de clase no calificados. Para todos los nombres de tabla, se utilizan nombres de clase Interlis 
+                         calificados (Model.Topic.Class) (y mapeados en un nombre de tabla válido).
+nameByTopic				 Usa la concatenación del nombre del topic y el nombre de la clase como nombre de cada tabla en la base de datos.
+maxNameLength			 Define la longitud máxima de los nombres de los elementos de la base de datos (nombres de tablas, nombres de columnas, etc.). El valor predeterminado es 60.                      Si el nombre Interlis es más largo, se trunca.
+sqlEnableNull			 No crea instrucciones NOT NULL en columnas de atributos Interlis.
+createFk				 Genera una condición de clave foránea para columnas que hacen referencia a registros en otras tablas.
+createUnique			 Crea condiciones UNIQUE para restricciones/[constraints] INTERLIS-UNIQUE en la base de datos (si es posible).
+createNumChecks			 Crea restricciones/[constraints) CHECK en la base de datos para tipos de datos numéricos.
+createGeomIdx			 Crea un índice espacial para cada columna de geometría en la base de datos.
+createFkIdx				 Crea un índice para cada columna de clave foránea en la base de datos. También se puede utilizar sin la opción "createFk".
+
+*Metainformación/Otros*
+---------------------------------------------
+t_id_name 				 Define el nombre de la columna de llave técnica interna de cada tabla (no debe confundirse con el identificador de transferencia externo). El valor                    predeterminado es T_Id.
+createStdCols			 Crea columnas de metadatos T_User, T_CreateDate, T_LastChange adicionales en cada tabla.
+createTypeDiscriminator	 Crea una columna para el discriminador de tipo para cada tabla (incluso si el modelo no utiliza herencia). Para las clases con herencia, la columna siempre se crea.
+importTid				 Lee la identificación de transferencia (del archivo de transferencia) en una columna adicional T_Ili_Tid.
+createBasketCol			 Crea una columna adicional T_basket en cada tabla para identificar el contenedor/basket.
+createDatasetCol		 Crea en cada tabla una columna adicional T_datasetname con el nombre/identificador del registro/conjunto de datos. La opción requiere la opción --dataset. La columna es redundante con la columna datasetname de la tabla t_ili2db_dataset.
+createMetaInfo			 Crea meta-tablas adicionales T_ILI2DB_TABLE_PROP y T_ILI2DB_COLUMN_PROP con más información del modelo Interlis.
+ver4-translation		 Usa las reglas de mapeo ili2db 4.x para modelos traducidos (incompatible con ili2db 3.x).
+idSeqMin 				 **Solo aplica para PostGIS**: Define el valor mínimo para el generador de llaves técnicas internas.
+idSeqMax 				 **Solo aplica para PostGIS**: Define el valor máximo para el generador de llaves técnicas internas.
+createscript 			 Crea un script SQL además de la estructura de tablas en la base de datos para crear la estructura de tabla independiente del programa. El script se genera                   adicionalmente a las tablas de la base de datos, es decir no es posible crear solo el script (sin la base de datos).
+dropscript 				 Crea script SQL para eliminar la estructura de tablas independiente del programa.
+=======================  ====================

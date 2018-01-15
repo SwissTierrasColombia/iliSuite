@@ -1,0 +1,142 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Opciones para importar o modificar datos &#8212; documentación de iliSuite - 0.1.0</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/ilisuite.ico"/>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="opciones-para-importar-o-modificar-datos">
+<span id="import-options"></span><h1>Opciones para importar o modificar datos<a class="headerlink" href="#opciones-para-importar-o-modificar-datos" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Las opciones para <em>importar o modificar datos</em> controlan la forma en que los datos que contiene el archivo xtf suministrado son almacenados en la base de datos. Algunas opciones requiren que la base de datos se haya generado con la opción <em>createBasketCol</em>. Las opciones disponibles en iliSuite son:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Opción</th>
+<th class="head">Descripción</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>import</td>
+<td>Los datos del archivo xtf seleccionado son agregados a la base de datos.</td>
+</tr>
+<tr class="row-odd"><td>delete data</td>
+<td>Usado con la opción import, borra los datos existentes en las tablas.</td>
+</tr>
+<tr class="row-even"><td></td>
+<td>–</td>
+</tr>
+<tr class="row-odd"><td>replace</td>
+<td>Reemplaza los datos del dataset especificado (opción <em>dataset</em>), con los datos del archivos xtf. Requiere que la base de datos se haya generado con la opción createBasketCol.</td>
+</tr>
+<tr class="row-even"><td>delete</td>
+<td>Elimina los datos asociados al dataset especificado (opción <em>dataset</em>). Requiere que la base de datos se haya generado con la opción createBasketCol.</td>
+</tr>
+<tr class="row-odd"><td>dataset</td>
+<td>El nombre del dataset sobre el que se va a aplicar la modificación de los datos: import, update, replace o delete.</td>
+</tr>
+<tr class="row-even"><td colspan="2"><em>Validación de datos</em></td>
+</tr>
+<tr class="row-odd"><td>disable validation</td>
+<td>Desactiva la validación de los datos.</td>
+</tr>
+<tr class="row-even"><td>disable area validation</td>
+<td>Desactiva la validación de la topología AREA.</td>
+</tr>
+<tr class="row-odd"><td>skip geometry errors</td>
+<td>Los errores de geometría se ignoran (y no se informan).</td>
+</tr>
+<tr class="row-even"><td>config file</td>
+<td>Archivo de configuración que se utilizará para la validación.</td>
+</tr>
+<tr class="row-odd"><td>force type validation</td>
+<td>Únicamente la multiplicidad puede ser omitida en el archivo de configuración.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Ir a" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<h3><a href="../index.html">Tabla de Contenidos</a></h3>
+<p class="caption"><span class="caption-text">Contenido:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">2. Instalación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_interface.html">3. Interfaz de usuario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functionalities.html">4. Funcionalidades</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util_information.html">5. Información Útil</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Agencia de Implementacion.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/util_information/import_options.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

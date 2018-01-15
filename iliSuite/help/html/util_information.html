@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Información Útil &#8212; documentación de iliSuite - 0.1.0</title>
+    <title>5. Información Útil &#8212; documentación de iliSuite - 0.1.0</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -22,9 +22,10 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="shortcut icon" href="_static/ilisuite.ico"/>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
-    <link rel="prev" title="Funcionalidades" href="functionalities.html" />
+    <link rel="prev" title="4. Funcionalidades" href="functionalities.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -41,7 +42,311 @@
           <div class="body" role="main">
             
   <div class="section" id="informacion-util">
-<h1>Información Útil<a class="headerlink" href="#informacion-util" title="Enlazar permanentemente con este título">¶</a></h1>
+<h1>5. Información Útil<a class="headerlink" href="#informacion-util" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="alcances">
+<span id="scopes"></span><h2>5.1. Alcances<a class="headerlink" href="#alcances" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Interlis define 4 niveles jerárquicos de agrupación de la información, los cuales son usados por las herramientas de iliSuite, estos niveles son:</p>
+<ul class="simple">
+<li>Basket</li>
+<li>Dataset</li>
+<li>Topic</li>
+<li>Model</li>
+</ul>
+<div class="section" id="basket">
+<h3>5.1.1. Basket<a class="headerlink" href="#basket" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Un «basket» es una colección compacta de objetos, por lo tanto contiene objetos relacionados entre sí dentro de un tema.</p>
+<p>Típicamente un «basket» es usado como contenedor de los objetos pertenecientes a un area geografica (ej: municipio) o pertenecientes a un dominio especifico (ej: turismo).</p>
+<p>Los objetos de un «basket» son tratados habitualmente como una unidad, tanto para almacenamiento como para revisión (o modificación).</p>
+</div>
+<div class="section" id="dataset">
+<h3>5.1.2. Dataset<a class="headerlink" href="#dataset" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Un «dataset» es un conjunto de datos que puede contener uno o varios baskets.</p>
+</div>
+<div class="section" id="topic">
+<h3>5.1.3. Topic<a class="headerlink" href="#topic" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Un «topic» contiene todas las definiciones necesarias para describir parte de la realidad dentro de un modelo. Este puede contener «datasets» y/o «baskets»</p>
+<p>Ademas de los datos, en un «topic» se pueden definir los tipos como unidades de medida, dominios o estructuras y tambien se pueden usar los tipos definidos en modelos importados.</p>
+</div>
+<div class="section" id="model">
+<h3>5.1.4. Model<a class="headerlink" href="#model" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Un «Model» es la base de la arquitectura basada en modelos, por lo tanto en él se describe una imagen de la realidad que tiene significado para una aplicación especifica. Un «model» puede contener uno o varios «topics»</p>
+</div>
+</div>
+<div class="section" id="opciones-de-generacion-de-modelo-fisico">
+<span id="generate-physical-model-options"></span><h2>5.2. Opciones de generación de modelo físico<a class="headerlink" href="#opciones-de-generacion-de-modelo-fisico" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Las opciones de generación de modelo físico son usadas por ili2db para configurar la creación de la base de datos, las diferentes opciones y su descripción son las siguientes:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="93%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Opción</th>
+<th class="head">Descripción</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td colspan="2"><em>Mapeos</em></td>
+</tr>
+<tr class="row-odd"><td>noSmartMapping</td>
+<td>Todas las optimizaciones de mapeo estructural están deshabilitadas, por lo tanto se crearán en la base de datos todas las tablas del modelo</td>
+</tr>
+<tr class="row-even"><td>smart1Inheritance</td>
+<td><p class="first">Mapea la jerarquía de herencia con una estrategia dinámica, aplicando las siguientes reglas:</p>
+<ul class="last simple">
+<li>Para las clases abstractas no referenciadas crea una tabla por cada subclase de menor jerarquía, agregando como campos de la cada tabla los atributos de sus  super  clases</li>
+<li>Para las clases abstractas referenciadas y no tienen una super clase que haya sido creada, crea las tablas respectivas.</li>
+<li>Para las clases concretas que no tienen una super clase que haya sido creada, crea las tablas respectivas.</li>
+<li>Para todas las otras clases crea las tablas de las super clases, agregando como campos de la tabla los atributos de todas sus subclases.</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>smart2Inheritance</td>
+<td><p class="first">Mapea la jerarquía de herencia con una estrategia dinámica, aplicando las siguientes reglas:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>Para todas las clases abstractas crea una tabla por cada subclase de menor jerarquía, agregando como campos de la cada tabla los atributos de sus super clases.</li>
+<li>Para todas las clases concretas se crea una tabla por cada clase, agregando como campos de cada tabla los atributos de sus super clases.</li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td>createEnumTabs</td>
+<td>Crea una tabla por cada enumeración (dominio) definida en el modelo, esta tabla contiene los diferentes valores posibles de la respectiva enumeración.</td>
+</tr>
+<tr class="row-odd"><td>createSingleEnumTab</td>
+<td>Crea una tabla única con todos los valores de enumeraciones definidas en el modelo</td>
+</tr>
+<tr class="row-even"><td>createEnumTxtCol</td>
+<td>Crea una columna adicional con el nombre del valor enumerado para los atributos de enumeración.</td>
+</tr>
+<tr class="row-odd"><td>beautifyEnumDispName</td>
+<td>Mejora el texto que se muestra para el elemento enumerado. Al importar, la columna del código XTF se rellena sin guión bajo</td>
+</tr>
+<tr class="row-even"><td>coalesceCatalogueRef</td>
+<td>Los atributos de estructura cuya máxima cardinalidad es 1, cuyo tipo de base es CHBase:CatalogReference o CHBase:MandatoryCatalogueReference y que no
+tienen otros atributos que no sean «Reference», se mapean directamente con una clave foránea a la tabla de destino, es decir, sin registro en la tabla para la estructura con el atributo «Referencia».</td>
+</tr>
+<tr class="row-odd"><td>coalesceMultiSurface</td>
+<td>Los atributos de estructura cuya máxima cardinalidad es 1, cuyo tipo de base es CHBase:MultiSurface y que no tienen otros atributos que no sean «Surfaces»
+se mapean directamente como columna con el tipo MULTISURFACE (o MULTIPOLYGON, si se habilita la opción «strokeArcs»).</td>
+</tr>
+<tr class="row-even"><td>expandMultilingual</td>
+<td>Los atributos de estructura cuya máxima cardinalidad es 1, cuyo tipo de base es LocalizationCH_V1.MultilingualText o LocalizationCH_V1.MultilingualMText y que no
+tienen otros atributos que no sean «LocalizedText», se mapean directamente como columnas en la tabla del atributo, es decir, sin registros en las tablas para las estructuras multilingües.</td>
+</tr>
+<tr class="row-odd"><td>coalesceMultiLine</td>
+<td>Los atributos de estructura cuya máxima cardinalidad es 1, cuyo tipo de base es CHBase:MultiLine y que no tienen otros atributos que no sean «Lines»,                 se mapean directamente como columna con el tipo MULTICURVE (o MULTILINESTRING, si se habilita la opción strokeArcs).</td>
+</tr>
+<tr class="row-even"><td>defaultSrsAuth</td>
+<td>SRS Authority para columnas de geometría, donde este valor no se puede determinar (siempre es el caso para Interlis 1 e Interlis 2.3). La capitalización es                       significativa. El valor por defecto es EPSG.</td>
+</tr>
+<tr class="row-odd"><td>defaultSrsCode</td>
+<td>Código de SRS para columnas de geometrias, donde este valor no se puede determinar (siempre es el caso para Interlis 1 e Interlis 2.3). El valor por defecto                  es 21781.</td>
+</tr>
+<tr class="row-even"><td>strokeArcs</td>
+<td>Segmenta los Arcos durante el import de datos. El radio se pierde. Los arcos están segmentados de tal manera que la desviación de las líneas generadas                es menor que la precisión de coordenadas de los puntos de interpolación.</td>
+</tr>
+<tr class="row-odd"><td>oneGeomPerTable</td>
+<td><strong>Solo aplica para PostGIS</strong>: Crea tablas de ayuda si hay más de un atributo de geometría en una clase/tabla, de modo que sólo haya una columna de geometría                por tabla de la base de datos.</td>
+</tr>
+<tr class="row-even"><td colspan="2"><em>DDL</em></td>
+</tr>
+<tr class="row-odd"><td>disableNameOptimization</td>
+<td>Desactiva el uso de nombres de clase no calificados. Para todos los nombres de tabla, se utilizan nombres de clase Interlis
+calificados (Model.Topic.Class) (y mapeados en un nombre de tabla válido).</td>
+</tr>
+<tr class="row-even"><td>nameByTopic</td>
+<td>Usa la concatenación del nombre del topic y el nombre de la clase como nombre de cada tabla en la base de datos.</td>
+</tr>
+<tr class="row-odd"><td>maxNameLength</td>
+<td>Define la longitud máxima de los nombres de los elementos de la base de datos (nombres de tablas, nombres de columnas, etc.). El valor predeterminado es 60.                      Si el nombre Interlis es más largo, se trunca.</td>
+</tr>
+<tr class="row-even"><td>sqlEnableNull</td>
+<td>No crea instrucciones NOT NULL en columnas de atributos Interlis.</td>
+</tr>
+<tr class="row-odd"><td>createFk</td>
+<td>Genera una condición de clave foránea para columnas que hacen referencia a registros en otras tablas.</td>
+</tr>
+<tr class="row-even"><td>createUnique</td>
+<td>Crea condiciones UNIQUE para restricciones/[constraints] INTERLIS-UNIQUE en la base de datos (si es posible).</td>
+</tr>
+<tr class="row-odd"><td>createNumChecks</td>
+<td>Crea restricciones/[constraints) CHECK en la base de datos para tipos de datos numéricos.</td>
+</tr>
+<tr class="row-even"><td>createGeomIdx</td>
+<td>Crea un índice espacial para cada columna de geometría en la base de datos.</td>
+</tr>
+<tr class="row-odd"><td>createFkIdx</td>
+<td>Crea un índice para cada columna de clave foránea en la base de datos. También se puede utilizar sin la opción «createFk».</td>
+</tr>
+<tr class="row-even"><td colspan="2"><em>Metainformación/Otros</em></td>
+</tr>
+<tr class="row-odd"><td>t_id_name</td>
+<td>Define el nombre de la columna de llave técnica interna de cada tabla (no debe confundirse con el identificador de transferencia externo). El valor                    predeterminado es T_Id.</td>
+</tr>
+<tr class="row-even"><td>createStdCols</td>
+<td>Crea columnas de metadatos T_User, T_CreateDate, T_LastChange adicionales en cada tabla.</td>
+</tr>
+<tr class="row-odd"><td>createTypeDiscriminator</td>
+<td>Crea una columna para el discriminador de tipo para cada tabla (incluso si el modelo no utiliza herencia). Para las clases con herencia, la columna siempre se crea.</td>
+</tr>
+<tr class="row-even"><td>importTid</td>
+<td>Lee la identificación de transferencia (del archivo de transferencia) en una columna adicional T_Ili_Tid.</td>
+</tr>
+<tr class="row-odd"><td>createBasketCol</td>
+<td>Crea una columna adicional T_basket en cada tabla para identificar el contenedor/basket.</td>
+</tr>
+<tr class="row-even"><td>createDatasetCol</td>
+<td>Crea en cada tabla una columna adicional T_datasetname con el nombre/identificador del registro/conjunto de datos. La opción requiere la opción –dataset. La columna es redundante con la columna datasetname de la tabla t_ili2db_dataset.</td>
+</tr>
+<tr class="row-odd"><td>createMetaInfo</td>
+<td>Crea meta-tablas adicionales T_ILI2DB_TABLE_PROP y T_ILI2DB_COLUMN_PROP con más información del modelo Interlis.</td>
+</tr>
+<tr class="row-even"><td>ver4-translation</td>
+<td>Usa las reglas de mapeo ili2db 4.x para modelos traducidos (incompatible con ili2db 3.x).</td>
+</tr>
+<tr class="row-odd"><td>idSeqMin</td>
+<td><strong>Solo aplica para PostGIS</strong>: Define el valor mínimo para el generador de llaves técnicas internas.</td>
+</tr>
+<tr class="row-even"><td>idSeqMax</td>
+<td><strong>Solo aplica para PostGIS</strong>: Define el valor máximo para el generador de llaves técnicas internas.</td>
+</tr>
+<tr class="row-odd"><td>createscript</td>
+<td>Crea un script SQL además de la estructura de tablas en la base de datos para crear la estructura de tabla independiente del programa. El script se genera                   adicionalmente a las tablas de la base de datos, es decir no es posible crear solo el script (sin la base de datos).</td>
+</tr>
+<tr class="row-even"><td>dropscript</td>
+<td>Crea script SQL para eliminar la estructura de tablas independiente del programa.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="opciones-para-importar-o-modificar-datos">
+<span id="import-options"></span><h2>5.3. Opciones para importar o modificar datos<a class="headerlink" href="#opciones-para-importar-o-modificar-datos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Las opciones para <em>importar o modificar datos</em> controlan la forma en que los datos que contiene el archivo xtf suministrado son almacenados en la base de datos. Algunas opciones requiren que la base de datos se haya generado con la opción <em>createBasketCol</em>. Las opciones disponibles en iliSuite son:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Opción</th>
+<th class="head">Descripción</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>import</td>
+<td>Los datos del archivo xtf seleccionado son agregados a la base de datos.</td>
+</tr>
+<tr class="row-odd"><td>delete data</td>
+<td>Usado con la opción import, borra los datos existentes en las tablas.</td>
+</tr>
+<tr class="row-even"><td></td>
+<td>–</td>
+</tr>
+<tr class="row-odd"><td>replace</td>
+<td>Reemplaza los datos del dataset especificado (opción <em>dataset</em>), con los datos del archivos xtf. Requiere que la base de datos se haya generado con la opción createBasketCol.</td>
+</tr>
+<tr class="row-even"><td>delete</td>
+<td>Elimina los datos asociados al dataset especificado (opción <em>dataset</em>). Requiere que la base de datos se haya generado con la opción createBasketCol.</td>
+</tr>
+<tr class="row-odd"><td>dataset</td>
+<td>El nombre del dataset sobre el que se va a aplicar la modificación de los datos: import, update, replace o delete.</td>
+</tr>
+<tr class="row-even"><td colspan="2"><em>Validación de datos</em></td>
+</tr>
+<tr class="row-odd"><td>disable validation</td>
+<td>Desactiva la validación de los datos.</td>
+</tr>
+<tr class="row-even"><td>disable area validation</td>
+<td>Desactiva la validación de la topología AREA.</td>
+</tr>
+<tr class="row-odd"><td>skip geometry errors</td>
+<td>Los errores de geometría se ignoran (y no se informan).</td>
+</tr>
+<tr class="row-even"><td>config file</td>
+<td>Archivo de configuración que se utilizará para la validación.</td>
+</tr>
+<tr class="row-odd"><td>force type validation</td>
+<td>Únicamente la multiplicidad puede ser omitida en el archivo de configuración.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="opciones-para-validar-datos">
+<span id="validation-options"></span><h2>5.4. Opciones para validar datos<a class="headerlink" href="#opciones-para-validar-datos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Las opciones para <em>validar datos</em> permiten forzar o deshabilitar ciertas validaciones; agregar validaciones adicionales y almacenar el resultado de las validaciones en archivos de log. Las opciones disponible en iliSuite son:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Opción</th>
+<th class="head">Descripción</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>disable area validation</td>
+<td>Desactiva la validación de la topología AREA.</td>
+</tr>
+<tr class="row-odd"><td>force type validation</td>
+<td>Únicamente la multiplicidad puede ser omitida en el archivo de configuración.</td>
+</tr>
+<tr class="row-even"><td>config file</td>
+<td>Archivo de configuración que se utilizará para la validación.</td>
+</tr>
+<tr class="row-odd"><td>trace</td>
+<td>Escribe mensajes de log más detallados</td>
+</tr>
+<tr class="row-even"><td>log in file</td>
+<td>Si se habilita, guarda los mensajes del log en el archivo especificado en formato de transferencia de interlis</td>
+</tr>
+<tr class="row-odd"><td>log in xtf</td>
+<td>Si se habilita, guarda los mensajes del log en el archivo especificado</td>
+</tr>
+<tr class="row-even"><td>plugins folder</td>
+<td>Carpeta con archivos <em>jar</em> con validaciones adicionales. Para especificar esta carpeta, se debe habilitar la opción <em>Additional functionality</em>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="opciones-para-exportar-datos">
+<span id="export-options"></span><h2>5.5. Opciones para exportar datos<a class="headerlink" href="#opciones-para-exportar-datos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Las opciones para <em>exportar datos</em> controlan el conjunto de datos que se exportan desde la base de datos a un archivo xtf. Algunas opciones requieren que la base de datos se haya generado con la opción <em>createBasketCol</em>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Opción</th>
+<th class="head">Descripción</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Dataset</td>
+<td>Nombre del dataset en la base de datos que se va a exportar al archivo de transferencia (xtf). Requiere que la base de datos se haya generado con la opción createBasketCol.</td>
+</tr>
+<tr class="row-odd"><td>Baskets</td>
+<td>Lista de los baskets en la base de datos que se van a exportar al archivo de transferencia (xtf). Requiere que la base de datos se haya generado con la opción createBasketCol.</td>
+</tr>
+<tr class="row-even"><td>Topics</td>
+<td>Lista de los topics a exportar. Requiere que la base de datos se haya generado con la opción createBasketCol.</td>
+</tr>
+<tr class="row-odd"><td>Models</td>
+<td>Lista de los modelos a exportar.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="preguntas-frecuentes">
+<span id="faq"></span><h2>5.6. Preguntas frecuentes<a class="headerlink" href="#preguntas-frecuentes" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="que-es-el-repositorio-de-modelos">
+<h3>5.6.1. ¿Qué es el repositorio de modelos?<a class="headerlink" href="#que-es-el-repositorio-de-modelos" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Un repositorio de modelos es un repositorio donde se encuentran los modelos de datos, es decir, los distintos archivos ili del cual hereda.</p>
+</div>
+</div>
 </div>
 
 
@@ -49,14 +354,7 @@
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="functionalities.html" title="capítulo anterior">Funcionalidades</a></li>
-  </ul></li>
-</ul>
-</div>
+        <div class="sphinxsidebarwrapper">
 <div id="searchbox" style="display: none" role="search">
   <h3>Búsqueda rápida</h3>
     <form class="search" action="search.html" method="get">
@@ -67,6 +365,24 @@
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+<h3><a href="index.html">Tabla de Contenidos</a></h3>
+<p class="caption"><span class="caption-text">Contenido:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">2. Instalación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_interface.html">3. Interfaz de usuario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functionalities.html">4. Funcionalidades</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Información Útil</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#alcances">5.1. Alcances</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opciones-de-generacion-de-modelo-fisico">5.2. Opciones de generación de modelo físico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opciones-para-importar-o-modificar-datos">5.3. Opciones para importar o modificar datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opciones-para-validar-datos">5.4. Opciones para validar datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opciones-para-exportar-datos">5.5. Opciones para exportar datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#preguntas-frecuentes">5.6. Preguntas frecuentes</a></li>
+</ul>
+</li>
+</ul>
+
         </div>
       </div>
       <div class="clearer"></div>

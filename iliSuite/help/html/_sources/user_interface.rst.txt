@@ -1,0 +1,127 @@
+Interfaz de usuario
+===========================
+
+Interfaz principal
+-------------------
+
+En la interfaz principal de la aplicación se pueden apreciar las secciones:
+
+1.	Barra de menú
+2.	Menú de funcionalidades principales
+3.	Región de descripciones
+4.	Botones de navegación
+
+.. image:: resources/main_interface.png
+    :scale: 60 %
+
+A continuación se explica con más detalle algunas de estas secciones.
+
+Barra de menú
+^^^^^^^^^^^^^
+
+En la barra de menú se encuentran los siguientes items:
+
+1. Configuración
+ 
+ Permite realizar configuraciones del uso de la aplicación.
+
+  .. image:: resources/user_interface/menu_config.png
+
+  a. **Ajustes de proxy:** Despliega un cuadro de diálogo en donde se pueden configurar los parámetros del proxy para acceder a los repositorios de modelos.
+   
+  .. image:: resources/user_interface/dialog_proxy.png
+    :scale: 60 %
+  
+  b. **Repositorios predeterminados de modelos:** Despliega un cuadro de diálogo en el que se gestionan las rutas predeterminadas donde se almacenan los modelos a usar durante la ejecución de las diferentes funciones de la aplicación. Ver más en `Cuadro de diálogo repositorio de modelos`_
+  
+2. Ayuda
+
+  a. **Contenido de ayuda:** Muestra esta ayuda
+
+  b. **Acerca de:** Muestra información sobre iliSuite 
+
+
+Menú de funcionalidades principales
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Contiene las funcionalidades principales de la aplicación:
+
+1. Abrir UML Editor
+2. Generar modelo fsico
+3. Importar o modificar datos
+4. Validar datos
+5. Exportar datos
+
+Para obtener información detallada dirijase a la sección :ref:`functionalities_main`
+
+Región de descripciones
+^^^^^^^^^^^^^^^^^^^^^^^
+
+En esta región aparece una corta descripción de la funcionalidad seleccionada del menú de la sección anterior.
+
+.. _model_dialog_box:
+
+Cuadro de diálogo repositorio de modelos
+----------------------------------------
+
+Este cuadro de diálogo permite gestionar los repositorios de modelos.
+
+.. image:: resources/user_interface/model_main.png
+  :scale: 60 %
+
+Agregar un repositorio
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Para agregar un repositorio hacer clic en el botón agregar.
+
+.. image:: resources/user_interface/model_add_01.png
+    :scale: 60 %
+
+En la caja de texto del cuadro de dialogó que aparece, digitar la ruta local o agregar la url del repositorio y hacer clic sobre el botón *Aceptar*.
+
+.. note:: Para agregar una ruta local fácilmente, hacer clic sobre el botón examinar y seleccionar la ubicación del repositorio.
+
+.. image:: resources/user_interface/model_add_02.png
+    :scale: 60 %
+
+El repositorio agregado debe aparecer en la lista de repositorios.
+
+.. image:: resources/user_interface/model_add_03.png
+    :scale: 60 %
+
+Modificar un repositorio
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+*Método 1*
+
+Hacer clic sobre el repositorio que se quiere modificar para seleccionarlo y luego hacer clic sobre el botón *modificar*.
+
+.. image:: resources/user_interface/model_modify_A01.png
+    :scale: 60 %
+
+Luego se puede hacer clic nuevamente para modificarlo directamente sobre la lista.
+
+.. image:: resources/user_interface/model_modify_A02.png
+    :scale: 60 %
+
+Modificar la ruta del repositorio sobre la caja de texto del cuadro de dialogó que aparece y hacer clic en el botón *Aceptar*.
+
+*Método 2*
+
+Hacer clic sobre el repositorio que se quiere modificar para seleccionarlo y de nuevo hacer clic sobre éste para ponerlo en modo edición. Modificar la ruta del repositorio y presionar la tecla *Enter*.
+
+.. image:: resources/user_interface/model_modify_B01.png
+    :scale: 60 %
+    
+Eliminar un repositorio
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Hacer clic sobre el repositorio que se quiere eliminar para seleccionarlo y luego hacer clic sobre el botón *eliminar*.
+
+.. image:: resources/user_interface/model_delete_01.png
+    :scale: 60 %
+
+Aparecerá un dialogó solicitando que se confirme la acción. Hacer clic en el botón *Aceptar*. El repositorio desaparecerá de la lista.
+
+.. image:: resources/user_interface/model_delete_02.png
+    :scale: 60 %

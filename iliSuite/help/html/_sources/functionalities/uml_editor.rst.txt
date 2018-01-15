@@ -1,20 +1,23 @@
+.. las rutas de las imágenes son relativas a donde se carga (/functionalities.rst) no a este archivo
 .. _open_uml_editor:
 
 Abrir UML Editor
-=================
+----------------
 
-UML Editor es una herramienta que permite generar modelos conceptuales utilizando el lenguaje de modelado unificado (UML) y ademas funciona como puente entre el lenguaje de modelado y el lenguaje Interlis por medio de su interfaz intuitiva y fácil de usar.
+UML Editor es una herramienta que permite generar modelos conceptuales utilizando el lenguaje de modelado unificado (UML) y además funciona como puente entre el lenguaje de modelado y el lenguaje Interlis por medio de su interfaz intuitiva y fácil de usar.
 
-Para poder usarla de deben realizar los siguientes pasos:
-
+Para poder usarla se deben realizar los siguientes pasos:
 
 1.  Seleccionar la opción "Abrir UML Editor" en el menú de funcionalidades principales y hacer clic en el botón "Siguiente" ubicado en la sección de botones de navegación
-(imagen 1)
 
-En la pantalla mostrada por la aplicación se verá la versión de UML Editor a ejecutar, así como la versión del lenguaje Interlis y la versión del compilador que esta utiliza.
-(imagen 2)
+ .. image:: ./resources/functionalities/01_uml_editor_01.png
+
+ En la pantalla mostrada por la aplicación se verá la versión de UML Editor a ejecutar, así como la versión del lenguaje Interlis y la versión del compilador que esta utiliza.
+
+ .. image:: ./resources/functionalities/01_uml_editor_02.png
 
 2.  Hacer clic en el botón "Ejecutar" ubicado en la sección de botones de navegación
 
-Esto ejecutará la herramienta UML Editor sin necesidad de instalar algo más
-(imagen 3 = uml abriendo)
+ Esto ejecutará la herramienta UML Editor sin necesidad de instalar algo más
+
+ .. image:: ./resources/functionalities/01_uml_editor_03.png

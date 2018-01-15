@@ -6,16 +6,11 @@ Bienvenido a la ayuda de iliSuite
 .. toctree::
    :maxdepth: 2
    :caption: Contenido:
+   :numbered:
 
    general
    installation
+   user_interface
    functionalities
    util_information
-
-Índices y tablas
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 

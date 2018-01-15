@@ -29,9 +29,7 @@ Windows
 
 6.	Digite la carpeta del menú inicio en la que se pondrá el acceso directo de iliSuite. Si desea colocarlo en una carpeta existente, haga clic en examinar.
 
-.. sidebar:: Carpeta del menú inicio
-	
-	.. image:: resources/win07.png
+.. sidebar Carpeta del menú inicio
 
 .. image:: resources/win08.png
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.*?>
 <?import javafx.scene.web.*?>
@@ -8,4 +9,17 @@
    <center>
       <WebView fx:id="wv_page" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
+   <top>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="TOP_CENTER" layoutX="136.0" layoutY="-37.0" spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#goBack" text="%dialog.help.back" />
+                  <Button fx:id="btnHome" mnemonicParsing="false" onAction="#onClickBtnHome" text="%dialog.help.home" />
+               </children>
+            </HBox>
+            
+         </children>
+      </AnchorPane>
+   </top>
 </BorderPane>

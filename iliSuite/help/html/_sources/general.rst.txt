@@ -7,12 +7,12 @@ General
 iliSuite es una aplicación diseñada para facilitar el trabajo con Interlis. Integra varias herramientas para la gestión de información con Interlis en una única interfaz gráfica tipo Wizard que lo guiará en cada proceso. iliSuite es multiplataforma y está disponible en 3 idiomas: español, alemán e inglés.
 
 Funcionalidades de iliSuite
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-iliSuite presenta 5 funcionalidades que corresponden con los procesos de interlis?
+Con iliSuite es posible ejecutar 5 funcionalidades que corresponden con el flujo de los datos usando interlis como se muestra en la siguiente tabla:
 
 ======================================================	===========================
-Proceso													Opción
+Proceso											Opción
 ======================================================	===========================
 Diseñar el modelo conceptual							Abrir UMLEditor
 Convertir el modelo conceptual en un modelo físico		Generar modelo físico	
@@ -31,19 +31,21 @@ Licencia
 
 iliSuite está publicado bajo los términos de la GNU Lesser General Public License v3.0
 
-Créditos (reconocimientos)
+Créditos
 --------------------------
+
+iliSuite es un software desarrollado en el marco de
+
 .. image:: resources/logoSecoTransparent.png 
 
-Esta aplicación incluye software de otros proyectos:
+iliSuite es una interfaz gráfica que ejecuta software de otros proyectos:
 
 +--------------+-------------------------------------------+
 | Aplicación   | URL                                       |
 +==============+===========================================+
 | Uml editor   | http://www.umleditor.org/                 |
 +--------------+-------------------------------------------+
-| | ili2pg     | https://github.com/claeis/ili2db          |
-| | ili2mssql  |                                           |
+| ili2db       | https://github.com/claeis/ili2db          |
 +--------------+-------------------------------------------+
 | iliValidator | https://github.com/claeis/ilivalidator    |
 +--------------+-------------------------------------------+

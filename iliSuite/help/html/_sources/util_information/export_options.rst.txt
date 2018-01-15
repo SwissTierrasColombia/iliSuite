@@ -1,0 +1,15 @@
+.. _export_options:
+
+Opciones para exportar datos
+------------------------------
+
+Las opciones para *exportar datos* controlan el conjunto de datos que se exportan desde la base de datos a un archivo xtf. Algunas opciones requieren que la base de datos se haya generado con la opción *createBasketCol*.
+
+=======================  ====================
+Opción                   Descripción
+=======================  ====================
+Dataset                  Nombre del dataset en la base de datos que se va a exportar al archivo de transferencia (xtf). Requiere que la base de datos se haya generado con la opción createBasketCol.
+Baskets                  Lista de los baskets en la base de datos que se van a exportar al archivo de transferencia (xtf). Requiere que la base de datos se haya generado con la opción createBasketCol.
+Topics                   Lista de los topics a exportar. Requiere que la base de datos se haya generado con la opción createBasketCol.
+Models                   Lista de los modelos a exportar.
+=======================  ====================

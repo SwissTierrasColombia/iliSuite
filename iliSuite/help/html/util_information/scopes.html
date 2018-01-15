@@ -1,0 +1,119 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Alcances &#8212; documentación de iliSuite - 0.1.0</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/ilisuite.ico"/>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="alcances">
+<span id="scopes"></span><h1>Alcances<a class="headerlink" href="#alcances" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Interlis define 4 niveles jerárquicos de agrupación de la información, los cuales son usados por las herramientas de iliSuite, estos niveles son:</p>
+<ul class="simple">
+<li>Basket</li>
+<li>Dataset</li>
+<li>Topic</li>
+<li>Model</li>
+</ul>
+<div class="section" id="basket">
+<h2>Basket<a class="headerlink" href="#basket" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Un «basket» es una colección compacta de objetos, por lo tanto contiene objetos relacionados entre sí dentro de un tema.</p>
+<p>Típicamente un «basket» es usado como contenedor de los objetos pertenecientes a un area geografica (ej: municipio) o pertenecientes a un dominio especifico (ej: turismo).</p>
+<p>Los objetos de un «basket» son tratados habitualmente como una unidad, tanto para almacenamiento como para revisión (o modificación).</p>
+</div>
+<div class="section" id="dataset">
+<h2>Dataset<a class="headerlink" href="#dataset" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Un «dataset» es un conjunto de datos que puede contener uno o varios baskets.</p>
+</div>
+<div class="section" id="topic">
+<h2>Topic<a class="headerlink" href="#topic" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Un «topic» contiene todas las definiciones necesarias para describir parte de la realidad dentro de un modelo. Este puede contener «datasets» y/o «baskets»</p>
+<p>Ademas de los datos, en un «topic» se pueden definir los tipos como unidades de medida, dominios o estructuras y tambien se pueden usar los tipos definidos en modelos importados.</p>
+</div>
+<div class="section" id="model">
+<h2>Model<a class="headerlink" href="#model" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Un «Model» es la base de la arquitectura basada en modelos, por lo tanto en él se describe una imagen de la realidad que tiene significado para una aplicación especifica. Un «model» puede contener uno o varios «topics»</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Ir a" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<h3><a href="../index.html">Tabla de Contenidos</a></h3>
+<p class="caption"><span class="caption-text">Contenido:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">2. Instalación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_interface.html">3. Interfaz de usuario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functionalities.html">4. Funcionalidades</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util_information.html">5. Información Útil</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Agencia de Implementacion.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/util_information/scopes.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
