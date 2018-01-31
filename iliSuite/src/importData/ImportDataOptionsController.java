@@ -365,7 +365,7 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 			params.put(EnumParams.DELETE.getName(), "true");
 			params.remove(EnumParams.REPLACE.getName());
 			params.remove(EnumParams.UPDATE.getName());
-			params.remove(EnumParams.DELETE.getName());
+			params.remove(EnumParams.DATA_IMPORT.getName());
 		}
 
 		if (!tf_datasetEditable.getText().isEmpty() && !tf_datasetEditable.isDisabled())
