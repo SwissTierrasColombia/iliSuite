@@ -5,7 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import base.dbconn.AbstractConnection;
 import base.dbconn.Ili2DbScope;
@@ -20,7 +23,7 @@ public class Ili2fgdbScope implements Ili2DbScope {
 	
 	@Override
 	public List<String> getDatasetList() throws ClassNotFoundException, SQLException {
-		List<String> result = new ArrayList<>();
+		Set<String> result = new HashSet<>();
 		
 		Connection conn = null;
 
@@ -35,21 +38,23 @@ public class Ili2fgdbScope implements Ili2DbScope {
 				schema += ".";
 			
 			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery("SELECT DISTINCT datasetname FROM "+schema+"t_ili2db_dataset WHERE datasetname IS NOT NULL");
+			ResultSet rs = statement.executeQuery("SELECT datasetname FROM "+schema+" t_ili2db_dataset");
 			while(rs.next()){
 				String name = rs.getString("datasetname");
-				result.add(name);
+				
+				if(name != null && !name.isEmpty())
+					result.add(name);
 			}
 		}finally{
 			if(conn!=null)
 				conn.close();
 		}
-		return result;
+		return new ArrayList<String>(result);
 	}
 
 	@Override
 	public List<String> getBasketList() throws ClassNotFoundException, SQLException {
-		List<String> result = new ArrayList<>();
+		Set<String> result = new HashSet<>();
 		Connection conn = null;
 		
 		try{
@@ -62,7 +67,7 @@ public class Ili2fgdbScope implements Ili2DbScope {
 				schema += ".";
 			
 			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery("SELECT DISTINCT t_ili_tid FROM "+schema+"t_ili2db_basket");
+			ResultSet rs = statement.executeQuery("SELECT  t_ili_tid FROM "+schema+"t_ili2db_basket");
 			while(rs.next()){
 				String name = rs.getString("t_ili_tid");
 				result.add(name);
@@ -71,12 +76,12 @@ public class Ili2fgdbScope implements Ili2DbScope {
 		
 			conn.close();
 		}
-		return result;
+		return new ArrayList<String>(result);
 	}
 
 	@Override
 	public List<String> getTopicList() throws ClassNotFoundException, SQLException {
-		List<String> result = new ArrayList<>();
+		Set<String> result = new HashSet<>();
 		Connection conn = null;
 		
 		try{
@@ -89,7 +94,7 @@ public class Ili2fgdbScope implements Ili2DbScope {
 				schema += ".";
 			
 			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery("SELECT DISTINCT topic FROM "+schema+"t_ili2db_basket");
+			ResultSet rs = statement.executeQuery("SELECT  topic FROM "+schema+"t_ili2db_basket");
 			while(rs.next()){
 				String name = rs.getString("topic");
 				result.add(name);
@@ -98,12 +103,12 @@ public class Ili2fgdbScope implements Ili2DbScope {
 		
 			conn.close();
 		}
-		return result;	
+		return new ArrayList<String>(result);
 	}
 
 	@Override
 	public List<String> getModelList() throws ClassNotFoundException, SQLException {
-		List<String> result = new ArrayList<>();
+		Set<String> result = new HashSet<>();
 		Connection conn = null;
 		
 		try{
@@ -116,7 +121,7 @@ public class Ili2fgdbScope implements Ili2DbScope {
 				schema += ".";
 			
 			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery("SELECT DISTINCT modelname FROM "+schema+"t_ili2db_model");
+			ResultSet rs = statement.executeQuery("SELECT  modelname FROM "+schema+"t_ili2db_model");
 			while(rs.next()){
 				String name = rs.getString("modelname");
 				if(name.indexOf('{') != -1)
@@ -127,7 +132,7 @@ public class Ili2fgdbScope implements Ili2DbScope {
 		
 			conn.close();
 		}
-		return result;
+		return new ArrayList<String>(result);
 	}
 	
 	@Override

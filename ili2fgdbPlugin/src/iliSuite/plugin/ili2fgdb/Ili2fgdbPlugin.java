@@ -10,6 +10,7 @@ import base.dbconn.AbstractConnection;
 import base.dbconn.Ili2DbScope;
 import ch.ehi.ili2fgdb.FgdbMain;
 import iliSuite.plugin.ili2fgdb.dbconn.FgdbConnection;
+import iliSuite.plugin.ili2fgdb.dbconn.Ili2fgdbScope;
 import iliSuite.plugin.ili2fgdb.view.DatabaseOptionsController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -81,8 +82,7 @@ public class Ili2fgdbPlugin implements IPluginDb {
 
 	@Override
 	public Ili2DbScope getScope() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Ili2fgdbScope(connection);
 	}
 
 	@Override
