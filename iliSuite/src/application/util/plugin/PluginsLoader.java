@@ -9,6 +9,7 @@ import java.util.Map;
 
 import base.IPluginDb;
 import base.Iplugin;
+import iliSuite.plugin.ili2fgdb.Ili2fgdbPlugin;
 import iliSuite.plugin.ili2gpkg.Ili2gpkgPlugin;
 import iliSuite.plugin.ili2mssql.Ili2MsSqlPlugin;
 import iliSuite.plugin.ili2pg.Ili2pgPlugin;
@@ -31,6 +32,9 @@ public class PluginsLoader {
 		plugins.put(item.getName(), item);
 		
 		item = new Ili2gpkgPlugin();
+		plugins.put(item.getName(), item);
+		
+		item = new Ili2fgdbPlugin();
 		plugins.put(item.getName(), item);
 	}
 
