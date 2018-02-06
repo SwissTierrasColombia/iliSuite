@@ -336,6 +336,18 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
         }
 	}
 	
+	public void onSelectCreateDatasetCol(ActionEvent e){
+		
+		if(chk_createDatasetCol.isSelected())
+			chk_createBasketCol.setSelected(true);
+	}
+	
+	public void onSelectCreateBasketCol(ActionEvent e){
+		
+		if(!chk_createBasketCol.isSelected())
+			chk_createDatasetCol.setSelected(false);
+	}
+	
 	
 	private void addParams(){
 		ParamsContainer paramsContainer = AppData.getInstance().getParamsContainer();

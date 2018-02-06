@@ -310,12 +310,12 @@
                                                             <Tooltip text="%help.tooltip.generatePhysicalModel.metainformation.importTid" />
                                                          </tooltip>
                                                       </CheckBox>
-                                                      <CheckBox fx:id="chk_createBasketCol" mnemonicParsing="false" text="%generatePhysicalModel.metainformation.createBasketCol" GridPane.columnIndex="1">
+                                                      <CheckBox fx:id="chk_createBasketCol" mnemonicParsing="false" onAction="#onSelectCreateBasketCol" text="%generatePhysicalModel.metainformation.createBasketCol" GridPane.columnIndex="1">
                                                          <tooltip>
                                                             <Tooltip text="%help.tooltip.generatePhysicalModel.metainformation.createBasketCol" />
                                                          </tooltip>
                                                       </CheckBox>
-                                                      <CheckBox fx:id="chk_createDatasetCol" mnemonicParsing="false" text="%generatePhysicalModel.metainformation.createDatasetCol" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                      <CheckBox fx:id="chk_createDatasetCol" mnemonicParsing="false" onAction="#onSelectCreateDatasetCol" text="%generatePhysicalModel.metainformation.createDatasetCol" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                          <tooltip>
                                                             <Tooltip text="%help.tooltip.generatePhysicalModel.metainformation.createDatasetCol" />
                                                          </tooltip>
