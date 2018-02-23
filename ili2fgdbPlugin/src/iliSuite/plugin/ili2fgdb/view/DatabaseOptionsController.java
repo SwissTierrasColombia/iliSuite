@@ -18,7 +18,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Window;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class DatabaseOptionsController implements IController, Initializable {
 	@FXML
@@ -78,17 +80,18 @@ public class DatabaseOptionsController implements IController, Initializable {
 	}
 
 	public void onClickBrowse(ActionEvent e) {
-
-		DirectoryChooser folderChooser = new DirectoryChooser();
-
 		Window window = ((Node) e.getSource()).getScene().getWindow();
 
 		File selectedFolder = null;
 
 		if (createSchema) {
-//			folderChooser.setTitle(applicationBundle.getString("datafile.saveAs"));
-			selectedFolder = folderChooser.showDialog(window);
+			FileChooser fileChooser = new FileChooser();
+			fileChooser.getExtensionFilters().addAll(new ExtensionFilter("gdb","*.gdb"));
+			fileChooser.setTitle(applicationBundle.getString("datafolder.choose"));
+			
+			selectedFolder = fileChooser.showSaveDialog(window);
 		} else {
+			DirectoryChooser folderChooser = new DirectoryChooser();
 			folderChooser.setTitle(applicationBundle.getString("datafolder.choose"));
 			selectedFolder = folderChooser.showDialog(window);
 		}
