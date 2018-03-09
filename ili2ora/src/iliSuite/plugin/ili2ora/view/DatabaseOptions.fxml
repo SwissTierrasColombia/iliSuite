@@ -47,7 +47,6 @@
             <Label text="%name" GridPane.rowIndex="4" />
             <Label text="%user" GridPane.rowIndex="6" />
             <Label text="%password" GridPane.rowIndex="7" />
-            <!-- <CheckBox fx:id="chkIsWindowsAuth" mnemonicParsing="false" onAction="#onClick_chkIsWindowsAuth" text="%isWindowsAuth" GridPane.columnIndex="1" /> -->
             <TextField fx:id="txt_host" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="txt_port" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="txt_databaseName" GridPane.columnIndex="1" GridPane.rowIndex="4" />

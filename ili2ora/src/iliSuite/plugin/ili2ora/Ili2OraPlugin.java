@@ -43,7 +43,7 @@ public class Ili2OraPlugin implements IPluginDb{
 
 	@Override
 	public String getHelpText() {
-		ResourceBundle bundle = ResourceBundle.getBundle("iliSuite.plugin.ili2mssql.resources.application");
+		ResourceBundle bundle = ResourceBundle.getBundle("iliSuite.plugin.ili2ora.resources.application");
 		return bundle.getString("database.description");
 	}
 
