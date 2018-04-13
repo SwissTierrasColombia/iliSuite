@@ -31,10 +31,10 @@ public class PluginsLoader {
 		item = new Ili2MsSqlPlugin();
 		plugins.put(item.getName(), item);
 		
-		item = new Ili2gpkgPlugin();
+		item = new Ili2fgdbPlugin();
 		plugins.put(item.getName(), item);
 		
-		item = new Ili2fgdbPlugin();
+		item = new Ili2gpkgPlugin();
 		plugins.put(item.getName(), item);
 	}
 
