@@ -84,6 +84,11 @@ public class Ili2fgdbPlugin implements IPluginDb {
 	public Ili2DbScope getScope() {
 		return new Ili2fgdbScope(connection);
 	}
+	
+	static public void main(String[] args) {
+		args = new String[]{"--help"};
+		(new FgdbMain()).domain(args);
+	}
 
 	@Override
 	public int runMain(String[] args) {

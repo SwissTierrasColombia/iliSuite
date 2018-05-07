@@ -125,6 +125,8 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 		tf_modelDir.setText(Config.getInstance().getModelDir());
 		tf_srsAuth.setPromptText("EPSG");
 		tf_srsCode.setPromptText("21781");
+		
+		addInitValues();
 	}
 
 	@Override
@@ -256,6 +258,23 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 	            }
 	        }
 		});
+	}
+	
+	private void addInitValues(){
+		radio_smart2.setSelected(true);
+		radio_createEnumTabs.setSelected(true);
+		chk_beautifyEnumDispName.setSelected(true);
+		chk_coalesceCatalogueRef.setSelected(true);
+		chk_coalesceMultisurface.setSelected(true);
+		chk_coalesceMultiLine.setSelected(true);
+		chk_strokeArgs.setSelected(true);
+		chk_createFk.setSelected(true);
+		chk_createUnique.setSelected(true);
+		chk_createNumChecks.setSelected(true);
+		chk_createGeomIdx.setSelected(true);
+		chk_createFkIdx.setSelected(true);
+		chk_createMetaInfo.setSelected(true);
+		tf_srsCode.setText("3116");
 	}
 	
 	private boolean validateFields(){

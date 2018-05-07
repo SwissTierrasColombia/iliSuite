@@ -4,6 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/pluginbase"/>
 	<classpathentry kind="lib" path="libs/sqljdbc42.jar"/>
-	<classpathentry kind="lib" path="libs/ili2mssql.jar"/>
+	<classpathentry kind="lib" path="libs/ili2mssqlLib.jar"/>
+	<classpathentry kind="lib" path="/iliSuite/libs/ili2dbLib.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
