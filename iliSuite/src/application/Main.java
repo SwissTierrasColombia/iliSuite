@@ -3,6 +3,7 @@ package application;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import application.data.Config;
 import application.exception.IliSuiteSecurityManager;
@@ -36,8 +37,15 @@ public class Main extends Application {
 			}
 
 			setUserAgentStylesheet(STYLESHEET_CASPIAN);
-			// ...::
+			
 			PluginsLoader.Load();
+			
+			String strLanguage = config.getLanguage();
+			
+			if(strLanguage != null) {
+				Locale lan = new Locale(strLanguage);
+				Locale.setDefault(lan);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
