@@ -3,6 +3,7 @@ package generatePhysicalModel;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -12,10 +13,12 @@ import java.util.ResourceBundle;
 import application.data.AppData;
 import application.data.Config;
 import application.dialog.ModelDirDialog;
+import application.dialog.MultipleSelectionDialog;
 import application.util.navigation.EnumPaths;
 import application.util.navigation.Navigable;
 import application.util.params.EnumParams;
 import application.util.params.ParamsContainer;
+import application.util.procedures.ModelSearch;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -24,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
@@ -39,6 +43,12 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 	private ToggleGroup tg_inheritance;
 	@FXML
 	private ToggleGroup tg_creationEnums;
+	@FXML
+	private ToggleGroup tg_inputSelection;
+	@FXML
+	private RadioButton radio_inputModels;
+	@FXML
+	private RadioButton radio_inputFile;
 	@FXML
 	private RadioButton radio_noSmart;
 	@FXML
@@ -169,6 +179,7 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 				}
 			}
 		});
+		
 		tf_srsAuth.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
@@ -262,6 +273,7 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 	
 	private void addInitValues(){
 		radio_smart2.setSelected(true);
+		radio_inputFile.setSelected(true);
 		radio_createEnumTabs.setSelected(true);
 		chk_beautifyEnumDispName.setSelected(true);
 		chk_coalesceCatalogueRef.setSelected(true);
@@ -323,13 +335,40 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 	}
 	
 	public void onClickBrowseIliFile(ActionEvent e){
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.getExtensionFilters().addAll(new ExtensionFilter(applicationBundle.getString("general.file.extension.ili"), "*.ili"));
-		fileChooser.setTitle(applicationBundle.getString("general.file.choose"));
-		Window window = ((Node)e.getSource()).getScene().getWindow();
-		File selectedFile = fileChooser.showOpenDialog(window);
-		if(selectedFile!=null)
-			tf_iliFilePath.setText(selectedFile.getAbsolutePath());
+		if(radio_inputFile.isSelected()) {
+			FileChooser fileChooser = new FileChooser();
+			fileChooser.getExtensionFilters().addAll(new ExtensionFilter(applicationBundle.getString("general.file.extension.ili"), "*.ili"));
+			fileChooser.setTitle(applicationBundle.getString("general.file.choose"));
+			Window window = ((Node)e.getSource()).getScene().getWindow();
+			File selectedFile = fileChooser.showOpenDialog(window);
+			if(selectedFile!=null)
+				tf_iliFilePath.setText(selectedFile.getAbsolutePath());
+		}else if(radio_inputModels.isSelected()) {
+			
+			//SEARCH in modeldir
+			List<String> models = ModelSearch.search(tf_modelDir.getText());
+			for (String string : models) {
+				System.out.println("model::"+string);
+			}
+			//
+			List<String> selected = new ArrayList<String>();
+			if(!tf_iliFilePath.getText().isEmpty())
+				selected = Arrays.asList(tf_iliFilePath.getText().split(";"));
+			
+			models.removeAll(selected);
+			MultipleSelectionDialog dialog = 
+					new MultipleSelectionDialog(models, selected, SelectionMode.MULTIPLE);
+			
+			dialog.setTitle(applicationBundle.getString("general.models"));
+			
+			Optional<List<String>> result = dialog.showAndWait();
+
+			if(result.isPresent()){
+				tf_iliFilePath.setText(String.join(";", result.get()));
+			}
+			
+			
+		}
 	}
 	
 	public void onClickSetModelDir(ActionEvent e){
