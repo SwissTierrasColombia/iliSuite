@@ -335,7 +335,9 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 	}
 	
 	public void onClickBrowseIliFile(ActionEvent e){
+			tf_modelDir.setStyle(null);
 		if(radio_inputFile.isSelected()) {
+			
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.getExtensionFilters().addAll(new ExtensionFilter(applicationBundle.getString("general.file.extension.ili"), "*.ili"));
 			fileChooser.setTitle(applicationBundle.getString("general.file.choose"));
@@ -345,23 +347,26 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 				tf_iliFilePath.setText(selectedFile.getAbsolutePath());
 		}else if(radio_inputModels.isSelected()) {
 			
-			//SEARCH in modeldir
-			List<String> models = ModelSearch.search(tf_modelDir.getText());
-			
-			List<String> selected = new ArrayList<String>();
-			if(!tf_iliFilePath.getText().isEmpty() && !tf_iliFilePath.getText().endsWith(".ili"))
-				selected = Arrays.asList(tf_iliFilePath.getText().split(";"));
-			
-			models.removeAll(selected);
-			MultipleSelectionDialog dialog = 
-					new MultipleSelectionDialog(models, selected, SelectionMode.MULTIPLE);
-			
-			dialog.setTitle(applicationBundle.getString("general.models"));
-			
-			Optional<List<String>> result = dialog.showAndWait();
-
-			if(result.isPresent()){
-				tf_iliFilePath.setText(String.join(";", result.get()));
+			if(tf_modelDir.getText().isEmpty()) {
+				tf_modelDir.setStyle("-fx-border-color: red ;");
+			}else {
+				tf_modelDir.setStyle(null);
+				List<String> models = ModelSearch.search(tf_modelDir.getText());//SEARCH in modeldir
+				
+				List<String> selected = new ArrayList<String>();
+				if(!tf_iliFilePath.getText().isEmpty() && !tf_iliFilePath.getText().endsWith(".ili"))
+					selected = Arrays.asList(tf_iliFilePath.getText().split(";"));
+				
+				models.removeAll(selected);
+				MultipleSelectionDialog dialog = 
+						new MultipleSelectionDialog(models, selected, SelectionMode.MULTIPLE);
+				
+				dialog.setTitle(applicationBundle.getString("general.models"));
+				
+				Optional<List<String>> result = dialog.showAndWait();
+	
+				if(result.isPresent())
+					tf_iliFilePath.setText(String.join(";", result.get()));
 			}
 			
 			
@@ -369,6 +374,7 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 	}
 	
 	public void onClickSetModelDir(ActionEvent e){
+		tf_modelDir.setStyle(null);
 		try {
 	        
 	        ModelDirDialog dialog = new ModelDirDialog();
