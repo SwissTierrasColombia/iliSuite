@@ -347,12 +347,9 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 			
 			//SEARCH in modeldir
 			List<String> models = ModelSearch.search(tf_modelDir.getText());
-			for (String string : models) {
-				System.out.println("model::"+string);
-			}
-			//
+			
 			List<String> selected = new ArrayList<String>();
-			if(!tf_iliFilePath.getText().isEmpty())
+			if(!tf_iliFilePath.getText().isEmpty() && !tf_iliFilePath.getText().endsWith(".ili"))
 				selected = Arrays.asList(tf_iliFilePath.getText().split(";"));
 			
 			models.removeAll(selected);

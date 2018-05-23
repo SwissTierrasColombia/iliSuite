@@ -8,15 +8,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
-
-import ch.interlis.ili2c.Ili2cException;
-import ch.interlis.ilirepository.IliManager;
-import ch.interlis.ilirepository.IliSite;
 
 public class ModelSearch {
 
