@@ -31,8 +31,8 @@ public class ParamsContainer {
 				result.add(item.getValue());
 			}
 		}
-		
-		result.add(this.getFinalPath());
+		if(this.getFinalPath() != null && !this.getFinalPath().equals(""))
+			result.add(this.getFinalPath());
 		
 		return result;
 	}

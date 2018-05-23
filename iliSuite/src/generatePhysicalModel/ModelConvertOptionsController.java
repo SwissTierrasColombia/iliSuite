@@ -297,7 +297,7 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 			radio_smart2.setStyle("-fx-border-color: red ; ");
 			result = false;
 		}
-		if(tf_iliFilePath.getText() == null || tf_iliFilePath.getText().equals("") || !tf_iliFilePath.getText().endsWith(".ili")){
+		if(tf_iliFilePath.getText() == null || tf_iliFilePath.getText().equals("") || (radio_inputFile.isSelected() && !tf_iliFilePath.getText().endsWith(".ili"))){
 			tf_iliFilePath.setStyle("-fx-border-color: red ;");
 			result = false;
 		}
@@ -411,7 +411,10 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 		ParamsContainer paramsContainer = AppData.getInstance().getParamsContainer();
 		HashMap<String,String> params = paramsContainer.getParamsMap();
 		
-		paramsContainer.setFinalPath( "" +tf_iliFilePath.getText()+ "" );
+		if(radio_inputFile.isSelected())
+			paramsContainer.setFinalPath( "" +tf_iliFilePath.getText()+ "" );
+		else if(radio_inputModels.isSelected())
+			params.put(EnumParams.MODELS.getName(), "" +tf_iliFilePath.getText()+ "");
 		//--------------Mappings Options---------------------//
 		
 		if(!tf_modelDir.getText().isEmpty()){
@@ -419,6 +422,7 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 		}else{
 			params.remove(EnumParams.MODEL_DIR.getName());
 		}
+		
 		
 		if(radio_noSmart.isSelected()){
 			params.put(EnumParams.NO_SMART_MAPPING.getName(), "true");
