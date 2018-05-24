@@ -15,9 +15,12 @@ import application.util.params.EnumParams;
 import application.util.params.ParamsContainer;
 import ch.ehi.basics.logging.EhiLogger;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.text.Text;
 import log.util.LogListenerExt;
 
@@ -32,6 +35,9 @@ public class FinishDataValidationController implements Navigable, Initializable 
 	private List<String> command;
 
 	private SimpleBooleanProperty booleanResult;
+	
+	@FXML
+	private ScrollPane scrollConsole;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -50,6 +56,13 @@ public class FinishDataValidationController implements Navigable, Initializable 
 
 		command = paramsContainer.getCommand(null);
 		txtConsole.setText(String.join(" ", command));
+		
+		txtConsole.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				scrollConsole.setVvalue(1);
+			}
+		});
 	}
 	
 	@Override

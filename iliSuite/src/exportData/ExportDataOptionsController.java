@@ -274,7 +274,7 @@ public class ExportDataOptionsController implements Navigable, Initializable {
 
 			try{
 				List<String> baskets = scope.getBasketList();
-				// TODO Debería asignarse null inicialmente
+				// TODO Deberia asignarse null inicialmente
 				ArrayList<String> selectedValues = new ArrayList<>();
 			
 				if(!tf_baskets.getText().isEmpty()){
@@ -301,7 +301,7 @@ public class ExportDataOptionsController implements Navigable, Initializable {
 			
 			try{
 				List<String> topics = scope.getTopicList();
-				// TODO Debería asignarse null inicialmente
+				// TODO Deberia asignarse null inicialmente
 				ArrayList<String> selectedValues = new ArrayList<>();
 			
 				if(!tf_topics.getText().isEmpty()){

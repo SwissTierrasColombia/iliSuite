@@ -12,6 +12,7 @@ public class Config {
 	private String modelDir;
 	private Integer proxyPort;
 	private String proxyHost;
+	private String language;
 	
 	static private Config instance;
 	
@@ -55,6 +56,14 @@ public class Config {
 		this.proxyHost = proxyHost;
 	}
 	
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
 	static public void loadConfig(File file, Config config) throws IOException{
 		Properties properties = new Properties();
 		
@@ -62,7 +71,7 @@ public class Config {
 		
 		properties.load(stream);
 		
-		//TODO Nombre de los parametros
+		//TODO parameters name: hard-code
 		config.modelDir = properties.getProperty("modeldir");
 		
 		Integer intProxyPort = null;
@@ -75,18 +84,30 @@ public class Config {
 		
 		config.proxyPort = intProxyPort;
 		config.proxyHost = properties.getProperty("proxyhost");
+		
+		config.language = null;
+		
+		String strLanguage = properties.getProperty("language");
+		// FIX Is this place to check language list?
+		if(strLanguage != null && (strLanguage.equals("en") 
+				|| strLanguage.equals("es") || strLanguage.equals("de"))) {
+			config.language = strLanguage;
+		}
 	}
 	
 	static public void saveConfig(File file, Config config) throws IOException{
 		Properties properties = new Properties();
 		
-		//TODO nombre de los parametros quemado
 		if(config.proxyHost != null && config.proxyPort!=null && !config.proxyHost.isEmpty()){
 				properties.setProperty("proxyport", ""+config.proxyPort);
 				properties.setProperty("proxyhost", config.proxyHost);
 		}
+		
 		if(config.modelDir != null)
 			properties.setProperty("modeldir", config.modelDir);
+		
+		if(config.language != null)
+			properties.setProperty("language", config.language);
 		
         OutputStream out = new FileOutputStream(file);
         properties.store(out, "Config");

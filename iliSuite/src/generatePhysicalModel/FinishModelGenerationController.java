@@ -14,8 +14,11 @@ import application.util.params.ParamsContainer;
 import application.util.plugin.PluginsLoader;
 import base.IPluginDb;
 import ch.ehi.basics.logging.EhiLogger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.text.Text;
 import log.util.LogListenerExt;
 
@@ -25,6 +28,9 @@ public class FinishModelGenerationController implements Navigable, Initializable
 	private Text txtConsole;
 
 	private LogListenerExt log;
+	
+	@FXML
+	private ScrollPane scrollConsole;
 
 	// TODO Verificar si es el lugar correcto de la variable
 	private List<String> command;
@@ -45,6 +51,13 @@ public class FinishModelGenerationController implements Navigable, Initializable
 		command = paramsContainer.getCommand(EnumParams.SCHEMA_IMPORT.getName());
 
 		txtConsole.setText(String.join(" ", command));
+		
+		txtConsole.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				scrollConsole.setVvalue(1);
+			}
+		});
 	}
 
 	@Override

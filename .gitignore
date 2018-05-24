@@ -12,7 +12,7 @@
 hs_err_pid*
 **/bin
 *.gitignore
-*.classpath
+
 
 sqljdbc42.jar
 

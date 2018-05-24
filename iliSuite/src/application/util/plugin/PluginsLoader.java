@@ -12,6 +12,7 @@ import base.Iplugin;
 import iliSuite.plugin.ili2fgdb.Ili2fgdbPlugin;
 import iliSuite.plugin.ili2gpkg.Ili2gpkgPlugin;
 import iliSuite.plugin.ili2mssql.Ili2MsSqlPlugin;
+import iliSuite.plugin.ili2ora.Ili2oraPlugin;
 import iliSuite.plugin.ili2pg.Ili2pgPlugin;
 
 public class PluginsLoader {
@@ -31,10 +32,13 @@ public class PluginsLoader {
 		item = new Ili2MsSqlPlugin();
 		plugins.put(item.getName(), item);
 		
+		item = new Ili2fgdbPlugin();
+		plugins.put(item.getName(), item);
+		
 		item = new Ili2gpkgPlugin();
 		plugins.put(item.getName(), item);
 		
-		item = new Ili2fgdbPlugin();
+		item = new Ili2oraPlugin();
 		plugins.put(item.getName(), item);
 	}
 

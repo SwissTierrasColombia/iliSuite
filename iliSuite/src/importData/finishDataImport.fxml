@@ -16,7 +16,7 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%general.finishMessage" />
                </children>
             </TextFlow>
-            <ScrollPane fitToWidth="true" layoutX="250.0" layoutY="68.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
+            <ScrollPane fx:id="scrollConsole" fitToWidth="true" layoutX="250.0" layoutY="68.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
                <content>
                   <TextFlow prefHeight="234.0" prefWidth="645.0">
                      <children>

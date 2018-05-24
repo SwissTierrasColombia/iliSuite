@@ -84,10 +84,14 @@ public class Ili2MsSqlPlugin implements IPluginDb {
 
 	@Override
 	public int runMain(String[] args) {
-
 		(new MsSqlMain()).domain(args);
 		
 		return 0;
+	}
+	
+	static public void main(String args[]){
+		args = new String[]{"--help"};
+		new MsSqlMain().domain(args);
 	}
 
 	@Override
