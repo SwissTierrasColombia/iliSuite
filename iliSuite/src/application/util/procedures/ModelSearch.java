@@ -8,10 +8,16 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
+
+import ch.interlis.ili2c.modelscan.IliFile;
+import ch.interlis.ili2c.modelscan.IliModel;
+import ch.interlis.ilirepository.IliFiles;
+import ch.interlis.ilirepository.impl.RepositoryAccess;
 
 public class ModelSearch {
 
@@ -25,7 +31,22 @@ public class ModelSearch {
 
 			if (uri.trim().startsWith("http")) {
 				
-				//TODO
+				try {
+					RepositoryAccess repo = new RepositoryAccess();
+					IliFiles files = repo.getIliFiles(uri);
+					for(Iterator<IliFile> filei=files.iteratorFile();filei.hasNext();) {
+						IliFile file=filei.next();
+						for(Iterator modeli=file.iteratorModel();modeli.hasNext();){
+							IliModel model=(IliModel)modeli.next();
+							
+							if (!models.contains(model.getName()))
+								models.add(model.getName());
+						}
+					}
+				}catch(Exception e) {
+					//Do Nothing
+				}
+				
 
 			} else {
 				File folder = new File(uri);
