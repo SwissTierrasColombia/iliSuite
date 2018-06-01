@@ -4,6 +4,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.fxmisc.flowless.VirtualizedScrollPane;
+import org.fxmisc.richtext.StyleClassedTextArea;
+
 import application.data.AppData;
 import application.data.Config;
 import application.exception.ExitException;
@@ -19,24 +22,29 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import log.util.LogListenerExt;
 
 public class FinishModelGenerationController implements Navigable, Initializable {
 
-	@FXML
-	private Text txtConsole;
-
-	private LogListenerExt log;
+	private StyleClassedTextArea txtConsole;
 	
+	private LogListenerExt log;
+
 	@FXML
-	private ScrollPane scrollConsole;
+	private VBox verticalWrapper;
 
 	// TODO Verificar si es el lugar correcto de la variable
 	private List<String> command;
+	
+	IPluginDb plugin;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		initTxtConsole();
+		
 		log = new LogListenerExt(txtConsole, "");
 		EhiLogger.getInstance().addListener(log);
 		Config config = Config.getInstance();
@@ -49,13 +57,26 @@ public class FinishModelGenerationController implements Navigable, Initializable
 		}
 
 		command = paramsContainer.getCommand(EnumParams.SCHEMA_IMPORT.getName());
+		txtConsole.replaceText(String.join(" ", command)+"\n\n");
+	}
 
-		txtConsole.setText(String.join(" ", command));
+	private void initTxtConsole() {
+		txtConsole = new StyleClassedTextArea();
+		
+		VirtualizedScrollPane<StyleClassedTextArea> vsPane = new VirtualizedScrollPane<>(txtConsole);
+		verticalWrapper.getChildren().add(vsPane);
+        	VBox.setVgrow(vsPane, Priority.ALWAYS);
+        
+        	txtConsole.setWrapText(true);
+        	txtConsole.setMinHeight(400);
+	        txtConsole.getStyleClass().add("text_console");
+		txtConsole.setEditable(false);
 		
 		txtConsole.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				scrollConsole.setVvalue(1);
+				txtConsole.moveTo(txtConsole.getLength()-1);
+				txtConsole.requestFollowCaret();
 			}
 		});
 	}
@@ -64,8 +85,6 @@ public class FinishModelGenerationController implements Navigable, Initializable
 	public void finalize() {
 		EhiLogger.getInstance().removeListener(log);
 	}
-
-	IPluginDb plugin;
 
 	@Override
 	public boolean validate() {
@@ -88,13 +107,11 @@ public class FinishModelGenerationController implements Navigable, Initializable
 
 	@Override
 	public EnumPaths getNextPath() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean isFinalPage() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

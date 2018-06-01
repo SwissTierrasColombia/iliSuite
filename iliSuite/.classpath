@@ -22,5 +22,6 @@
 	<classpathentry kind="lib" path="libs/jts-core-1.14.0.jar"/>
 	<classpathentry kind="lib" path="libs/junit-4.11.jar"/>
 	<classpathentry kind="lib" path="libs/toml4j-0.5.1.jar"/>
+	<classpathentry kind="lib" path="libs/richtextfx-fat-0.9.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
