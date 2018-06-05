@@ -61,6 +61,7 @@ public class Main extends Application {
 			NavigationUtil.setMainScreen(rootLayout);
 
 			Scene scene = new Scene(rootLayout.getComponent());
+			scene.getStylesheets().add(getClass().getResource("/resources/css/styles.css").toExternalForm());			
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.show();
