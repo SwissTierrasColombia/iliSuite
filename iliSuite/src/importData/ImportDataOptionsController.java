@@ -20,6 +20,7 @@ import application.util.navigation.Navigable;
 import application.util.params.EnumParams;
 import application.util.params.ParamsContainer;
 import application.util.plugin.PluginsLoader;
+import application.util.procedures.ModelSearch;
 import base.IPluginDb;
 import base.dbconn.Ili2DbScope;
 import javafx.beans.value.ChangeListener;
@@ -62,11 +63,15 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 	@FXML
 	private TextField tf_modelDir;
 	@FXML
+	private TextField tf_modelNames;
+	@FXML
 	private Button btn_browseDataset;
 	@FXML
 	private TextField tf_xtfPath;
 	@FXML
 	private Button btn_browseXtfFile;
+	@FXML
+	private Button btn_browseModels;
 	@FXML
 	private CheckBox chk_disableValidation;
 	@FXML
@@ -302,6 +307,31 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 	}
 	
 	@FXML
+	private void handleBrowseModels(ActionEvent e){
+		if(tf_modelDir.getText().isEmpty()) {
+			tf_modelDir.setStyle("-fx-border-color: red ;");
+		}else {
+			tf_modelDir.setStyle(null);
+			List<String> models = ModelSearch.search(tf_modelDir.getText());//SEARCH in modeldir
+			
+			List<String> selected = new ArrayList<String>();
+			if(!tf_modelNames.getText().isEmpty())
+				selected = Arrays.asList(tf_modelNames.getText().split(";"));
+			
+			models.removeAll(selected);
+			MultipleSelectionDialog dialog = 
+					new MultipleSelectionDialog(models, selected, SelectionMode.MULTIPLE);
+			
+			dialog.setTitle(applicationBundle.getString("general.models"));
+			
+			Optional<List<String>> result = dialog.showAndWait();
+
+			if(result.isPresent())
+				tf_modelNames.setText(String.join(";", result.get()));
+		}
+	}
+	
+	@FXML
 	private void handleBrowseValidConfigFile(ActionEvent e){
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.getExtensionFilters().addAll(
@@ -337,6 +367,9 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 	private void addParams() {
 		ParamsContainer paramsContainer = AppData.getInstance().getParamsContainer();
 		HashMap<String,String> params = paramsContainer.getParamsMap();
+		
+		if(!tf_modelNames.getText().isEmpty())
+			params.put(EnumParams.MODELS.getName(), "" +tf_modelNames.getText()+ "");
 		
 		if(tg_action.getSelectedToggle() != radio_delete)
 			paramsContainer.setFinalPath(tf_xtfPath.getText());
