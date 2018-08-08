@@ -52,6 +52,10 @@ public class FinishDataImportController implements Navigable, Initializable {
 			paramsContainer.getParamsMap().put(EnumParams.PROXY.getName(), config.getProxyHost());
 			paramsContainer.getParamsMap().put(EnumParams.PROXY_PORT.getName(), config.getProxyPort() + "");
 		}
+		
+		if (config.isTraceEnabled()) {
+			paramsContainer.getParamsMap().put(EnumParams.TRACE.getName(), "true");
+		}
 
 		command = paramsContainer.getCommand(null);
 		txtConsole.replaceText(String.join(" ", command)+"\n\n");

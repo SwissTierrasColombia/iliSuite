@@ -55,6 +55,11 @@ public class FinishModelGenerationController implements Navigable, Initializable
 			paramsContainer.getParamsMap().put(EnumParams.PROXY.getName(), config.getProxyHost());
 			paramsContainer.getParamsMap().put(EnumParams.PROXY_PORT.getName(), config.getProxyPort() + "");
 		}
+		
+		// TODO repeated code
+		if (config.isTraceEnabled()) {
+			paramsContainer.getParamsMap().put(EnumParams.TRACE.getName(), "true");
+		}
 
 		command = paramsContainer.getCommand(EnumParams.SCHEMA_IMPORT.getName());
 		txtConsole.replaceText(String.join(" ", command)+"\n\n");

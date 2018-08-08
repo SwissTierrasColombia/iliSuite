@@ -14,6 +14,8 @@ public class Config {
 	private String proxyHost;
 	private String language;
 	
+	private boolean traceEnabled; 
+
 	static private Config instance;
 	
 
@@ -29,7 +31,7 @@ public class Config {
 		modelDir = "";
 		proxyHost = "";
 		proxyPort = null;
-		
+		traceEnabled = false;
 	}
 	
 	static public Config getInstance(){
@@ -63,6 +65,14 @@ public class Config {
 	public void setLanguage(String language) {
 		this.language = language;
 	}
+	
+	public boolean isTraceEnabled() {
+		return traceEnabled;
+	}
+
+	public void setTraceEnabled(boolean traceEnabled) {
+		this.traceEnabled = traceEnabled;
+	}
 
 	static public void loadConfig(File file, Config config) throws IOException{
 		Properties properties = new Properties();
@@ -93,6 +103,11 @@ public class Config {
 				|| strLanguage.equals("es") || strLanguage.equals("de"))) {
 			config.language = strLanguage;
 		}
+		
+		String strTrace = properties.getProperty("traceEnabled", "false");
+		strTrace = strTrace.toLowerCase();
+		
+		config.traceEnabled = strTrace.equals("true");
 	}
 	
 	static public void saveConfig(File file, Config config) throws IOException{
