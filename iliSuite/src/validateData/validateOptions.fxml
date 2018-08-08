@@ -74,22 +74,18 @@
                                              </HBox.margin>
                                              <children>
                                                 <Label alignment="CENTER" contentDisplay="CENTER" layoutX="31.0" layoutY="6.0" prefHeight="17.0" prefWidth="153.0" text="%validateData.logging" textAlignment="CENTER" />
-                                                <CheckBox fx:id="chk_trace" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" text="%validateData.logging.trace">
-                                                   <tooltip>
-                                                      <Tooltip text="%help.tooltip.validateData.logging.trace" />
-                                                   </tooltip></CheckBox>
-                                                <TextField fx:id="tf_logFile" layoutX="10.0" layoutY="105.0" prefWidth="130.0" />
-                                                <CheckBox fx:id="chk_logFile" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onAction="#onClickChk_logFile" text="%validateData.logging.logInFile">
+                                                <TextField fx:id="tf_logFile" layoutX="10.0" layoutY="70.0" prefWidth="130.0" />
+                                                <CheckBox fx:id="chk_logFile" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#onClickChk_logFile" text="%validateData.logging.logInFile">
                                                    <tooltip>
                                                       <Tooltip text="%help.tooltip.validateData.logging.logInFile" />
                                                    </tooltip></CheckBox>
-                                                <TextField fx:id="tf_logXtfFile" layoutX="10.0" layoutY="155.0" prefWidth="130.0" />
-                                                <CheckBox fx:id="chk_logXtfFile" layoutX="10.0" layoutY="135.0" mnemonicParsing="false" onAction="#onClickChk_logXtfFile" text="%validateData.logging.logInXtf">
+                                                <TextField fx:id="tf_logXtfFile" layoutX="10.0" layoutY="120.0" prefWidth="130.0" />
+                                                <CheckBox fx:id="chk_logXtfFile" layoutX="10.0" layoutY="100.0" mnemonicParsing="false" onAction="#onClickChk_logXtfFile" text="%validateData.logging.logInXtf">
                                                    <tooltip>
                                                       <Tooltip text="%help.tooltip.validateData.logging.logInXtf" />
                                                    </tooltip></CheckBox>
-                                                <Button fx:id="btnBrowseLogFile" layoutX="140.0" layoutY="105.0" mnemonicParsing="false" onAction="#onClickBtnBrowseLogFile" text="%buttons.browse" />
-                                                <Button fx:id="btnBrowseLogXtfFile" layoutX="140.0" layoutY="155.0" mnemonicParsing="false" onAction="#onClickBtnBrowseLogXtfFile" text="%buttons.browse" />
+                                                <Button fx:id="btnBrowseLogFile" layoutX="140.0" layoutY="70.0" mnemonicParsing="false" onAction="#onClickBtnBrowseLogFile" text="%buttons.browse" />
+                                                <Button fx:id="btnBrowseLogXtfFile" layoutX="140.0" layoutY="120.0" mnemonicParsing="false" onAction="#onClickBtnBrowseLogXtfFile" text="%buttons.browse" />
                                              </children>
                                           </Pane>
                                           <Pane prefWidth="215.0" style="-fx-border-color: darkgray; -fx-border-radius: 15px;">

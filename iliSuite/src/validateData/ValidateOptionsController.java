@@ -71,9 +71,6 @@ public class ValidateOptionsController implements Navigable, Initializable {
 	private CheckBox chk_logXtfFile;
 
 	@FXML
-	private CheckBox chk_trace;
-
-	@FXML
 	private TextField tf_configFile;
 
 	@FXML
@@ -314,11 +311,6 @@ public class ValidateOptionsController implements Navigable, Initializable {
 			params.put(EnumParams.IV_FORCETYPEVALIDATION.getName(), "true");
 		else 
 			params.remove(EnumParams.IV_FORCETYPEVALIDATION.getName());
-		
-		if (chk_trace.isSelected())
-			params.put(EnumParams.IV_TRACE.getName(), "true");
-		else
-			params.remove(EnumParams.IV_TRACE.getName());
 		
 	}
 
