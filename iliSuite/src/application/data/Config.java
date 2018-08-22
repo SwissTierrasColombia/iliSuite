@@ -14,7 +14,10 @@ public class Config {
 	private String proxyHost;
 	private String language;
 	
-	private boolean traceEnabled; 
+	private String iliSuiteDir;
+	
+	private boolean traceEnabled;
+	private boolean logEnabled;
 
 	static private Config instance;
 	
@@ -32,6 +35,8 @@ public class Config {
 		proxyHost = "";
 		proxyPort = null;
 		traceEnabled = false;
+		logEnabled = false;
+		iliSuiteDir = System.getProperty("user.home") + System.getProperty("file.separator") + ".ilisuite";
 	}
 	
 	static public Config getInstance(){
@@ -74,6 +79,22 @@ public class Config {
 		this.traceEnabled = traceEnabled;
 	}
 
+	public String getIliSuiteDir() {
+		return iliSuiteDir;
+	}
+
+	public void setIliSuiteDir(String iliSuiteDir) {
+		this.iliSuiteDir = iliSuiteDir;
+	}
+
+	public boolean isLogEnabled() {
+		return logEnabled;
+	}
+
+	public void setLogEnabled(boolean logEnabled) {
+		this.logEnabled = logEnabled;
+	}
+
 	static public void loadConfig(File file, Config config) throws IOException{
 		Properties properties = new Properties();
 		
@@ -98,6 +119,8 @@ public class Config {
 		config.language = null;
 		
 		String strLanguage = properties.getProperty("language");
+		
+		// load default value
 		// FIX Is this place to check language list?
 		if(strLanguage != null && (strLanguage.equals("en") 
 				|| strLanguage.equals("es") || strLanguage.equals("de"))) {
@@ -108,6 +131,12 @@ public class Config {
 		strTrace = strTrace.toLowerCase();
 		
 		config.traceEnabled = strTrace.equals("true");
+		
+		String strLogEnabled = properties.getProperty("logEnabled", "false");
+		strTrace = strLogEnabled.toLowerCase();
+		
+		config.logEnabled = strLogEnabled.equals("true");
+		
 	}
 	
 	static public void saveConfig(File file, Config config) throws IOException{
@@ -124,7 +153,14 @@ public class Config {
 		if(config.language != null)
 			properties.setProperty("language", config.language);
 		
-        OutputStream out = new FileOutputStream(file);
-        properties.store(out, "Config");
+		if(config.traceEnabled)
+			properties.setProperty("traceEnabled", "true");
+		
+		if(config.logEnabled)
+			properties.setProperty("logEnabled", "true");
+		
+		
+		OutputStream out = new FileOutputStream(file);
+		properties.store(out, "Config");
 	}
 }

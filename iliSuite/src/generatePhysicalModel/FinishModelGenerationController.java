@@ -47,20 +47,10 @@ public class FinishModelGenerationController implements Navigable, Initializable
 		
 		log = new LogListenerExt(txtConsole, "");
 		EhiLogger.getInstance().addListener(log);
-		Config config = Config.getInstance();
-
-		ParamsContainer paramsContainer = AppData.getInstance().getParamsContainer();
-
-		if (config.getProxyHost() != null && config.getProxyPort() != null && !config.getProxyHost().isEmpty()) {
-			paramsContainer.getParamsMap().put(EnumParams.PROXY.getName(), config.getProxyHost());
-			paramsContainer.getParamsMap().put(EnumParams.PROXY_PORT.getName(), config.getProxyPort() + "");
-		}
 		
-		// TODO repeated code
-		if (config.isTraceEnabled()) {
-			paramsContainer.getParamsMap().put(EnumParams.TRACE.getName(), "true");
-		}
-
+		ParamsContainer paramsContainer = AppData.getInstance().getParamsContainer();
+		
+		ParamsContainer.addCommonsParameters();
 		command = paramsContainer.getCommand(EnumParams.SCHEMA_IMPORT.getName());
 		txtConsole.replaceText(String.join(" ", command)+"\n\n");
 	}

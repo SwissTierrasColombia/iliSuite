@@ -1,6 +1,8 @@
 package importData;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -44,19 +46,11 @@ public class FinishDataImportController implements Navigable, Initializable {
 		
 		log = new LogListenerExt(txtConsole, "");
 		EhiLogger.getInstance().addListener(log);
-		Config config = Config.getInstance();
-
-		ParamsContainer paramsContainer = AppData.getInstance().getParamsContainer();
-
-		if (config.getProxyHost() != null && config.getProxyPort() != null && !config.getProxyHost().isEmpty()) {
-			paramsContainer.getParamsMap().put(EnumParams.PROXY.getName(), config.getProxyHost());
-			paramsContainer.getParamsMap().put(EnumParams.PROXY_PORT.getName(), config.getProxyPort() + "");
-		}
 		
-		if (config.isTraceEnabled()) {
-			paramsContainer.getParamsMap().put(EnumParams.TRACE.getName(), "true");
-		}
-
+		ParamsContainer paramsContainer = AppData.getInstance().getParamsContainer();
+		
+		ParamsContainer.addCommonsParameters();
+		
 		command = paramsContainer.getCommand(null);
 		txtConsole.replaceText(String.join(" ", command)+"\n\n");
 	}

@@ -44,18 +44,9 @@ public class FinishDataExportController implements Navigable, Initializable {
 		
 		log = new LogListenerExt(txtConsole, "");
 		EhiLogger.getInstance().addListener(log);
-		Config config = Config.getInstance();
-
 		ParamsContainer paramsContainer = AppData.getInstance().getParamsContainer();
 
-		if (config.getProxyHost() != null && config.getProxyPort() != null && !config.getProxyHost().isEmpty()) {
-			paramsContainer.getParamsMap().put(EnumParams.PROXY.getName(), config.getProxyHost());
-			paramsContainer.getParamsMap().put(EnumParams.PROXY_PORT.getName(), config.getProxyPort() + "");
-		}
-		
-		if (config.isTraceEnabled()) {
-			paramsContainer.getParamsMap().put(EnumParams.TRACE.getName(), "true");
-		}
+		ParamsContainer.addCommonsParameters();
 
 		command = paramsContainer.getCommand(EnumParams.DATA_EXPORT.getName());
 		txtConsole.replaceText(String.join(" ", command)+"\n\n");
