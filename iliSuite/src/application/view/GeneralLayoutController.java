@@ -14,6 +14,7 @@ import application.data.Config;
 import application.dialog.HelpDialog;
 import application.dialog.ModelDirDialog;
 import application.dialog.ProxyDialog;
+import application.preferences.PreferencesController;
 import application.util.navigation.EnumPaths;
 import application.util.navigation.Navigable;
 import application.util.navigation.NavigationUtil;
@@ -190,6 +191,21 @@ public class GeneralLayoutController implements Navigable, Initializable {
 		} catch (IOException E) {
 			E.printStackTrace();
 			// return false;
+		}
+	}
+	
+	public void onClick_MenuItemPreferences() {
+		try {
+			Config config = Config.getInstance();
+
+			PreferencesController dialog = new PreferencesController();
+
+			dialog.setTitle(bundle.getString("menu.item.preferences"));
+			Optional<Boolean> result = dialog.showAndWait();
+
+		} catch (IOException E) {
+			// TODO Unimplemented
+			E.printStackTrace();
 		}
 	}
 

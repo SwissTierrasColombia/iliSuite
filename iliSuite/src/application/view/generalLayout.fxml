@@ -68,6 +68,7 @@
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#onClick_MenuItemProxyConf" text="%menu.item.proxySettings" />
               <MenuItem mnemonicParsing="false" onAction="#onClick_MenuItemModelDir" text="%menu.item.modelDir" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClick_MenuItemPreferences" text="%menu.item.preferences" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="%menu.mainitem.help">
