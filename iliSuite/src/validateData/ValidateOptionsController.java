@@ -63,30 +63,18 @@ public class ValidateOptionsController implements Navigable, Initializable {
 
 	@FXML
 	private CheckBox chk_configFile;
-
-	@FXML
-	private CheckBox chk_logFile;
-
+	
 	@FXML
 	private CheckBox chk_logXtfFile;
 
 	@FXML
-	private CheckBox chk_trace;
-
-	@FXML
 	private TextField tf_configFile;
-
-	@FXML
-	private TextField tf_logFile;
 
 	@FXML
 	private TextField tf_logXtfFile;
 
 	@FXML
 	private Button btnBrowseConfigFile;
-
-	@FXML
-	private Button btnBrowseLogFile;
 
 	@FXML
 	private Button btnBrowseLogXtfFile;
@@ -101,12 +89,10 @@ public class ValidateOptionsController implements Navigable, Initializable {
 		
 
 		tf_configFile.setDisable(true);
-		tf_logFile.setDisable(true);
 		tf_logXtfFile.setDisable(true);
 		tf_pluginsFolder.setDisable(true);
 
 		btnBrowseConfigFile.setDisable(true);
-		btnBrowseLogFile.setDisable(true);
 		btnBrowseLogXtfFile.setDisable(true);
 		btnBrowsePluginsFolder.setDisable(true);
 
@@ -137,15 +123,6 @@ public class ValidateOptionsController implements Navigable, Initializable {
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				if (newValue != null && !newValue.equals(""))
 					tf_pluginsFolder.setStyle(null);
-			}
-		});
-
-		// TODO Falta poner las extensiones
-		tf_logFile.textProperty().addListener(new ChangeListener<String>() {
-			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				if (newValue != null && !newValue.equals(""))
-					tf_logFile.setStyle(null);
 			}
 		});
 
@@ -181,10 +158,6 @@ public class ValidateOptionsController implements Navigable, Initializable {
 				tf_pluginsFolder.setStyle("-fx-border-color: red ;");
 				result = false;
 			}
-		}
-		if (chk_logFile.isSelected() && (tf_logFile.getText() == null || tf_logFile.getText().equals(""))) {
-			tf_logFile.setStyle("-fx-border-color: red ;");
-			result = false;
 		}
 
 		if (chk_logXtfFile.isSelected() && (tf_logXtfFile.getText() == null || tf_logXtfFile.getText().equals(""))) {
@@ -294,11 +267,6 @@ public class ValidateOptionsController implements Navigable, Initializable {
 			params.put(EnumParams.IV_CONFIG_FILE.getName(), tf_configFile.getText());
 		else
 			params.remove(EnumParams.IV_CONFIG_FILE.getName());
-
-		if (chk_logFile.isSelected())
-			params.put(EnumParams.IV_LOG.getName(), tf_logFile.getText());
-		else
-			params.remove(EnumParams.IV_LOG.getName());
 		
 		if (chk_logXtfFile.isSelected())
 			params.put(EnumParams.IV_XTFLOG.getName(), tf_logXtfFile.getText());
@@ -314,11 +282,6 @@ public class ValidateOptionsController implements Navigable, Initializable {
 			params.put(EnumParams.IV_FORCETYPEVALIDATION.getName(), "true");
 		else 
 			params.remove(EnumParams.IV_FORCETYPEVALIDATION.getName());
-		
-		if (chk_trace.isSelected())
-			params.put(EnumParams.IV_TRACE.getName(), "true");
-		else
-			params.remove(EnumParams.IV_TRACE.getName());
 		
 	}
 
@@ -349,10 +312,6 @@ public class ValidateOptionsController implements Navigable, Initializable {
 
 		Window window = ((Node) event.getSource()).getScene().getWindow();
 		File selectedFile = fileChooser.showSaveDialog(window);
-
-		if (selectedFile != null) {
-			tf_logFile.setText(selectedFile.getAbsolutePath());
-		}
 	}
 
 	public void onClickBtnBrowseLogXtfFile(ActionEvent event) {
@@ -379,16 +338,6 @@ public class ValidateOptionsController implements Navigable, Initializable {
 
 		if (!checked)
 			tf_configFile.setStyle(null);
-	}
-
-	public void onClickChk_logFile(ActionEvent event) {
-		boolean checked = chk_logFile.isSelected();
-
-		tf_logFile.setDisable(!checked);
-		btnBrowseLogFile.setDisable(!checked);
-
-		if (!checked)
-			tf_logFile.setStyle(null);
 	}
 
 	public void onClickChk_logXtfFile(ActionEvent event) {

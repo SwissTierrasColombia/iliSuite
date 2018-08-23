@@ -20,6 +20,7 @@ import application.util.navigation.Navigable;
 import application.util.params.EnumParams;
 import application.util.params.ParamsContainer;
 import application.util.plugin.PluginsLoader;
+import application.util.procedures.ModelSearch;
 import base.IPluginDb;
 import base.dbconn.Ili2DbScope;
 import javafx.beans.value.ChangeListener;
@@ -62,11 +63,15 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 	@FXML
 	private TextField tf_modelDir;
 	@FXML
+	private TextField tf_modelNames;
+	@FXML
 	private Button btn_browseDataset;
 	@FXML
 	private TextField tf_xtfPath;
 	@FXML
 	private Button btn_browseXtfFile;
+	@FXML
+	private Button btn_browseModels;
 	@FXML
 	private CheckBox chk_disableValidation;
 	@FXML
@@ -144,24 +149,24 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 				if (newValue == radio_import) {
 					chk_deleteData.setDisable(false);
 					tf_datasetSelectable.setDisable(true);
+					tf_datasetSelectable.setStyle(null);
 					tf_datasetEditable.setEditable(isScoped);
 					btn_browseDataset.setDisable(true);
-				} else {
-					chk_deleteData.setDisable(true);
-					tf_datasetSelectable.setDisable(false);
-					btn_browseDataset.setDisable(false);
-				}
-				if (newValue == radio_delete) {
+					
+				}if (newValue == radio_delete) {
 					tf_datasetEditable.setDisable(true);
 					tf_datasetEditable.setStyle(null);
-				} else {
-					tf_datasetEditable.setDisable(false);
+					chk_deleteData.setDisable(true);
+					tf_datasetSelectable.setDisable(false);
 					tf_datasetSelectable.setStyle(null);
-				}
-				if (newValue == radio_replace)
+					btn_browseDataset.setDisable(false);
+				}if (newValue == radio_replace) {
 					tf_datasetEditable.setDisable(true);
-				else
-					tf_datasetEditable.setDisable(false);
+					chk_deleteData.setDisable(true);
+					tf_datasetSelectable.setDisable(false);
+					tf_datasetSelectable.setStyle(null);
+					btn_browseDataset.setDisable(false);
+				}
 			}
 		});
 
@@ -225,7 +230,7 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 			result = false;
 		}
 
-		if (tf_xtfPath.getText() == null || tf_xtfPath.getText().equals("") || !tf_xtfPath.getText().endsWith(".xtf")) {
+		if (tg_action.getSelectedToggle() != radio_delete && (tf_xtfPath.getText() == null || tf_xtfPath.getText().equals("") || !tf_xtfPath.getText().endsWith(".xtf"))) {
 			tf_xtfPath.setStyle("-fx-border-color: red ;");
 			result = false;
 		}
@@ -302,6 +307,31 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 	}
 	
 	@FXML
+	private void handleBrowseModels(ActionEvent e){
+		if(tf_modelDir.getText().isEmpty()) {
+			tf_modelDir.setStyle("-fx-border-color: red ;");
+		}else {
+			tf_modelDir.setStyle(null);
+			List<String> models = ModelSearch.search(tf_modelDir.getText());//SEARCH in modeldir
+			
+			List<String> selected = new ArrayList<String>();
+			if(!tf_modelNames.getText().isEmpty())
+				selected = Arrays.asList(tf_modelNames.getText().split(";"));
+			
+			models.removeAll(selected);
+			MultipleSelectionDialog dialog = 
+					new MultipleSelectionDialog(models, selected, SelectionMode.MULTIPLE);
+			
+			dialog.setTitle(applicationBundle.getString("general.models"));
+			
+			Optional<List<String>> result = dialog.showAndWait();
+
+			if(result.isPresent())
+				tf_modelNames.setText(String.join(";", result.get()));
+		}
+	}
+	
+	@FXML
 	private void handleBrowseValidConfigFile(ActionEvent e){
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.getExtensionFilters().addAll(
@@ -338,7 +368,13 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 		ParamsContainer paramsContainer = AppData.getInstance().getParamsContainer();
 		HashMap<String,String> params = paramsContainer.getParamsMap();
 		
-		paramsContainer.setFinalPath(tf_xtfPath.getText());
+		if(!tf_modelNames.getText().isEmpty())
+			params.put(EnumParams.MODELS.getName(), "" +tf_modelNames.getText()+ "");
+		
+		if(tg_action.getSelectedToggle() != radio_delete)
+			paramsContainer.setFinalPath(tf_xtfPath.getText());
+		else
+			paramsContainer.setFinalPath("");
 		
 		if(!tf_modelDir.getText().isEmpty()){
 			params.put(EnumParams.MODEL_DIR.getName(), tf_modelDir.getText());

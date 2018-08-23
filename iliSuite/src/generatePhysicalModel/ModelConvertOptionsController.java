@@ -316,7 +316,7 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 	public void onClickBrowseCreateScript(ActionEvent e){
 		
 		FileChooser fileChooser = new FileChooser();
-		fileChooser.getExtensionFilters().addAll(new ExtensionFilter(applicationBundle.getString("general.file.extension.sql"),".sql"));
+		fileChooser.getExtensionFilters().addAll(new ExtensionFilter(applicationBundle.getString("general.file.extension.sql"),"*.sql"));
 		fileChooser.setTitle(applicationBundle.getString("general.file.saveAs"));
 		Window window = ((Node)e.getSource()).getScene().getWindow();
 		File selectedFile = fileChooser.showSaveDialog(window);
@@ -326,7 +326,7 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 	
 	public void onClickBrowseDropScript(ActionEvent e){
 		FileChooser fileChooser = new FileChooser();
-		fileChooser.getExtensionFilters().addAll(new ExtensionFilter(applicationBundle.getString("general.file.extension.sql"),".sql"));
+		fileChooser.getExtensionFilters().addAll(new ExtensionFilter(applicationBundle.getString("general.file.extension.sql"),"*.sql"));
 		fileChooser.setTitle(applicationBundle.getString("general.file.saveAs"));
 		Window window = ((Node)e.getSource()).getScene().getWindow();
 		File selectedFile = fileChooser.showSaveDialog(window);
