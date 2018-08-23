@@ -137,9 +137,6 @@ public class DatabaseOptionsController implements IController, Initializable {
 						if (pass != null)
 							result.put(EnumIli2MsSqlParams.DB_PWD.getName(), pass);
 					}
-					
-					result.put(EnumIli2MsSqlParams.DB_PRESCRIPT.getName(), "./start.sql");
-					result.put(EnumIli2MsSqlParams.DB_POSTSCRIPT.getName(), "./stop.sql");
 				}
 			}
 		}
