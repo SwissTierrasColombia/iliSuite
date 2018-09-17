@@ -30,6 +30,8 @@ public class DatabaseOptionsController implements IController, Initializable {
 	@FXML
 	private TextField txt_databaseName;
 	@FXML
+	private TextField txt_databaseSchema;
+	@FXML
 	private TextField txt_user;
 	@FXML
 	private PasswordField txt_password;
@@ -62,6 +64,7 @@ public class DatabaseOptionsController implements IController, Initializable {
 			String port = txt_port.getText() != null && !txt_port.getText().isEmpty() ? txt_port.getText() : null;
 			String databaseName = txt_databaseName.getText() != null && !txt_databaseName.getText().isEmpty()
 					? txt_databaseName.getText() : null;
+			String databaseSchema = txt_databaseSchema.getText() != null && !txt_databaseSchema.getText().isEmpty() ? txt_databaseSchema.getText() : null;
 
 			String user = txt_user.getText() != null && !txt_user.getText().isEmpty() ? txt_user.getText() : null;
 			String pass = txt_password.getText() != null && !txt_password.getText().isEmpty() ? txt_password.getText()
@@ -73,6 +76,7 @@ public class DatabaseOptionsController implements IController, Initializable {
 			params.put("host", host);
 			params.put("port", port);
 			params.put("databaseName", databaseName);
+			params.put("databaseSchema", databaseSchema);
 			params.put("user", user);
 			params.put("password", pass);
 
@@ -97,7 +101,8 @@ public class DatabaseOptionsController implements IController, Initializable {
 
 					if (databaseName != null)
 						result.put(EnumIli2ora.DB_DATABASE.getName(), databaseName);
-
+					if(databaseSchema!=null)
+						result.put(EnumIli2ora.DB_SCHEMA.getName(), databaseSchema);
 					if (user != null)
 						result.put(EnumIli2ora.DB_USER.getName(), user);
 

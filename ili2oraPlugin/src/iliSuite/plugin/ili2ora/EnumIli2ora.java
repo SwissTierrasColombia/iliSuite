@@ -7,6 +7,7 @@ public enum EnumIli2ora {
 	DB_HOST("--dbhost", true),
 	DB_PORT("--dbport", true),
 	DB_DATABASE("--dbdatabase", true),
+	DB_SCHEMA("--dbschema", true),
 	DB_USER("--dbusr", true),
 	DB_PWD("--dbpwd", true);
 
