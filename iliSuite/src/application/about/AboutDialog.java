@@ -15,7 +15,7 @@ public class AboutDialog extends Dialog<ButtonType>{
 	public AboutDialog() throws IOException {
 		loadContent();
 		
-		// TODO botones por par�metros??
+		// TODO botones por parametros??
 		this.getDialogPane().getButtonTypes().add(ButtonType.OK);
 		
 		this.setResultConverter(new Callback<ButtonType, ButtonType>() {
