@@ -9,7 +9,8 @@ public enum EnumIli2pgParams {
 	DB_DATABASE("--dbdatabase", true), 
 	DB_USER("--dbusr", true), 
 	DB_PWD("--dbpwd", true), 
-	DB_SCHEMA("--dbschema", true);
+	DB_SCHEMA("--dbschema", true),
+	DB_SETUP_PGEXT("--setupPgExt", false);
 
 	private final String name;
 	private final boolean needParam;
