@@ -19,22 +19,29 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+	private final String configFileName = ".config.properties";
+	private final String logDirName = "log";
+	private final String logAppDirName = "log";
+	private final String iliSuiteDirName = ".ilisuite";
+	
 	@Override
 	public void init() throws InterruptedException {
 		System.setSecurityManager(new IliSuiteSecurityManager());
 		Thread.sleep(1000 * 2);
 		try {
+			String ds = System.getProperty("file.separator");
+			
 			Config config = Config.getInstance();
+			
+			String iliDir = System.getProperty("user.home") + ds + iliSuiteDirName;
+			config.setIliSuiteDir(iliDir);
+			config.setConfigFileName(configFileName);
+			config.setLogDir(iliDir + ds + logAppDirName);
+			config.setLogAppDir(logAppDirName);
+			
+			CreateDirectoryStructureAndFiles(config);
 
-			// TODO Nombre en string
-			File file = new File(".config.properties");
-
-			if (file.exists()) {
-				Config.loadConfig(file, config);
-			} else {
-				// TODO Excepcion si no puede crear el archivo
-				file.createNewFile();
-			}
+			config.loadFromFile();
 
 			setUserAgentStylesheet(STYLESHEET_CASPIAN);
 			
@@ -50,6 +57,26 @@ public class Main extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void CreateDirectoryStructureAndFiles(Config config) throws Exception {
+		
+		File dirLogAppIliSuite = new File(config.getLogAppDir());
+		File dirIliSuite = new File(config.getIliSuiteDir());
+		File dirLog = new File(config.getLogDir());
+		File file = new File(config.getConfigPath()); 
+		
+		if(!dirLogAppIliSuite.exists())
+			dirLogAppIliSuite.mkdirs();
+			
+		if(!dirIliSuite.exists())
+			dirIliSuite.mkdirs();
+
+		if(!file.exists())
+			file.createNewFile();
+		
+		if(!dirLog.exists())
+			dirLog.mkdirs();
 	}
 
 	@Override

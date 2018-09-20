@@ -184,7 +184,7 @@ public class GeneralLayoutController implements Navigable, Initializable {
 
 			if (result.isPresent()) {
 				config.setModelDir(String.join(";", result.get()));
-				Config.saveConfig(new File(".config.properties"), config);
+				config.saveToFile();
 			}
 
 			// return controller.isOkButton();
@@ -230,9 +230,7 @@ public class GeneralLayoutController implements Navigable, Initializable {
 			if (result.isPresent()) {
 				config.setProxyHost(dialog.getProxyHost());
 				config.setProxyPort(dialog.getProxyPort());
-
-				// TODO nombre de archivo
-				Config.saveConfig(new File(".config.properties"), config);
+				config.saveToFile();
 			}
 
 		} catch (IOException E) {

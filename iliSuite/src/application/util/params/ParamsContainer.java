@@ -12,6 +12,7 @@ import application.data.Config;
 
 public class ParamsContainer {
 	
+	private final String logExt=".log";
 	
 	private HashMap<String, String> paramsMap;
 	private String finalPath;
@@ -80,7 +81,7 @@ public class ParamsContainer {
 			// add log file 
 			Date now = new Date();
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
-			String logDir = config.getIliSuiteDir() +  System.getProperty("file.separator") + dateFormat.format(now) + ".log";
+			String logDir = config.getLogDir() +  System.getProperty("file.separator") + dateFormat.format(now) + paramsContainer.logExt;
 			paramsContainer.getParamsMap().put(EnumParams.LOG.getName(), logDir);
 		}
 	}

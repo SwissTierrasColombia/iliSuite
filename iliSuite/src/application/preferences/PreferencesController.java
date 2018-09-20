@@ -3,21 +3,29 @@ package application.preferences;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import application.data.Config;
 import application.dialog.ModelDirDialog;
 import application.util.navigation.EnumPaths;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Window;
 import javafx.util.Callback;
 
 public class PreferencesController extends Dialog<Boolean> implements Initializable {
@@ -42,8 +50,16 @@ public class PreferencesController extends Dialog<Boolean> implements Initializa
 	@FXML
 	RadioButton radio_languageDe;
 	
+	@FXML
+	TextField txt_logDirPath;
+	
+	@FXML
+	Button btn_logDirBrowse;
+	
+	private ResourceBundle resourceBundle;
+	
 	public PreferencesController()  throws IOException {
-		ResourceBundle resourceBundle = ResourceBundle.getBundle(EnumPaths.RESOURCE_BUNDLE.getPath());
+		resourceBundle = ResourceBundle.getBundle(EnumPaths.RESOURCE_BUNDLE.getPath());
 		FXMLLoader loader = new FXMLLoader(PreferencesController.class.getResource("preferences.fxml"), resourceBundle);
 
 		loader.setController(this);
@@ -78,21 +94,27 @@ public class PreferencesController extends Dialog<Boolean> implements Initializa
 		
 		chk_logEnabled.setSelected(config.isLogEnabled());
 		
+		txt_logDirPath.setText(config.getLogDir());
+		
+		txt_logDirPath.setDisable(!config.isLogEnabled());
+		
 		this.setResultConverter(new Callback<ButtonType, Boolean>() {
 			@Override
 			public Boolean call(ButtonType b) {
 				if (b == ButtonType.OK) {
-					
 					config.setTraceEnabled(chk_traceEnable.isSelected());
-					
-					config.setLogEnabled(chk_logEnabled.isSelected());
 					
 					if(grp_language.getSelectedToggle() != null) {
 						config.setLanguage(grp_language.getSelectedToggle().getUserData().toString());
 					}
 					
+					config.setLogEnabled(chk_logEnabled.isSelected());
+					// TODO Check if directory exist
+					if(chk_logEnabled.isSelected()) {
+						config.setLogDir(txt_logDirPath.getText());
+					}
 					try {
-						Config.saveConfig(new File(".config.properties"), config);
+						config.saveToFile();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -101,5 +123,32 @@ public class PreferencesController extends Dialog<Boolean> implements Initializa
 				return null;
 			}
 		});
+	}
+	
+	public void onClick_btn_logDirBrowse(ActionEvent event) throws IOException {
+		Node eventSource = (Node) event.getSource();
+		Window ownerWindow = eventSource.getScene().getWindow();
+
+		DirectoryChooser directoryChooser = new DirectoryChooser();
+
+		directoryChooser.setTitle(resourceBundle.getString("dialog.preferences.title"));
+
+		File dir = new File(txt_logDirPath.getText());
+		
+		if(dir.isDirectory() && dir.exists()) {
+			directoryChooser.setInitialDirectory(dir);
+		}
+		
+		File selectedDirectory = directoryChooser.showDialog(ownerWindow);
+
+		if (selectedDirectory != null) {
+			txt_logDirPath.setText(selectedDirectory.getAbsolutePath());
+		}
+	}
+	
+	@FXML
+	void onAction_chk_logEnabled(ActionEvent e){
+		txt_logDirPath.setDisable(!chk_logEnabled.isSelected());
+		btn_logDirBrowse.setDisable(!chk_logEnabled.isSelected());
 	}
 }
