@@ -22,7 +22,7 @@ public class MsSqlConnection extends AbstractConnection {
 		Map<String,String> params = getConnectionParams();
 		
 		String strDbHost = params.get("host") != null && !params.get("host").isEmpty() ? params.get("host") : "localhost";
-		String strPort = params.get("port") != null && !params.get("port").isEmpty() ? params.get("port") : "";
+		String strPort = params.get("port") != null && !params.get("port").isEmpty() ? ":" + params.get("port") : "";
 		String strInstance = params.get("instance") == null || params.get("instance").isEmpty()?"":"\\"+params.get("instance");
 		String strDbdatabase = ";databaseName="+params.get("databaseName");
 		String strWindowsAuth =  params.get("dbWindowsAuth")!=null?";integratedSecurity=true":"";
