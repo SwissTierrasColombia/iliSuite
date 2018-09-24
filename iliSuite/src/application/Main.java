@@ -1,6 +1,7 @@
 package application;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -20,6 +21,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	private final String configFileName = ".config.properties";
+	private final String defaultConfigFileName = ".defaultConfig.properties";
 	private final String logDirName = "log";
 	private final String logAppDirName = "log";
 	private final String iliSuiteDirName = ".ilisuite";
@@ -64,7 +66,8 @@ public class Main extends Application {
 		File dirLogAppIliSuite = new File(config.getLogAppDir());
 		File dirIliSuite = new File(config.getIliSuiteDir());
 		File dirLog = new File(config.getLogDir());
-		File file = new File(config.getConfigPath()); 
+		File configFile = new File(config.getConfigPath());
+		File defaultConfigFile = new File(defaultConfigFileName);
 		
 		if(!dirLogAppIliSuite.exists())
 			dirLogAppIliSuite.mkdirs();
@@ -72,8 +75,13 @@ public class Main extends Application {
 		if(!dirIliSuite.exists())
 			dirIliSuite.mkdirs();
 
-		if(!file.exists())
-			file.createNewFile();
+		if(!configFile.exists()){
+			if(defaultConfigFile.exists()) {
+				Files.copy(defaultConfigFile.toPath(), configFile.toPath());
+			} else {
+				configFile.createNewFile();
+			}
+		}
 		
 		if(!dirLog.exists())
 			dirLog.mkdirs();
