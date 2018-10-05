@@ -122,13 +122,13 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 			e.printStackTrace();
 		}finally{
 			if(!isScoped){
-				tf_datasetEditable.setDisable(true);
-				tf_datasetSelectable.setDisable(true);
-				btn_browseDataset.setDisable(true);
 				radio_update.setDisable(true);
 				radio_replace.setDisable(true);
 				radio_delete.setDisable(true);
 			}
+			tf_datasetEditable.setDisable(true);
+			tf_datasetSelectable.setDisable(true);
+			btn_browseDataset.setDisable(true);			
 		}
 		addInitListeners();
 		
@@ -146,27 +146,20 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 					radio_replace.setStyle(null);
 					radio_delete.setStyle(null);
 				}
-				if (newValue == radio_import) {
-					chk_deleteData.setDisable(false);
-					tf_datasetSelectable.setDisable(true);
-					tf_datasetSelectable.setStyle(null);
-					tf_datasetEditable.setEditable(isScoped);
-					btn_browseDataset.setDisable(true);
-					
-				}if (newValue == radio_delete) {
-					tf_datasetEditable.setDisable(true);
-					tf_datasetEditable.setStyle(null);
-					chk_deleteData.setDisable(true);
-					tf_datasetSelectable.setDisable(false);
-					tf_datasetSelectable.setStyle(null);
-					btn_browseDataset.setDisable(false);
-				}if (newValue == radio_replace) {
-					tf_datasetEditable.setDisable(true);
-					chk_deleteData.setDisable(true);
-					tf_datasetSelectable.setDisable(false);
-					tf_datasetSelectable.setStyle(null);
-					btn_browseDataset.setDisable(false);
-				}
+
+				Boolean importSelected = newValue == radio_import;
+				Boolean disableDatasetSelectable = importSelected;
+				Boolean disableDatasetEditable = !importSelected && isScoped;
+				
+				chk_deleteData.setDisable(!importSelected);
+				
+				tf_datasetSelectable.setDisable(disableDatasetSelectable);
+				btn_browseDataset.setDisable(disableDatasetSelectable);
+				
+				tf_datasetEditable.setDisable(disableDatasetEditable);
+				
+				tf_datasetSelectable.setStyle(null);
+				tf_datasetEditable.setStyle(null);
 			}
 		});
 
@@ -382,11 +375,13 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 			params.remove(EnumParams.MODEL_DIR.getName());
 		}
 		
+		params.remove(EnumParams.DATA_IMPORT.getName());
+		params.remove(EnumParams.REPLACE.getName());
+		params.remove(EnumParams.UPDATE.getName());
+		params.remove(EnumParams.DELETE.getName());
+		
 		if (radio_import.isSelected()) {
 			params.put(EnumParams.DATA_IMPORT.getName(), "true");
-			params.remove(EnumParams.REPLACE.getName());
-			params.remove(EnumParams.UPDATE.getName());
-			params.remove(EnumParams.DELETE.getName());
 			if (chk_deleteData.isSelected())
 				params.put(EnumParams.DELETE_DATA.getName(), "true");
 			else
@@ -394,14 +389,10 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 
 		} else if (radio_replace.isSelected()) {
 			params.put(EnumParams.REPLACE.getName(), "true");
-			params.remove(EnumParams.DATA_IMPORT.getName());
-			params.remove(EnumParams.UPDATE.getName());
-			params.remove(EnumParams.DELETE.getName());
 		} else if (radio_delete.isSelected()) {
 			params.put(EnumParams.DELETE.getName(), "true");
-			params.remove(EnumParams.REPLACE.getName());
-			params.remove(EnumParams.UPDATE.getName());
-			params.remove(EnumParams.DATA_IMPORT.getName());
+		} else if (radio_update.isSelected()) {
+			params.put(EnumParams.UPDATE.getName(), "true");
 		}
 
 		if (!tf_datasetEditable.getText().isEmpty() && !tf_datasetEditable.isDisabled())
