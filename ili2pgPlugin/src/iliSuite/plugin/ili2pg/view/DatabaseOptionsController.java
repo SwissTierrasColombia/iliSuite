@@ -111,7 +111,7 @@ public class DatabaseOptionsController implements IController, Initializable {
 					if(pass!=null)
 						result.put(EnumIli2pgParams.DB_PWD.getName(), pass);
 					
-					result.put(EnumIli2pgParams.DB_SETUP_PGEXT.getName(), "true");
+					result.put(EnumIli2pgParams.SETUP_PG_EXT.getName(), "true");
 				}
 			}
 		}
