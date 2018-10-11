@@ -20,7 +20,7 @@
       </ImageView>
    </top>
    <center>
-      <TextArea fx:id="txt_version" editable="false" prefHeight="240.0" prefWidth="336.0" text="%dialog.about.content" wrapText="true" BorderPane.alignment="CENTER">
+      <TextArea fx:id="txt_version" editable="false" prefHeight="240.0" prefWidth="336.0" text="" wrapText="true" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets top="38.0" />
          </BorderPane.margin></TextArea>
