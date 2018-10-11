@@ -95,5 +95,14 @@ public class Ili2fgdbPlugin implements IPluginDb {
 		(new FgdbMain()).domain(args);
 		return 0;
 	}
+	
+	@Override
+	public String getAppName() {
+		return (new FgdbMain()).getAPP_NAME();
+	}
 
+	@Override
+	public String getAppVersion() {
+		return (new FgdbMain()).getVersion();
+	}
 }

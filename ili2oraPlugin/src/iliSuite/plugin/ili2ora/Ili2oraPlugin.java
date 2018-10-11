@@ -93,4 +93,14 @@ public class Ili2oraPlugin implements IPluginDb{
 	public Ili2DbScope getScope() {
 		return new Ili2OraScope(connection);
 	}
+	
+	@Override
+	public String getAppName() {
+		return (new OraMain()).getAPP_NAME();
+	}
+
+	@Override
+	public String getAppVersion() {
+		return (new OraMain()).getVersion();
+	}
 }
