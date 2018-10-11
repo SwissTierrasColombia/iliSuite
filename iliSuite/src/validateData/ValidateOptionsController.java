@@ -259,9 +259,9 @@ public class ValidateOptionsController implements Navigable, Initializable {
 			params.remove(EnumParams.IV_PLUGINS.getName());
 		
 		if (tf_modelDir.getText()!=null && !tf_modelDir.getText().isEmpty()) 
-			params.put(EnumParams.IV_MODELDIR.getName(),tf_modelDir.getText());
+			params.put(EnumParams.MODEL_DIR.getName(),tf_modelDir.getText());
 		else
-			params.remove(EnumParams.IV_MODELDIR.getName());
+			params.remove(EnumParams.MODEL_DIR.getName());
 		
 		if (chk_configFile.isSelected())
 			params.put(EnumParams.IV_CONFIG_FILE.getName(), tf_configFile.getText());

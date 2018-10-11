@@ -91,4 +91,14 @@ public class Ili2pgPlugin implements IPluginDb {
 	public Ili2DbScope getScope(){
 		return new Ili2PgScope(connection);
 	}
+
+	@Override
+	public String getAppName() {
+		return (new PgMain()).getAPP_NAME();
+	}
+
+	@Override
+	public String getAppVersion() {
+		return (new PgMain()).getVersion();
+	}
 }

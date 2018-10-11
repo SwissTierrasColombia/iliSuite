@@ -15,6 +15,6 @@
             <Image url="@../resources/images/splash.png" />
          </image>
       </ImageView>
-      <Text layoutX="499.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%general.version" textAlignment="RIGHT" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="294.0" />
+      <Text fill="#5680c6" layoutX="444.0" layoutY="298.0" strokeLineJoin="ROUND" strokeWidth="0.0" style="-fx-font-weight: bold;" text="%general.version" textAlignment="RIGHT" AnchorPane.bottomAnchor="35.423828125" AnchorPane.rightAnchor="14.453125" AnchorPane.topAnchor="278.576171875" />
    </children>
 </AnchorPane>

@@ -86,7 +86,7 @@
                                                             <Tooltip text="%help.tooltip.importData.actions.import" />
                                                          </tooltip>
                                                       </RadioButton>
-                                                      <RadioButton fx:id="radio_update" disable="true" mnemonicParsing="false" text="%importData.actions.update" toggleGroup="$tg_action" GridPane.rowIndex="1" />
+                                                      <RadioButton fx:id="radio_update" mnemonicParsing="false" text="%importData.actions.update" toggleGroup="$tg_action" GridPane.rowIndex="1" />
                                                       <RadioButton fx:id="radio_replace" mnemonicParsing="false" text="%importData.actions.replace" toggleGroup="$tg_action" GridPane.rowIndex="2">
                                                          <tooltip>
                                                             <Tooltip text="%help.tooltip.importData.actions.replace" />

@@ -5,4 +5,6 @@ public interface Iplugin {
 	// public Parent run();
 	public void unload();
 	public String getName();
+	public String getAppName();
+	public String getAppVersion();
 }

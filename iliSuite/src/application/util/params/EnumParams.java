@@ -15,15 +15,6 @@ public enum EnumParams {
 	VERSION("--version", false),
 	
 	MODEL_DIR("--modeldir",true),
-	//General DB Options
-	DB_HOST("--dbhost",true),
-	DB_PORT("--dbport",true),
-	DB_DATABASE("--dbdatabase", true),
-	DB_USER("--dbusr",true),
-	DB_PWD("--dbpwd", true),
-	DB_SCHEMA("--dbschema", true),	
-	DB_INSTANCE("--dbinstance", true),
-	DB_WINDOWS_AUTH("--dbwindowsauth", false),
 	//General validation Options
 	DISABLE_VALIDATION("--disableValidation",false),
 	VALID_CONFIG("--validConfig",true),
@@ -63,7 +54,8 @@ public enum EnumParams {
 	COALESCE_MULTISURFACE("--coalesceMultiSurface", false),
 	EXPAND_MULTILINGUAL("--expandMultilingual", false),
 	COALESCE_MULTILINE("--coalesceMultiLine",false),
-	STRUCT_WITH_GENERIC_REF("--structWithGenericRef", false),//deprecated
+	@Deprecated
+	STRUCT_WITH_GENERIC_REF("--structWithGenericRef", false),
 	//
 	CREATE_GEOM_IDX("--createGeomIdx", false),
 	CREATE_FK_IDX("--createFkIdx", false),
@@ -98,19 +90,24 @@ public enum EnumParams {
 	IV_CONFIG_FILE("--config", true),
 	IV_FORCETYPEVALIDATION("--forceTypeValidation", false),
 	IV_DISABLEAREAVALIDATION("--disableAreaValidation", false),
-	IV_LOG("--log", true),
 	IV_XTFLOG("--xtflog", true),
-	// TODO Model dir está repetido
-	IV_MODELDIR("--modeldir", false),
 	IV_PLUGINS("--plugins", true),
-	//IV_PROXY HOST("--proxy host", false),
-	//IV_PROXYPORT PORT("--proxyPort port", false),
-	IV_TRACE("--trace", false);
-	//IV_HELP("--help", false),
-	//IV_VERSION("--version", false),
 
-	
-	
+	// TODO Options Unimplemented
+	COALESCE_ARRAY("--coalesceArray", false),
+	COALESCE_MULTI_POINT("--coalesceMultiPoint", false),
+	EXPORT_MODELS("--exportModels", true),
+	// GUI("--gui", false), 
+	IMPORT_BID("--importBid", false),
+	ILIGML20("--ILIGML20", false),
+	ILI_META_ATTRS("--iliMetaAttrs", true),
+	KEEP_AREA_REF("--keepAreaRef", false),
+	POST_SCRIPT("--postScript", true),
+	PRE_SCRIPT("--preScript", true),
+	SKIP_POLYGON_BUILDING("--skipPolygonBuilding", false),
+	SKIP_REFERENCE_ERRORS("--skipReferenceErrors", false),
+	TRANSLATION("--translation", true),
+	VER4NO_SCHEMA_IMPORT("--ver4-noSchemaImport", false);
 	
 	private final String name;
 	private final boolean needParam;

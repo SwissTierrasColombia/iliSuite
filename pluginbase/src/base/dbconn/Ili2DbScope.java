@@ -131,7 +131,7 @@ public abstract class Ili2DbScope{
 	}
 
 	public List<String> getTopicList() throws ClassNotFoundException, SQLException{
-		return getTopicList();
+		return getTopicList(null);
 	}
 	
 	protected List<String> getTopicList(String query) throws ClassNotFoundException, SQLException {

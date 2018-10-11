@@ -11,9 +11,7 @@ public enum EnumIli2MsSqlParams {
 	DB_PWD("--dbpwd", true),
 	DB_SCHEMA("--dbschema", true),
 	DB_INSTANCE("--dbinstance",true),
-	DB_WINDOWS_AUTH("--dbwindowsauth",false),
-	DB_PRESCRIPT("--preScript", true),
-	DB_POSTSCRIPT("--postScript", true);
+	DB_WINDOWS_AUTH("--dbwindowsauth",false);
 
 	private final String name;
 	private final boolean needParam;

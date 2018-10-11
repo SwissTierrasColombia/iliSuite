@@ -98,4 +98,14 @@ public class Ili2MsSqlPlugin implements IPluginDb {
 	public Ili2DbScope getScope(){
 		return new Ili2MsSqlScope(connection);
 	}
+	
+	@Override
+	public String getAppName() {
+		return (new MsSqlMain()).getAPP_NAME();
+	}
+
+	@Override
+	public String getAppVersion() {
+		return (new MsSqlMain()).getVersion();
+	}
 }

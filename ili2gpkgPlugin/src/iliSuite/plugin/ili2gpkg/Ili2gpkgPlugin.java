@@ -95,5 +95,15 @@ public class Ili2gpkgPlugin implements IPluginDb{
 		(new GpkgMain()).domain(args);
 		return 0;
 	}
+	
+	@Override
+	public String getAppName() {
+		return (new GpkgMain()).getAPP_NAME();
+	}
+
+	@Override
+	public String getAppVersion() {
+		return (new GpkgMain()).getVersion();
+	}
 
 }
