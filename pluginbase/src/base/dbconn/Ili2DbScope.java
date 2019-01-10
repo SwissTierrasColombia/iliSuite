@@ -111,7 +111,7 @@ public abstract class Ili2DbScope{
 			Statement statement = conn.createStatement();
 			ResultSet rs = null;
 			if(query==null)
-				rs = statement.executeQuery("SELECT DISTINCT t_ili_tid FROM "+schema+"t_ili2db_basket");
+				rs = statement.executeQuery("SELECT DISTINCT t_ili_tid FROM "+schema+"t_ili2db_basket WHERE t_ili_tid IS NOT NULL");
 			else{
 				String[] queryWithoutSchema = query.split("-__SCHEMA__-");
 				String queryPreSchema = queryWithoutSchema[0];
