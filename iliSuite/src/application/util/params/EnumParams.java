@@ -21,6 +21,7 @@ public enum EnumParams {
 	DISABLE_AREA_VALIDATION("--disableAreaValidation", false),
 	FORCE_TYPE_VALIDATION("--forceTypeValidation", false),
 	SKIP_GEOMETRY_ERRORS("--skipGeometryErrors", false),
+	SKIP_REFERENCE_ERRORS("--skipReferenceErrors", false),
 	//Main Functions
 	SCHEMA_IMPORT("--schemaimport", false),
 	DATA_IMPORT("--import", false),
@@ -105,7 +106,6 @@ public enum EnumParams {
 	POST_SCRIPT("--postScript", true),
 	PRE_SCRIPT("--preScript", true),
 	SKIP_POLYGON_BUILDING("--skipPolygonBuilding", false),
-	SKIP_REFERENCE_ERRORS("--skipReferenceErrors", false),
 	TRANSLATION("--translation", true),
 	VER4NO_SCHEMA_IMPORT("--ver4-noSchemaImport", false);
 	

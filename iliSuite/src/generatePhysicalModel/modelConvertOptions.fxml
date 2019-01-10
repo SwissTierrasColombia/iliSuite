@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="generatePhysicalModel.ModelConvertOptionsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="generatePhysicalModel.ModelConvertOptionsController">
    <center>
       <SplitPane dividerPositions="0.3" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
         <items>
@@ -189,6 +189,22 @@
                                                    <font>
                                                       <Font size="13.0" />
                                                    </font>
+                                                </CheckBox>
+                                                <CheckBox layoutX="5.0" layoutY="145.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.coalesceArray">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.structures.coalesceArray" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font>
+                                                </CheckBox>
+                                                <CheckBox layoutX="5.0" layoutY="170.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.coalesceMultiPoint">
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font>
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.structures.coalesceMultiPoint" />
+                                                   </tooltip>
                                                 </CheckBox>
                                                 <Label alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="-26.0" layoutY="6.0" prefHeight="17.0" prefWidth="217.0" text="%generatePhysicalModel.structures" textAlignment="CENTER" />
                                              </children>

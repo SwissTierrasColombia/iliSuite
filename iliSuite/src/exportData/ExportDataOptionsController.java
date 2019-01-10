@@ -256,7 +256,7 @@ public class ExportDataOptionsController implements Navigable, Initializable {
 					selectedValues = new ArrayList<String>(Arrays.asList(tf_dataset.getText().split(";")));
 				}
 				
-				MultipleSelectionDialog dialog = new MultipleSelectionDialog(scope.getDatasetList(), selectedValues, SelectionMode.SINGLE);
+				MultipleSelectionDialog dialog = new MultipleSelectionDialog(scope.getDatasetList(), selectedValues, SelectionMode.MULTIPLE);
 
 				dialog.setTitle(applicationBundle.getString("general.dataset"));
 				Optional<List<String>> result = dialog.showAndWait();

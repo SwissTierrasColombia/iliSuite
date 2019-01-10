@@ -79,6 +79,8 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 	@FXML
 	private CheckBox chk_skipGeometryErrors;
 	@FXML
+	private CheckBox chk_skipReferenceErrors;
+	@FXML
 	private CheckBox chk_forceTypeValidation;
 	@FXML
 	private CheckBox chk_validConfig;
@@ -251,8 +253,7 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 				selectedValues = new ArrayList<String>(Arrays.asList(tf_datasetSelectable.getText().split(";")));
 			}
 
-			MultipleSelectionDialog dialog = new MultipleSelectionDialog(scope.getDatasetList(), selectedValues,
-					SelectionMode.SINGLE);
+			MultipleSelectionDialog dialog = new MultipleSelectionDialog(scope.getDatasetList(), selectedValues,SelectionMode.SINGLE);
 
 			dialog.setTitle(applicationBundle.getString("general.dataset"));
 			Optional<List<String>> result = dialog.showAndWait();
@@ -270,8 +271,7 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 	@FXML
 	private void handleBrowseXtfFile(ActionEvent e) {
 		FileChooser fileChooser = new FileChooser();
-		fileChooser.getExtensionFilters()
-				.addAll(new ExtensionFilter(applicationBundle.getString("general.file.extension.xtf"), "*.xtf"));
+		fileChooser.getExtensionFilters().addAll(new ExtensionFilter(applicationBundle.getString("general.file.extension.xtf"), "*.xtf"));
 		fileChooser.setTitle(applicationBundle.getString("general.file.choose"));
 		Window window = ((Node) e.getSource()).getScene().getWindow();
 		File selectedFile = fileChooser.showOpenDialog(window);
@@ -348,6 +348,7 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 		
 		chk_disableAreaValidation.setDisable(disableValidation);
 		chk_skipGeometryErrors.setDisable(disableValidation);
+		chk_skipReferenceErrors.setDisable(disableValidation);
 		chk_forceTypeValidation.setDisable(disableValidation);
 		chk_validConfig.setDisable(disableValidation);
 		tf_validConfigFile.setDisable(disableValidation);
@@ -412,6 +413,10 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 				params.put(EnumParams.SKIP_GEOMETRY_ERRORS.getName(), "true");
 			else
 				params.remove(EnumParams.SKIP_GEOMETRY_ERRORS.getName());
+			if(chk_skipReferenceErrors.isSelected())
+				params.put(EnumParams.SKIP_REFERENCE_ERRORS.getName(), "true");
+			else
+				params.remove(EnumParams.SKIP_REFERENCE_ERRORS.getName());
 			if(chk_forceTypeValidation.isSelected())
 				params.put(EnumParams.FORCE_TYPE_VALIDATION.getName(), "true");
 			else
@@ -424,6 +429,7 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 			params.put(EnumParams.DISABLE_VALIDATION.getName(), "true");
 			params.remove(EnumParams.DISABLE_AREA_VALIDATION.getName());
 			params.remove(EnumParams.SKIP_GEOMETRY_ERRORS.getName());
+			params.remove(EnumParams.SKIP_REFERENCE_ERRORS.getName());
 			params.remove(EnumParams.FORCE_TYPE_VALIDATION.getName());
 			params.remove(EnumParams.VALID_CONFIG.getName());
 		}

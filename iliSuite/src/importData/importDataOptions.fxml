@@ -144,18 +144,23 @@
                            <children>
                               <Pane layoutX="232.0" layoutY="-1.0" prefHeight="158.0" prefWidth="213.0" style="-fx-border-color: darkgray; -fx-border-radius: 15px;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="369.0" AnchorPane.topAnchor="20.0">
                                  <children>
-                                    <CheckBox fx:id="chk_disableValidation" layoutX="25.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleChkDisableValidation" text="%importData.validations.disableValidation">
+                                    <CheckBox fx:id="chk_disableValidation" layoutX="25.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleChkDisableValidation" text="%importData.validations.disableValidation">
                                        <tooltip>
                                           <Tooltip text="%help.tooltip.importData.validations.disableValidation" />
                                        </tooltip></CheckBox>
-                                    <CheckBox fx:id="chk_disableAreaValidation" layoutX="25.0" layoutY="75.0" mnemonicParsing="false" text="%importData.validations.disableAreaValidation">
+                                    <CheckBox fx:id="chk_disableAreaValidation" layoutX="25.0" layoutY="40.0" mnemonicParsing="false" text="%importData.validations.disableAreaValidation">
                                        <tooltip>
                                           <Tooltip text="%help.tooltip.importData.validations.disableAreaValidation" />
                                        </tooltip></CheckBox>
-                                    <CheckBox fx:id="chk_skipGeometryErrors" layoutX="25.0" layoutY="115.0" mnemonicParsing="false" text="%importData.validations.skipGeometryErrors">
+                                    <CheckBox fx:id="chk_skipGeometryErrors" layoutX="25.0" layoutY="70.0" mnemonicParsing="false" text="%importData.validations.skipGeometryErrors">
                                        <tooltip>
                                           <Tooltip text="%help.tooltip.importData.validations.skipGeometryErrors" />
                                        </tooltip></CheckBox>
+                                    <CheckBox fx:id="chk_skipReferenceErrors" layoutX="25.0" layoutY="100.0" mnemonicParsing="false" text="%importData.validations.skipReferenceErrors">
+                                       <tooltip>
+                                          <Tooltip text="%help.tooltip.importData.validations.skipReferenceErrors" />
+                                       </tooltip>
+                                    </CheckBox>
                                  </children>
                               </Pane>
                               <Pane layoutX="484.0" layoutY="-1.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: darkgray; -fx-border-radius: 15px;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="369.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
