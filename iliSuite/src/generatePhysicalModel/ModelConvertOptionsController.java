@@ -104,7 +104,7 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 	@FXML
 	private CheckBox chk_createTypeDiscriminator;
 	@FXML
-	private CheckBox chk_importTid;
+	private CheckBox chk_iliMetaAttrs;
 	@FXML
 	private CheckBox chk_createBasketCol;
 	@FXML
@@ -542,10 +542,10 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 			params.put(EnumParams.CREATE_TYPE_DISCRIMINATOR.getName(), "true");
 		else
 			params.remove(EnumParams.CREATE_TYPE_DISCRIMINATOR.getName());
-		if(chk_importTid.isSelected())
-			params.put(EnumParams.IMPORT_TID.getName(), "true");
+		if(chk_iliMetaAttrs.isSelected())
+			params.put(EnumParams.ILI_META_ATTRS.getName(), "true");
 		else
-			params.remove(EnumParams.IMPORT_TID.getName());
+			params.remove(EnumParams.ILI_META_ATTRS.getName());
 		if(chk_createBasketCol.isSelected())
 			params.put(EnumParams.CREATE_BASKET_COL.getName(), "true");
 		else

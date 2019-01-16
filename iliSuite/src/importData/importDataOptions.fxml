@@ -148,7 +148,7 @@
                                     </CheckBox>
                                     <CheckBox fx:id="chk_importTid" layoutX="10.0" layoutY="40.0" mnemonicParsing="false" text="%importData.options.importTid">
                                        <tooltip>
-                                          <Tooltip text="%help.tooltip.importData.validations.disableValidation" />
+                                          <Tooltip text="%help.tooltip.importData.options.importTid" />
                                        </tooltip>
                                     </CheckBox>
                                  </children>

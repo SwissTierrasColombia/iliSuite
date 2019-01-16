@@ -400,9 +400,9 @@
                                                             <Font size="13.0" />
                                                          </font>
                                                       </CheckBox>
-                                                      <CheckBox fx:id="chk_importTid" mnemonicParsing="false" text="%generatePhysicalModel.metainformation.importTid" GridPane.rowIndex="2">
+                                                      <CheckBox fx:id="chk_iliMetaAttrs" mnemonicParsing="false" text="%generatePhysicalModel.metainformation.iliMetaAttrs" GridPane.rowIndex="2">
                                                          <tooltip>
-                                                            <Tooltip text="%help.tooltip.generatePhysicalModel.metainformation.importTid" />
+                                                            <Tooltip text="%help.tooltip.generatePhysicalModel.metainformation.iliMetaAttrs" />
                                                          </tooltip>
                                                          <font>
                                                             <Font size="13.0" />
