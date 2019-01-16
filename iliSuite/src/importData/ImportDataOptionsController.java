@@ -73,6 +73,10 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 	@FXML
 	private Button btn_browseModels;
 	@FXML
+	private CheckBox chk_importBid;
+	@FXML
+	private CheckBox chk_importTid;
+	@FXML
 	private CheckBox chk_disableValidation;
 	@FXML
 	private CheckBox chk_disableAreaValidation;
@@ -402,6 +406,15 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 			params.put(EnumParams.DATASET.getName(),tf_datasetSelectable.getText());
 		else
 			params.remove(EnumParams.DATASET.getName());
+		
+		if(chk_importBid.isSelected()&&(radio_import.isSelected()||radio_update.isSelected()||radio_replace.isSelected()))
+			params.put(EnumParams.IMPORT_BID.getName(), "true");
+		else
+			params.remove(EnumParams.IMPORT_BID.getName());
+		if(chk_importTid.isSelected()&&(radio_import.isSelected()||radio_update.isSelected()||radio_replace.isSelected()))
+			params.put(EnumParams.IMPORT_TID.getName(), "true");
+		else
+			params.remove(EnumParams.IMPORT_TID.getName());
 		
 		if(!chk_disableValidation.isSelected()){
 			params.remove(EnumParams.DISABLE_VALIDATION.getName());
