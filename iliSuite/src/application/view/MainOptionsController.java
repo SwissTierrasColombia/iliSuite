@@ -76,10 +76,6 @@ public class MainOptionsController implements Navigable {
 					lbl_helpTitle.setText(applicationBundle.getString("main.openUmlEditor"));
 					txt_helpContent.setText(applicationBundle.getString("main.content.openUmlEditor"));
 					nextPath = EnumPaths.OPEN_UML_EDITOR;
-				} else if (newToggle == btn_validateModel) {
-					lbl_helpTitle.setText(applicationBundle.getString("main.validateModel"));
-					txt_helpContent.setText(applicationBundle.getString("main.content.validateModel"));
-					nextPath = EnumPaths.VAL_MODEL_COMPILER_OPTIONS;
 				} else if (newToggle == btn_generatePhysicalModel) {
 					lbl_helpTitle.setText(applicationBundle.getString("main.generatePhysicalModel"));
 					txt_helpContent.setText(applicationBundle.getString("main.content.generatePhysicalModel"));

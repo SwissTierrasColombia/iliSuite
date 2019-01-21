@@ -6,26 +6,23 @@ public enum EnumPaths {
 	GENERAL_LAYOUT("/application/view/generalLayout.fxml"),
 	MAIN_OPTIONS("/application/view/mainOptions.fxml"),
 	
-	OPEN_UML_EDITOR("/openUmlEditor/openUmlEditor.fxml"),
+	OPEN_UML_EDITOR("/actions/openUmlEditor/openUmlEditor.fxml"),
 	
 	ILI2DB_COMMON_DATABASE_SELECTION("/application/ili2db/common/databaseSelection.fxml"),
 	ILI2DB_COMMON_DATABASE_OPTIONS("/application/ili2db/common/databaseOptions.fxml"),
 	
-	MODEL_CONVERT_OPTIONS("/generatePhysicalModel/modelConvertOptions.fxml"),
-	FINISH_MODEL_GENERATION("/generatePhysicalModel/finishModelGeneration.fxml"),
+	MODEL_CONVERT_OPTIONS("/actions/generatePhysicalModel/modelConvertOptions.fxml"),
+	FINISH_MODEL_GENERATION("/actions/generatePhysicalModel/finishModelGeneration.fxml"),
 	
-	EXP_DATA_EXPORT_DATA_OPTIONS("/exportData/exportDataOptions.fxml"),
-	EXP_DATA_FINISH_DATA_EXPORT("/exportData/finishDataExport.fxml"),
+	EXP_DATA_EXPORT_DATA_OPTIONS("/actions/exportData/exportDataOptions.fxml"),
+	EXP_DATA_FINISH_DATA_EXPORT("/actions/exportData/finishDataExport.fxml"),
 	
-	IMP_DATA_IMPORT_OPTIONS("/importData/importDataOptions.fxml"),
-	IMP_DATA_FINISH_DATA_IMPORT("/importData/finishDataImport.fxml"),
+	IMP_DATA_IMPORT_OPTIONS("/actions/importData/importDataOptions.fxml"),
+	IMP_DATA_FINISH_DATA_IMPORT("/actions/importData/finishDataImport.fxml"),
 	
-	VAL_DATA_VALIDATE_OPTIONS("/validateData/validateOptions.fxml"),
-	VAL_DATA_FINISH_VALIDATION("/validateData/finishDataValidation.fxml"),
-	
-	VAL_MODEL_COMPILER_OPTIONS("/validateModel/compilerOptions.fxml"),
-	VAL_MODEL_FINISH_MODEL_VALIDATION("/validateModel/finishModelValidation.fxml"),
-	
+	VAL_DATA_VALIDATE_OPTIONS("/actions/validateData/validateOptions.fxml"),
+	VAL_DATA_FINISH_VALIDATION("/actions/validateData/finishDataValidation.fxml"),
+		
 	MULTIPLE_SELECTION_DIALOG("/application/dialog/multipleSelectionDialog.fxml"),
 	
 	APP_ICON("/resources/images/app.png"),
