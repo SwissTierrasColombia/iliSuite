@@ -1,6 +1,9 @@
 package iliSuite.plugin.ili2ora.dbConn;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Map;
 
 import base.dbconn.AbstractConnection;
@@ -39,9 +42,28 @@ public class OracleConnection  extends AbstractConnection {
 	}
 
 	@Override
-	protected boolean checkSchema(String databaseSchema) throws SQLException, ClassNotFoundException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean checkSchema(String schema) throws SQLException, ClassNotFoundException {
+		boolean schemaExist = false;
+		Connection conn = getConnection();
+		Statement statement = conn.createStatement();
+		try {
+			ResultSet rs = statement.executeQuery(
+					   
+					"SELECT username FROM dba_users WHERE username = '" + schema + "'");
+			
+			while (rs.next()) {
+				schemaExist = true;
+				break;
+			}
+			if (!schemaExist)
+				throw new SQLException("Schema error");
+	
+		} finally {
+			statement.close();
+			
+			conn.close();
+		}
+		return schemaExist;
 	}
 
 }

@@ -27,7 +27,7 @@ public class FgdbConnection extends AbstractConnection {
 	}
 
 	@Override
-	protected boolean checkSchema(String databaseSchema) throws SQLException, ClassNotFoundException {
+	public boolean checkSchema(String databaseSchema) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		return false;
 	}

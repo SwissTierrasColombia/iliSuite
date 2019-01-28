@@ -42,7 +42,7 @@ public abstract class AbstractConnection {
 	
 	protected abstract String getUrl();
 	
-	protected abstract boolean checkSchema(String databaseSchema) throws SQLException, ClassNotFoundException;
+	public abstract boolean checkSchema(String schema) throws SQLException, ClassNotFoundException;
 	
 	public Map<String, String> getConnectionParams() {
 		return connectionParams;
