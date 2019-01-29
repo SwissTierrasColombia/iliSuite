@@ -49,6 +49,7 @@ public class GeneralLayoutController implements Navigable, Initializable {
 	@FXML
 	private Label lbl_functionTitle;
 	private ResourceBundle bundle;
+	private Thread commandExecutionThread;
 
 	public void goForward(ActionEvent e) throws IOException {
 		Navigable currentController = (Navigable) NavigationUtil.getCurrentScreen().getController();
@@ -82,8 +83,9 @@ public class GeneralLayoutController implements Navigable, Initializable {
 				});
 			booleanResult.bind(task.valueProperty());
 			btnNext.setDisable(true);
-			new Thread(task).start();
 			
+			commandExecutionThread = new Thread(task);
+			commandExecutionThread.start();			
 
 		}else {
 			boolean isValid = currentController.validate();
@@ -129,6 +131,11 @@ public class GeneralLayoutController implements Navigable, Initializable {
 				btnCancel.setText(bundle.getString("buttons.exit"));
 			}
 			changeNextButtonLabel(currentController.isFinalPage());
+			if(commandExecutionThread!=null) {
+				commandExecutionThread.stop();
+				btnNext.setDisable(false);
+				commandExecutionThread=null;
+			}
 		}
 	}
 
@@ -139,6 +146,11 @@ public class GeneralLayoutController implements Navigable, Initializable {
 			changeTitle(EnumPaths.APP_ICON, bundle.getString("main.function.home.title"));
 			changeNextButtonLabel(false);
 			btnCancel.setText(bundle.getString("buttons.exit"));
+			if(commandExecutionThread!=null) {
+				commandExecutionThread.stop();
+				btnNext.setDisable(false);
+				commandExecutionThread=null;
+			}
 		}else{
 			Stage s = (Stage) NavigationUtil.getMainScreen().getComponent().getScene().getWindow();
 			s.close();
