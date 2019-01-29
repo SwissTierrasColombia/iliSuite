@@ -75,6 +75,7 @@ public class Ili2oraPlugin implements IPluginDb{
 			dbConfigPanel = loader.load();
 			controllerDbConfigPanel = loader.getController();
 			controllerDbConfigPanel.setConnection(connection);
+			controllerDbConfigPanel.setCreateSchema(createSchema);
 
 		} catch (IOException e) {
 			e.printStackTrace();
