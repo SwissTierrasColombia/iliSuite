@@ -10,12 +10,6 @@ import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
 import application.data.AppData;
-import application.exception.ExitException;
-import application.util.navigation.EnumPaths;
-import application.util.navigation.Navigable;
-import application.util.params.ParamsContainer;
-import application.util.plugin.PluginsLoader;
-import application.view.undo.NoOpUndoManager;
 import base.IPluginDb;
 import ch.ehi.basics.logging.EhiLogger;
 import javafx.application.Platform;
@@ -23,7 +17,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import log.util.LogListenerExt;
+import util.exception.ExitException;
+import util.log.LogListenerExt;
+import util.params.ParamsContainer;
+import util.plugin.PluginsLoader;
+import view.util.console.NoOpUndoManager;
+import view.util.navigation.EnumPaths;
+import view.util.navigation.Navigable;
 
 public class FinishDataImportController implements Navigable, Initializable {
 

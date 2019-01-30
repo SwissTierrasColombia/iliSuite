@@ -12,13 +12,6 @@ import java.util.ResourceBundle;
 
 import application.data.AppData;
 import application.data.Config;
-import application.dialog.ModelDirDialog;
-import application.dialog.MultipleSelectionDialog;
-import application.util.navigation.EnumPaths;
-import application.util.navigation.Navigable;
-import application.util.params.EnumParams;
-import application.util.params.ParamsContainer;
-import application.util.procedures.ModelSearch;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -33,6 +26,13 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import util.params.EnumParams;
+import util.params.ParamsContainer;
+import util.procedures.ModelSearch;
+import view.dialog.ModelDirDialog;
+import view.dialog.MultipleSelectionDialog;
+import view.util.navigation.EnumPaths;
+import view.util.navigation.Navigable;
 import javafx.stage.Window;
 
 public class ModelConvertOptionsController implements Navigable, Initializable {

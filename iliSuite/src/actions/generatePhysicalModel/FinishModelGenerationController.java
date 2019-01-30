@@ -11,13 +11,6 @@ import org.fxmisc.richtext.StyleClassedTextArea;
 
 import application.data.AppData;
 import application.data.Config;
-import application.exception.ExitException;
-import application.util.navigation.EnumPaths;
-import application.util.navigation.Navigable;
-import application.util.params.EnumParams;
-import application.util.params.ParamsContainer;
-import application.util.plugin.PluginsLoader;
-import application.view.undo.NoOpUndoManager;
 import base.IPluginDb;
 import ch.ehi.basics.logging.EhiLogger;
 import javafx.application.Platform;
@@ -29,7 +22,14 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import log.util.LogListenerExt;
+import util.exception.ExitException;
+import util.log.LogListenerExt;
+import util.params.EnumParams;
+import util.params.ParamsContainer;
+import util.plugin.PluginsLoader;
+import view.util.console.NoOpUndoManager;
+import view.util.navigation.EnumPaths;
+import view.util.navigation.Navigable;
 
 public class FinishModelGenerationController implements Navigable, Initializable {
 

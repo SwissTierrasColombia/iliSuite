@@ -11,11 +11,6 @@ import org.fxmisc.richtext.StyleClassedTextArea;
 import org.interlis2.validator.Main;
 
 import application.data.AppData;
-import application.exception.ExitException;
-import application.util.navigation.EnumPaths;
-import application.util.navigation.Navigable;
-import application.util.params.ParamsContainer;
-import application.view.undo.NoOpUndoManager;
 import ch.ehi.basics.logging.EhiLogger;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -23,7 +18,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import log.util.LogListenerExt;
+import util.exception.ExitException;
+import util.log.LogListenerExt;
+import util.params.ParamsContainer;
+import view.util.console.NoOpUndoManager;
+import view.util.navigation.EnumPaths;
+import view.util.navigation.Navigable;
 
 public class FinishDataValidationController implements Navigable, Initializable {
 

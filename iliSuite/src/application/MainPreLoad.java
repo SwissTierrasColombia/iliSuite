@@ -2,7 +2,7 @@ package application;
 
 import com.sun.javafx.application.LauncherImpl;
 
-import application.exception.IliSuiteSecurityManager;
+import util.exception.IliSuiteSecurityManager;
 
 public class MainPreLoad {
 	public static void main(String[] args) {

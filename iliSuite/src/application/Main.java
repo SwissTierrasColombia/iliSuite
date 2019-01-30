@@ -7,16 +7,16 @@ import java.util.List;
 import java.util.Locale;
 
 import application.data.Config;
-import application.exception.IliSuiteSecurityManager;
-import application.util.navigation.EnumPaths;
-import application.util.navigation.NavigationUtil;
-import application.util.navigation.ResourceUtil;
-import application.util.navigation.VisualResource;
-import application.util.plugin.PluginsLoader;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import util.exception.IliSuiteSecurityManager;
+import util.plugin.PluginsLoader;
+import view.util.navigation.EnumPaths;
+import view.util.navigation.NavigationUtil;
+import view.util.navigation.ResourceUtil;
+import view.util.navigation.VisualResource;
 
 public class Main extends Application {
 

@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.util.navigation.EnumPaths;
-import application.util.navigation.Navigable;
 import javafx.fxml.Initializable;
+import view.util.navigation.EnumPaths;
+import view.util.navigation.Navigable;
 
 public class OpenUmlEditorController implements Navigable, Initializable {
 

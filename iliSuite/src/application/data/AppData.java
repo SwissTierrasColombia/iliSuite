@@ -1,6 +1,6 @@
 package application.data;
-import application.ili2db.common.EnumActionIli2Db;
-import application.util.params.ParamsContainer;
+import util.params.ParamsContainer;
+import view.common.ili2db.EnumActionIli2Db;
 
 public class AppData {
 	private String plugin;
