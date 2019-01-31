@@ -12,6 +12,6 @@ public interface IPluginDb extends Iplugin{
 	public void loadDbConfigPanel(boolean createSchema);
 	public Map<String,String> getConnectionsParams();
 	public Ili2DbScope getScope();
-	
 	public int runMain(String[] args);
+	public Map<EnumCustomPanel, PanelCustomizable> getCustomPanels();
 }

@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import base.EnumCustomPanel;
 import base.IPluginDb;
+import base.PanelCustomizable;
 import base.controller.IController;
 import base.dbconn.AbstractConnection;
 import base.dbconn.Ili2DbScope;
@@ -101,5 +103,10 @@ public class Ili2pgPlugin implements IPluginDb {
 	@Override
 	public String getAppVersion() {
 		return (new PgMain()).getVersion();
+	}
+
+	@Override
+	public Map<EnumCustomPanel, PanelCustomizable> getCustomPanels() {
+		return null;
 	}
 }

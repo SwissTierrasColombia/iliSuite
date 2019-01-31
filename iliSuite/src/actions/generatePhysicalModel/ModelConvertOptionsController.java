@@ -7,11 +7,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 import application.data.AppData;
 import application.data.Config;
+import base.PanelCustomizable;
+import base.EnumCustomPanel;
+import base.IPluginDb;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -21,6 +25,8 @@ import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
@@ -28,6 +34,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import util.params.EnumParams;
 import util.params.ParamsContainer;
+import util.plugin.PluginsLoader;
 import util.procedures.ModelSearch;
 import view.dialog.ModelDirDialog;
 import view.dialog.MultipleSelectionDialog;
@@ -128,6 +135,11 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 	
 	@FXML
 	private TextField tf_modelDir;
+	
+	@FXML
+	private TabPane tabOptions;
+	
+	private IPluginDb plugin;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -139,13 +151,29 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 		tf_srsCode.setPromptText("21781");
 		
 		addInitValues();
+		
+		String pluginKey = AppData.getInstance().getPlugin();
+		plugin = (IPluginDb) PluginsLoader.getPluginByKey(pluginKey);
+		
+		Map<EnumCustomPanel, PanelCustomizable> lstCustomPanel = plugin.getCustomPanels();
+		
+		if(lstCustomPanel != null) {
+			PanelCustomizable customPanelSchemaImport = lstCustomPanel.get(EnumCustomPanel.SCHEMA_IMPORT);
+			if(customPanelSchemaImport != null) {
+				Tab tab = new Tab(customPanelSchemaImport.getName());
+				tab.setContent(customPanelSchemaImport.getPanel());
+				tabOptions.getTabs().add(tab);				
+			}
+		}
 	}
 
 	@Override
 	public boolean validate() {
 		boolean result = validateFields();
-		if(result)
+		if(result) {
 			addParams();
+			addCustomParams();
+		}
 		return result;
 	}
 	
@@ -585,6 +613,15 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 		else
 			params.remove(EnumParams.DROP_SCRIPT.getName());
 		
+	}
+	
+	private void addCustomParams() {
+		ParamsContainer paramsContainer = AppData.getInstance().getParamsContainer();
+		HashMap<String,String> params = paramsContainer.getParamsMap();
+		
+		if(plugin instanceof PanelCustomizable) {
+			params.putAll(((PanelCustomizable)plugin).getParams());
+		}
 	}
 
 }

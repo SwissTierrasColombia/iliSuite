@@ -1,9 +1,11 @@
 package iliSuite.plugin.ili2fgdb;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
-
+import base.PanelCustomizable;
+import base.EnumCustomPanel;
 import base.IPluginDb;
 import base.controller.IController;
 import base.dbconn.AbstractConnection;
@@ -20,16 +22,21 @@ public class Ili2fgdbPlugin implements IPluginDb {
 	private IController controllerDbConfigPanel;
 	private Parent dbConfigPanel;
 	private AbstractConnection connection;
+	private Map<EnumCustomPanel, PanelCustomizable> customPanels;
 	
+	
+	public Ili2fgdbPlugin() {
+		SchemaImportPanel panel = new SchemaImportPanel();
+		customPanels = new HashMap<EnumCustomPanel, PanelCustomizable>();
+		customPanels.put(EnumCustomPanel.SCHEMA_IMPORT, panel);
+	}
 	
 	@Override
 	public void load() {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void unload() {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -105,4 +112,11 @@ public class Ili2fgdbPlugin implements IPluginDb {
 	public String getAppVersion() {
 		return (new FgdbMain()).getVersion();
 	}
+
+	@Override
+	public Map<EnumCustomPanel, PanelCustomizable> getCustomPanels() {
+		return customPanels;
+	}
+
+
 }
