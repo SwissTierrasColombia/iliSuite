@@ -18,5 +18,10 @@
 	<classpathentry kind="lib" path="libs/iox-api-1.0.3.jar"/>
 	<classpathentry kind="lib" path="libs/iox-ili-1.20.9.jar"/>
 	<classpathentry kind="lib" path="libs/ili2ValidatorLib.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ili2mssqlPlugin"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ili2fgdbPlugin"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ili2gpkgPlugin"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ili2oraPlugin"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ili2pgPlugin"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
