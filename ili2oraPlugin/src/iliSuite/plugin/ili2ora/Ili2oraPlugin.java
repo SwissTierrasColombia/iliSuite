@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import base.EnumCustomPanel;
 import base.IPluginDb;
+import base.PanelCustomizable;
 import base.controller.IController;
 import base.dbconn.AbstractConnection;
 import base.dbconn.Ili2DbScope;
@@ -29,11 +31,6 @@ public class Ili2oraPlugin implements IPluginDb{
 	@Override
 	public void unload() {
 		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public String getName() {
-		return "Ili2OraPlugin";
 	}
 
 	@Override
@@ -75,6 +72,7 @@ public class Ili2oraPlugin implements IPluginDb{
 			dbConfigPanel = loader.load();
 			controllerDbConfigPanel = loader.getController();
 			controllerDbConfigPanel.setConnection(connection);
+			controllerDbConfigPanel.setCreateSchema(createSchema);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -92,5 +90,20 @@ public class Ili2oraPlugin implements IPluginDb{
 	@Override
 	public Ili2DbScope getScope() {
 		return new Ili2OraScope(connection);
+	}
+	
+	@Override
+	public String getAppName() {
+		return (new OraMain()).getAPP_NAME();
+	}
+
+	@Override
+	public String getAppVersion() {
+		return (new OraMain()).getVersion();
+	}
+
+	@Override
+	public Map<EnumCustomPanel, PanelCustomizable> getCustomPanels() {
+		return null;
 	}
 }

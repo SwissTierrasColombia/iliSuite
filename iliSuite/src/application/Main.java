@@ -1,25 +1,27 @@
 package application;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import application.data.Config;
-import application.exception.IliSuiteSecurityManager;
-import application.util.navigation.EnumPaths;
-import application.util.navigation.NavigationUtil;
-import application.util.navigation.ResourceUtil;
-import application.util.navigation.VisualResource;
-import application.util.plugin.PluginsLoader;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import util.exception.IliSuiteSecurityManager;
+import util.plugin.PluginsLoader;
+import view.util.navigation.EnumPaths;
+import view.util.navigation.NavigationUtil;
+import view.util.navigation.ResourceUtil;
+import view.util.navigation.VisualResource;
 
 public class Main extends Application {
 
 	private final String configFileName = ".config.properties";
+	private final String defaultConfigFileName = ".defaultConfig.properties";
 	private final String logDirName = "log";
 	private final String logAppDirName = "log";
 	private final String iliSuiteDirName = ".ilisuite";
@@ -64,7 +66,8 @@ public class Main extends Application {
 		File dirLogAppIliSuite = new File(config.getLogAppDir());
 		File dirIliSuite = new File(config.getIliSuiteDir());
 		File dirLog = new File(config.getLogDir());
-		File file = new File(config.getConfigPath()); 
+		File configFile = new File(config.getConfigPath());
+		File defaultConfigFile = new File(defaultConfigFileName);
 		
 		if(!dirLogAppIliSuite.exists())
 			dirLogAppIliSuite.mkdirs();
@@ -72,8 +75,13 @@ public class Main extends Application {
 		if(!dirIliSuite.exists())
 			dirIliSuite.mkdirs();
 
-		if(!file.exists())
-			file.createNewFile();
+		if(!configFile.exists()){
+			if(defaultConfigFile.exists()) {
+				Files.copy(defaultConfigFile.toPath(), configFile.toPath());
+			} else {
+				configFile.createNewFile();
+			}
+		}
 		
 		if(!dirLog.exists())
 			dirLog.mkdirs();

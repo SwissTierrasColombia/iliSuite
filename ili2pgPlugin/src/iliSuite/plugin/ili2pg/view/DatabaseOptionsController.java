@@ -41,6 +41,8 @@ public class DatabaseOptionsController implements IController, Initializable {
 	
 	private List<Node> listOfRequired;
 	
+	private boolean createSchema;
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		applicationBundle = arg1;
@@ -87,6 +89,8 @@ public class DatabaseOptionsController implements IController, Initializable {
 			boolean validConnection=false;
 			try {
 				validConnection = connection.isValid();
+				if(databaseSchema!=null && !createSchema)
+					validConnection = validConnection && connection.checkSchema(databaseSchema);
 			} catch (ClassNotFoundException | SQLException e) {
 
 				lbl_connectionResult.setText(e.getLocalizedMessage());
@@ -110,8 +114,6 @@ public class DatabaseOptionsController implements IController, Initializable {
 					
 					if(pass!=null)
 						result.put(EnumIli2pgParams.DB_PWD.getName(), pass);
-					
-					result.put(EnumIli2pgParams.DB_SETUP_PGEXT.getName(), "true");
 				}
 			}
 		}
@@ -143,6 +145,6 @@ public class DatabaseOptionsController implements IController, Initializable {
 
 	@Override
 	public void setCreateSchema(boolean createSchema) {
-		// TODO Auto-generated method stub
+		this.createSchema = createSchema;
 	}
 }

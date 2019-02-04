@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import base.EnumCustomPanel;
 import base.IPluginDb;
+import base.PanelCustomizable;
 import base.controller.IController;
 import base.dbconn.AbstractConnection;
 import base.dbconn.Ili2DbScope;
@@ -31,11 +33,6 @@ public class Ili2gpkgPlugin implements IPluginDb{
 	public void unload() {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public String getName() {
-		return "Ili2gpkgPlugin";
 	}
 
 	@Override
@@ -86,7 +83,6 @@ public class Ili2gpkgPlugin implements IPluginDb{
 
 	@Override
 	public Ili2DbScope getScope() {
-		// TODO Auto-generated method stub
 		return new Ili2geopakageScope(connection);
 	}
 
@@ -94,6 +90,21 @@ public class Ili2gpkgPlugin implements IPluginDb{
 	public int runMain(String[] args) {
 		(new GpkgMain()).domain(args);
 		return 0;
+	}
+	
+	@Override
+	public String getAppName() {
+		return (new GpkgMain()).getAPP_NAME();
+	}
+
+	@Override
+	public String getAppVersion() {
+		return (new GpkgMain()).getVersion();
+	}
+
+	@Override
+	public Map<EnumCustomPanel, PanelCustomizable> getCustomPanels() {
+		return null;
 	}
 
 }

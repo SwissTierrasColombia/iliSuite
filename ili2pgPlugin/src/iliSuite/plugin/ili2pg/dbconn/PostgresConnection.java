@@ -37,15 +37,14 @@ public class PostgresConnection extends AbstractConnection {
 		try {
 			ResultSet rs = statement.executeQuery(
 					"SELECT schema_name FROM information_schema.schemata WHERE schema_name = '" + schema + "'");
-			int count = 0;
+			
 			while (rs.next()) {
-				count++;
-			}
-			if (count > 0)
 				schemaExist = true;
-			else {
-				throw new SQLException("Schema error");
+				break;
 			}
+			if (!schemaExist)
+				throw new SQLException("Schema error");
+	
 		} finally {
 			statement.close();
 			

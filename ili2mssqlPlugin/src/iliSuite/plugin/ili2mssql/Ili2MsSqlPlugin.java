@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import base.EnumCustomPanel;
 import base.IPluginDb;
+import base.PanelCustomizable;
 import base.controller.IController;
 import base.dbconn.AbstractConnection;
 import base.dbconn.Ili2DbScope;
@@ -29,12 +31,6 @@ public class Ili2MsSqlPlugin implements IPluginDb {
 	@Override
 	public void unload() {
 		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return "Ili2MsSqlPlugin";
 	}
 
 	@Override
@@ -76,6 +72,7 @@ public class Ili2MsSqlPlugin implements IPluginDb {
 			dbConfigPanel = loader.load();
 			controllerDbConfigPanel = loader.getController();
 			controllerDbConfigPanel.setConnection(connection);
+			controllerDbConfigPanel.setCreateSchema(createSchema);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -97,5 +94,20 @@ public class Ili2MsSqlPlugin implements IPluginDb {
 	@Override
 	public Ili2DbScope getScope(){
 		return new Ili2MsSqlScope(connection);
+	}
+	
+	@Override
+	public String getAppName() {
+		return (new MsSqlMain()).getAPP_NAME();
+	}
+
+	@Override
+	public String getAppVersion() {
+		return (new MsSqlMain()).getVersion();
+	}
+
+	@Override
+	public Map<EnumCustomPanel, PanelCustomizable> getCustomPanels() {
+		return null;
 	}
 }

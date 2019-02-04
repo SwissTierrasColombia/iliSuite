@@ -1,6 +1,9 @@
 package iliSuite.plugin.ili2mssql.dbconn;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Map;
 
 import base.dbconn.AbstractConnection;
@@ -31,9 +34,27 @@ public class MsSqlConnection extends AbstractConnection {
 	}
 
 	@Override
-	protected boolean checkSchema(String databaseSchema) throws SQLException, ClassNotFoundException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean checkSchema(String schema) throws SQLException, ClassNotFoundException {
+		boolean schemaExist = false;
+		Connection conn = getConnection();
+		Statement statement = conn.createStatement();
+		try {
+			ResultSet rs = statement.executeQuery(
+					"SELECT SCHEMA_ID FROM sys.schemas WHERE  [name] = '" + schema + "'");
+			
+			while (rs.next()) {
+				schemaExist = true;
+				break;
+			}
+			if (!schemaExist)
+				throw new SQLException("Schema error");
+	
+		} finally {
+			statement.close();
+			
+			conn.close();
+		}
+		return schemaExist;
 	}
 
 }
