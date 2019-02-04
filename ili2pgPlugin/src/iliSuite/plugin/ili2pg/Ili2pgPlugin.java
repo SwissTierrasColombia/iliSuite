@@ -14,6 +14,7 @@ import base.dbconn.Ili2DbScope;
 import ch.ehi.ili2pg.PgMain;
 import iliSuite.plugin.ili2pg.dbconn.Ili2PgScope;
 import iliSuite.plugin.ili2pg.dbconn.PostgresConnection;
+import iliSuite.plugin.ili2pg.view.DatabaseOptionsController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
@@ -40,11 +41,6 @@ public class Ili2pgPlugin implements IPluginDb {
 	@Override
 	public void unload() {
 		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public String getName() {
-		return "Ili2pgPlugin";
 	}
 
 	@Override
@@ -76,7 +72,7 @@ public class Ili2pgPlugin implements IPluginDb {
 		// TODO verificar rutas
 		ResourceBundle bundle = ResourceBundle.getBundle("iliSuite.plugin.ili2pg.resources.application");
 		FXMLLoader loader = new FXMLLoader(Ili2pgPlugin.class.getResource("/iliSuite/plugin/ili2pg/view/DatabaseOptions.fxml"), bundle);
-		
+		loader.setController(new DatabaseOptionsController());
 		try {
 			dbConfigPanel = loader.load();
 			controllerDbConfigPanel = loader.getController();

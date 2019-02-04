@@ -34,11 +34,6 @@ public class Ili2oraPlugin implements IPluginDb{
 	}
 
 	@Override
-	public String getName() {
-		return "Ili2OraPlugin";
-	}
-
-	@Override
 	public String getNameDB() {
 		return "Oracle database";
 	}

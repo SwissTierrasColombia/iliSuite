@@ -86,12 +86,9 @@ public class DatabaseSelectionController implements Navigable, Initializable {
 		
 
 		int elements = 0;
-		List<IPluginDb> pluginList = new ArrayList<>();
 		for (Entry<String, Iplugin> item : lstPlugin.entrySet()) {
 			if (item.getValue() instanceof IPluginDb) {
 				elements++;
-				IPluginDb itemPlugin = (IPluginDb) item.getValue();
-				pluginList.add(itemPlugin);
 			}
 		}
 		int columns = 2;
@@ -119,16 +116,21 @@ public class DatabaseSelectionController implements Navigable, Initializable {
 		buttonsGrid.getRowConstraints().addAll(rcList);
 		
 		
-		int rowIndex = 0;
-		for(int i = 0; i<pluginList.size();i++){
-			rowIndex = i/columns;
-			ToggleButton btnItem = new ToggleButton(pluginList.get(i).getNameDB());
-			btnItem.setUserData(pluginList.get(i).getName());
-			btnItem.setToggleGroup(group);
-			btnItem.setPrefWidth(120);
-			btnItem.setPrefHeight(50);
-			buttonsGrid.addRow(rowIndex, btnItem);
-			GridPane.setHalignment(btnItem, HPos.CENTER);
+		int rowIndex = 0, i = 0;
+		
+		for (Entry<String, Iplugin> item : lstPlugin.entrySet()) {
+			if (item.getValue() instanceof IPluginDb) {
+				IPluginDb pluginItem = (IPluginDb) item.getValue();
+				rowIndex = i/columns;
+				ToggleButton btnItem = new ToggleButton(pluginItem.getNameDB());
+				btnItem.setUserData(item.getKey());
+				btnItem.setToggleGroup(group);
+				btnItem.setPrefWidth(120);
+				btnItem.setPrefHeight(50);
+				buttonsGrid.addRow(rowIndex, btnItem);
+				GridPane.setHalignment(btnItem, HPos.CENTER);
+				i++;
+			}
 		}
 		
 		
@@ -139,7 +141,6 @@ public class DatabaseSelectionController implements Navigable, Initializable {
 
 	@Override
 	public EnumPaths getNextPath() {
-		// TODO Auto-generated method stub
 		return EnumPaths.ILI2DB_COMMON_DATABASE_OPTIONS;
 	}
 }

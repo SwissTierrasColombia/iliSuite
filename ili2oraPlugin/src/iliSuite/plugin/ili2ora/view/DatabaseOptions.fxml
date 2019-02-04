@@ -64,7 +64,6 @@
                   </TextFlow>
                </content>
             </ScrollPane>
-            <Label text="Alpha Version" textAlignment="RIGHT" GridPane.columnIndex="1" />
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />

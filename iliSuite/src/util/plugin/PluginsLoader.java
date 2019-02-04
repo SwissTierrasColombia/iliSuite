@@ -1,19 +1,19 @@
 package util.plugin;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import base.IPluginDb;
 import base.Iplugin;
-import iliSuite.plugin.ili2fgdb.Ili2fgdbPlugin;
-import iliSuite.plugin.ili2gpkg.Ili2gpkgPlugin;
-import iliSuite.plugin.ili2mssql.Ili2MsSqlPlugin;
-import iliSuite.plugin.ili2ora.Ili2oraPlugin;
-import iliSuite.plugin.ili2pg.Ili2pgPlugin;
 
 public class PluginsLoader {
 	static Map<String, Iplugin> plugins;
@@ -22,29 +22,9 @@ public class PluginsLoader {
 		plugins = new HashMap<String, Iplugin>();
 	}
 
-	private static void LoadMainPlugins() {
-		
-		IPluginDb item;
-		
-		item = new Ili2pgPlugin();
-		plugins.put(item.getName(), item);
-		
-		item = new Ili2MsSqlPlugin();
-		plugins.put(item.getName(), item);
-		
-		item = new Ili2fgdbPlugin();
-		plugins.put(item.getName(), item);
-		
-		item = new Ili2gpkgPlugin();
-		plugins.put(item.getName(), item);
-		
-		item = new Ili2oraPlugin();
-		plugins.put(item.getName(), item);
-	}
-
 	public static void Load() {
 
-		File pluginDirectory = new File("./plugins");
+		File pluginDirectory = new File("plugins");
 
 		if (pluginDirectory.exists()) {
 			File[] pluginsFiles = pluginDirectory.listFiles();
@@ -55,43 +35,48 @@ public class PluginsLoader {
 				}
 			}
 		} else {
-			// TODO Verificar excepción catch(SecurityException se){
 			pluginDirectory.mkdir();
 		}
-
-		LoadMainPlugins();
 	}
 
 	private static void loadClass(File jarFile) {
-
-		String pluginName = jarFile.getName().replace(".jar", "");
-
 		ClassLoader classLoader1;
 		try {
-			classLoader1 = URLClassLoader.newInstance(new URL[] { jarFile.toURI().toURL() });
+			classLoader1 = URLClassLoader.newInstance(new URL[] { jarFile.toURI().toURL() });		
+			InputStream stream = classLoader1.getResourceAsStream("metadata.properties");
+	
+			Properties properties = new Properties();
 
-			String packageName = pluginName.replace("Plugin", "").toLowerCase();
-			// TODO arreglar nombre del package
+			if(stream!=null) {
+				properties.load(stream);
+				
+				if(properties.getProperty("name") != null && !properties.getProperty("name").isEmpty()) {
+					String pluginName = properties.getProperty("name");
+					pluginName = pluginName.substring(0, 1).toUpperCase() + pluginName.substring(1, pluginName.length());
+					String packageName = pluginName.toLowerCase();
+					
+					String absoluteClassName = "iliSuite.plugin." + packageName+"." + pluginName + "Plugin";
+					
+					Iplugin pluginInstance = (Iplugin) classLoader1.loadClass(absoluteClassName).newInstance();
 			
-			String absoluteClassName = "iliSuite.plugin." + packageName+"." + pluginName;
-			Iplugin pluginInstance = (Iplugin) classLoader1.loadClass(absoluteClassName).newInstance();
-
-			plugins.put(pluginName, pluginInstance);
-
-			// TODO Agregar mensaje de plugin cargado
-			pluginInstance.load();
-		} catch (MalformedURLException e) {
-			System.out.println("Error loading plugin " + pluginName);
-			e.printStackTrace();
+					plugins.put(pluginName, pluginInstance);
+			
+					pluginInstance.load();				
+				}
+			} else {
+				System.out.println(jarFile.getName() + " no contiene un archivo de propiedades");
+			}
+		}
+		catch(MalformedURLException E) {
+			System.out.println(jarFile.getName() + " Error en la ruta del jar");
 		} catch (InstantiationException e) {
-			System.out.println("Error loading plugin " + pluginName);
-			e.printStackTrace();
+			System.out.println(jarFile.getName() + " Error al instanciar");
 		} catch (IllegalAccessException e) {
-			System.out.println("Error loading plugin " + pluginName);
-			e.printStackTrace();
+			System.out.println(jarFile.getName() + " Error de acceso");
 		} catch (ClassNotFoundException e) {
-			System.out.println("Error loading plugin " + pluginName);
-			e.printStackTrace();
+			System.out.println(jarFile.getName() + " Clase principal no encontrada");
+		} catch (IOException e) {
+			System.out.println(jarFile.getName() + " Error cargando archivo de propiedades del plugin");	
 		}
 	}
 
@@ -102,5 +87,4 @@ public class PluginsLoader {
 	public static Iplugin getPluginByKey(String key) {
 		return plugins.get(key);
 	}
-
 }

@@ -40,11 +40,6 @@ public class Ili2fgdbPlugin implements IPluginDb {
 	}
 
 	@Override
-	public String getName() {
-		return "Ili2fgdbPlugin";
-	}
-
-	@Override
 	public String getNameDB() {
 		return "File Geodatabase";
 	}

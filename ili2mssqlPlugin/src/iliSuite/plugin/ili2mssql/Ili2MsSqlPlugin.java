@@ -34,12 +34,6 @@ public class Ili2MsSqlPlugin implements IPluginDb {
 	}
 
 	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return "Ili2MsSqlPlugin";
-	}
-
-	@Override
 	public String getNameDB() {
 		return "MS SQL Server";
 	}

@@ -36,11 +36,6 @@ public class Ili2gpkgPlugin implements IPluginDb{
 	}
 
 	@Override
-	public String getName() {
-		return "Ili2gpkgPlugin";
-	}
-
-	@Override
 	public String getNameDB() {
 		return "Geopackage";
 	}
@@ -88,7 +83,6 @@ public class Ili2gpkgPlugin implements IPluginDb{
 
 	@Override
 	public Ili2DbScope getScope() {
-		// TODO Auto-generated method stub
 		return new Ili2geopakageScope(connection);
 	}
 
