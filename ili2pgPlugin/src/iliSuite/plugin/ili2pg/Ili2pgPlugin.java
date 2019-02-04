@@ -1,6 +1,7 @@
 package iliSuite.plugin.ili2pg;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -22,8 +23,13 @@ public class Ili2pgPlugin implements IPluginDb {
 	private Parent dbConfigPanel;
 	private AbstractConnection connection;
 
+	private Map<EnumCustomPanel, PanelCustomizable> customPanels;
+	
 	public Ili2pgPlugin(){
 		connection = new PostgresConnection();
+		SchemaImportPanel panel = new SchemaImportPanel();
+		customPanels = new HashMap<EnumCustomPanel, PanelCustomizable>();
+		customPanels.put(EnumCustomPanel.SCHEMA_IMPORT, panel);
 	}
 	
 	@Override
@@ -107,6 +113,6 @@ public class Ili2pgPlugin implements IPluginDb {
 
 	@Override
 	public Map<EnumCustomPanel, PanelCustomizable> getCustomPanels() {
-		return null;
+		return customPanels;
 	}
 }
