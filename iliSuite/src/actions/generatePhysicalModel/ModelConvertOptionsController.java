@@ -140,6 +140,8 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 	private TabPane tabOptions;
 	
 	private IPluginDb plugin;
+	
+	PanelCustomizable customPanelSchemaImport;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -158,11 +160,11 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 		Map<EnumCustomPanel, PanelCustomizable> lstCustomPanel = plugin.getCustomPanels();
 		
 		if(lstCustomPanel != null) {
-			PanelCustomizable customPanelSchemaImport = lstCustomPanel.get(EnumCustomPanel.SCHEMA_IMPORT);
+			customPanelSchemaImport = lstCustomPanel.get(EnumCustomPanel.SCHEMA_IMPORT);
 			if(customPanelSchemaImport != null) {
 				Tab tab = new Tab(customPanelSchemaImport.getName());
 				tab.setContent(customPanelSchemaImport.getPanel());
-				tabOptions.getTabs().add(tab);				
+				tabOptions.getTabs().add(tab);
 			}
 		}
 	}
@@ -619,8 +621,8 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 		ParamsContainer paramsContainer = AppData.getInstance().getParamsContainer();
 		HashMap<String,String> params = paramsContainer.getParamsMap();
 		
-		if(plugin instanceof PanelCustomizable) {
-			params.putAll(((PanelCustomizable)plugin).getParams());
+		if(customPanelSchemaImport != null) {
+			params.putAll(customPanelSchemaImport.getParams());
 		}
 	}
 
