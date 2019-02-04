@@ -19,7 +19,7 @@ public class OpenUmlEditorController implements Navigable, Initializable {
 	public boolean validate() {
 		try {
 
-			Runtime.getRuntime().exec("java -jar ./programs/umleditor-3.6.4.9/umleditor.jar");
+			Runtime.getRuntime().exec("java -jar ./programs/umleditor-3.6.5/umleditor.jar");
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
