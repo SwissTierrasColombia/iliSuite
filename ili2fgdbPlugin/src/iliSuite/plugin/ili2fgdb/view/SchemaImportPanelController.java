@@ -1,7 +1,9 @@
 package iliSuite.plugin.ili2fgdb.view;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -64,6 +66,22 @@ public class SchemaImportPanelController implements Initializable {
 		}
 		if(!tolerance.isEmpty()) {
 			result.put("--fgdbXyTolerance", tolerance);
+		}
+
+		return result;
+	}
+	
+	public List<String> getParamsForRemove(){
+		List<String> result = new ArrayList<>();
+		
+		String resolution = tf_resolution.getText();
+		String tolerance = tf_tolerance.getText();
+
+		if(resolution.isEmpty()) {
+			result.add("--fgdbXyResolution");
+		}
+		if(tolerance.isEmpty()) {
+			result.add("--fgdbXyTolerance");
 		}
 
 		return result;

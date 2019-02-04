@@ -1,7 +1,9 @@
 package iliSuite.plugin.ili2pg.view;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -28,6 +30,16 @@ public class SchemaImportPanelController implements Initializable {
 		
 		if(chk_setupPgExt.isSelected()) {
 			result.put(EnumIli2pgParams.SETUP_PG_EXT.getName(), "true");
+		}
+
+		return result;
+	}
+	
+	public List<String> getParamsForRemove(){
+		List<String> result = new ArrayList<>();
+		
+		if(!chk_setupPgExt.isSelected()) {
+			result.add(EnumIli2pgParams.SETUP_PG_EXT.getName());
 		}
 
 		return result;

@@ -1,6 +1,7 @@
 package iliSuite.plugin.ili2pg;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -34,6 +35,11 @@ public class SchemaImportPanel implements PanelCustomizable{
 	@Override
 	public Map<String, String> getParams() {
 		return customPanel.getParams();
+	}
+	
+	@Override
+	public List<String> getParamsForRemove() {
+		return customPanel.getParamsForRemove();
 	}
 
 	@Override

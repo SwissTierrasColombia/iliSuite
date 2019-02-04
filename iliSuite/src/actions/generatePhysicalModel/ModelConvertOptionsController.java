@@ -622,6 +622,10 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 		HashMap<String,String> params = paramsContainer.getParamsMap();
 		
 		if(customPanelSchemaImport != null) {
+			for(String key:customPanelSchemaImport.getParamsForRemove()) {
+				params.remove(key);
+			}
+			
 			params.putAll(customPanelSchemaImport.getParams());
 		}
 	}
