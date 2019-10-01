@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <center>
+      <GridPane alignment="CENTER" prefHeight="0.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="188.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="556.0" minWidth="10.0" prefWidth="458.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="NEVER" />
+          <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="35.0" minHeight="0.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="35.0" minHeight="0.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="110.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="%name" GridPane.rowIndex="2" />
+            <Label text="%user" GridPane.rowIndex="4" />
+            <TextField fx:id="txt_host" GridPane.columnIndex="1" />
+            <TextField fx:id="txt_port" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txt_databaseName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txt_databaseSchema" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txt_user" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="%password" GridPane.rowIndex="5" />
+            <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="6">
+               <content>
+                  <TextFlow prefHeight="56.0" prefWidth="460.0">
+                     <children>
+                        <Text fx:id="lbl_connectionResult" fill="#b20f0f" strokeType="OUTSIDE" strokeWidth="0.0" />
+                     </children>
+                  </TextFlow>
+               </content>
+            </ScrollPane>
+            <PasswordField fx:id="txt_password" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label text="%host" />
+            <Label text="%port" GridPane.rowIndex="1" />
+            <Label text="%schema" GridPane.rowIndex="3" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </center>
+</BorderPane>

@@ -1,0 +1,84 @@
+apply plugin: "java"
+apply plugin: "maven"
+
+
+sourceCompatibility = "1.8" 
+targetCompatibility = "1.8"
+
+compileJava.options.encoding = 'US-ASCII'
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+    mavenLocal()
+    maven {
+        url "http://jars.interlis.ch"
+    }
+    mavenCentral()
+}
+
+sourceSets {
+  main {
+    java {
+    	srcDirs=['src']
+    }
+  }
+  pluginbase {
+    java {
+        srcDirs=['src_supported_imps/pluginbase/src']
+    }
+  }
+  ili2fgdb {
+    java {
+        srcDirs=['src_supported_imps/ili2fgdbPlugin/src']
+    }
+  }
+  ili2gpkg {
+    java {
+        srcDirs=['src_supported_imps/ili2gpkgPlugin/src']
+    }
+  }
+  ili2mssql {
+    java {
+        srcDirs=['src_supported_imps/ili2mssqlPlugin/src']
+    }
+  }
+  ili2ora {
+    java {
+        srcDirs=['src_supported_imps/ili2oraPlugin/src']
+    }
+  }
+  ili2pg {
+    java {
+        srcDirs=['src_supported_imps/ili2pgPlugin/src']
+    }
+  }
+}
+
+dependencies {
+    // libs
+    implementation group: 'ch.interlis', name: 'iox-ili', version: '1.20.9'
+    implementation group: 'ch.interlis', name: 'ili2c-tool', version: '4.7.9'
+    implementation group: 'ch.interlis', name: 'ili2c-core', version: '4.7.9'
+    implementation group: 'ch.ehi', name: 'ehisqlgen', version: '1.13.6'
+    implementation name: 'richtextfx-fat-0.9.0'
+    
+    implementation name: 'ili2ValidatorLib'
+
+    // ili2db
+    implementation name: 'ili2dbLib'
+    implementation name: 'ili2fgdbLib'
+    implementation name: 'ili2gpkgLib'
+    implementation name: 'ili2mssqlLib'
+    implementation name: 'ili2oraLib'
+    implementation name: 'ili2pgLib'
+    //drivers dbs
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.4.jre6'
+    implementation group: 'ch.ehi', name: 'fgdb4j', version: "1.1.1"
+    implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.8.11.2'
+    implementation group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '6.4.0.jre7'
+    
+	testImplementation group: 'junit', name: 'junit', version: '4.11'
+	testImplementation group: 'org.hamcrest', name: 'hamcrest-library', version: '1.3'
+}
