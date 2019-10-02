@@ -20,3 +20,4 @@ hs_err_pid*
 sqljdbc42.jar
 
 iliToolSuite.out.xml
+/.gradle/
