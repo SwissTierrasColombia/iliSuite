@@ -13,6 +13,9 @@ import java.util.ResourceBundle;
 
 import ai.iliSuite.application.data.AppData;
 import ai.iliSuite.application.data.Config;
+import ai.iliSuite.impl.EnumCustomPanel;
+import ai.iliSuite.impl.ImplFactory;
+import ai.iliSuite.impl.PanelCustomizable;
 import ai.iliSuite.util.params.EnumParams;
 import ai.iliSuite.util.params.ParamsContainer;
 import ai.iliSuite.util.plugin.PluginsLoader;
@@ -21,9 +24,6 @@ import ai.iliSuite.view.dialog.ModelDirDialog;
 import ai.iliSuite.view.dialog.MultipleSelectionDialog;
 import ai.iliSuite.view.util.navigation.EnumPaths;
 import ai.iliSuite.view.util.navigation.Navigable;
-import base.PanelCustomizable;
-import base.EnumCustomPanel;
-import base.IPluginDb;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -139,7 +139,7 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 	@FXML
 	private TabPane tabOptions;
 	
-	private IPluginDb plugin;
+	private ImplFactory plugin;
 	
 	PanelCustomizable customPanelSchemaImport;
 
@@ -155,7 +155,7 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 		addInitValues();
 		
 		String pluginKey = AppData.getInstance().getPlugin();
-		plugin = (IPluginDb) PluginsLoader.getPluginByKey(pluginKey);
+		plugin = (ImplFactory) PluginsLoader.getPluginByKey(pluginKey);
 		
 		Map<EnumCustomPanel, PanelCustomizable> lstCustomPanel = plugin.getCustomPanels();
 		

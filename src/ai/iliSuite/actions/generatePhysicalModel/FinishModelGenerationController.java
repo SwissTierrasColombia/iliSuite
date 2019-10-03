@@ -11,6 +11,7 @@ import org.fxmisc.richtext.StyleClassedTextArea;
 
 import ai.iliSuite.application.data.AppData;
 import ai.iliSuite.application.data.Config;
+import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.util.exception.ExitException;
 import ai.iliSuite.util.log.LogListenerExt;
 import ai.iliSuite.util.params.EnumParams;
@@ -19,7 +20,6 @@ import ai.iliSuite.util.plugin.PluginsLoader;
 import ai.iliSuite.view.util.console.NoOpUndoManager;
 import ai.iliSuite.view.util.navigation.EnumPaths;
 import ai.iliSuite.view.util.navigation.Navigable;
-import base.IPluginDb;
 import ch.ehi.basics.logging.EhiLogger;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -43,7 +43,7 @@ public class FinishModelGenerationController implements Navigable, Initializable
 	// TODO Verificar si es el lugar correcto de la variable
 	private List<String> command;
 	
-	IPluginDb plugin;
+	ImplFactory plugin;
 
 	ExecutorService executor = Executors.newFixedThreadPool(1);
 	boolean stop = false;
@@ -110,7 +110,7 @@ public class FinishModelGenerationController implements Navigable, Initializable
 		String pluginKey = AppData.getInstance().getPlugin();
 
 		// TODO Verificar si es null
-		plugin = (IPluginDb) PluginsLoader.getPluginByKey(pluginKey);
+		plugin = (ImplFactory) PluginsLoader.getPluginByKey(pluginKey);
 
 		String[] args = command.toArray(new String[0]);
 		stop = false;

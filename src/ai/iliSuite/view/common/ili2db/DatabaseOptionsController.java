@@ -5,17 +5,17 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import ai.iliSuite.application.data.AppData;
+import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.util.plugin.PluginsLoader;
 import ai.iliSuite.view.util.navigation.EnumPaths;
 import ai.iliSuite.view.util.navigation.Navigable;
-import base.IPluginDb;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 
 public class DatabaseOptionsController implements Navigable, Initializable{
-	IPluginDb plugin;
+	ImplFactory plugin;
 	
 	@FXML
 	private Button btn_ok;
@@ -71,7 +71,7 @@ public class DatabaseOptionsController implements Navigable, Initializable{
 		String pluginKey = AppData.getInstance().getPlugin();
 		
 		// TODO Verificar si es null
-		plugin = (IPluginDb) PluginsLoader.getPluginByKey(pluginKey);
+		plugin = (ImplFactory) PluginsLoader.getPluginByKey(pluginKey);
 		
 		plugin.loadDbConfigPanel(createSchema);
 		

@@ -6,8 +6,6 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Map.Entry;
 
-import base.IPluginDb;
-import base.Iplugin;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +17,7 @@ import javafx.util.Callback;
 
 import org.interlis2.validator.Main;
 
+import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.util.plugin.PluginsLoader;
 import ai.iliSuite.view.util.navigation.EnumPaths;
 
@@ -35,7 +34,7 @@ public class AboutDialog extends Dialog<ButtonType> implements Initializable {
 		String vtxt = arg1.getString("general.versionText");
 		String templateAppDescription = "%s " + ls + vtxt + " %s" + ls + ls;
 		
-		Map<String, Iplugin> lstPlugin = PluginsLoader.getPlugins();
+		Map<String, ImplFactory> lstPlugin = PluginsLoader.getPlugins();
 
 		String iliSuiteInfo = String.format(templateAppDescription,
 				arg1.getString("general.appName"), arg1.getString("general.version"));
@@ -54,9 +53,9 @@ public class AboutDialog extends Dialog<ButtonType> implements Initializable {
 		
 		infoPlugin += umlEditor;
 		
-		for (Entry<String, Iplugin> item : lstPlugin.entrySet()) {
-			if (item.getValue() instanceof IPluginDb) {
-				IPluginDb itemPlugin = (IPluginDb) item.getValue();
+		for (Entry<String, ImplFactory> item : lstPlugin.entrySet()) {
+			if (item.getValue() instanceof ImplFactory) {
+				ImplFactory itemPlugin = (ImplFactory) item.getValue();
 				
 				infoPlugin += 
 					String.format(templateAppDescription,

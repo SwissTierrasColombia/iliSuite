@@ -10,6 +10,7 @@ import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
 import ai.iliSuite.application.data.AppData;
+import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.util.exception.ExitException;
 import ai.iliSuite.util.log.LogListenerExt;
 import ai.iliSuite.util.params.EnumParams;
@@ -18,7 +19,6 @@ import ai.iliSuite.util.plugin.PluginsLoader;
 import ai.iliSuite.view.util.console.NoOpUndoManager;
 import ai.iliSuite.view.util.navigation.EnumPaths;
 import ai.iliSuite.view.util.navigation.Navigable;
-import base.IPluginDb;
 import ch.ehi.basics.logging.EhiLogger;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -37,7 +37,7 @@ public class FinishDataExportController implements Navigable, Initializable {
 	
 	private List<String> command;
 	
-	IPluginDb plugin;
+	ImplFactory plugin;
 
 	ExecutorService executor = Executors.newFixedThreadPool(1);
 	boolean stop = false;
@@ -104,7 +104,7 @@ public class FinishDataExportController implements Navigable, Initializable {
 		String pluginKey = AppData.getInstance().getPlugin();
 
 		// TODO Verificar si es null
-		plugin = (IPluginDb) PluginsLoader.getPluginByKey(pluginKey);
+		plugin = (ImplFactory) PluginsLoader.getPluginByKey(pluginKey);
 
 		String[] args = command.toArray(new String[0]);
 		stop = false;

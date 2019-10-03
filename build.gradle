@@ -24,34 +24,29 @@ sourceSets {
     	srcDirs=['src']
     }
   }
-  pluginbase {
-    java {
-        srcDirs=['src_supported_imps/pluginbase/src']
-    }
-  }
   ili2fgdb {
     java {
-        srcDirs=['src_supported_imps/ili2fgdbPlugin/src']
+        srcDirs=['src_supported_impls/ili2fgdbImpl/src']
     }
   }
   ili2gpkg {
     java {
-        srcDirs=['src_supported_imps/ili2gpkgPlugin/src']
+        srcDirs=['src_supported_impls/ili2gpkgImpl/src']
     }
   }
   ili2mssql {
     java {
-        srcDirs=['src_supported_imps/ili2mssqlPlugin/src']
+        srcDirs=['src_supported_impls/ili2mssqlImpl/src']
     }
   }
   ili2ora {
     java {
-        srcDirs=['src_supported_imps/ili2oraPlugin/src']
+        srcDirs=['src_supported_impls/ili2oraImpl/src']
     }
   }
   ili2pg {
     java {
-        srcDirs=['src_supported_imps/ili2pgPlugin/src']
+        srcDirs=['src_supported_impls/ili2pgImpl/src']
     }
   }
 }

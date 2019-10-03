@@ -2,45 +2,45 @@ package ai.iliSuite.util.plugin;
 
 import java.util.HashMap;
 import java.util.Map;
-import base.IPluginDb;
-import base.Iplugin;
-import iliSuite.plugin.ili2fgdb.Ili2fgdbPlugin;
-import iliSuite.plugin.ili2gpkg.Ili2gpkgPlugin;
-import iliSuite.plugin.ili2mssql.Ili2MsSqlPlugin;
-import iliSuite.plugin.ili2ora.Ili2oraPlugin;
-import iliSuite.plugin.ili2pg.Ili2pgPlugin;
+
+import ai.iliSuite.impl.ImplFactory;
+import ai.iliSuite.impl.ili2fgdb.Ili2fgdbImpl;
+import ai.iliSuite.impl.ili2gpkg.Ili2gpkgImpl;
+import ai.iliSuite.impl.ili2mssql.Ili2MsSqlImpl;
+import ai.iliSuite.impl.ili2ora.Ili2oraImpl;
+import ai.iliSuite.impl.ili2pg.Ili2pgImpl;
 
 public class PluginsLoader {
-	static Map<String, Iplugin> plugins;
+	static Map<String, ImplFactory> plugins;
 
 	static {
-		plugins = new HashMap<String, Iplugin>();
+		plugins = new HashMap<String, ImplFactory>();
 	}
 
 	public static void Load() {
-		IPluginDb iplug = null;
+		ImplFactory iplug = null;
 		
-		iplug = new Ili2fgdbPlugin();	
+		iplug = new Ili2fgdbImpl();	
 		plugins.put(iplug.getAppName(), iplug);
 
-		iplug = new Ili2gpkgPlugin();	
+		iplug = new Ili2gpkgImpl();	
 		plugins.put(iplug.getAppName(), iplug);
 		
-		iplug = new Ili2MsSqlPlugin();	
+		iplug = new Ili2MsSqlImpl();	
 		plugins.put(iplug.getAppName(), iplug);
 		
-		iplug = new Ili2oraPlugin();	
+		iplug = new Ili2oraImpl();	
 		plugins.put(iplug.getAppName(), iplug);
 		
-		iplug = new Ili2pgPlugin();	
+		iplug = new Ili2pgImpl();	
 		plugins.put(iplug.getAppName(), iplug);
 	}
 
-	public static Map<String, Iplugin> getPlugins() {
+	public static Map<String, ImplFactory> getPlugins() {
 		return plugins;
 	}
 
-	public static Iplugin getPluginByKey(String key) {
+	public static ImplFactory getPluginByKey(String key) {
 		return plugins.get(key);
 	}
 }

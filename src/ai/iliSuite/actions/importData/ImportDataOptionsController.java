@@ -13,6 +13,8 @@ import java.util.ResourceBundle;
 
 import ai.iliSuite.application.data.AppData;
 import ai.iliSuite.application.data.Config;
+import ai.iliSuite.impl.ImplFactory;
+import ai.iliSuite.impl.dbconn.Ili2DbScope;
 import ai.iliSuite.util.params.EnumParams;
 import ai.iliSuite.util.params.ParamsContainer;
 import ai.iliSuite.util.plugin.PluginsLoader;
@@ -21,8 +23,6 @@ import ai.iliSuite.view.dialog.ModelDirDialog;
 import ai.iliSuite.view.dialog.MultipleSelectionDialog;
 import ai.iliSuite.view.util.navigation.EnumPaths;
 import ai.iliSuite.view.util.navigation.Navigable;
-import base.IPluginDb;
-import base.dbconn.Ili2DbScope;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -120,7 +120,7 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 		
 		String pluginKey = AppData.getInstance().getPlugin();
 		// TODO Verificar si es null
-		IPluginDb plugin = (IPluginDb) PluginsLoader.getPluginByKey(pluginKey);
+		ImplFactory plugin = (ImplFactory) PluginsLoader.getPluginByKey(pluginKey);
 		Ili2DbScope scope = plugin.getScope();
 		try{
 			isScoped = scope.isScoped();
@@ -247,7 +247,7 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 	@FXML
 	private void handleAddDatasetButton(ActionEvent e) {
 		String pluginKey = AppData.getInstance().getPlugin();
-		IPluginDb plugin = (IPluginDb) PluginsLoader.getPluginByKey(pluginKey);
+		ImplFactory plugin = (ImplFactory) PluginsLoader.getPluginByKey(pluginKey);
 		Ili2DbScope scope = plugin.getScope();
 
 		try {

@@ -13,6 +13,8 @@ import java.util.ResourceBundle;
 
 import ai.iliSuite.application.data.AppData;
 import ai.iliSuite.application.data.Config;
+import ai.iliSuite.impl.ImplFactory;
+import ai.iliSuite.impl.dbconn.Ili2DbScope;
 import ai.iliSuite.util.params.EnumParams;
 import ai.iliSuite.util.params.ParamsContainer;
 import ai.iliSuite.util.plugin.PluginsLoader;
@@ -20,8 +22,6 @@ import ai.iliSuite.view.dialog.ModelDirDialog;
 import ai.iliSuite.view.dialog.MultipleSelectionDialog;
 import ai.iliSuite.view.util.navigation.EnumPaths;
 import ai.iliSuite.view.util.navigation.Navigable;
-import base.IPluginDb;
-import base.dbconn.Ili2DbScope;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -86,7 +86,7 @@ public class ExportDataOptionsController implements Navigable, Initializable {
 		
 		String pluginKey = AppData.getInstance().getPlugin();
 		// TODO Verificar si es null
-		IPluginDb plugin = (IPluginDb) PluginsLoader.getPluginByKey(pluginKey);
+		ImplFactory plugin = (ImplFactory) PluginsLoader.getPluginByKey(pluginKey);
 		scope = plugin.getScope();
 		
 		disableList = new ArrayList<>();

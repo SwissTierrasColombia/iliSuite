@@ -7,14 +7,13 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import ai.iliSuite.application.data.AppData;
+import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.util.plugin.PluginsLoader;
 import ai.iliSuite.view.util.navigation.EnumPaths;
 import ai.iliSuite.view.util.navigation.Navigable;
 
 import java.util.ResourceBundle;
 
-import base.IPluginDb;
-import base.Iplugin;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -55,7 +54,7 @@ public class DatabaseSelectionController implements Navigable, Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		AppData.getInstance().setPlugin("");
 
-		Map<String, Iplugin> lstPlugin = PluginsLoader.getPlugins();
+		Map<String, ImplFactory> lstPlugin = PluginsLoader.getPlugins();
 
 		ToggleGroup group = new ToggleGroup();
 
@@ -69,7 +68,7 @@ public class DatabaseSelectionController implements Navigable, Initializable {
 				} else {
 					String pluginKey = group.getSelectedToggle().getUserData().toString();
 
-					IPluginDb plugin = (IPluginDb) PluginsLoader.getPluginByKey(pluginKey);
+					ImplFactory plugin = (ImplFactory) PluginsLoader.getPluginByKey(pluginKey);
 
 					// TODO Verificar que es el lugar correcto para establecer
 					// el valor
@@ -88,8 +87,8 @@ public class DatabaseSelectionController implements Navigable, Initializable {
 		
 
 		int elements = 0;
-		for (Entry<String, Iplugin> item : lstPlugin.entrySet()) {
-			if (item.getValue() instanceof IPluginDb) {
+		for (Entry<String, ImplFactory> item : lstPlugin.entrySet()) {
+			if (item.getValue() instanceof ImplFactory) {
 				elements++;
 			}
 		}
@@ -120,9 +119,9 @@ public class DatabaseSelectionController implements Navigable, Initializable {
 		
 		int rowIndex = 0, i = 0;
 		
-		for (Entry<String, Iplugin> item : lstPlugin.entrySet()) {
-			if (item.getValue() instanceof IPluginDb) {
-				IPluginDb pluginItem = (IPluginDb) item.getValue();
+		for (Entry<String, ImplFactory> item : lstPlugin.entrySet()) {
+			if (item.getValue() instanceof ImplFactory) {
+				ImplFactory pluginItem = (ImplFactory) item.getValue();
 				rowIndex = i/columns;
 				ToggleButton btnItem = new ToggleButton(pluginItem.getNameDB());
 				btnItem.setUserData(item.getKey());
