@@ -201,9 +201,11 @@ public abstract class Ili2DbScope{
 				
 			while(rs.next()){
 				String name = rs.getString("modelname");
-				if(name.indexOf('{') != -1)
-					name = name.substring(0, name.indexOf('{'));
-				result.add(name);
+				name = name.replaceAll("\\{[ a-zA-Z0-9_]+\\}", "");
+				String[] lstModel = name.split(" ");
+				for(String item:lstModel) {
+					result.add(item);
+				}
 			}
 		}finally{
 		
