@@ -132,21 +132,28 @@
                                                    <font>
                                                       <Font size="13.0" />
                                                    </font></RadioButton>
-                                                <RadioButton fx:id="radio_createSingleEnumTab" layoutX="5.0" layoutY="70.0" mnemonicParsing="false" text="%generatePhysicalModel.enumeration.createSingleEnumTab" toggleGroup="$tg_creationEnums">
+                                                <RadioButton fx:id="radio_createEnumTabsWithId" layoutX="5.0" layoutY="70.0" mnemonicParsing="false" text="%generatePhysicalModel.enumeration.createEnumTabsWithId" toggleGroup="$tg_creationEnums">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.enumeration.createEnumTabsWithId" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></RadioButton>
+                                                <RadioButton fx:id="radio_createSingleEnumTab" layoutX="5.0" layoutY="95.0" mnemonicParsing="false" text="%generatePhysicalModel.enumeration.createSingleEnumTab" toggleGroup="$tg_creationEnums">
                                                    <tooltip>
                                                       <Tooltip text="%help.tooltip.generatePhysicalModel.enumeration.createSingleEnumTab" />
                                                    </tooltip>
                                                    <font>
                                                       <Font size="13.0" />
                                                    </font></RadioButton>
-                                                <RadioButton fx:id="radio_createEnumTxtCol" layoutX="5.0" layoutY="95.0" mnemonicParsing="false" text="%generatePhysicalModel.enumeration.createEnumTxtCol" toggleGroup="$tg_creationEnums">
+                                                <RadioButton fx:id="radio_createEnumTxtCol" layoutX="5.0" layoutY="120.0" mnemonicParsing="false" text="%generatePhysicalModel.enumeration.createEnumTxtCol" toggleGroup="$tg_creationEnums">
                                                    <tooltip>
                                                       <Tooltip text="%help.tooltip.generatePhysicalModel.enumeration.createEnumTxtCol" />
                                                    </tooltip>
                                                    <font>
                                                       <Font size="13.0" />
                                                    </font></RadioButton>
-                                                <CheckBox fx:id="chk_beautifyEnumDispName" layoutX="5.0" layoutY="120.0" mnemonicParsing="false" text="%generatePhysicalModel.enumeration.beautifyEnumDispName">
+                                                <CheckBox fx:id="chk_beautifyEnumDispName" layoutX="5.0" layoutY="145.0" mnemonicParsing="false" text="%generatePhysicalModel.enumeration.beautifyEnumDispName">
                                                    <tooltip>
                                                       <Tooltip text="%help.tooltip.generatePhysicalModel.enumeration.beautifyEnumDispName" />
                                                    </tooltip>

@@ -46,6 +46,7 @@ public enum EnumParams {
 	SMART_2_INHERITANCE("--smart2Inheritance", false),
 	//
 	CREATE_ENUM_TABS("--createEnumTabs", false),
+	CREATE_ENUM_TABS_WITH_ID("--createEnumTabsWithId", false),
 	CREATE_SINGLE_ENUM_TAB("--createSingleEnumTab", false),
 	CREATE_ENUM_COL_AS_ITF_CODE("--createEnumColAsItfCode", false), //only interlis 1
 	CREATE_ENUM_TXT_COL("--createEnumTxtCol", false),

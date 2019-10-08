@@ -65,6 +65,8 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 	@FXML
 	private RadioButton radio_createEnumTabs;
 	@FXML
+	private RadioButton radio_createEnumTabsWithId;
+	@FXML
 	private RadioButton radio_createSingleEnumTab;
 	@FXML
 	private RadioButton radio_createEnumTxtCol;
@@ -306,7 +308,7 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 	private void addInitValues(){
 		radio_smart2.setSelected(true);
 		radio_inputFile.setSelected(true);
-		radio_createEnumTabs.setSelected(true);
+		radio_createEnumTabsWithId.setSelected(true);
 		chk_beautifyEnumDispName.setSelected(true);
 		chk_coalesceCatalogueRef.setSelected(true);
 		chk_coalesceMultisurface.setSelected(true);
@@ -478,14 +480,22 @@ public class ModelConvertOptionsController implements Navigable, Initializable {
 			params.put(EnumParams.CREATE_ENUM_TABS.getName(), "true");
 			params.remove(EnumParams.CREATE_SINGLE_ENUM_TAB.getName());
 			params.remove(EnumParams.CREATE_ENUM_TXT_COL.getName());
+			params.remove(EnumParams.CREATE_ENUM_TABS_WITH_ID.getName());
 		}else if(radio_createSingleEnumTab.isSelected()){
 			params.put(EnumParams.CREATE_SINGLE_ENUM_TAB.getName(), "true");
 			params.remove(EnumParams.CREATE_ENUM_TABS.getName());
 			params.remove(EnumParams.CREATE_ENUM_TXT_COL.getName());
+			params.remove(EnumParams.CREATE_ENUM_TABS_WITH_ID.getName());
 		}else if(radio_createEnumTxtCol.isSelected()){
 			params.put(EnumParams.CREATE_ENUM_TXT_COL.getName(), "true");
 			params.remove(EnumParams.CREATE_ENUM_TABS.getName());
 			params.remove(EnumParams.CREATE_SINGLE_ENUM_TAB.getName());
+			params.remove(EnumParams.CREATE_ENUM_TABS_WITH_ID.getName());
+		} else if(radio_createEnumTabsWithId.isSelected()) {
+			params.put(EnumParams.CREATE_ENUM_TABS_WITH_ID.getName(), "true");
+			params.remove(EnumParams.CREATE_ENUM_TABS.getName());
+			params.remove(EnumParams.CREATE_SINGLE_ENUM_TAB.getName());
+			params.remove(EnumParams.CREATE_ENUM_TXT_COL.getName());
 		}
 		
 		if(chk_beautifyEnumDispName.isSelected())
