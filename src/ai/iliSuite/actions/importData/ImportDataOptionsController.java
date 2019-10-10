@@ -81,6 +81,8 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 	@FXML
 	private CheckBox chk_disableAreaValidation;
 	@FXML
+	private CheckBox chk_disableRounding;
+	@FXML
 	private CheckBox chk_skipGeometryErrors;
 	@FXML
 	private CheckBox chk_skipReferenceErrors;
@@ -137,6 +139,8 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 			btn_browseDataset.setDisable(true);			
 		}
 		addInitListeners();
+		
+		chk_disableRounding.setSelected(true);
 		
 		tf_modelDir.setText(Config.getInstance().getModelDir());
 	}
@@ -384,6 +388,11 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 		params.remove(EnumParams.REPLACE.getName());
 		params.remove(EnumParams.UPDATE.getName());
 		params.remove(EnumParams.DELETE.getName());
+		params.remove(EnumParams.DISABLE_ROUNDING.getName());
+		
+		if (chk_disableRounding.isSelected()) {
+			params.put(EnumParams.DISABLE_ROUNDING.getName(), "true");
+		}
 		
 		if (radio_import.isSelected()) {
 			params.put(EnumParams.DATA_IMPORT.getName(), "true");

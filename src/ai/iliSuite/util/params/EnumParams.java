@@ -110,6 +110,7 @@ public enum EnumParams {
 	TRANSLATION("--translation", true),
 	VER4NO_SCHEMA_IMPORT("--ver4-noSchemaImport", false),
 	
+	DISABLE_ROUNDING("--disableRounding", false),
 	FILE_NAME("ili_xtf_file", true);
 	
 	private final String name;

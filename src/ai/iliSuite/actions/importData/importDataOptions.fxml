@@ -151,6 +151,11 @@
                                           <Tooltip text="%help.tooltip.importData.options.importTid" />
                                        </tooltip>
                                     </CheckBox>
+									<CheckBox fx:id="chk_disableRounding" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" text="%general.disableRounding">
+                                       <tooltip>
+                                          <Tooltip text="%help.tooltip.general.disableRounding" />
+                                       </tooltip>
+                                    </CheckBox>
                                  </children>
                               </Pane>
                            </children>
