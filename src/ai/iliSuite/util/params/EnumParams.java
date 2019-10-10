@@ -108,7 +108,9 @@ public enum EnumParams {
 	PRE_SCRIPT("--preScript", true),
 	SKIP_POLYGON_BUILDING("--skipPolygonBuilding", false),
 	TRANSLATION("--translation", true),
-	VER4NO_SCHEMA_IMPORT("--ver4-noSchemaImport", false);
+	VER4NO_SCHEMA_IMPORT("--ver4-noSchemaImport", false),
+	
+	FILE_NAME("ili_xtf_file", true);
 	
 	private final String name;
 	private final boolean needParam;
