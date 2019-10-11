@@ -29,6 +29,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
@@ -72,6 +73,8 @@ public class ExportDataOptionsController implements Navigable, Initializable {
 	private TextField tf_models;
 	@FXML
 	private TextField tf_xtfFilePath;
+	@FXML
+	private CheckBox chk_disableRounding;
 	
 	@FXML
 	private TextField tf_modelDir;
@@ -110,6 +113,7 @@ public class ExportDataOptionsController implements Navigable, Initializable {
 			disableFields(disableList);
 		}
 		addInitListeners();
+		chk_disableRounding.setSelected(true);
 		
 		tf_modelDir.setText(Config.getInstance().getModelDir());
 		
@@ -230,6 +234,11 @@ public class ExportDataOptionsController implements Navigable, Initializable {
 			params.remove(EnumParams.DATASET.getName());
 			params.remove(EnumParams.BASKETS.getName());
 			params.remove(EnumParams.TOPICS.getName());
+		}
+		params.remove(EnumParams.DISABLE_ROUNDING.getName());
+
+		if (chk_disableRounding.isSelected()) {
+			params.put(EnumParams.DISABLE_ROUNDING.getName(), "true");
 		}
 	}
 
