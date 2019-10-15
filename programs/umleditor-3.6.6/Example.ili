@@ -1,0 +1,31 @@
+INTERLIS 2.3;
+
+MODEL Example (en)
+AT "http://www.interlis.ch/"
+VERSION "2005-06-16"  =
+  IMPORTS CoordSys;
+
+  REFSYSTEM BASKET BCoordSys~CoordSys.CoordsysTopic
+    OBJECTS OF GeoCartesian2D:
+      CHLV03
+    OBJECTS OF GeoHeight:
+      SwissOrthometricAlt;
+
+  DOMAIN
+
+    LCoord = COORD 480000.000 .. 850000.000 [INTERLIS.m]{CHLV03[1]}, 60000.000 .. 320000.000 [INTERLIS.m]{CHLV03[2]} ,ROTATION 2 -> 1;
+
+    Height = COORD -200.000 .. 5000.000 [INTERLIS.m]{SwissOrthometricAlt[1]};
+
+    HCoord = COORD 480000.000 .. 850000.000 [INTERLIS.m]{CHLV03[1]}, 60000.000 .. 320000.000 [INTERLIS.m]{CHLV03[2]}, -200.000 .. 5000.000 [INTERLIS.m]{SwissOrthometricAlt[1]} ,ROTATION 2 -> 1;
+
+  TOPIC T =
+
+    CLASS ControlPoint =
+      Name : TEXT*20;
+      Position : Example.LCoord;
+    END ControlPoint;
+
+  END T;
+
+END Example.
