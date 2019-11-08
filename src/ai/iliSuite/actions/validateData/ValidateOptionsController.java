@@ -11,17 +11,22 @@ import java.util.ResourceBundle;
 
 import ai.iliSuite.application.data.AppData;
 import ai.iliSuite.application.data.Config;
+import ai.iliSuite.base.InterlisExecutable;
 import ai.iliSuite.util.params.EnumParams;
 import ai.iliSuite.util.params.ParamsContainer;
 import ai.iliSuite.view.dialog.ModelDirDialog;
 import ai.iliSuite.view.util.navigation.EnumPaths;
 import ai.iliSuite.view.util.navigation.Navigable;
+import ai.iliSuite.view.util.navigation.ResourceUtil;
+import ai.iliSuite.view.wizard.StepArgs;
+import ai.iliSuite.view.wizard.StepViewController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -30,7 +35,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import javafx.stage.FileChooser.ExtensionFilter;
 
-public class ValidateOptionsController implements Navigable, Initializable {
+public class ValidateOptionsController extends StepViewController implements Initializable {
 
 	private ResourceBundle applicationBundle;
 
@@ -78,16 +83,23 @@ public class ValidateOptionsController implements Navigable, Initializable {
 
 	@FXML
 	private Button btnBrowseLogXtfFile;
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		AppData data = AppData.getInstance();
-		data.getParamsContainer().getParamsMap().clear();
+	
+	// FIX Tal vez en clase padre
+	private Parent viewRootNode;
+	
+	//private ParamController controller;
+	
+	public ValidateOptionsController(/*ParamController controller*/) throws IOException {
+		// XXX Posible carga de componentes antes de ser necesario
+		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/actions/validateData/validateOptions.fxml", EnumPaths.RESOURCE_BUNDLE, this);
 		
+		//this.controller = controller;
+	}
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {	
 		applicationBundle = resources;
 		addInitListeners();
 		
-
 		tf_configFile.setDisable(true);
 		tf_logXtfFile.setDisable(true);
 		tf_pluginsFolder.setDisable(true);
@@ -98,13 +110,21 @@ public class ValidateOptionsController implements Navigable, Initializable {
 
 		tf_modelDir.setText(Config.getInstance().getModelDir());
 	}
-
+	
 	@Override
-	public boolean validate() {
-		boolean result = validateFields();
-		if (result)
-			addParams();
-		return result;
+	public void goForward(StepArgs args) {
+		super.goForward(args);			
+		boolean isValid = validateFields(); 
+		args.setCancel(!isValid);
+		
+		if (isValid) {
+			//controller.addParams(getParams());
+		}
+	}
+	
+	@Override
+	public void goBack(StepArgs args) {
+		super.goBack(args);
 	}
 
 	private void addInitListeners() {
@@ -172,17 +192,7 @@ public class ValidateOptionsController implements Navigable, Initializable {
 
 		return result;
 	}
-
-	@Override
-	public EnumPaths getNextPath() {
-		return EnumPaths.VAL_DATA_FINISH_VALIDATION;
-	}
-
-	@Override
-	public boolean isFinalPage() {
-		return false;
-	}
-
+	
 	@FXML
 	public void onClickBtnBrowseXtfFile(ActionEvent event) throws IOException {
 		FileChooser fileChooser = new FileChooser();
@@ -245,44 +255,30 @@ public class ValidateOptionsController implements Navigable, Initializable {
 		}
 	}
 
-	private void addParams() {
-		ParamsContainer paramsContainer = AppData.getInstance().getParamsContainer();
-		HashMap<String,String> params = paramsContainer.getParamsMap();
-		
-		paramsContainer.setFinalPath("" + tf_XtfFile.getText() + "");
-
+	private HashMap<String, String> getParams() {
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put(EnumParams.FILE_NAME.getName(), "" + tf_XtfFile.getText() + "");
 		// --------------Mappings Options---------------------//
 
 		if (chk_additionalFunctionality.isSelected())
 			params.put(EnumParams.IV_PLUGINS.getName(), tf_pluginsFolder.getText());
-		else
-			params.remove(EnumParams.IV_PLUGINS.getName());
 		
 		if (tf_modelDir.getText()!=null && !tf_modelDir.getText().isEmpty()) 
 			params.put(EnumParams.MODEL_DIR.getName(),tf_modelDir.getText());
-		else
-			params.remove(EnumParams.MODEL_DIR.getName());
 		
 		if (chk_configFile.isSelected())
 			params.put(EnumParams.IV_CONFIG_FILE.getName(), tf_configFile.getText());
-		else
-			params.remove(EnumParams.IV_CONFIG_FILE.getName());
 		
 		if (chk_logXtfFile.isSelected())
 			params.put(EnumParams.IV_XTFLOG.getName(), tf_logXtfFile.getText());
-		else
-			params.remove(EnumParams.IV_XTFLOG.getName());
 		
 		if (chk_disableAreaValidation.isSelected())
 			params.put(EnumParams.IV_DISABLEAREAVALIDATION.getName(), "true");
-		else
-			params.remove(EnumParams.IV_DISABLEAREAVALIDATION.getName());
 		
 		if (chk_forceTypeValidation.isSelected())
 			params.put(EnumParams.IV_FORCETYPEVALIDATION.getName(), "true");
-		else 
-			params.remove(EnumParams.IV_FORCETYPEVALIDATION.getName());
 		
+		return params;
 	}
 
 	public void onClickBtnBrowseConfigFile(ActionEvent event) {
@@ -349,5 +345,9 @@ public class ValidateOptionsController implements Navigable, Initializable {
 
 		if (!checked)
 			tf_logXtfFile.setStyle(null);
+	}
+	@Override
+	public Parent getGraphicComponent() {
+		return viewRootNode;
 	}
 }
