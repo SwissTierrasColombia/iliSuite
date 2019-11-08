@@ -1,29 +1,35 @@
 package ai.iliSuite.view.general;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ResourceBundle;
 
-import ai.iliSuite.application.data.AppData;
-import ai.iliSuite.view.common.ili2db.EnumActionIli2Db;
+import ai.iliSuite.controller.EnumActions;
+import ai.iliSuite.controller.GeneralController;
 import ai.iliSuite.view.util.navigation.EnumPaths;
-import ai.iliSuite.view.util.navigation.Navigable;
-import ai.iliSuite.view.util.navigation.NavigationUtil;
+import ai.iliSuite.view.util.navigation.ResourceUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
-public class MainOptionsController implements Navigable {
+public class MainOptionsController implements Initializable {
 
-	private EnumPaths nextPath = null;
-
-	@FXML
-	private ResourceBundle applicationBundle;
+	// XXX the name is too generic
+	private EnumActions selectedAction;
+	
+	private ResourceBundle bundle;
 	FXMLLoader loader;
 	@FXML
 	private ToggleGroup tg_mainOptions;
@@ -41,27 +47,45 @@ public class MainOptionsController implements Navigable {
 	@FXML
 	private ToggleButton btn_exportData;
 	@FXML
-	private Button btn_cancel;
+	private Button btnCancel;
 	@FXML
-	private Button btn_ok;
+	private Button btnNext;
+	@FXML
+	private Button btnBack;
 
 	@FXML
 	private Label lbl_helpTitle;
 	@FXML
 	private Text txt_helpContent;
 
+	private Parent viewRootNode;
+	
 	@FXML
-	public void initialize(/*URL arg0, ResourceBundle arg1*/) {
-
-		applicationBundle = ResourceBundle.getBundle("ai.iliSuite.resources.languages.application");
-		loader = new FXMLLoader(getClass().getResource("mainOptions.fxml"), applicationBundle);
-
-		AppData data = AppData.getInstance();
-		data.getParamsContainer().getParamsMap().clear();
-
-		NavigationUtil.clearStepStack();
+	private BorderPane contentPane;
+	
+	private GeneralController controller;
+	
+	public MainOptionsController(GeneralController controller) throws IOException {
+		this.controller = controller;
+		// XXX Path as String
+		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/view/wizard/wizardLayout.fxml", EnumPaths.RESOURCE_BUNDLE, this);
+		Parent content = ResourceUtil.loadResource(EnumPaths.MAIN_OPTIONS.getPath(), EnumPaths.RESOURCE_BUNDLE, this);
+		contentPane.setCenter(content);
+		btnNext.setOnAction((ActionEvent e) -> { this.goForward(e); });
+		btnCancel.setOnAction((ActionEvent e) -> { 
+			Stage s = (Stage) viewRootNode.getScene().getWindow();
+			s.close();
+		});
+		btnBack.setVisible(false);
+		// XXX hardcoding
+		btnCancel.setText("Finish");
+		
 		addListenerToToggleGroup();
-
+	}
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		bundle = ResourceBundle.getBundle(EnumPaths.RESOURCE_BUNDLE.getPath());
 	}
 
 	private void addListenerToToggleGroup() {
@@ -71,58 +95,51 @@ public class MainOptionsController implements Navigable {
 				if (newToggle == null) {
 					lbl_helpTitle.setText("");
 					txt_helpContent.setText("");
-					nextPath = null;
+					selectedAction = null;
 				} else if (newToggle == btn_openUmlEditor) {
-					lbl_helpTitle.setText(applicationBundle.getString("main.openUmlEditor"));
-					txt_helpContent.setText(applicationBundle.getString("main.content.openUmlEditor"));
-					nextPath = EnumPaths.OPEN_UML_EDITOR;
+					lbl_helpTitle.setText(bundle.getString("main.openUmlEditor"));
+					txt_helpContent.setText(bundle.getString("main.content.openUmlEditor"));
+					selectedAction = EnumActions.OPEN_UML_EDITOR;
 				} else if (newToggle == btn_generatePhysicalModel) {
-					lbl_helpTitle.setText(applicationBundle.getString("main.generatePhysicalModel"));
-					txt_helpContent.setText(applicationBundle.getString("main.content.generatePhysicalModel"));
-					nextPath = EnumPaths.ILI2DB_COMMON_DATABASE_SELECTION;
-					AppData.getInstance().setActionIli2Db(EnumActionIli2Db.IMPORT_SCHEMA);
-
+					lbl_helpTitle.setText(bundle.getString("main.generatePhysicalModel"));
+					txt_helpContent.setText(bundle.getString("main.content.generatePhysicalModel"));
+					selectedAction = EnumActions.GENERATE_PHYSICAL_MODEL;
 				} else if (newToggle == btn_importData) {
-					lbl_helpTitle.setText(applicationBundle.getString("main.importOrModifyData"));
-					txt_helpContent.setText(applicationBundle.getString("main.content.importOrModifyData"));
-					nextPath = EnumPaths.ILI2DB_COMMON_DATABASE_SELECTION;
-
-					AppData.getInstance().setActionIli2Db(EnumActionIli2Db.IMPORT);
-
+					lbl_helpTitle.setText(bundle.getString("main.importOrModifyData"));
+					txt_helpContent.setText(bundle.getString("main.content.importOrModifyData"));
+					selectedAction = EnumActions.IMPORT_DATA;
 				} else if (newToggle == btn_validateData) {
-					lbl_helpTitle.setText(applicationBundle.getString("main.validateData"));
-					txt_helpContent.setText(applicationBundle.getString("main.content.validateData"));
-					nextPath = EnumPaths.VAL_DATA_VALIDATE_OPTIONS;
+					lbl_helpTitle.setText(bundle.getString("main.validateData"));
+					txt_helpContent.setText(bundle.getString("main.content.validateData"));
+					selectedAction = EnumActions.VALIDATE_DATA;
 				} else if (newToggle == btn_exportData) {
-					lbl_helpTitle.setText(applicationBundle.getString("main.exportData"));
-					txt_helpContent.setText(applicationBundle.getString("main.content.exportData"));
-					nextPath = EnumPaths.ILI2DB_COMMON_DATABASE_SELECTION;
-
-					AppData.getInstance().setActionIli2Db(EnumActionIli2Db.EXPORT);
+					lbl_helpTitle.setText(bundle.getString("main.exportData"));
+					txt_helpContent.setText(bundle.getString("main.content.exportData"));
+					selectedAction = EnumActions.EXPORT_DATA;
 				}
 
 			}
 		});
 	}
 
-
-	@Override
+	// XXX validate() should be removed
 	public boolean validate() {
 		if (tg_mainOptions.getSelectedToggle() == null)
 			return false;
 		else
 			return true;
-
+	}
+	
+	public void goForward(ActionEvent e) {
+		controller.changeAction(selectedAction);
+	}
+	
+	// XXX Create interface with 'getGraphicComponent' method
+	public Parent getGraphicComponent() {
+		return viewRootNode;
 	}
 
-	@Override
-	public EnumPaths getNextPath() {
-		return nextPath;
+	public EnumActions getSelectedAction() {
+		return selectedAction;
 	}
-
-	@Override
-	public boolean isFinalPage() {
-		return false;
-	}
-
 }

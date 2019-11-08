@@ -1,6 +1,5 @@
 package ai.iliSuite.view.general;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
@@ -8,180 +7,45 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import ai.iliSuite.application.data.AppData;
 import ai.iliSuite.application.data.Config;
+import ai.iliSuite.controller.GeneralController;
 import ai.iliSuite.menu.dialog.AboutDialog;
 import ai.iliSuite.menu.dialog.HelpDialog;
 import ai.iliSuite.menu.dialog.PreferencesController;
 import ai.iliSuite.menu.dialog.ProxyDialog;
 import ai.iliSuite.view.dialog.ModelDirDialog;
 import ai.iliSuite.view.util.navigation.EnumPaths;
-import ai.iliSuite.view.util.navigation.Navigable;
-import ai.iliSuite.view.util.navigation.NavigationUtil;
 import ai.iliSuite.view.util.navigation.ResourceUtil;
-import ai.iliSuite.view.util.navigation.VisualResource;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class GeneralLayoutController implements Navigable, Initializable {
 
+public class GeneralLayoutController implements Initializable {
 	@FXML
-	private Button btnBack;
-	@FXML
-	private Button btnNext;
-	@FXML
-	private Button btnCancel;
-	@FXML
-	private AnchorPane generalLayout;
+	private Pane contentPane;
 	@FXML
 	private ImageView iv_functionIcon;
 	@FXML
 	private Label lbl_functionTitle;
+	
 	private ResourceBundle bundle;
-	private Thread commandExecutionThread;
-
-	public void goForward(ActionEvent e) throws IOException {
-		Navigable currentController = (Navigable) NavigationUtil.getCurrentScreen().getController();
-		EnumPaths nextPath = currentController.getNextPath();
-		boolean isFinalPage = currentController.isFinalPage();
-		if(nextPath!=null && !btnCancel.getText().equals(bundle.getString("buttons.cancel")))
-			btnCancel.setText(bundle.getString("buttons.cancel"));
-
-		if (isFinalPage && btnNext.getText().equals(bundle.getString("buttons.finish"))) {
-
-			NavigationUtil.setFirstScreen();
-			
-			changeTitle(EnumPaths.APP_ICON, bundle.getString("main.function.home.title"));
-			changeNextButtonLabel(false);
-			btnCancel.setText(bundle.getString("buttons.exit"));
-		} else if(isFinalPage && !btnNext.getText().equals(bundle.getString("buttons.finish"))){
-			SimpleBooleanProperty booleanResult = new SimpleBooleanProperty();
-			Task<Boolean> task = new Task<Boolean>(){
-				@Override
-				protected Boolean call() throws Exception {
-
-					boolean isValid = currentController.validate();
-					return isValid;
-				}
-			};
-			task.setOnSucceeded(workerStateEvent ->{
-				btnNext.setDisable(false);
-				if(booleanResult.getValue()==true){
-					btnNext.setText(bundle.getString("buttons.finish"));
-				}
-				});
-			booleanResult.bind(task.valueProperty());
-			btnNext.setDisable(true);
-			
-			commandExecutionThread = new Thread(task);
-			commandExecutionThread.start();			
-
-		}else {
-			boolean isValid = currentController.validate();
-			if (isValid && isFinalPage) {
-				btnNext.setText(bundle.getString("buttons.finish"));
-			} else if (isValid && nextPath != null && !isFinalPage) {
-				VisualResource nextScreen = ResourceUtil.loadResource(getClass(), nextPath,EnumPaths.RESOURCE_BUNDLE);
-				NavigationUtil.setNextScreen(nextScreen);
-				Navigable nextController = (Navigable) nextScreen.getController();
-				changeNextButtonLabel(nextController.isFinalPage());
-				
-				switch(nextPath){
-				case OPEN_UML_EDITOR: 
-					changeTitle(EnumPaths.UMLEDITOR_ICON, bundle.getString("main.function.openUml.title"));
-					break;
-				case VAL_DATA_VALIDATE_OPTIONS: 
-					changeTitle(EnumPaths.VALIDATE_ICON, bundle.getString("main.function.validateData.title"));
-					break;
-				case ILI2DB_COMMON_DATABASE_SELECTION:
-					switch(AppData.getInstance().getActionIli2Db()){
-					case IMPORT_SCHEMA:
-						changeTitle(EnumPaths.GENERATEPHYSICALMODEL_ICON, bundle.getString("main.function.generatePhysicalModel.title"));
-						break;
-					case IMPORT:
-						changeTitle(EnumPaths.IMPORT_ICON, bundle.getString("main.function.importData.title"));
-						break;
-					case EXPORT:
-						changeTitle(EnumPaths.EXPORT_ICON, bundle.getString("main.function.exportData.title"));
-						break;
-					}
-				}
-			}
-		}
-
+	private Parent viewRootNode;
+	
+	private GeneralController controller;
+	
+	public GeneralLayoutController(GeneralController controller) throws IOException {
+		this.controller = controller;
+		viewRootNode = ResourceUtil.loadResource(EnumPaths.GENERAL_LAYOUT.getPath(), EnumPaths.RESOURCE_BUNDLE, this);
 	}
-
-	public void goBack() {
-		if (NavigationUtil.getStepStack().size() > 1) {
-			NavigationUtil.setPreviousScreen();
-			Navigable currentController = (Navigable) NavigationUtil.getCurrentScreen().getController();
-			if(NavigationUtil.getStepStack().size()==1){
-				changeTitle(EnumPaths.APP_ICON, bundle.getString("main.function.home.title"));
-				btnCancel.setText(bundle.getString("buttons.exit"));
-			}
-			changeNextButtonLabel(currentController.isFinalPage());
-			if(commandExecutionThread!=null) {
-				commandExecutionThread.stop();
-				btnNext.setDisable(false);
-				commandExecutionThread=null;
-			}
-		}
-	}
-
-	public void cancel() {
-		if(NavigationUtil.getStepStack().size()>1){
-			NavigationUtil.setFirstScreen();
-			
-			changeTitle(EnumPaths.APP_ICON, bundle.getString("main.function.home.title"));
-			changeNextButtonLabel(false);
-			btnCancel.setText(bundle.getString("buttons.exit"));
-			if(commandExecutionThread!=null) {
-				commandExecutionThread.stop();
-				btnNext.setDisable(false);
-				commandExecutionThread=null;
-			}
-		}else{
-			Stage s = (Stage) NavigationUtil.getMainScreen().getComponent().getScene().getWindow();
-			s.close();
-		}
-	}
-
-	@Override
-	public boolean validate() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public EnumPaths getNextPath() {
-		return null;
-	}
-
-	@Override
-	public boolean isFinalPage() {
-		return false;
-	}
-
-	private void changeNextButtonLabel(boolean isFinal) {
-
-		if (isFinal) {
-			btnNext.setText(bundle.getString("buttons.execute"));
-		} else {
-			btnNext.setText(bundle.getString("buttons.next"));
-		}
-	}
-
+	
 	public void onClick_MenuItemModelDir() {
 		try {
 			ModelDirDialog dialog = new ModelDirDialog();
@@ -283,4 +147,13 @@ public class GeneralLayoutController implements Navigable, Initializable {
 		iv_functionIcon.setImage(image);
 	}
 
+	// XXX Create interface with 'getGraphicComponent' method
+	public Parent getGraphicComponent() {
+		return viewRootNode;
+	}
+	
+	// XXX This funtion is misnamed 'drawPage'
+	public void drawPage(Parent content) {
+		contentPane.getChildren().setAll(content);
+	}
 }

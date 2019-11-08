@@ -7,12 +7,9 @@ import java.util.List;
 import java.util.Locale;
 
 import ai.iliSuite.application.data.Config;
+import ai.iliSuite.controller.GeneralController;
 import ai.iliSuite.util.exception.IliSuiteSecurityManager;
 import ai.iliSuite.util.plugin.PluginsLoader;
-import ai.iliSuite.view.util.navigation.EnumPaths;
-import ai.iliSuite.view.util.navigation.NavigationUtil;
-import ai.iliSuite.view.util.navigation.ResourceUtil;
-import ai.iliSuite.view.util.navigation.VisualResource;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -91,39 +88,29 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 
 		try {
-			VisualResource rootLayout = ResourceUtil.loadResource(getClass(), EnumPaths.GENERAL_LAYOUT,
-					EnumPaths.RESOURCE_BUNDLE);
-			NavigationUtil.setMainScreen(rootLayout);
-
-			Scene scene = new Scene(rootLayout.getComponent());
-			scene.getStylesheets().add(getClass().getResource("/ai/iliSuite/resources/css/styles.css").toExternalForm());			
-			primaryStage.setScene(scene);
-			primaryStage.setResizable(false);
-			primaryStage.show();
-			primaryStage.setTitle("iliSuite");
-			
 			List<Image> icons = new ArrayList<Image>();
+
 			icons.add(new Image(getClass().getResource("/ai/iliSuite/resources/images/icon128.png").toExternalForm()));
 			icons.add(new Image(getClass().getResource("/ai/iliSuite/resources/images/icon64.png").toExternalForm()));
 			icons.add(new Image(getClass().getResource("/ai/iliSuite/resources/images/icon32.png").toExternalForm()));
 			icons.add(new Image(getClass().getResource("/ai/iliSuite/resources/images/icon48.png").toExternalForm()));
 			icons.add(new Image(getClass().getResource("/ai/iliSuite/resources/images/icon16.png").toExternalForm()));
-			
-			
-			primaryStage.getIcons().addAll(icons);
 
-			VisualResource mainOptions = ResourceUtil.loadResource(getClass(), EnumPaths.MAIN_OPTIONS,
-					EnumPaths.RESOURCE_BUNDLE);
-			NavigationUtil.setNextScreen(mainOptions);
+			String cssPath = getClass().getResource("/ai/iliSuite/resources/css/styles.css").toExternalForm();
+
+			GeneralController generalController = new GeneralController(); 
+			Scene scene = generalController.getScene(cssPath);
+			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
+			primaryStage.getIcons().addAll(icons);
+			primaryStage.setTitle("iliSuite");
+			primaryStage.show();
+			generalController.loadMainOptions();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		// scene.getStylesheets().add(getClass().getResource("view/ai.iliSuite.application.css").toExternalForm());
 
-	}
-
-	public static void main(String[] args) {
-		launch(args);
 	}
 }

@@ -22,3 +22,4 @@ sqljdbc42.jar
 iliToolSuite.out.xml
 /.gradle/
 src/ai/iliSuite/base/TestModel.java
+/build/
