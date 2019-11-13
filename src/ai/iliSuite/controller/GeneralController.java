@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+import ai.iliSuite.base.Ili2db;
 import ai.iliSuite.base.IliValidator;
 import ai.iliSuite.base.InterlisExecutable;
 import ai.iliSuite.view.FinishActionView;
@@ -67,10 +68,14 @@ public class GeneralController {
 		if(action == EnumActions.VALIDATE_DATA) {
 			InterlisExecutable model = new IliValidator();
 			result = new ValidateDataController(model);
+		} else if(action == EnumActions.GENERATE_PHYSICAL_MODEL) {
+			Ili2db model = new Ili2db();
+			result = new GeneratePhysicalModelController(model);
+		}
+		if(result != null) {
 			result.setOnFinish(loadMainOptionsHandler);
 			result.setOnGoBack(loadMainOptionsHandler);
 		}
-		
 		return result;
 	}
 }
