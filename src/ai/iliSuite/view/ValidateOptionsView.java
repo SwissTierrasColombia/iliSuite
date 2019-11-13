@@ -1,4 +1,4 @@
-package ai.iliSuite.actions.validateData;
+package ai.iliSuite.view;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,7 +36,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import javafx.stage.FileChooser.ExtensionFilter;
 
-public class ValidateOptionsController extends StepViewController implements Initializable {
+public class ValidateOptionsView extends StepViewController implements Initializable {
 
 	private ResourceBundle applicationBundle;
 
@@ -92,9 +92,9 @@ public class ValidateOptionsController extends StepViewController implements Ini
 	
 	private HashMap<String,String> params;
 	
-	public ValidateOptionsController(ParamsController controller) throws IOException {
+	public ValidateOptionsView(ParamsController controller) throws IOException {
 		// XXX Posible carga de componentes antes de ser necesario
-		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/actions/validateData/validateOptions.fxml", EnumPaths.RESOURCE_BUNDLE, this);
+		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/view/fxml/validateOptions.fxml", EnumPaths.RESOURCE_BUNDLE, this);
 		
 		this.controller = controller;
 	}

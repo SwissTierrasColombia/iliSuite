@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import ai.iliSuite.actions.validateData.FinishDataValidationController;
-import ai.iliSuite.actions.validateData.ValidateOptionsController;
 import ai.iliSuite.base.InterlisExecutable;
 import ai.iliSuite.util.exception.ExitException;
+import ai.iliSuite.view.FinishActionView;
+import ai.iliSuite.view.ValidateOptionsView;
 import ai.iliSuite.view.wizard.EmptyWizardException;
 import ai.iliSuite.view.wizard.Wizard;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -34,8 +34,8 @@ public class ValidateDataController implements ParamsController {
 		
 		paramsList = new ArrayList<HashMap<String, String>>();
 		
-		wizard.add(new ValidateOptionsController(this));
-		wizard.add(new FinishDataValidationController(this));
+		wizard.add(new ValidateOptionsView(this));
+		wizard.add(new FinishActionView(this));
 		
 		EventHandler<ActionEvent> goBack = 
 				(ActionEvent e) -> { if(goBackHandler != null) { goBackHandler.handle(e); }};

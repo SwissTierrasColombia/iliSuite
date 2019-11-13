@@ -7,10 +7,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-import ai.iliSuite.actions.validateData.FinishDataValidationController;
-import ai.iliSuite.actions.validateData.ValidateOptionsController;
 import ai.iliSuite.base.IliValidator;
 import ai.iliSuite.base.InterlisExecutable;
+import ai.iliSuite.view.FinishActionView;
+import ai.iliSuite.view.ValidateOptionsView;
 import ai.iliSuite.view.general.GeneralLayoutController;
 import ai.iliSuite.view.general.MainOptionsController;
 import ai.iliSuite.view.wizard.StepViewController;

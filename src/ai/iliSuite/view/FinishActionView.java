@@ -1,4 +1,4 @@
-package ai.iliSuite.actions.validateData;
+package ai.iliSuite.view;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,7 +31,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-public class FinishDataValidationController  extends StepViewController  implements Initializable {
+public class FinishActionView  extends StepViewController  implements Initializable {
 
 	private StyleClassedTextArea txtConsole;
 	
@@ -49,11 +49,11 @@ public class FinishDataValidationController  extends StepViewController  impleme
 
 	private ParamsController controller;
 	
-	public FinishDataValidationController (ParamsController controller) throws IOException {
+	public FinishActionView (ParamsController controller) throws IOException {
 		this.controller = controller;
 		
 		// TODO Posible carga de componentes antes de ser necesario
-		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/actions/validateData/finishDataValidation.fxml", EnumPaths.RESOURCE_BUNDLE, this);
+		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/view/fxml/finishAction.fxml", EnumPaths.RESOURCE_BUNDLE, this);
 	}
 	
 	@Override
