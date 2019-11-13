@@ -7,7 +7,7 @@ public abstract class StepViewController {
 	public void cancel(StepArgs args) {	
 	}
 
-	public void execute(StepArgs args) {	
+	public void loadedPage(StepArgs args) {	
 	}
 
 	public void end(StepArgs args) {	

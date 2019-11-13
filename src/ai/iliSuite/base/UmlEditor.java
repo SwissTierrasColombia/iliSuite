@@ -1,6 +1,7 @@
 package ai.iliSuite.base;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 public class UmlEditor implements InterlisExecutable {
@@ -14,14 +15,6 @@ public class UmlEditor implements InterlisExecutable {
 			e.printStackTrace();
 		}
 	}
-	
-	@Override
-	public void addParam(String param, String value) {
-	}
-
-	@Override
-	public void removeParam(String param) {
-	}
 
 	@Override
 	public List<String> getCommand() {
@@ -30,6 +23,11 @@ public class UmlEditor implements InterlisExecutable {
 
 	@Override
 	public String getArgs(boolean hideSensitiveData) {
+		return null;
+	}
+
+	@Override
+	public HashMap<String, String> getParams() {
 		return null;
 	}
 

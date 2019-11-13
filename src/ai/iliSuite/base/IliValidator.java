@@ -11,9 +11,7 @@ import ai.iliSuite.util.params.EnumParams;
 
 public class IliValidator implements InterlisExecutable {
 	private HashMap<String, String> paramsMap;
-	
-	boolean stop;
-	
+		
 	public IliValidator() {
 		paramsMap = new HashMap<String, String>();
 	}
@@ -21,30 +19,19 @@ public class IliValidator implements InterlisExecutable {
 	@Override
 	public void run() {
 		String[] args = getCommand().toArray(new String[0]);
-		stop = false;
 		Main.main(args);
-	}
-
-	@Override
-	public void addParam(String param, String value) {
-		paramsMap.put(param, value);
-	}
-	
-	@Override
-	public void removeParam(String param) {
-		paramsMap.remove(param);
 	}
 
 	@Override
 	public List<String> getCommand() {
 		HashMap<String, String> params = (HashMap<String, String>) paramsMap.clone();
 		List<String> result = new ArrayList<String>();
-		String finalPath = paramsMap.get(EnumParams.FILE_NAME.getName());
+		String finalPath = params.get(EnumParams.FILE_NAME.getName());
 		
 		if(finalPath != null && !finalPath.isEmpty())
-			paramsMap.remove(EnumParams.FILE_NAME.getName());
+			params.remove(EnumParams.FILE_NAME.getName());
 		
-		for(Map.Entry<String, String> item:paramsMap.entrySet()){
+		for(Map.Entry<String, String> item:params.entrySet()){
 			String key = item.getKey();
 			String value = item.getValue();
 			result.add(key);
@@ -75,6 +62,11 @@ public class IliValidator implements InterlisExecutable {
 		String result = String.join(" ", command);
 		
 		return result;
+	}
+
+	@Override
+	public HashMap<String, String> getParams() {
+		return paramsMap;
 	}
 
 }

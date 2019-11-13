@@ -9,23 +9,34 @@ import java.util.ListIterator;
 
 import ai.iliSuite.actions.validateData.FinishDataValidationController;
 import ai.iliSuite.actions.validateData.ValidateOptionsController;
+import ai.iliSuite.base.IliValidator;
+import ai.iliSuite.base.InterlisExecutable;
 import ai.iliSuite.view.general.GeneralLayoutController;
 import ai.iliSuite.view.general.MainOptionsController;
 import ai.iliSuite.view.wizard.StepViewController;
 import ai.iliSuite.view.wizard.Wizard;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 
 public class GeneralController {
 	// XXX concrete (view)
 	private GeneralLayoutController view;
-	
 	// XXX Program to interfaces, not implementations
 	private MainOptionsController main;
+	
+	private EventHandler<ActionEvent> loadMainOptionsHandler;
 	
 	public GeneralController() throws IOException {
 		view = new GeneralLayoutController(this);
 		main = new MainOptionsController(this);
 		//loadMainOptions();
+		loadMainOptionsHandler = new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				loadMainOptions();
+			}
+		};
 	}
 	
 	public void loadMainOptions() {
@@ -39,31 +50,25 @@ public class GeneralController {
 	}
 	
 	public void changeAction(EnumActions action) {
-		List<StepViewController> steps = null;
+		ParamsController actionController = null;
 		try {
-			Wizard wizard = new Wizard();
+			actionController = getControllerFromAction(action);
+			view.drawPage(actionController.getGraphicComponent());
 
-			steps = getStepsFromAction(action);
-
-			if(steps!=null) {
-				wizard.add(steps);
-				wizard.init();
-				view.drawPage(wizard.getGraphicComponent());
-			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public List<StepViewController> getStepsFromAction(EnumActions action) throws IOException{		
-		if(action == null) return null;
-		
-		List<StepViewController> result = new ArrayList<StepViewController>();
+	public ParamsController getControllerFromAction(EnumActions action) throws IOException{		
+		ParamsController result = null;
 		
 		if(action == EnumActions.VALIDATE_DATA) {
-			result.add(new ValidateOptionsController());
-			result.add(new FinishDataValidationController());
+			InterlisExecutable model = new IliValidator();
+			result = new ValidateDataController(model);
+			result.setOnFinish(loadMainOptionsHandler);
+			result.setOnGoBack(loadMainOptionsHandler);
 		}
 		
 		return result;

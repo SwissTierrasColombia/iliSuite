@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import ai.iliSuite.application.data.AppData;
 import ai.iliSuite.application.data.Config;
 import ai.iliSuite.base.InterlisExecutable;
+import ai.iliSuite.controller.ParamsController;
 import ai.iliSuite.util.params.EnumParams;
 import ai.iliSuite.util.params.ParamsContainer;
 import ai.iliSuite.view.dialog.ModelDirDialog;
@@ -87,13 +88,15 @@ public class ValidateOptionsController extends StepViewController implements Ini
 	// FIX Tal vez en clase padre
 	private Parent viewRootNode;
 	
-	//private ParamController controller;
+	private ParamsController controller;
 	
-	public ValidateOptionsController(/*ParamController controller*/) throws IOException {
+	private HashMap<String,String> params;
+	
+	public ValidateOptionsController(ParamsController controller) throws IOException {
 		// XXX Posible carga de componentes antes de ser necesario
 		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/actions/validateData/validateOptions.fxml", EnumPaths.RESOURCE_BUNDLE, this);
 		
-		//this.controller = controller;
+		this.controller = controller;
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {	
@@ -118,7 +121,11 @@ public class ValidateOptionsController extends StepViewController implements Ini
 		args.setCancel(!isValid);
 		
 		if (isValid) {
-			//controller.addParams(getParams());
+			if(params != null) {
+				controller.removeParams(params);
+			}
+			updateParams();
+			controller.addParams(params);
 		}
 	}
 	
@@ -255,8 +262,8 @@ public class ValidateOptionsController extends StepViewController implements Ini
 		}
 	}
 
-	private HashMap<String, String> getParams() {
-		HashMap<String, String> params = new HashMap<String, String>();
+	private void updateParams() {
+		params = new HashMap<String, String>();
 		params.put(EnumParams.FILE_NAME.getName(), "" + tf_XtfFile.getText() + "");
 		// --------------Mappings Options---------------------//
 
@@ -277,8 +284,6 @@ public class ValidateOptionsController extends StepViewController implements Ini
 		
 		if (chk_forceTypeValidation.isSelected())
 			params.put(EnumParams.IV_FORCETYPEVALIDATION.getName(), "true");
-		
-		return params;
 	}
 
 	public void onClickBtnBrowseConfigFile(ActionEvent event) {

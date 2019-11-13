@@ -12,6 +12,7 @@ import org.fxmisc.richtext.StyleClassedTextArea;
 import org.interlis2.validator.Main;
 
 import ai.iliSuite.application.data.AppData;
+import ai.iliSuite.controller.ParamsController;
 import ai.iliSuite.util.exception.ExitException;
 import ai.iliSuite.util.log.LogListenerExt;
 import ai.iliSuite.util.params.ParamsContainer;
@@ -46,10 +47,10 @@ public class FinishDataValidationController  extends StepViewController  impleme
 	
 	private Parent viewRootNode;
 
-	/*private ParamController controller;*/
+	private ParamsController controller;
 	
-	public FinishDataValidationController (/*ParamController controller*/) throws IOException {
-		/*this.controller = controller;*/
+	public FinishDataValidationController (ParamsController controller) throws IOException {
+		this.controller = controller;
 		
 		// TODO Posible carga de componentes antes de ser necesario
 		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/actions/validateData/finishDataValidation.fxml", EnumPaths.RESOURCE_BUNDLE, this);
@@ -58,10 +59,15 @@ public class FinishDataValidationController  extends StepViewController  impleme
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		initTxtConsole();
-		
-		new SimpleBooleanProperty();
 		log = new LogListenerExt(txtConsole, "");
 		EhiLogger.getInstance().addListener(log);
+	}
+	
+	@Override
+	public void loadedPage(StepArgs args) {
+		super.loadedPage(args);
+		String command = controller.getTextParams();
+		txtConsole.replaceText(String.join(" ", command)+"\n\n");
 	}
 
 	private void initTxtConsole() {
@@ -98,14 +104,14 @@ public class FinishDataValidationController  extends StepViewController  impleme
 			}
 		};
 	}
+	
+	@FXML
+	private void btnExecute_click() {
+		controller.execute();
+	}
 
 	@Override
 	public Parent getGraphicComponent() {
 		return viewRootNode;
-	}
-
-	@Override
-	public void goBack(StepArgs args) {
-		super.goBack(args);
 	}
 }

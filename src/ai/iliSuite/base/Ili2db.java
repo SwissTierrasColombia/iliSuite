@@ -24,16 +24,6 @@ public class Ili2db implements InterlisExecutable {
 	}
 	
 	@Override
-	public void addParam(String param, String value) {
-		paramsMap.put(param, value);
-	}
-	
-	@Override
-	public void removeParam(String param) {
-		paramsMap.remove(param);
-	}
-	
-	@Override
 	public void run() {
 		String[] args = getCommand().toArray(new String[0]);
 		stop = false;
@@ -95,5 +85,10 @@ public class Ili2db implements InterlisExecutable {
 		String result = String.join(" ", command);
 		
 		return result;
+	}
+
+	@Override
+	public HashMap<String, String> getParams() {
+		return paramsMap;
 	}
 }

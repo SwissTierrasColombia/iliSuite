@@ -41,7 +41,8 @@ public abstract class BaseWizard {
 			if(index < steps.size()) {
 				StepViewController nextItem = steps.get(index);
 				drawPage(nextItem);
-				loadedPage();
+				this.loadedPage();
+				nextItem.loadedPage(new StepArgs());
 			} else {
 				index = steps.size()-1;
 				if (finishHandler != null) {
@@ -51,10 +52,9 @@ public abstract class BaseWizard {
 		}
 	}
 
-	// XXX Excepetion is too generic
-	public void init() throws Exception {
+	public void init() throws EmptyWizardException {
 		if(steps.isEmpty()) {
-			throw new Exception("The wizard does not have pages.");
+			throw new EmptyWizardException();
 		}
 		index = 0;
 		StepViewController actualItem = steps.get(index);
@@ -72,7 +72,8 @@ public abstract class BaseWizard {
 				if(index>=0) {
 					actualItem = steps.get(index);
 					drawPage(actualItem);
-					loadedPage();
+					this.loadedPage();
+					actualItem.loadedPage(new StepArgs());
 				} else {
 					index = 0;
 					if(backHandler != null) {

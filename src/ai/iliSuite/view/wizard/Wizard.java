@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 
 public class Wizard extends BaseWizard implements Initializable {
+	private ResourceBundle applicationBundle;
 	private Parent mainView;
 	
 	@FXML
@@ -33,6 +34,7 @@ public class Wizard extends BaseWizard implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		applicationBundle = arg1;
 		btnBack.setOnAction((ActionEvent e) -> { this.goBack(); });
 		btnNext.setOnAction((ActionEvent e) -> { this.goForward(); });
 		btnCancel.setOnAction((ActionEvent e) -> { this.cancel(); });
@@ -50,13 +52,13 @@ public class Wizard extends BaseWizard implements Initializable {
 
 	@Override
 	protected void loadedPage() {
-		// 
+		String buttonTextKey = "";
 		if(this.index == this.steps.size()-1) {
-			// XXX hardcoding
-			btnNext.setText("finish");
+			buttonTextKey = "buttons.finish";
 		} else {
-			// XXX hardcoding
-			btnNext.setText("next");
+			buttonTextKey = "buttons.next";
 		}
+		String buttonText = applicationBundle.getString(buttonTextKey);
+		btnNext.setText(buttonText);
 	}
 }
