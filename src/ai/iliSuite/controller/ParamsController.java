@@ -1,14 +1,14 @@
 package ai.iliSuite.controller;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
 
 public interface ParamsController {
-	public void addParams(HashMap<String, String> params);
-	public void removeParams(HashMap<String, String> params);
+	public void addParams(Map<String, String> params);
+	public void removeParams(Map<String, String> params);
 	public Parent getGraphicComponent();
 	
 	public String getTextParams();

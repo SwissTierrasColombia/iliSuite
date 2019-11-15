@@ -10,6 +10,7 @@ import ai.iliSuite.base.Ili2db;
 import ai.iliSuite.base.InterlisExecutable;
 import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.util.plugin.PluginsLoader;
+import ai.iliSuite.view.DatabaseOptionsView;
 import ai.iliSuite.view.DatabaseSelectionView;
 import ai.iliSuite.view.FinishActionView;
 import ai.iliSuite.view.ValidateOptionsView;
@@ -25,6 +26,8 @@ public class GeneratePhysicalModelController implements ParamsController, DbSele
 	
 	private Wizard wizard;
 	
+	private DatabaseOptionsView dbSelectionScreen;
+	
 	private EventHandler<ActionEvent> finishHandler;
 	private EventHandler<ActionEvent> goBackHandler;
 	
@@ -35,16 +38,25 @@ public class GeneratePhysicalModelController implements ParamsController, DbSele
 	public GeneratePhysicalModelController(Ili2db model) throws IOException {
 		this.model = model;
 		initLstDbDescription();
+
+		initWizard();
+	}
+
+	private void initWizard() throws IOException {
 		EventHandler<ActionEvent> goBack = 
 				(ActionEvent e) -> { if(goBackHandler != null) { goBackHandler.handle(e); }};
 		EventHandler<ActionEvent> finish = 
 				(ActionEvent e) -> { if(finishHandler != null) { finishHandler.handle(e); }};
-		wizard = new Wizard();				
+		dbSelectionScreen = new DatabaseOptionsView(this, true);
+
+		wizard = new Wizard();
 		wizard.setOnBack(goBack);
 		wizard.setOnCancel(goBack);
 		wizard.setOnFinish(finish);
 
 		wizard.add(new DatabaseSelectionView(this, lstDbDescription));
+		wizard.add(dbSelectionScreen);
+
 		try {
 			wizard.init();
 		} catch (EmptyWizardException e) {
@@ -67,13 +79,12 @@ public class GeneratePhysicalModelController implements ParamsController, DbSele
 			lstDbDescription.put(item.getKey(), description);
 		}
 	}
-	
 	@Override
-	public void addParams(HashMap<String, String> params) {
+	public void addParams(Map<String, String> params) {
 	}
 
 	@Override
-	public void removeParams(HashMap<String, String> params) {
+	public void removeParams(Map<String, String> params) {
 	}
 
 	@Override
@@ -107,6 +118,8 @@ public class GeneratePhysicalModelController implements ParamsController, DbSele
 	public void setDatabase(String dbKey) {
 		dbImpl = PluginsLoader.getPluginByKey(dbKey);
 		model.setDbImpl(dbImpl);
+		dbSelectionScreen.setDbFactory(dbImpl);
+		dbSelectionScreen.loadDbOptions();
 	}
 
 }

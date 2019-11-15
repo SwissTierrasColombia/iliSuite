@@ -1,6 +1,6 @@
 package ai.iliSuite.application.data;
 import ai.iliSuite.util.params.ParamsContainer;
-import ai.iliSuite.view.common.ili2db.EnumActionIli2Db;
+import ai.iliSuite.view.EnumActionIli2Db;
 
 public class AppData {
 	private String plugin;

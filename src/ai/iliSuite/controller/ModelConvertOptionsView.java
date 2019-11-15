@@ -1,4 +1,4 @@
-package ai.iliSuite.actions.generatePhysicalModel;
+package ai.iliSuite.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,7 +42,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Window;
 
-public class ModelConvertOptionsController implements Navigable, Initializable {
+public class ModelConvertOptionsView implements Navigable, Initializable {
 
 	@FXML
 	private ResourceBundle applicationBundle;

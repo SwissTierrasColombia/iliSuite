@@ -2,7 +2,7 @@ package ai.iliSuite.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 
 import ai.iliSuite.base.InterlisExecutable;
@@ -20,7 +20,7 @@ import javafx.scene.Parent;
 public class ValidateDataController implements ParamsController {
 	private InterlisExecutable interlisExecutable;
 	
-	private List<HashMap<String, String>> paramsList;
+	private List<Map<String, String>> paramsList;
 	private Wizard wizard;
 	
 	private EventHandler<ActionEvent> finishHandler;
@@ -30,7 +30,7 @@ public class ValidateDataController implements ParamsController {
 	
 	public ValidateDataController(InterlisExecutable interlisExecutable) throws IOException {
 		this.interlisExecutable = interlisExecutable;
-		paramsList = new ArrayList<HashMap<String, String>>();
+		paramsList = new ArrayList<Map<String, String>>();
 		wizard = new Wizard();		
 		wizard.add(new ValidateOptionsView(this));
 		wizard.add(new FinishActionView(this));
@@ -52,12 +52,12 @@ public class ValidateDataController implements ParamsController {
 	}
 
 	@Override
-	public void addParams(HashMap<String, String> params) {
+	public void addParams(Map<String, String> params) {
 		paramsList.add(params);
 	}
 
 	@Override
-	public void removeParams(HashMap<String, String> params) {
+	public void removeParams(Map<String, String> params) {
 		paramsList.remove(params);
 	}
 
@@ -75,9 +75,9 @@ public class ValidateDataController implements ParamsController {
 	}
 	
 	public String getTextParams() {
-		HashMap<String, String> params = interlisExecutable.getParams();
+		Map<String, String> params = interlisExecutable.getParams();
 		
-		for(HashMap<String, String> item:paramsList) {
+		for(Map<String, String> item:paramsList) {
 			params.putAll(item);
 		}
 		
