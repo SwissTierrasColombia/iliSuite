@@ -1,4 +1,4 @@
-package ai.iliSuite.actions.importData;
+package ai.iliSuite.view;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 import ai.iliSuite.application.data.AppData;
 import ai.iliSuite.application.data.Config;
+import ai.iliSuite.controller.ParamsController;
 import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.impl.dbconn.Ili2DbScope;
 import ai.iliSuite.util.params.EnumParams;
@@ -23,12 +25,16 @@ import ai.iliSuite.view.dialog.ModelDirDialog;
 import ai.iliSuite.view.dialog.MultipleSelectionDialog;
 import ai.iliSuite.view.util.navigation.EnumPaths;
 import ai.iliSuite.view.util.navigation.Navigable;
+import ai.iliSuite.view.util.navigation.ResourceUtil;
+import ai.iliSuite.view.wizard.StepArgs;
+import ai.iliSuite.view.wizard.StepViewController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
@@ -40,7 +46,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Window;
 
-public class ImportDataOptionsController implements Navigable, Initializable {
+public class ImportDataOptionsView extends StepViewController implements Initializable {
 
 	@FXML
 	private ResourceBundle applicationBundle;
@@ -96,35 +102,20 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 	private Button btn_browseValidConfig;
 	private boolean isScoped = false;
 	
-
-	@Override
-	public boolean validate() {
-		boolean result = validateFields();
-		if (result)
-			addParams();
-		return result;
-	}
-
-	@Override
-	public EnumPaths getNextPath() {
-		return EnumPaths.IMP_DATA_FINISH_DATA_IMPORT;
-	}
-
-	@Override
-	public boolean isFinalPage() {
-		// TODO Auto-generated method stub
-		return false;
+	private Parent viewRootNode;
+	private ParamsController controller;
+	private Map<String,String> params;
+	
+	public ImportDataOptionsView(ParamsController controller) throws IOException {
+		// XXX Posible carga de componentes antes de ser necesario
+		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/view/fxml/importDataOptions.fxml", EnumPaths.RESOURCE_BUNDLE, this);
+		this.controller = controller;
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		applicationBundle = resources;
-		
-		String pluginKey = AppData.getInstance().getPlugin();
-		// TODO Verificar si es null
-		ImplFactory plugin = (ImplFactory) PluginsLoader.getPluginByKey(pluginKey);
-		Ili2DbScope scope = plugin.getScope();
-		try{
+		/*try{
 			isScoped = scope.isScoped();
 		}catch(SQLException|ClassNotFoundException e){
 			e.printStackTrace();
@@ -137,7 +128,7 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 			tf_datasetEditable.setDisable(true);
 			tf_datasetSelectable.setDisable(true);
 			btn_browseDataset.setDisable(true);			
-		}
+		}*/
 		addInitListeners();
 		
 		chk_disableRounding.setSelected(true);
@@ -366,22 +357,17 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 			tf_validConfigFile.setStyle(null);
 	}
 
-	private void addParams() {
-		ParamsContainer paramsContainer = AppData.getInstance().getParamsContainer();
-		HashMap<String,String> params = paramsContainer.getParamsMap();
+	private void updateParams() {
+		params = new HashMap<String, String>();
 		
 		if(!tf_modelNames.getText().isEmpty())
 			params.put(EnumParams.MODELS.getName(), "" +tf_modelNames.getText()+ "");
 		
 		if(tg_action.getSelectedToggle() != radio_delete)
-			paramsContainer.setFinalPath(tf_xtfPath.getText());
-		else
-			paramsContainer.setFinalPath("");
+			params.put(EnumParams.FILE_NAME.getName(), "" +tf_xtfPath.getText()+ "" );
 		
 		if(!tf_modelDir.getText().isEmpty()){
 			params.put(EnumParams.MODEL_DIR.getName(), tf_modelDir.getText());
-		}else{
-			params.remove(EnumParams.MODEL_DIR.getName());
 		}
 		
 		params.remove(EnumParams.DATA_IMPORT.getName());
@@ -398,9 +384,6 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 			params.put(EnumParams.DATA_IMPORT.getName(), "true");
 			if (chk_deleteData.isSelected())
 				params.put(EnumParams.DELETE_DATA.getName(), "true");
-			else
-				params.remove(EnumParams.DELETE_DATA.getName());
-
 		} else if (radio_replace.isSelected()) {
 			params.put(EnumParams.REPLACE.getName(), "true");
 		} else if (radio_delete.isSelected()) {
@@ -413,40 +396,25 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 			params.put(EnumParams.DATASET.getName(),tf_datasetEditable.getText());
 		else if (!tf_datasetSelectable.getText().isEmpty() && !tf_datasetSelectable.isDisabled())
 			params.put(EnumParams.DATASET.getName(),tf_datasetSelectable.getText());
-		else
-			params.remove(EnumParams.DATASET.getName());
 		
 		if(chk_importBid.isSelected()&&(radio_import.isSelected()||radio_update.isSelected()||radio_replace.isSelected()))
 			params.put(EnumParams.IMPORT_BID.getName(), "true");
-		else
-			params.remove(EnumParams.IMPORT_BID.getName());
+
 		if(chk_importTid.isSelected()&&(radio_import.isSelected()||radio_update.isSelected()||radio_replace.isSelected()))
 			params.put(EnumParams.IMPORT_TID.getName(), "true");
-		else
-			params.remove(EnumParams.IMPORT_TID.getName());
 		
 		if(!chk_disableValidation.isSelected()){
 			params.remove(EnumParams.DISABLE_VALIDATION.getName());
 			if(chk_disableAreaValidation.isSelected())
 				params.put(EnumParams.DISABLE_AREA_VALIDATION.getName(), "true");
-			else
-				params.remove(EnumParams.DISABLE_AREA_VALIDATION.getName());
 			if(chk_skipGeometryErrors.isSelected())
 				params.put(EnumParams.SKIP_GEOMETRY_ERRORS.getName(), "true");
-			else
-				params.remove(EnumParams.SKIP_GEOMETRY_ERRORS.getName());
 			if(chk_skipReferenceErrors.isSelected())
 				params.put(EnumParams.SKIP_REFERENCE_ERRORS.getName(), "true");
-			else
-				params.remove(EnumParams.SKIP_REFERENCE_ERRORS.getName());
 			if(chk_forceTypeValidation.isSelected())
 				params.put(EnumParams.FORCE_TYPE_VALIDATION.getName(), "true");
-			else
-				params.remove(EnumParams.FORCE_TYPE_VALIDATION.getName());
 			if(chk_validConfig.isSelected())
 				params.put(EnumParams.VALID_CONFIG.getName(), tf_validConfigFile.getText());
-			else
-				params.remove(EnumParams.VALID_CONFIG.getName());
 		}else{
 			params.put(EnumParams.DISABLE_VALIDATION.getName(), "true");
 			params.remove(EnumParams.DISABLE_AREA_VALIDATION.getName());
@@ -455,7 +423,26 @@ public class ImportDataOptionsController implements Navigable, Initializable {
 			params.remove(EnumParams.FORCE_TYPE_VALIDATION.getName());
 			params.remove(EnumParams.VALID_CONFIG.getName());
 		}
-
 	}
 
+	@Override
+	public Parent getGraphicComponent() {
+		return viewRootNode;
+	}
+
+	@Override
+	public void goForward(StepArgs args) {
+		super.goForward(args);
+		boolean isValid = validateFields();
+		
+		args.setCancel(!isValid);
+		
+		if (isValid) {
+			if(params != null) {
+				controller.removeParams(params);
+			}
+			updateParams();
+			controller.addParams(params);
+		}
+	}
 }

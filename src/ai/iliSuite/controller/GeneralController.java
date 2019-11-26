@@ -74,6 +74,9 @@ public class GeneralController {
 		} else if(action == EnumActions.EXPORT_DATA) {
 			Ili2db model = new Ili2db();
 			result = new ExportDataController(model);
+		} else if(action == EnumActions.IMPORT_DATA) {
+			Ili2db model = new Ili2db();
+			result = new ImportDataController(model);
 		}
 		if(result != null) {
 			result.setOnFinish(loadMainOptionsHandler);
