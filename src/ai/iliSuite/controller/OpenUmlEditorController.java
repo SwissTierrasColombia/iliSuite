@@ -4,10 +4,6 @@ import java.io.IOException;
 import java.util.Map;
 
 import ai.iliSuite.base.InterlisExecutable;
-import ai.iliSuite.view.DatabaseOptionsView;
-import ai.iliSuite.view.DatabaseSelectionView;
-import ai.iliSuite.view.FinishActionView;
-import ai.iliSuite.view.ModelConvertOptionsView;
 import ai.iliSuite.view.OpenUmlEditorView;
 import ai.iliSuite.view.wizard.EmptyWizardException;
 import ai.iliSuite.view.wizard.Wizard;

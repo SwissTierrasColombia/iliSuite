@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import ai.iliSuite.base.Ili2db;
-import ai.iliSuite.base.InterlisExecutable;
 import ai.iliSuite.impl.EnumCustomPanel;
 import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.impl.PanelCustomizable;
@@ -19,7 +18,6 @@ import ai.iliSuite.view.DatabaseOptionsView;
 import ai.iliSuite.view.DatabaseSelectionView;
 import ai.iliSuite.view.FinishActionView;
 import ai.iliSuite.view.ModelConvertOptionsView;
-import ai.iliSuite.view.ValidateOptionsView;
 import ai.iliSuite.view.wizard.EmptyWizardException;
 import ai.iliSuite.view.wizard.Wizard;
 import javafx.beans.property.SimpleBooleanProperty;

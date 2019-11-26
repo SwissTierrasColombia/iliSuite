@@ -141,8 +141,6 @@ public class ModelConvertOptionsView extends StepViewController implements Initi
 	@FXML
 	private TabPane tabOptions;
 	
-	private ImplFactory plugin;
-	
 	private PanelCustomizable customPanelSchemaImport;
 	
 	private Parent viewRootNode;

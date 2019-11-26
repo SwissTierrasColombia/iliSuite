@@ -43,12 +43,12 @@ public class Ili2db implements InterlisExecutable {
 	public List<String> getCommand(){
 		HashMap<String, String> params = (HashMap<String, String>) paramsMap.clone();
 		List<String> result = new ArrayList<String>();
-		String finalPath = paramsMap.get(EnumParams.FILE_NAME.getName());
+		String finalPath = params.get(EnumParams.FILE_NAME.getName());
 		
 		if(finalPath != null && !finalPath.isEmpty())
-			paramsMap.remove(EnumParams.FILE_NAME.getName());
+			params.remove(EnumParams.FILE_NAME.getName());
 		
-		for(Map.Entry<String, String> item:paramsMap.entrySet()){
+		for(Map.Entry<String, String> item:params.entrySet()){
 			String key = item.getKey();
 			String value = item.getValue();
 			result.add(key);

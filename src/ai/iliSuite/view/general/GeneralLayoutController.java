@@ -22,7 +22,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.StageStyle;
@@ -72,15 +71,11 @@ public class GeneralLayoutController implements Initializable {
 	
 	public void onClick_MenuItemPreferences() {
 		try {
-			Config config = Config.getInstance();
-
 			PreferencesController dialog = new PreferencesController();
 
 			dialog.setTitle(bundle.getString("menu.item.preferences"));
-			Optional<Boolean> result = dialog.showAndWait();
-
+			dialog.showAndWait();
 		} catch (IOException E) {
-			// TODO Unimplemented
 			E.printStackTrace();
 		}
 	}

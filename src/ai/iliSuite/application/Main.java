@@ -19,7 +19,6 @@ public class Main extends Application {
 
 	private final String configFileName = ".config.properties";
 	private final String defaultConfigFileName = ".defaultConfig.properties";
-	private final String logDirName = "log";
 	private final String logAppDirName = "log";
 	private final String iliSuiteDirName = ".ilisuite";
 	

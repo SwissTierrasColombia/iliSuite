@@ -1,22 +1,13 @@
 package ai.iliSuite.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 import ai.iliSuite.base.Ili2db;
 import ai.iliSuite.base.IliValidator;
 import ai.iliSuite.base.InterlisExecutable;
 import ai.iliSuite.base.UmlEditor;
-import ai.iliSuite.view.FinishActionView;
-import ai.iliSuite.view.ValidateOptionsView;
 import ai.iliSuite.view.general.GeneralLayoutController;
 import ai.iliSuite.view.general.MainOptionsController;
-import ai.iliSuite.view.wizard.StepViewController;
-import ai.iliSuite.view.wizard.Wizard;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;

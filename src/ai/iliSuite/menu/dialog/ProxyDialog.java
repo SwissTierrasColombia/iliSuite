@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import ai.iliSuite.view.dialog.ModelDirDialog;
 import ai.iliSuite.view.util.navigation.EnumPaths;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

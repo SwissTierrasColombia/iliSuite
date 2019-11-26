@@ -58,7 +58,7 @@ public class ModelSearch {
 
 				for (String fileName : matchingFilesNames) {
 					try {
-						String path = folder.getCanonicalPath() + folder.separator + fileName;
+						String path = folder.getCanonicalPath() + File.separator + fileName;
 						Charset charset = Charset.forName("windows-1254");
 						Stream<String> lines = Files.lines(Paths.get(path), charset)
 								.filter(line -> !line.matches("/\\*(?:.|[\\n\\r])*?\\*/")
