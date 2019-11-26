@@ -2,29 +2,22 @@ package ai.iliSuite.view;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.StyleClassedTextArea;
-import org.interlis2.validator.Main;
 
-import ai.iliSuite.application.data.AppData;
 import ai.iliSuite.controller.ParamsController;
-import ai.iliSuite.util.exception.ExitException;
 import ai.iliSuite.util.log.LogListenerExt;
-import ai.iliSuite.util.params.ParamsContainer;
 import ai.iliSuite.view.util.console.NoOpUndoManager;
 import ai.iliSuite.view.util.navigation.EnumPaths;
-import ai.iliSuite.view.util.navigation.Navigable;
 import ai.iliSuite.view.util.navigation.ResourceUtil;
 import ai.iliSuite.view.wizard.StepArgs;
 import ai.iliSuite.view.wizard.StepViewController;
 import ch.ehi.basics.logging.EhiLogger;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;

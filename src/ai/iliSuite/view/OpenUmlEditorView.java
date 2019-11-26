@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 
 import ai.iliSuite.controller.ParamsController;
 import ai.iliSuite.view.util.navigation.EnumPaths;
-import ai.iliSuite.view.util.navigation.Navigable;
 import ai.iliSuite.view.util.navigation.ResourceUtil;
 import ai.iliSuite.view.wizard.StepViewController;
 import javafx.fxml.Initializable;

@@ -9,15 +9,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import ai.iliSuite.application.data.AppData;
 import ai.iliSuite.application.data.Config;
-import ai.iliSuite.base.InterlisExecutable;
 import ai.iliSuite.controller.ParamsController;
 import ai.iliSuite.util.params.EnumParams;
-import ai.iliSuite.util.params.ParamsContainer;
 import ai.iliSuite.view.dialog.ModelDirDialog;
 import ai.iliSuite.view.util.navigation.EnumPaths;
-import ai.iliSuite.view.util.navigation.Navigable;
 import ai.iliSuite.view.util.navigation.ResourceUtil;
 import ai.iliSuite.view.wizard.StepArgs;
 import ai.iliSuite.view.wizard.StepViewController;
@@ -33,8 +29,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import javafx.stage.Window;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Window;
 
 public class ValidateOptionsView extends StepViewController implements Initializable {
 

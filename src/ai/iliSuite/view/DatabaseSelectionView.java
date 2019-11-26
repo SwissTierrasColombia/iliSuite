@@ -5,22 +5,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
+import java.util.ResourceBundle;
 
-import ai.iliSuite.application.data.AppData;
 import ai.iliSuite.controller.DbDescription;
 import ai.iliSuite.controller.DbSelectorController;
-import ai.iliSuite.controller.ParamsController;
-import ai.iliSuite.impl.ImplFactory;
-import ai.iliSuite.util.plugin.PluginsLoader;
 import ai.iliSuite.view.util.navigation.EnumPaths;
-import ai.iliSuite.view.util.navigation.Navigable;
 import ai.iliSuite.view.util.navigation.ResourceUtil;
 import ai.iliSuite.view.wizard.StepArgs;
 import ai.iliSuite.view.wizard.StepViewController;
-
-import java.util.ResourceBundle;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
