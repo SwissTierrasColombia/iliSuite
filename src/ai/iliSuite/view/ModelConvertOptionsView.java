@@ -1,4 +1,4 @@
-package ai.iliSuite.controller;
+package ai.iliSuite.view;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 
 import ai.iliSuite.application.data.AppData;
 import ai.iliSuite.application.data.Config;
+import ai.iliSuite.controller.ParamsController;
 import ai.iliSuite.impl.EnumCustomPanel;
 import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.impl.PanelCustomizable;
@@ -24,12 +25,16 @@ import ai.iliSuite.view.dialog.ModelDirDialog;
 import ai.iliSuite.view.dialog.MultipleSelectionDialog;
 import ai.iliSuite.view.util.navigation.EnumPaths;
 import ai.iliSuite.view.util.navigation.Navigable;
+import ai.iliSuite.view.util.navigation.ResourceUtil;
+import ai.iliSuite.view.wizard.StepArgs;
+import ai.iliSuite.view.wizard.StepViewController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SelectionMode;
@@ -42,7 +47,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Window;
 
-public class ModelConvertOptionsView implements Navigable, Initializable {
+public class ModelConvertOptionsView extends StepViewController implements Initializable {
 
 	@FXML
 	private ResourceBundle applicationBundle;
@@ -143,53 +148,27 @@ public class ModelConvertOptionsView implements Navigable, Initializable {
 	
 	private ImplFactory plugin;
 	
-	PanelCustomizable customPanelSchemaImport;
+	private PanelCustomizable customPanelSchemaImport;
+	
+	private Parent viewRootNode;
+	
+	private ParamsController controller;
+	
+	private Map<String,String> params;
 
+	public ModelConvertOptionsView(ParamsController controller) throws IOException {
+		// XXX Posible carga de componentes antes de ser necesario
+		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/view/fxml/modelConvertOptions.fxml", EnumPaths.RESOURCE_BUNDLE, this);
+		
+		this.controller = controller;
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		applicationBundle = resources;
 		addInitListeners();
-		
-		tf_modelDir.setText(Config.getInstance().getModelDir());
-		tf_srsAuth.setPromptText("EPSG");
-		tf_srsCode.setPromptText("21781");
-		
 		addInitValues();
 		
-		String pluginKey = AppData.getInstance().getPlugin();
-		plugin = (ImplFactory) PluginsLoader.getPluginByKey(pluginKey);
-		
-		Map<EnumCustomPanel, PanelCustomizable> lstCustomPanel = plugin.getCustomPanels();
-		
-		if(lstCustomPanel != null) {
-			customPanelSchemaImport = lstCustomPanel.get(EnumCustomPanel.SCHEMA_IMPORT);
-			if(customPanelSchemaImport != null) {
-				Tab tab = new Tab(customPanelSchemaImport.getName());
-				tab.setContent(customPanelSchemaImport.getPanel());
-				tabOptions.getTabs().add(tab);
-			}
-		}
-	}
-
-	@Override
-	public boolean validate() {
-		boolean result = validateFields();
-		if(result) {
-			addParams();
-			addCustomParams();
-		}
-		return result;
-	}
-	
-
-	@Override
-	public EnumPaths getNextPath() {
-		return EnumPaths.FINISH_MODEL_GENERATION;
-	}
-
-	@Override
-	public boolean isFinalPage() {
-		return false;
 	}
 	
 	private void addInitListeners(){
@@ -306,6 +285,10 @@ public class ModelConvertOptionsView implements Navigable, Initializable {
 	}
 	
 	private void addInitValues(){
+		tf_modelDir.setText(Config.getInstance().getModelDir());
+		tf_srsAuth.setPromptText("EPSG");
+		tf_srsCode.setPromptText("21781");
+		
 		radio_smart2.setSelected(true);
 		radio_inputFile.setSelected(true);
 		radio_createEnumTabsWithId.setSelected(true);
@@ -443,97 +426,63 @@ public class ModelConvertOptionsView implements Navigable, Initializable {
 			chk_createDatasetCol.setSelected(false);
 	}
 	
-	
-	private void addParams(){
-		ParamsContainer paramsContainer = AppData.getInstance().getParamsContainer();
-		HashMap<String,String> params = paramsContainer.getParamsMap();
+	private void updateParams(){
+		params = new HashMap<String, String>();
 		
 		if(radio_inputFile.isSelected())
-			paramsContainer.setFinalPath( "" +tf_iliFilePath.getText()+ "" );
+			params.put(EnumParams.FILE_NAME.getName(), "" +tf_iliFilePath.getText()+ "" );
 		else if(radio_inputModels.isSelected())
 			params.put(EnumParams.MODELS.getName(), "" +tf_iliFilePath.getText()+ "");
+		
 		//--------------Mappings Options---------------------//
-		
-		if(!tf_modelDir.getText().isEmpty()){
+		if(!tf_modelDir.getText().isEmpty())
 			params.put(EnumParams.MODEL_DIR.getName(), "" +tf_modelDir.getText()+ "");
-		}else{
-			params.remove(EnumParams.MODEL_DIR.getName());
-		}
-		
 		
 		if(radio_noSmart.isSelected()){
 			params.put(EnumParams.NO_SMART_MAPPING.getName(), "true");
-			params.remove(EnumParams.SMART_1_INHERITANCE.getName());
-			params.remove(EnumParams.SMART_2_INHERITANCE.getName());
-		}
-		else if(radio_smart1.isSelected()){
+		} else if(radio_smart1.isSelected()){
 			params.put(EnumParams.SMART_1_INHERITANCE.getName(), "true");
-			params.remove(EnumParams.NO_SMART_MAPPING.getName());
-			params.remove(EnumParams.SMART_2_INHERITANCE.getName());
-		}
-		else if(radio_smart2.isSelected()){
+		} else if(radio_smart2.isSelected()){
 			params.put(EnumParams.SMART_2_INHERITANCE.getName(), "true");
-			params.remove(EnumParams.NO_SMART_MAPPING.getName());
-			params.remove(EnumParams.SMART_1_INHERITANCE.getName());
 		}
+		
 		if(radio_createEnumTabs.isSelected()){
 			params.put(EnumParams.CREATE_ENUM_TABS.getName(), "true");
-			params.remove(EnumParams.CREATE_SINGLE_ENUM_TAB.getName());
-			params.remove(EnumParams.CREATE_ENUM_TXT_COL.getName());
-			params.remove(EnumParams.CREATE_ENUM_TABS_WITH_ID.getName());
-		}else if(radio_createSingleEnumTab.isSelected()){
+		} else if(radio_createSingleEnumTab.isSelected()){
 			params.put(EnumParams.CREATE_SINGLE_ENUM_TAB.getName(), "true");
-			params.remove(EnumParams.CREATE_ENUM_TABS.getName());
-			params.remove(EnumParams.CREATE_ENUM_TXT_COL.getName());
-			params.remove(EnumParams.CREATE_ENUM_TABS_WITH_ID.getName());
-		}else if(radio_createEnumTxtCol.isSelected()){
+		} else if(radio_createEnumTxtCol.isSelected()){
 			params.put(EnumParams.CREATE_ENUM_TXT_COL.getName(), "true");
-			params.remove(EnumParams.CREATE_ENUM_TABS.getName());
-			params.remove(EnumParams.CREATE_SINGLE_ENUM_TAB.getName());
-			params.remove(EnumParams.CREATE_ENUM_TABS_WITH_ID.getName());
 		} else if(radio_createEnumTabsWithId.isSelected()) {
 			params.put(EnumParams.CREATE_ENUM_TABS_WITH_ID.getName(), "true");
-			params.remove(EnumParams.CREATE_ENUM_TABS.getName());
-			params.remove(EnumParams.CREATE_SINGLE_ENUM_TAB.getName());
-			params.remove(EnumParams.CREATE_ENUM_TXT_COL.getName());
 		}
 		
 		if(chk_beautifyEnumDispName.isSelected())
 			params.put(EnumParams.BEAUTIFY_ENUM_DISP_NAME.getName(), "true");
-		else
-			params.remove(EnumParams.BEAUTIFY_ENUM_DISP_NAME.getName());
+
 		if(chk_coalesceCatalogueRef.isSelected())
 			params.put(EnumParams.COALESCE_CATALOGUE_REF.getName(), "true");
-		else
-			params.remove(EnumParams.COALESCE_CATALOGUE_REF.getName());
+
 		if(chk_coalesceMultisurface.isSelected())
 			params.put(EnumParams.COALESCE_MULTISURFACE.getName(), "true");
-		else
-			params.remove(EnumParams.COALESCE_MULTISURFACE.getName());
+
 		if(chk_expandMultiLingual.isSelected())
 			params.put(EnumParams.EXPAND_MULTILINGUAL.getName(), "true");
-		else
-			params.remove(EnumParams.EXPAND_MULTILINGUAL.getName());
+
 		if(chk_coalesceMultiLine.isSelected())
 			params.put(EnumParams.COALESCE_MULTILINE.getName(), "true");
-		else
-			params.remove(EnumParams.COALESCE_MULTILINE.getName(), "true");
+
 		if(tf_srsAuth.getText()!=null && !tf_srsAuth.getText().equals(""))
 			params.put(EnumParams.DEFAULT_SRS_AUTH.getName(), tf_srsAuth.getText());
-		else
-			params.remove(EnumParams.DEFAULT_SRS_AUTH.getName());
+
 		if(tf_srsCode.getText()!=null && !tf_srsCode.getText().equals(""))
 			params.put(EnumParams.DEFAULT_SRS_CODE.getName(), tf_srsCode.getText());
-		else
-			params.remove(EnumParams.DEFAULT_SRS_CODE.getName());
+
 		if(chk_strokeArgs.isSelected())
 			params.put(EnumParams.STROKE_ARCS.getName(), "true");
-		else
-			params.remove(EnumParams.STROKE_ARCS.getName());
+
 		if(chk_oneGeomPerTable.isSelected())
 			params.put(EnumParams.ONE_GEOM_PER_TABLE.getName(), "true");
-		else
-			params.remove(EnumParams.ONE_GEOM_PER_TABLE.getName());
+
 		//------------DDL Options-----------//
 		if(chk_disableNameOptimization.isSelected())
 			params.put(EnumParams.DISABLE_NAME_OPTIMIZATION.getName(), "true");
@@ -571,73 +520,84 @@ public class ModelConvertOptionsView implements Navigable, Initializable {
 			params.put(EnumParams.CREATE_FK_IDX.getName(), "true");
 		else
 			params.remove(EnumParams.CREATE_FK_IDX.getName());
+
 		//-------------Metainformation/Miscellaneous Options -----------------------//
 		if(chk_createStdCols.isSelected())
 			params.put(EnumParams.CREATE_STD_COLS.getName(), "true");
-		else
-			params.remove(EnumParams.CREATE_STD_COLS.getName());
+
 		if(tf_t_id_name.getText()!=null && !tf_t_id_name.getText().equals(""))
 			params.put(EnumParams.T_ID_NAME.getName(), tf_t_id_name.getText());
-		else
-			params.remove(EnumParams.T_ID_NAME.getName());
+
 		if(chk_createTypeDiscriminator.isSelected())
 			params.put(EnumParams.CREATE_TYPE_DISCRIMINATOR.getName(), "true");
-		else
-			params.remove(EnumParams.CREATE_TYPE_DISCRIMINATOR.getName());
+
 		if(chk_iliMetaAttrs.isSelected())
 			params.put(EnumParams.ILI_META_ATTRS.getName(), "true");
-		else
-			params.remove(EnumParams.ILI_META_ATTRS.getName());
+
 		if(chk_importTid.isSelected())
 			params.put(EnumParams.IMPORT_TID.getName(), "true");
-		else
-			params.remove(EnumParams.IMPORT_TID.getName());
+
 		if(chk_createBasketCol.isSelected())
 			params.put(EnumParams.CREATE_BASKET_COL.getName(), "true");
-		else
-			params.remove(EnumParams.CREATE_BASKET_COL.getName());
+
 		if(chk_createDatasetCol.isSelected())
 			params.put(EnumParams.CREATE_DATASET_COL.getName(), "true");
-		else
-			params.remove(EnumParams.CREATE_DATASET_COL.getName());
+
 		if(chk_createMetaInfo.isSelected())
 			params.put(EnumParams.CREATE_METAINFO.getName(), "true");
-		else
-			params.remove(EnumParams.CREATE_METAINFO.getName());
+
 		if(chk_ver4translation.isSelected())
 			params.put(EnumParams.VER4_TRANSLATION.getName(), "true");
-		else
-			params.remove(EnumParams.VER4_TRANSLATION.getName());
+
 		if(tf_idSeqMin.getText()!=null && !tf_idSeqMin.getText().equals(""))
 			params.put(EnumParams.ID_SEQ_MIN.getName(), tf_idSeqMin.getText());
-		else
-			params.remove(EnumParams.ID_SEQ_MIN.getName());
+
 		if(tf_idSeqMax.getText()!=null && !tf_idSeqMax.getText().equals(""))
 			params.put(EnumParams.ID_SEQ_MAX.getName(), tf_idSeqMax.getText());
-		else
-			params.remove(EnumParams.ID_SEQ_MAX.getName());
+
 		if(tf_createScriptPath.getText()!=null && !tf_createScriptPath.getText().equals("") && tf_createScriptPath.getText().endsWith(".sql"))
 			params.put(EnumParams.CREATE_SCRIPT.getName(),  "" +tf_createScriptPath.getText()+ "" );
-		else
-			params.remove(EnumParams.CREATE_SCRIPT.getName());
+
 		if(tf_dropScriptPath.getText()!=null && !tf_dropScriptPath.getText().equals("") && tf_dropScriptPath.getText().endsWith(".sql"))
 			params.put(EnumParams.DROP_SCRIPT.getName(), "" +tf_dropScriptPath.getText()+"");
-		else
-			params.remove(EnumParams.DROP_SCRIPT.getName());
 		
+		updateCustomParams();
 	}
 	
-	private void addCustomParams() {
-		ParamsContainer paramsContainer = AppData.getInstance().getParamsContainer();
-		HashMap<String,String> params = paramsContainer.getParamsMap();
-		
-		if(customPanelSchemaImport != null) {
-			for(String key:customPanelSchemaImport.getParamsForRemove()) {
-				params.remove(key);
-			}
-			
+	private void updateCustomParams() {
+		if(customPanelSchemaImport != null) {			
 			params.putAll(customPanelSchemaImport.getParams());
 		}
 	}
 
+	@Override
+	public Parent getGraphicComponent() {
+		return viewRootNode;
+	}
+	
+	@Override
+	public void goForward(StepArgs args) {
+		super.goForward(args);
+		boolean isValid = validateFields();
+		
+		args.setCancel(!isValid);
+		
+		if (isValid) {
+			if(params != null) {
+				controller.removeParams(params);
+			}
+			updateParams();
+			controller.addParams(params);
+		}
+	}
+
+	public void setCustomPanelSchemaImport(PanelCustomizable customPanelSchemaImport) {
+		this.customPanelSchemaImport = customPanelSchemaImport;
+		
+		if(this.customPanelSchemaImport != null) {
+			Tab tab = new Tab(customPanelSchemaImport.getName());
+			tab.setContent(customPanelSchemaImport.getPanel());
+			tabOptions.getTabs().add(tab);
+		}
+	}
 }
