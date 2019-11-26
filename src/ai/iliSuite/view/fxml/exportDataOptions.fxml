@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ai.iliSuite.actions.exportData.ExportDataOptionsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <SplitPane dividerPositions="0.3" maxHeight="335.0" minHeight="335.0" orientation="VERTICAL" prefHeight="335.0" prefWidth="160.0" BorderPane.alignment="CENTER">
         <items>
@@ -62,7 +62,7 @@
                                       <TextField fx:id="tf_dataset" editable="false" GridPane.columnIndex="1" />
                                       <TextField fx:id="tf_baskets" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                       <TextField fx:id="tf_topics" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                      <TextField fx:id="tf_models" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                      <TextField fx:id="tf_models" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                       <Button fx:id="btn_addDataset" mnemonicParsing="false" onAction="#handleAddButtons" text="%buttons.add" GridPane.columnIndex="2" />
                                       <Button fx:id="btn_addBaskets" mnemonicParsing="false" onAction="#handleAddButtons" text="%buttons.add" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                       <Button fx:id="btn_addTopics" mnemonicParsing="false" onAction="#handleAddButtons" text="%buttons.add" GridPane.columnIndex="2" GridPane.rowIndex="2" />

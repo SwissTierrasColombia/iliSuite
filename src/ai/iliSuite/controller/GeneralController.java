@@ -71,6 +71,9 @@ public class GeneralController {
 		} else if(action == EnumActions.GENERATE_PHYSICAL_MODEL) {
 			Ili2db model = new Ili2db();
 			result = new GeneratePhysicalModelController(model);
+		} else if(action == EnumActions.EXPORT_DATA) {
+			Ili2db model = new Ili2db();
+			result = new ExportDataController(model);
 		}
 		if(result != null) {
 			result.setOnFinish(loadMainOptionsHandler);

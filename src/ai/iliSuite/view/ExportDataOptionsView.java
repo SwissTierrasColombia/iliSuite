@@ -1,4 +1,4 @@
-package ai.iliSuite.actions.exportData;
+package ai.iliSuite.view;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,26 +8,27 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import ai.iliSuite.application.data.AppData;
 import ai.iliSuite.application.data.Config;
-import ai.iliSuite.impl.ImplFactory;
+import ai.iliSuite.controller.ParamsController;
 import ai.iliSuite.impl.dbconn.Ili2DbScope;
 import ai.iliSuite.util.params.EnumParams;
-import ai.iliSuite.util.params.ParamsContainer;
-import ai.iliSuite.util.plugin.PluginsLoader;
 import ai.iliSuite.view.dialog.ModelDirDialog;
 import ai.iliSuite.view.dialog.MultipleSelectionDialog;
 import ai.iliSuite.view.util.navigation.EnumPaths;
-import ai.iliSuite.view.util.navigation.Navigable;
+import ai.iliSuite.view.util.navigation.ResourceUtil;
+import ai.iliSuite.view.wizard.StepArgs;
+import ai.iliSuite.view.wizard.StepViewController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
@@ -39,7 +40,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Window;
 
-public class ExportDataOptionsController implements Navigable, Initializable {
+public class ExportDataOptionsView  extends StepViewController implements Initializable {
 
 	@FXML
 	private ResourceBundle applicationBundle;
@@ -83,14 +84,39 @@ public class ExportDataOptionsController implements Navigable, Initializable {
 	
 	private ArrayList<Node> disableList;
 
+	private Parent viewRootNode;
+	private ParamsController controller;
+	private Map<String,String> params;
+	
+	public ExportDataOptionsView(ParamsController controller) throws IOException {
+		// XXX Posible carga de componentes antes de ser necesario
+		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/view/fxml/exportDataOptions.fxml", EnumPaths.RESOURCE_BUNDLE, this);
+		
+		this.controller = controller;
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		applicationBundle = resources;
+		addInitListeners();
+		chk_disableRounding.setSelected(true);
 		
-		String pluginKey = AppData.getInstance().getPlugin();
-		// TODO Verificar si es null
-		ImplFactory plugin = (ImplFactory) PluginsLoader.getPluginByKey(pluginKey);
-		scope = plugin.getScope();
+		// FIX Modeldir from singleton
+		tf_modelDir.setText(Config.getInstance().getModelDir());
+		disableList = new ArrayList<>();
+		disableList.add(tf_dataset);
+		disableList.add(tf_baskets);
+		disableList.add(tf_topics);
+		disableList.add(tf_models);
+		disableList.add(btn_addDataset);
+		disableList.add(btn_addBaskets);
+		disableList.add(btn_addTopics);
+		disableList.add(btn_addModels);
+	}
+	
+	public void setScope(Ili2DbScope scope) {
+		// FIX Scope doesn't work
+		this.scope = scope;
 		
 		disableList = new ArrayList<>();
 		disableList.add(tf_dataset);
@@ -101,22 +127,17 @@ public class ExportDataOptionsController implements Navigable, Initializable {
 		disableList.add(btn_addBaskets);
 		disableList.add(btn_addTopics);
 		disableList.add(btn_addModels);
-		try{
-			if(!scope.isScoped()){
+		/*try{
+			if(false) {//!scope.isScoped()){
 				disableList.add(radio_baskets);
 				disableList.add(radio_dataset);
 				disableList.add(radio_topics);
 			}
 		}catch(SQLException|ClassNotFoundException e){
 			e.printStackTrace();
-		}finally{		
+		}finally{		*/
 			disableFields(disableList);
-		}
-		addInitListeners();
-		chk_disableRounding.setSelected(true);
-		
-		tf_modelDir.setText(Config.getInstance().getModelDir());
-		
+		//}
 	}
 	
 	private void addInitListeners(){
@@ -190,66 +211,31 @@ public class ExportDataOptionsController implements Navigable, Initializable {
 		});
 		
 	}
-	
-	@Override
-	public boolean validate() {
-		
-		boolean result = validateFields();
-		if(result)
-			addParams();
-		return result;
-	}
 
-	private void addParams() {
-		ParamsContainer paramsContainer = AppData.getInstance().getParamsContainer();
-		HashMap<String,String> params = paramsContainer.getParamsMap();
+	private void updateParams() {
+		params = new HashMap<String, String>();
 		
-		paramsContainer.setFinalPath(tf_xtfFilePath.getText());	
+		params.put(EnumParams.FILE_NAME.getName(), "" +tf_xtfFilePath.getText()+ "" );
 		
 		//--------------Export Options---------------------//
 		
 		if(!tf_modelDir.getText().isEmpty()){
 			params.put(EnumParams.MODEL_DIR.getName(), tf_modelDir.getText());
-		}else{
-			params.remove(EnumParams.MODEL_DIR.getName());
 		}
 		
 		if(radio_dataset.isSelected()){
 			params.put(EnumParams.DATASET.getName(), tf_dataset.getText());
-			params.remove(EnumParams.BASKETS.getName());
-			params.remove(EnumParams.TOPICS.getName());
-			params.remove(EnumParams.MODELS.getName());
 		}else if(radio_baskets.isSelected()){
 			params.put(EnumParams.BASKETS.getName(), tf_baskets.getText());
-			params.remove(EnumParams.DATASET.getName());
-			params.remove(EnumParams.TOPICS.getName());
-			params.remove(EnumParams.MODELS.getName());
 		}else if(radio_topics.isSelected()){
 			params.put(EnumParams.TOPICS.getName(), tf_topics.getText());
-			params.remove(EnumParams.DATASET.getName());
-			params.remove(EnumParams.BASKETS.getName());
-			params.remove(EnumParams.MODELS.getName());
 		}else if(radio_models.isSelected()){
 			params.put(EnumParams.MODELS.getName(), tf_models.getText());
-			params.remove(EnumParams.DATASET.getName());
-			params.remove(EnumParams.BASKETS.getName());
-			params.remove(EnumParams.TOPICS.getName());
 		}
-		params.remove(EnumParams.DISABLE_ROUNDING.getName());
 
 		if (chk_disableRounding.isSelected()) {
 			params.put(EnumParams.DISABLE_ROUNDING.getName(), "true");
 		}
-	}
-
-	@Override
-	public EnumPaths getNextPath() {
-		return EnumPaths.EXP_DATA_FINISH_DATA_EXPORT;
-	}
-
-	@Override
-	public boolean isFinalPage() {
-		return false;
 	}
 
 	public void handleAddButtons(ActionEvent e) throws IOException {
@@ -433,5 +419,36 @@ public class ExportDataOptionsController implements Navigable, Initializable {
             ex.printStackTrace();
         }
 	}
+
+	@Override
+	public Parent getGraphicComponent() {
+		return viewRootNode;
+	}
+	
+	@Override
+	public void goForward(StepArgs args) {
+		super.goForward(args);
+		boolean isValid = validateFields();
+		
+		args.setCancel(!isValid);
+		
+		if (isValid) {
+			if(params != null) {
+				controller.removeParams(params);
+			}
+			updateParams();
+			controller.addParams(params);
+		}
+	}
+	
+//	public void setCustomPanelSchemaImport(PanelCustomizable customPanelSchemaImport) {
+//		this.customPanelSchemaImport = customPanelSchemaImport;
+//		
+//		if(this.customPanelSchemaImport != null) {
+//			Tab tab = new Tab(customPanelSchemaImport.getName());
+//			tab.setContent(customPanelSchemaImport.getPanel());
+//			tabOptions.getTabs().add(tab);
+//		}
+//	}
 
 }
