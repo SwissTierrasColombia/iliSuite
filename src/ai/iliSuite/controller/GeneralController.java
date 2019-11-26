@@ -10,6 +10,7 @@ import java.util.ListIterator;
 import ai.iliSuite.base.Ili2db;
 import ai.iliSuite.base.IliValidator;
 import ai.iliSuite.base.InterlisExecutable;
+import ai.iliSuite.base.UmlEditor;
 import ai.iliSuite.view.FinishActionView;
 import ai.iliSuite.view.ValidateOptionsView;
 import ai.iliSuite.view.general.GeneralLayoutController;
@@ -77,6 +78,9 @@ public class GeneralController {
 		} else if(action == EnumActions.IMPORT_DATA) {
 			Ili2db model = new Ili2db();
 			result = new ImportDataController(model);
+		} else if(action == EnumActions.OPEN_UML_EDITOR) {
+			InterlisExecutable model = new UmlEditor();
+			result = new OpenUmlEditorController(model);
 		}
 		if(result != null) {
 			result.setOnFinish(loadMainOptionsHandler);
