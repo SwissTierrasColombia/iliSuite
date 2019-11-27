@@ -3,8 +3,8 @@ package ai.iliSuite.view.util.navigation;
 public enum EnumPaths {
 	
 	RESOURCE_BUNDLE("ai.iliSuite.resources.languages.application"),
-	GENERAL_LAYOUT("/ai/iliSuite/view/general/generalLayout.fxml"),
-	MAIN_OPTIONS("/ai/iliSuite/view/general/mainOptions.fxml"),
+	GENERAL_LAYOUT("/ai/iliSuite/view/fxml/generalLayout.fxml"),
+	MAIN_OPTIONS("/ai/iliSuite/view/fxml/mainOptions.fxml"),
 	
 	OPEN_UML_EDITOR("/ai/iliSuite/actions/openUmlEditor/openUmlEditor.fxml"),
 	

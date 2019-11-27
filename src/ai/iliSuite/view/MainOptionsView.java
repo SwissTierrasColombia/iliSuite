@@ -1,4 +1,4 @@
-package ai.iliSuite.view.general;
+package ai.iliSuite.view;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,7 +24,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class MainOptionsController implements Initializable {
+public class MainOptionsView implements Initializable {
 
 	// XXX the name is too generic
 	private EnumActions selectedAction;
@@ -65,7 +65,7 @@ public class MainOptionsController implements Initializable {
 	
 	private GeneralController controller;
 	
-	public MainOptionsController(GeneralController controller) throws IOException {
+	public MainOptionsView(GeneralController controller) throws IOException {
 		this.controller = controller;
 		// XXX Path as String
 		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/view/wizard/wizardLayout.fxml", EnumPaths.RESOURCE_BUNDLE, this);

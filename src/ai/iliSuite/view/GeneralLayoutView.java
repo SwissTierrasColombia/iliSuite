@@ -1,4 +1,4 @@
-package ai.iliSuite.view.general;
+package ai.iliSuite.view;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,7 +27,7 @@ import javafx.stage.Modality;
 import javafx.stage.StageStyle;
 
 
-public class GeneralLayoutController implements Initializable {
+public class GeneralLayoutView implements Initializable {
 	@FXML
 	private Pane contentPane;
 	@FXML
@@ -40,7 +40,7 @@ public class GeneralLayoutController implements Initializable {
 	
 	private GeneralController controller;
 	
-	public GeneralLayoutController(GeneralController controller) throws IOException {
+	public GeneralLayoutView(GeneralController controller) throws IOException {
 		this.controller = controller;
 		viewRootNode = ResourceUtil.loadResource(EnumPaths.GENERAL_LAYOUT.getPath(), EnumPaths.RESOURCE_BUNDLE, this);
 	}

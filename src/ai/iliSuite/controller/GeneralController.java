@@ -6,23 +6,23 @@ import ai.iliSuite.base.Ili2db;
 import ai.iliSuite.base.IliValidator;
 import ai.iliSuite.base.InterlisExecutable;
 import ai.iliSuite.base.UmlEditor;
-import ai.iliSuite.view.general.GeneralLayoutController;
-import ai.iliSuite.view.general.MainOptionsController;
+import ai.iliSuite.view.GeneralLayoutView;
+import ai.iliSuite.view.MainOptionsView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 
 public class GeneralController {
 	// XXX concrete (view)
-	private GeneralLayoutController view;
+	private GeneralLayoutView view;
 	// XXX Program to interfaces, not implementations
-	private MainOptionsController main;
+	private MainOptionsView main;
 	
 	private EventHandler<ActionEvent> loadMainOptionsHandler;
 	
 	public GeneralController() throws IOException {
-		view = new GeneralLayoutController(this);
-		main = new MainOptionsController(this);
+		view = new GeneralLayoutView(this);
+		main = new MainOptionsView(this);
 		//loadMainOptions();
 		loadMainOptionsHandler = new EventHandler<ActionEvent>() {
 			@Override
