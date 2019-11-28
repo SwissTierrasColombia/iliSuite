@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
-import ai.iliSuite.application.data.AppData;
 import ai.iliSuite.application.data.Config;
 import ai.iliSuite.controller.ParamsController;
 import ai.iliSuite.impl.ImplFactory;
@@ -239,30 +237,7 @@ public class ImportDataOptionsView extends StepViewController implements Initial
 
 	@FXML
 	private void handleAddDatasetButton(ActionEvent e) {
-		String pluginKey = AppData.getInstance().getPlugin();
-		ImplFactory plugin = (ImplFactory) PluginsLoader.getPluginByKey(pluginKey);
-		Ili2DbScope scope = plugin.getScope();
-
-		try {
-			ArrayList<String> selectedValues = new ArrayList<>();
-
-			if (!tf_datasetSelectable.getText().isEmpty()) {
-				selectedValues = new ArrayList<String>(Arrays.asList(tf_datasetSelectable.getText().split(";")));
-			}
-
-			MultipleSelectionDialog dialog = new MultipleSelectionDialog(scope.getDatasetList(), selectedValues,SelectionMode.SINGLE);
-
-			dialog.setTitle(applicationBundle.getString("general.dataset"));
-			Optional<List<String>> result = dialog.showAndWait();
-
-			if (result.isPresent()) {
-				tf_datasetSelectable.setText(String.join(";", result.get()));
-			}
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
+		// FIX add scope
 	}
 
 	@FXML
