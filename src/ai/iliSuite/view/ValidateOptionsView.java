@@ -90,7 +90,7 @@ public class ValidateOptionsView extends StepViewController implements Initializ
 	
 	public ValidateOptionsView(ParamsController controller) throws IOException {
 		// XXX Posible carga de componentes antes de ser necesario
-		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/view/fxml/validateOptions.fxml", EnumPaths.RESOURCE_BUNDLE, this);
+		viewRootNode = ResourceUtil.loadResource(EnumPaths.VAL_DATA_VALIDATE_OPTIONS, EnumPaths.RESOURCE_BUNDLE, this);
 		
 		this.controller = controller;
 	}

@@ -90,7 +90,7 @@ public class ExportDataOptionsView  extends StepViewController implements Initia
 	
 	public ExportDataOptionsView(ParamsController controller) throws IOException {
 		// XXX Posible carga de componentes antes de ser necesario
-		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/view/fxml/exportDataOptions.fxml", EnumPaths.RESOURCE_BUNDLE, this);
+		viewRootNode = ResourceUtil.loadResource(EnumPaths.EXP_DATA_EXPORT_DATA_OPTIONS, EnumPaths.RESOURCE_BUNDLE, this);
 		
 		this.controller = controller;
 	}

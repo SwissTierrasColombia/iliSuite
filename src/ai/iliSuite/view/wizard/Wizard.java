@@ -28,8 +28,7 @@ public class Wizard extends BaseWizard implements Initializable {
 	
 
 	public Wizard() throws IOException {
-		// XXX hardcoding string path
-		mainView = ResourceUtil.loadResource("/ai/iliSuite/view/wizard/wizardLayout.fxml", EnumPaths.RESOURCE_BUNDLE, this);
+		mainView = ResourceUtil.loadResource(EnumPaths.WIZARD_LAYOUT, EnumPaths.RESOURCE_BUNDLE, this);
 	}
 	
 	@Override

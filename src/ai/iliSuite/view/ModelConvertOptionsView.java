@@ -151,7 +151,7 @@ public class ModelConvertOptionsView extends StepViewController implements Initi
 
 	public ModelConvertOptionsView(ParamsController controller) throws IOException {
 		// XXX Posible carga de componentes antes de ser necesario
-		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/view/fxml/modelConvertOptions.fxml", EnumPaths.RESOURCE_BUNDLE, this);
+		viewRootNode = ResourceUtil.loadResource(EnumPaths.MODEL_CONVERT_OPTIONS, EnumPaths.RESOURCE_BUNDLE, this);
 		
 		this.controller = controller;
 	}

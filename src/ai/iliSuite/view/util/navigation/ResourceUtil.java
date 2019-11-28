@@ -20,5 +20,9 @@ public class ResourceUtil {
 		component = loader.load();
 		return component;
 	}
-
+	
+	public static Parent loadResource(EnumPaths path, EnumPaths resourceBundle, Object viewController) throws IOException {
+		String strPath = path.getPath();
+		return ResourceUtil.loadResource(strPath, resourceBundle, viewController);
+	}
 }

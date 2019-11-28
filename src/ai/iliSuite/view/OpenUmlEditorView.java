@@ -20,7 +20,7 @@ public class OpenUmlEditorView extends StepViewController implements Initializab
 	
 	public OpenUmlEditorView() throws IOException {
 		// XXX Posible carga de componentes antes de ser necesario
-		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/view/fxml/openUmlEditor.fxml", EnumPaths.RESOURCE_BUNDLE, this);
+		viewRootNode = ResourceUtil.loadResource(EnumPaths.OPEN_UML_EDITOR, EnumPaths.RESOURCE_BUNDLE, this);
 		
 		//this.controller = controller;
 	}

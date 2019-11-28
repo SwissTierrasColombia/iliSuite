@@ -30,7 +30,7 @@ public class MainOptionsView implements Initializable {
 	private EnumActions selectedAction;
 	
 	private ResourceBundle bundle;
-	FXMLLoader loader;
+
 	@FXML
 	private ToggleGroup tg_mainOptions;
 
@@ -67,20 +67,23 @@ public class MainOptionsView implements Initializable {
 	
 	public MainOptionsView(GeneralController controller) throws IOException {
 		this.controller = controller;
-		// XXX Path as String
-		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/view/wizard/wizardLayout.fxml", EnumPaths.RESOURCE_BUNDLE, this);
-		Parent content = ResourceUtil.loadResource(EnumPaths.MAIN_OPTIONS.getPath(), EnumPaths.RESOURCE_BUNDLE, this);
+		viewRootNode = ResourceUtil.loadResource(EnumPaths.WIZARD_LAYOUT, EnumPaths.RESOURCE_BUNDLE, this);
+		Parent content = ResourceUtil.loadResource(EnumPaths.MAIN_OPTIONS, EnumPaths.RESOURCE_BUNDLE, this);
 		contentPane.setCenter(content);
+		
+		initButtons();
+		addListenerToToggleGroup();
+	}
+
+	private void initButtons() {
 		btnNext.setOnAction((ActionEvent e) -> { this.goForward(e); });
 		btnCancel.setOnAction((ActionEvent e) -> { 
 			Stage s = (Stage) viewRootNode.getScene().getWindow();
 			s.close();
 		});
 		btnBack.setVisible(false);
-		// XXX hardcoding
-		btnCancel.setText("Finish");
-		
-		addListenerToToggleGroup();
+		String strExit = bundle.getString("buttons.exit");
+		btnCancel.setText(strExit);
 	}
 	
 	@Override
@@ -122,13 +125,6 @@ public class MainOptionsView implements Initializable {
 		});
 	}
 
-	// XXX validate() should be removed
-	public boolean validate() {
-		if (tg_mainOptions.getSelectedToggle() == null)
-			return false;
-		else
-			return true;
-	}
 	
 	public void goForward(ActionEvent e) {
 		controller.changeAction(selectedAction);

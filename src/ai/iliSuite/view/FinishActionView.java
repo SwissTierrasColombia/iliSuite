@@ -46,7 +46,7 @@ public class FinishActionView  extends StepViewController  implements Initializa
 		this.controller = controller;
 		
 		// TODO Posible carga de componentes antes de ser necesario
-		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/view/fxml/finishAction.fxml", EnumPaths.RESOURCE_BUNDLE, this);
+		viewRootNode = ResourceUtil.loadResource(EnumPaths.FINISH_ACTION, EnumPaths.RESOURCE_BUNDLE, this);
 	}
 	
 	@Override

@@ -106,7 +106,7 @@ public class ImportDataOptionsView extends StepViewController implements Initial
 	
 	public ImportDataOptionsView(ParamsController controller) throws IOException {
 		// XXX Posible carga de componentes antes de ser necesario
-		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/view/fxml/importDataOptions.fxml", EnumPaths.RESOURCE_BUNDLE, this);
+		viewRootNode = ResourceUtil.loadResource(EnumPaths.IMP_DATA_IMPORT_OPTIONS, EnumPaths.RESOURCE_BUNDLE, this);
 		this.controller = controller;
 	}
 

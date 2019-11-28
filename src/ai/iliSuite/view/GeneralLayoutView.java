@@ -42,7 +42,7 @@ public class GeneralLayoutView implements Initializable {
 	
 	public GeneralLayoutView(GeneralController controller) throws IOException {
 		this.controller = controller;
-		viewRootNode = ResourceUtil.loadResource(EnumPaths.GENERAL_LAYOUT.getPath(), EnumPaths.RESOURCE_BUNDLE, this);
+		viewRootNode = ResourceUtil.loadResource(EnumPaths.GENERAL_LAYOUT, EnumPaths.RESOURCE_BUNDLE, this);
 	}
 	
 	public void onClick_MenuItemModelDir() {

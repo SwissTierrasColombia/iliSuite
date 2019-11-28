@@ -46,8 +46,8 @@ public class DatabaseSelectionView  extends StepViewController implements Initia
 	public DatabaseSelectionView(DbSelectorController controller, Map<String, DbDescription> textDatabases) throws IOException {
 		this.controller = controller;
 		this.textDatabases = textDatabases;
-		// XXX hard coding
-		viewRootNode = ResourceUtil.loadResource("/ai/iliSuite/view/fxml/databaseSelection.fxml", EnumPaths.RESOURCE_BUNDLE, this);
+
+		viewRootNode = ResourceUtil.loadResource(EnumPaths.ILI2DB_COMMON_DATABASE_SELECTION, EnumPaths.RESOURCE_BUNDLE, this);
 	}
 	
 	@Override
