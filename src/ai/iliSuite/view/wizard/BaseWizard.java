@@ -9,10 +9,13 @@ import javafx.event.EventHandler;
 public abstract class BaseWizard {
 	protected List<StepViewController> steps;
 	protected int index = -1;
-	
+	protected boolean hasExecution;
+	protected boolean execute;
 	protected EventHandler<ActionEvent> finishHandler;
 	protected EventHandler<ActionEvent> cancelHandler;
 	protected EventHandler<ActionEvent> backHandler;
+	protected EventHandler<ActionEvent> executeHandler;
+	
 
 	public BaseWizard() {
 		steps = new ArrayList<StepViewController>();
@@ -45,7 +48,13 @@ public abstract class BaseWizard {
 				nextItem.loadedPage(new StepArgs());
 			} else {
 				index = steps.size()-1;
-				if (finishHandler != null) {
+				if(hasExecution && !execute) {
+					execute = true;
+					if(executeHandler != null)
+						executeHandler.handle(new ActionEvent());
+					// FIX move to other method
+					this.loadedPage();
+				} else if (finishHandler != null) {
 					finishHandler.handle(new ActionEvent());
 				}
 			}
@@ -59,6 +68,8 @@ public abstract class BaseWizard {
 		index = 0;
 		StepViewController actualItem = steps.get(index);
 		drawPage(actualItem);
+		this.loadedPage();
+		actualItem.loadedPage(new StepArgs());
 	}
 
 	public void goBack() {
@@ -117,5 +128,17 @@ public abstract class BaseWizard {
 	
 	public void setOnBack(EventHandler<ActionEvent> handler) {
 		this.backHandler = handler;
+	}
+	
+	public void setOnExecute(EventHandler<ActionEvent> executeHandler) {
+		this.executeHandler = executeHandler;
+	}
+	
+	public boolean isHasExecution() {
+		return hasExecution;
+	}
+
+	public void setHasExecution(boolean hasExecution) {
+		this.hasExecution = hasExecution;
 	}
 }

@@ -16,7 +16,6 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%general.finishMessage" />
                </children>
             </TextFlow>
-            <Button fx:id="btnExecute" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#btnExecute_click" text="%buttons.execute" textAlignment="CENTER" />
          </children>
       </VBox>
    </center>

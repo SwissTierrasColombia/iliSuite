@@ -31,9 +31,11 @@ public class OpenUmlEditorController implements ParamsController {
 				(ActionEvent e) -> { if(finishHandler != null) { finishHandler.handle(e); }};
 
 		wizard = new Wizard();
+		wizard.setHasExecution(true);
 		wizard.setOnBack(goBack);
 		wizard.setOnCancel(goBack);
 		wizard.setOnFinish(finish);
+		wizard.setOnExecute((ActionEvent e) -> model.run());
 
 		wizard.add(new OpenUmlEditorView());
 

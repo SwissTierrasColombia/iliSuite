@@ -54,7 +54,10 @@ public class Wizard extends BaseWizard implements Initializable {
 	protected void loadedPage() {
 		String buttonTextKey = "";
 		if(this.index == this.steps.size()-1) {
-			buttonTextKey = "buttons.finish";
+			if(this.hasExecution && !this.execute)
+				buttonTextKey = "buttons.execute";
+			else
+				buttonTextKey = "buttons.finish";
 		} else {
 			buttonTextKey = "buttons.next";
 		}

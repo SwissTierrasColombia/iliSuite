@@ -31,7 +31,8 @@ public class ValidateDataController implements ParamsController {
 	public ValidateDataController(InterlisExecutable interlisExecutable) throws IOException {
 		this.interlisExecutable = interlisExecutable;
 		paramsList = new ArrayList<Map<String, String>>();
-		wizard = new Wizard();		
+		wizard = new Wizard();
+		wizard.setHasExecution(true);
 		wizard.add(new ValidateOptionsView(this));
 		wizard.add(new FinishActionView(this));
 		
@@ -43,6 +44,7 @@ public class ValidateDataController implements ParamsController {
 		wizard.setOnBack(goBack);
 		wizard.setOnCancel(goBack);
 		wizard.setOnFinish(finish);
+		wizard.setOnExecute((ActionEvent e) -> execute());
 		
 		try {
 			wizard.init();

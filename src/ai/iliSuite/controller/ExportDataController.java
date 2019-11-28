@@ -76,9 +76,11 @@ public class ExportDataController implements ParamsController, DbSelectorControl
 		exportDataOptions = new ExportDataOptionsView(this);
 
 		wizard = new Wizard();
+		wizard.setHasExecution(true);
 		wizard.setOnBack(goBack);
 		wizard.setOnCancel(goBack);
 		wizard.setOnFinish(finish);
+		wizard.setOnExecute((ActionEvent e) -> execute());
 
 		wizard.add(new DatabaseSelectionView(this, lstDbDescription));
 		wizard.add(dbSelectionScreen);
