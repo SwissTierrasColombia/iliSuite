@@ -24,6 +24,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 
 public class GeneratePhysicalModelController implements ParamsController, DbSelectorController {
@@ -61,6 +62,7 @@ public class GeneratePhysicalModelController implements ParamsController, DbSele
 		modelConvertOptions = new ModelConvertOptionsView(this);
 
 		wizard = new Wizard();
+		wizard.setMargin(new Insets(15));
 		wizard.setHasExecution(true);
 		wizard.setOnBack(goBack);
 		wizard.setOnCancel(goBack);
@@ -168,9 +170,11 @@ public class GeneratePhysicalModelController implements ParamsController, DbSele
 		// FIX panel into plugin
 		Map<EnumCustomPanel, PanelCustomizable> lstCustomPanel = dbImpl.getCustomPanels();
 		
-		PanelCustomizable customPanelSchemaImport = lstCustomPanel.get(EnumCustomPanel.SCHEMA_IMPORT);
-		if(customPanelSchemaImport != null) {
-			modelConvertOptions.setCustomPanelSchemaImport(customPanelSchemaImport);
+		if(lstCustomPanel != null) {
+			PanelCustomizable customPanelSchemaImport = lstCustomPanel.get(EnumCustomPanel.SCHEMA_IMPORT);
+			if(customPanelSchemaImport != null) {
+				modelConvertOptions.setCustomPanelSchemaImport(customPanelSchemaImport);
+			}
 		}
 	}
 

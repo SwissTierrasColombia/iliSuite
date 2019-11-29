@@ -15,6 +15,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 
 public class ValidateDataController implements ParamsController {
@@ -32,6 +33,7 @@ public class ValidateDataController implements ParamsController {
 		this.interlisExecutable = interlisExecutable;
 		paramsList = new ArrayList<Map<String, String>>();
 		wizard = new Wizard();
+		wizard.setMargin(new Insets(15));
 		wizard.setHasExecution(true);
 		wizard.add(new ValidateOptionsView(this));
 		wizard.add(new FinishActionView(this));

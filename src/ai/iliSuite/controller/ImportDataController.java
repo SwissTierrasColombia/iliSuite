@@ -22,6 +22,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 
 public class ImportDataController implements DbSelectorController, ParamsController {
@@ -76,6 +77,7 @@ public class ImportDataController implements DbSelectorController, ParamsControl
 		importDataOptions = new ImportDataOptionsView(this);
 
 		wizard = new Wizard();
+		wizard.setMargin(new Insets(15));
 		wizard.setHasExecution(true);
 		wizard.setOnBack(goBack);
 		wizard.setOnCancel(goBack);

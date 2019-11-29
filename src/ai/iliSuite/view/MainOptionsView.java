@@ -12,8 +12,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -69,6 +69,9 @@ public class MainOptionsView implements Initializable {
 		this.controller = controller;
 		viewRootNode = ResourceUtil.loadResource(EnumPaths.WIZARD_LAYOUT, EnumPaths.RESOURCE_BUNDLE, this);
 		Parent content = ResourceUtil.loadResource(EnumPaths.MAIN_OPTIONS, EnumPaths.RESOURCE_BUNDLE, this);
+		
+		BorderPane.setMargin(content, new Insets(15));
+		
 		contentPane.setCenter(content);
 		
 		initButtons();

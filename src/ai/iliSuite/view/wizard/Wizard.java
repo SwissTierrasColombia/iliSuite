@@ -8,6 +8,7 @@ import ai.iliSuite.view.util.navigation.ResourceUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -15,17 +16,16 @@ import javafx.scene.layout.BorderPane;
 public class Wizard extends BaseWizard implements Initializable {
 	private ResourceBundle applicationBundle;
 	private Parent mainView;
-	
+	private Insets margin;
+
 	@FXML
 	private Button btnBack;
 	@FXML
 	private Button btnNext;
 	@FXML
-	private Button btnCancel;
-	
+	private Button btnCancel;	
 	@FXML
 	private BorderPane contentPane;
-	
 
 	public Wizard() throws IOException {
 		mainView = ResourceUtil.loadResource(EnumPaths.WIZARD_LAYOUT, EnumPaths.RESOURCE_BUNDLE, this);
@@ -46,7 +46,9 @@ public class Wizard extends BaseWizard implements Initializable {
 
 	@Override
 	protected void drawPage(StepViewController item) {
-		contentPane.setCenter(item.getGraphicComponent());
+		Parent content = item.getGraphicComponent();
+		BorderPane.setMargin(content, margin);
+		contentPane.setCenter(content);
 	}
 
 	@Override
@@ -62,5 +64,9 @@ public class Wizard extends BaseWizard implements Initializable {
 		}
 		String buttonText = applicationBundle.getString(buttonTextKey);
 		btnNext.setText(buttonText);
+	}
+	
+	public void setMargin(Insets margin) {
+		this.margin = margin;
 	}
 }

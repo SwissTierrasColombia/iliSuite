@@ -9,6 +9,7 @@ import ai.iliSuite.view.wizard.EmptyWizardException;
 import ai.iliSuite.view.wizard.Wizard;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 
 
@@ -31,6 +32,7 @@ public class OpenUmlEditorController implements ParamsController {
 				(ActionEvent e) -> { if(finishHandler != null) { finishHandler.handle(e); }};
 
 		wizard = new Wizard();
+		wizard.setMargin(new Insets(15));
 		wizard.setHasExecution(true);
 		wizard.setOnBack(goBack);
 		wizard.setOnCancel(goBack);
