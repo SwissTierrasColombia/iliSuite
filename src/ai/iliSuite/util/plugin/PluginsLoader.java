@@ -18,22 +18,17 @@ public class PluginsLoader {
 	}
 
 	public static void Load() {
-		ImplFactory iplug = null;
-		
-		iplug = new Ili2fgdbImpl();	
-		plugins.put(iplug.getAppName(), iplug);
+		ImplFactory[] lstIplug = new ImplFactory[] {
+				new Ili2fgdbImpl(),
+				new Ili2gpkgImpl(),
+				new Ili2MsSqlImpl(),
+				new Ili2oraImpl(),
+				new Ili2pgImpl()};
 
-		iplug = new Ili2gpkgImpl();	
-		plugins.put(iplug.getAppName(), iplug);
-		
-		iplug = new Ili2MsSqlImpl();	
-		plugins.put(iplug.getAppName(), iplug);
-		
-		iplug = new Ili2oraImpl();	
-		plugins.put(iplug.getAppName(), iplug);
-		
-		iplug = new Ili2pgImpl();	
-		plugins.put(iplug.getAppName(), iplug);
+		for(ImplFactory iplug:lstIplug) {
+			String key = iplug.getDbDescription().getAppName(); 
+			plugins.put(key, iplug);
+		}
 	}
 
 	public static Map<String, ImplFactory> getPlugins() {

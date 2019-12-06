@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import ai.iliSuite.base.Ili2db;
+import ai.iliSuite.impl.DbDescription;
 import ai.iliSuite.impl.EnumCustomPanel;
 import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.impl.PanelCustomizable;
@@ -81,19 +82,17 @@ public class GeneratePhysicalModelController implements ParamsController, DbSele
 		}
 	}
 	
+	// FIX Repeated code
 	private void initLstDbDescription() {
 		Map<String, ImplFactory> lstPlugin = PluginsLoader.getPlugins();
 		lstDbDescription = new HashMap<String, DbDescription>();
 		
 		for(Entry<String, ImplFactory> item : lstPlugin.entrySet()) {
 			ImplFactory pluginItem = (ImplFactory) item.getValue();
-			DbDescription description = new DbDescription();
+			DbDescription description = pluginItem.getDbDescription();
 			String dbKey = item.getKey();
-			description.setKey(dbKey);
-			description.setName(pluginItem.getNameDB());
-			description.setHelpText(pluginItem.getHelpText());
 			
-			lstDbDescription.put(item.getKey(), description);
+			lstDbDescription.put(dbKey, description);
 		}
 	}
 	@Override

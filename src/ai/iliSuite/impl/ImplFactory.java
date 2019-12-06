@@ -6,10 +6,7 @@ import ai.iliSuite.impl.dbconn.Ili2DbScope;
 import javafx.scene.Parent;
 
 public interface ImplFactory {
-	public String getAppName();
-	public String getAppVersion();
-	public String getNameDB();
-	public String getHelpText();
+	public DbDescription getDbDescription();
 	public Parent getDbConfigPanel();
 	public void loadDbConfigPanel(boolean createSchema);
 	public Map<String,String> getConnectionsParams();

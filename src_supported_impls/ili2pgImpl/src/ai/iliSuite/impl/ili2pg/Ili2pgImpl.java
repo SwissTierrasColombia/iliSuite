@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import ai.iliSuite.impl.DbDescription;
 import ai.iliSuite.impl.EnumCustomPanel;
 import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.impl.PanelCustomizable;
@@ -14,6 +15,7 @@ import ai.iliSuite.impl.dbconn.Ili2DbScope;
 import ai.iliSuite.impl.ili2pg.dbconn.Ili2PgScope;
 import ai.iliSuite.impl.ili2pg.dbconn.PostgresConnection;
 import ai.iliSuite.impl.ili2pg.view.DatabaseOptionsController;
+import ch.ehi.ili2db.AbstractMain;
 import ch.ehi.ili2pg.PgMain;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -34,14 +36,15 @@ public class Ili2pgImpl implements ImplFactory {
 	}
 
 	@Override
-	public String getNameDB() {
-		return "Postgresql";
-	}
-
-	@Override
-	public String getHelpText() {
+	public DbDescription getDbDescription() {
 		ResourceBundle bundle = ResourceBundle.getBundle("ai.iliSuite.impl.ili2pg.resources.application");
-		return bundle.getString("database.description");
+		AbstractMain mainApp = new PgMain();
+		String dbName = "Postgresql";
+		String helpText = bundle.getString("database.description");
+		String appName = mainApp.getAPP_NAME();
+		String appVersion = mainApp.getVersion();
+		
+		return new DbDescription(appName, appVersion, dbName, helpText);
 	}
 
 	@Override
@@ -85,16 +88,6 @@ public class Ili2pgImpl implements ImplFactory {
 	@Override
 	public Ili2DbScope getScope(){
 		return new Ili2PgScope(connection);
-	}
-
-	@Override
-	public String getAppName() {
-		return (new PgMain()).getAPP_NAME();
-	}
-
-	@Override
-	public String getAppVersion() {
-		return (new PgMain()).getVersion();
 	}
 
 	@Override

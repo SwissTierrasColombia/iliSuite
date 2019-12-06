@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import ai.iliSuite.controller.DbDescription;
 import ai.iliSuite.controller.DbSelectorController;
+import ai.iliSuite.impl.DbDescription;
 import ai.iliSuite.view.util.navigation.EnumPaths;
 import ai.iliSuite.view.util.navigation.ResourceUtil;
 import ai.iliSuite.view.wizard.StepArgs;
@@ -90,8 +90,8 @@ public class DatabaseSelectionView  extends StepViewController implements Initia
 		
 		for (DbDescription item:textDatabases.values()) {
 			rowIndex = i/columns;
-			ToggleButton btnItem = new ToggleButton(item.getName());
-			btnItem.setUserData(item.getKey());
+			ToggleButton btnItem = new ToggleButton(item.getDbName());
+			btnItem.setUserData(item.getAppName());
 			btnItem.setToggleGroup(databaseButtonGroup);
 			btnItem.setPrefWidth(120);
 			btnItem.setPrefHeight(50);

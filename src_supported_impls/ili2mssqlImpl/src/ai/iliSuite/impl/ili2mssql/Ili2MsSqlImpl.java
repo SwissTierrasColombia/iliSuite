@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import ai.iliSuite.impl.DbDescription;
 import ai.iliSuite.impl.EnumCustomPanel;
 import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.impl.PanelCustomizable;
@@ -13,7 +14,9 @@ import ai.iliSuite.impl.dbconn.Ili2DbScope;
 import ai.iliSuite.impl.ili2mssql.dbconn.Ili2MsSqlScope;
 import ai.iliSuite.impl.ili2mssql.dbconn.MsSqlConnection;
 import ai.iliSuite.impl.ili2mssql.view.DatabaseOptionsController;
+import ch.ehi.ili2db.AbstractMain;
 import ch.ehi.ili2mssql.MsSqlMain;
+import ch.ehi.ili2pg.PgMain;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
@@ -22,16 +25,17 @@ public class Ili2MsSqlImpl implements ImplFactory {
 	private IController controllerDbConfigPanel;
 	private Parent dbConfigPanel;
 	private AbstractConnection connection;
-
+	
 	@Override
-	public String getNameDB() {
-		return "MS SQL Server";
-	}
-
-	@Override
-	public String getHelpText() {
+	public DbDescription getDbDescription() {
 		ResourceBundle bundle = ResourceBundle.getBundle("ai.iliSuite.impl.ili2mssql.resources.application");
-		return bundle.getString("database.description");
+		AbstractMain mainApp = new MsSqlMain();
+		String dbName = "MsSQL Server";
+		String helpText = bundle.getString("database.description");
+		String appName = mainApp.getAPP_NAME();
+		String appVersion = mainApp.getVersion();
+		
+		return new DbDescription(appName, appVersion, dbName, helpText);
 	}
 
 	@Override
@@ -84,16 +88,6 @@ public class Ili2MsSqlImpl implements ImplFactory {
 	@Override
 	public Ili2DbScope getScope(){
 		return new Ili2MsSqlScope(connection);
-	}
-	
-	@Override
-	public String getAppName() {
-		return (new MsSqlMain()).getAPP_NAME();
-	}
-
-	@Override
-	public String getAppVersion() {
-		return (new MsSqlMain()).getVersion();
 	}
 
 	@Override

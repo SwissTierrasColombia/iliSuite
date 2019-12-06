@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import ai.iliSuite.impl.DbDescription;
 import ai.iliSuite.impl.EnumCustomPanel;
 import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.impl.PanelCustomizable;
@@ -13,6 +14,7 @@ import ai.iliSuite.impl.dbconn.Ili2DbScope;
 import ai.iliSuite.impl.ili2gpkg.dbconn.Ili2geopakageScope;
 import ai.iliSuite.impl.ili2gpkg.dbconn.SqlLiteConnection;
 import ai.iliSuite.impl.ili2gpkg.view.DatabaseOptionsController;
+import ch.ehi.ili2db.AbstractMain;
 import ch.ehi.ili2gpkg.GpkgMain;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,16 +26,17 @@ public class Ili2gpkgImpl implements ImplFactory{
 	private AbstractConnection connection;
 
 	@Override
-	public String getNameDB() {
-		return "Geopackage";
-	}
-
-	@Override
-	public String getHelpText() {
+	public DbDescription getDbDescription() {
 		ResourceBundle bundle = ResourceBundle.getBundle("ai.iliSuite.impl.ili2gpkg.resources.application");
-		return bundle.getString("database.description");
+		AbstractMain mainApp = new GpkgMain();
+		String dbName = "Geopackage";
+		String helpText = bundle.getString("database.description");
+		String appName = mainApp.getAPP_NAME();
+		String appVersion = mainApp.getVersion();
+		
+		return new DbDescription(appName, appVersion, dbName, helpText);
 	}
-
+	
 	@Override
 	public Parent getDbConfigPanel() {
 		return dbConfigPanel;
@@ -78,16 +81,6 @@ public class Ili2gpkgImpl implements ImplFactory{
 	public int runMain(String[] args) {
 		(new GpkgMain()).domain(args);
 		return 0;
-	}
-	
-	@Override
-	public String getAppName() {
-		return (new GpkgMain()).getAPP_NAME();
-	}
-
-	@Override
-	public String getAppVersion() {
-		return (new GpkgMain()).getVersion();
 	}
 
 	@Override

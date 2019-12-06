@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import ai.iliSuite.base.Ili2db;
+import ai.iliSuite.impl.DbDescription;
 import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.util.exception.ExitException;
 import ai.iliSuite.util.params.EnumParams;
@@ -56,13 +57,10 @@ public class ExportDataController implements ParamsController, DbSelectorControl
 		
 		for(Entry<String, ImplFactory> item : lstPlugin.entrySet()) {
 			ImplFactory pluginItem = (ImplFactory) item.getValue();
-			DbDescription description = new DbDescription();
+			DbDescription description = pluginItem.getDbDescription();
 			String dbKey = item.getKey();
-			description.setKey(dbKey);
-			description.setName(pluginItem.getNameDB());
-			description.setHelpText(pluginItem.getHelpText());
 			
-			lstDbDescription.put(item.getKey(), description);
+			lstDbDescription.put(dbKey, description);
 		}
 	}
 
