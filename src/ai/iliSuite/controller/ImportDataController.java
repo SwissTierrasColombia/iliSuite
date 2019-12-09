@@ -9,7 +9,12 @@ import java.util.Map.Entry;
 
 import ai.iliSuite.base.Ili2db;
 import ai.iliSuite.impl.DbDescription;
+import ai.iliSuite.impl.EnumCustomPanel;
 import ai.iliSuite.impl.ImplFactory;
+import ai.iliSuite.impl.PanelCustomizable;
+import ai.iliSuite.impl.controller.IController;
+import ai.iliSuite.impl.dbconn.AbstractConnection;
+import ai.iliSuite.impl.dbconn.Ili2DbScope;
 import ai.iliSuite.util.exception.ExitException;
 import ai.iliSuite.util.params.EnumParams;
 import ai.iliSuite.util.plugin.PluginsLoader;
@@ -71,7 +76,7 @@ public class ImportDataController implements DbSelectorController, ParamsControl
 		EventHandler<ActionEvent> finish = 
 				(ActionEvent e) -> { if(finishHandler != null) { finishHandler.handle(e); }};
 		
-		dbSelectionScreen = new DatabaseOptionsView(this, false);
+		dbSelectionScreen = new DatabaseOptionsView(this);
 		importDataOptions = new ImportDataOptionsView(this);
 
 		wizard = new Wizard();
@@ -152,16 +157,16 @@ public class ImportDataController implements DbSelectorController, ParamsControl
 	public void setDatabase(String dbKey) {
 		dbImpl = PluginsLoader.getPluginByKey(dbKey);
 		model.setDbImpl(dbImpl);
-		dbSelectionScreen.setDbFactory(dbImpl);
-		dbSelectionScreen.loadDbOptions();
-
-		// FIX panel into plugin
-//		Map<EnumCustomPanel, PanelCustomizable> lstCustomPanel = dbImpl.getCustomPanels();
-//		
-//		PanelCustomizable customPanelSchemaImport = lstCustomPanel.get(EnumCustomPanel.EXPORT);
-//		if(customPanelSchemaImport != null) {
-//			exportDataOptions.setCustomPanelSchemaImport(customPanelSchemaImport);
-//		}
+		
+		AbstractConnection connection = dbImpl.getConnector();
+		IController dbPanel;
+		try {
+			dbPanel = dbImpl.getController(connection, false);
+			dbSelectionScreen.setDbPanel(dbPanel);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Override

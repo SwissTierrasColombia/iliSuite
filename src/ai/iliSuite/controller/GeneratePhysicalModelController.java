@@ -12,6 +12,8 @@ import ai.iliSuite.impl.DbDescription;
 import ai.iliSuite.impl.EnumCustomPanel;
 import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.impl.PanelCustomizable;
+import ai.iliSuite.impl.controller.IController;
+import ai.iliSuite.impl.dbconn.AbstractConnection;
 import ai.iliSuite.util.exception.ExitException;
 import ai.iliSuite.util.params.EnumParams;
 import ai.iliSuite.util.plugin.PluginsLoader;
@@ -59,7 +61,7 @@ public class GeneratePhysicalModelController implements ParamsController, DbSele
 		EventHandler<ActionEvent> finish = 
 				(ActionEvent e) -> { if(finishHandler != null) { finishHandler.handle(e); }};
 		
-		dbSelectionScreen = new DatabaseOptionsView(this, true);
+		dbSelectionScreen = new DatabaseOptionsView(this);
 		modelConvertOptions = new ModelConvertOptionsView(this);
 
 		wizard = new Wizard();
@@ -163,13 +165,21 @@ public class GeneratePhysicalModelController implements ParamsController, DbSele
 	public void setDatabase(String dbKey) {
 		dbImpl = PluginsLoader.getPluginByKey(dbKey);
 		model.setDbImpl(dbImpl);
-		dbSelectionScreen.setDbFactory(dbImpl);
-		dbSelectionScreen.loadDbOptions();
 		
-		PanelCustomizable customPanelSchemaImport = dbImpl.getCustomPanel(EnumCustomPanel.SCHEMA_IMPORT);
+		AbstractConnection connection = dbImpl.getConnector();
+		IController dbPanel;
+		try {
+			dbPanel = dbImpl.getController(connection, true);
+			dbSelectionScreen.setDbPanel(dbPanel);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		PanelCustomizable customPanel = dbImpl.getCustomPanel(EnumCustomPanel.SCHEMA_IMPORT);
 
-		if(customPanelSchemaImport != null) {
-			modelConvertOptions.setCustomPanelSchemaImport(customPanelSchemaImport);
+		if(customPanel != null) {
+			modelConvertOptions.setCustomPanel(customPanel);
 		}
 	}
 

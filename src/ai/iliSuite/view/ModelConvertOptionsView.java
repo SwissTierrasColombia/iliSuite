@@ -584,8 +584,8 @@ public class ModelConvertOptionsView extends StepViewController implements Initi
 		}
 	}
 
-	public void setCustomPanelSchemaImport(PanelCustomizable customPanelSchemaImport) {
-		this.customPanelSchemaImport = customPanelSchemaImport;
+	public void setCustomPanel(PanelCustomizable customPanel) {
+		this.customPanelSchemaImport = customPanel;
 		
 		if(this.customPanelSchemaImport != null) {
 			Tab tab = new Tab(customPanelSchemaImport.getName());

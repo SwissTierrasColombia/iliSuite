@@ -15,14 +15,11 @@ import javafx.scene.layout.BorderPane;
 public class DatabaseOptionsView extends StepViewController {
 
 	private BorderPane mainPane;	
-	boolean createSchema;
-	private ImplFactory dbFactory;
 	private ParamsController controller;
 	private Map<String,String> params;
 	private IController dbPanel;
 		 
-	public DatabaseOptionsView(ParamsController controller, boolean createSchema) {
-		this.createSchema = createSchema;
+	public DatabaseOptionsView(ParamsController controller) {
 		this.controller = controller;
 		mainPane = new BorderPane();
 		mainPane.prefWidth(700);
@@ -49,22 +46,9 @@ public class DatabaseOptionsView extends StepViewController {
 	public Parent getGraphicComponent() {
 		return mainPane;
 	}
-
-	public void setDbFactory(ImplFactory dbFactory) {
-		this.dbFactory = dbFactory;
-	}
 	
-	public void loadDbOptions() {
-		AbstractConnection connection = dbFactory.getConnector();
-		
-
-		
-		try {
-			dbPanel = dbFactory.getController(connection, createSchema);
-			mainPane.setCenter(dbPanel.getGraphicComponent());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void setDbPanel(IController dbPanel) {
+		this.dbPanel = dbPanel; 
+		mainPane.setCenter(dbPanel.getGraphicComponent());
 	}
 }
