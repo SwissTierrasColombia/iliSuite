@@ -1,7 +1,6 @@
 package ai.iliSuite.impl.ili2mssql;
 
 import java.io.IOException;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import ai.iliSuite.impl.DbDescription;
@@ -16,15 +15,9 @@ import ai.iliSuite.impl.ili2mssql.dbconn.MsSqlConnection;
 import ai.iliSuite.impl.ili2mssql.view.DatabaseOptionsController;
 import ch.ehi.ili2db.AbstractMain;
 import ch.ehi.ili2mssql.MsSqlMain;
-import ch.ehi.ili2pg.PgMain;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+
 
 public class Ili2MsSqlImpl implements ImplFactory {
-
-	private IController controllerDbConfigPanel;
-	private Parent dbConfigPanel;
-	private AbstractConnection connection;
 	
 	@Override
 	public DbDescription getDbDescription() {
@@ -37,40 +30,10 @@ public class Ili2MsSqlImpl implements ImplFactory {
 		
 		return new DbDescription(appName, appVersion, dbName, helpText);
 	}
-
+	
 	@Override
-	public Parent getDbConfigPanel() {
-		return dbConfigPanel;
-	}
-
-	@Override
-	public Map<String, String> getConnectionsParams() {
-		Map<String,String> result = null;
-		if(controllerDbConfigPanel!=null)
-			result = controllerDbConfigPanel.getParams();
-		return result;
-	}
-
-	@Override
-	public void loadDbConfigPanel(boolean createSchema) {
-		//TODO instancia no en constructor
-		connection = new MsSqlConnection();
-		
-		// TODO verificar rutas
-		ResourceBundle bundle = ResourceBundle.getBundle("ai.iliSuite.impl.ili2mssql.resources.application");
-		FXMLLoader loader = new FXMLLoader(Ili2MsSqlImpl.class.getResource("/ai/iliSuite/impl/ili2mssql/view/DatabaseOptions.fxml"), bundle);
-		
-		loader.setController(new DatabaseOptionsController());
-		
-		try {
-			dbConfigPanel = loader.load();
-			controllerDbConfigPanel = loader.getController();
-			controllerDbConfigPanel.setConnection(connection);
-			controllerDbConfigPanel.setCreateSchema(createSchema);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public IController getController(AbstractConnection connection, boolean createSchema) throws IOException {
+		return new DatabaseOptionsController(connection, createSchema);
 	}
 
 	@Override
@@ -79,19 +42,19 @@ public class Ili2MsSqlImpl implements ImplFactory {
 		
 		return 0;
 	}
-	
-	static public void main(String args[]){
-		args = new String[]{"--help"};
-		new MsSqlMain().domain(args);
-	}
 
 	@Override
-	public Ili2DbScope getScope(){
+	public Ili2DbScope getScope(AbstractConnection connection){
 		return new Ili2MsSqlScope(connection);
 	}
 
 	@Override
-	public Map<EnumCustomPanel, PanelCustomizable> getCustomPanels() {
+	public PanelCustomizable getCustomPanel(EnumCustomPanel panelType) {
 		return null;
+	}
+
+	@Override
+	public AbstractConnection getConnector() {
+		return new MsSqlConnection();
 	}
 }

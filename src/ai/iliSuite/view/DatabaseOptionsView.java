@@ -1,9 +1,12 @@
 package ai.iliSuite.view;
 
+import java.io.IOException;
 import java.util.Map;
 
 import ai.iliSuite.controller.ParamsController;
 import ai.iliSuite.impl.ImplFactory;
+import ai.iliSuite.impl.controller.IController;
+import ai.iliSuite.impl.dbconn.AbstractConnection;
 import ai.iliSuite.view.wizard.StepArgs;
 import ai.iliSuite.view.wizard.StepViewController;
 import javafx.scene.Parent;
@@ -16,6 +19,7 @@ public class DatabaseOptionsView extends StepViewController {
 	private ImplFactory dbFactory;
 	private ParamsController controller;
 	private Map<String,String> params;
+	private IController dbPanel;
 		 
 	public DatabaseOptionsView(ParamsController controller, boolean createSchema) {
 		this.createSchema = createSchema;
@@ -28,7 +32,7 @@ public class DatabaseOptionsView extends StepViewController {
 	@Override
 	public void goForward(StepArgs args) {
 		super.goForward(args);
-		params = dbFactory.getConnectionsParams();		
+		params = dbPanel.getParams();		
 		boolean isValid = (params != null);
 
 		args.setCancel(!isValid);
@@ -51,7 +55,16 @@ public class DatabaseOptionsView extends StepViewController {
 	}
 	
 	public void loadDbOptions() {
-		dbFactory.loadDbConfigPanel(createSchema);
-		mainPane.setCenter(dbFactory.getDbConfigPanel());
+		AbstractConnection connection = dbFactory.getConnector();
+		
+
+		
+		try {
+			dbPanel = dbFactory.getController(connection, createSchema);
+			mainPane.setCenter(dbPanel.getGraphicComponent());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

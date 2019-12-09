@@ -166,14 +166,10 @@ public class GeneratePhysicalModelController implements ParamsController, DbSele
 		dbSelectionScreen.setDbFactory(dbImpl);
 		dbSelectionScreen.loadDbOptions();
 		
-		// FIX panel into plugin
-		Map<EnumCustomPanel, PanelCustomizable> lstCustomPanel = dbImpl.getCustomPanels();
-		
-		if(lstCustomPanel != null) {
-			PanelCustomizable customPanelSchemaImport = lstCustomPanel.get(EnumCustomPanel.SCHEMA_IMPORT);
-			if(customPanelSchemaImport != null) {
-				modelConvertOptions.setCustomPanelSchemaImport(customPanelSchemaImport);
-			}
+		PanelCustomizable customPanelSchemaImport = dbImpl.getCustomPanel(EnumCustomPanel.SCHEMA_IMPORT);
+
+		if(customPanelSchemaImport != null) {
+			modelConvertOptions.setCustomPanelSchemaImport(customPanelSchemaImport);
 		}
 	}
 

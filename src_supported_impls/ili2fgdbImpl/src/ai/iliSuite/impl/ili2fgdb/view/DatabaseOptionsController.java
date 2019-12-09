@@ -1,6 +1,7 @@
 package ai.iliSuite.impl.ili2fgdb.view;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,10 +11,12 @@ import java.util.ResourceBundle;
 
 import ai.iliSuite.impl.controller.IController;
 import ai.iliSuite.impl.dbconn.AbstractConnection;
+import ai.iliSuite.view.util.navigation.ResourceUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
@@ -37,10 +40,20 @@ public class DatabaseOptionsController implements IController, Initializable {
 	private Button btnBrowse;
 	
 	private List<Node> listOfRequired;
+	private Parent viewRootNode;
 
+	public DatabaseOptionsController(AbstractConnection connection, boolean createSchema) throws IOException {
+		this.connection = connection;
+		this.createSchema = createSchema;
+		
+		String strBundlePath = "ai.iliSuite.impl.ili2fgdb.resources.application";
+		String strResourcePath = "/ai/iliSuite/impl/ili2fgdb/view/DatabaseOptions.fxml";
+		// TODO Posible carga de componentes antes de ser necesario
+		viewRootNode = ResourceUtil.loadResource(strResourcePath, strBundlePath, this);
+	}
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		applicationBundle = arg1;
 		listOfRequired = new ArrayList<>();
 		listOfRequired.add(tf_folder);
@@ -69,12 +82,7 @@ public class DatabaseOptionsController implements IController, Initializable {
 
 		return result;
 	}
-
-	@Override
-	public void setConnection(AbstractConnection connection) {
-		this.connection = connection;
-	}
-
+	
 	public void setCreateSchema(boolean createSchema) {
 		this.createSchema = createSchema;
 	}
@@ -119,4 +127,8 @@ public class DatabaseOptionsController implements IController, Initializable {
 		return toValid;
 	}
 
+	@Override
+	public Parent getGraphicComponent() {
+		return viewRootNode;
+	}
 }

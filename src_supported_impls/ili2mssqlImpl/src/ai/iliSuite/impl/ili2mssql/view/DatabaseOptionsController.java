@@ -1,5 +1,6 @@
 package ai.iliSuite.impl.ili2mssql.view;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,10 +12,12 @@ import java.util.ResourceBundle;
 import ai.iliSuite.impl.controller.IController;
 import ai.iliSuite.impl.dbconn.AbstractConnection;
 import ai.iliSuite.impl.ili2mssql.EnumIli2MsSqlParams;
+import ai.iliSuite.view.util.navigation.ResourceUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -49,7 +52,18 @@ public class DatabaseOptionsController implements IController, Initializable {
 	private List<Node> listOfRequired;
 
 	private boolean createSchema;
+	private Parent viewRootNode;
 
+	public DatabaseOptionsController(AbstractConnection connection, boolean createSchema) throws IOException {
+		this.connection = connection;
+		this.createSchema = createSchema;
+		
+		String strBundlePath = "ai.iliSuite.impl.ili2mssql.resources.application";
+		String strResourcePath = "/ai/iliSuite/impl/ili2mssql/view/DatabaseOptions.fxml";
+		// TODO Posible carga de componentes antes de ser necesario
+		viewRootNode = ResourceUtil.loadResource(strResourcePath, strBundlePath, this);
+	}
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		applicationBundle = arg1;
@@ -165,11 +179,6 @@ public class DatabaseOptionsController implements IController, Initializable {
 		return toValid;
 	}
 
-	@Override
-	public void setConnection(AbstractConnection connection) {
-		this.connection = connection;
-	}
-
 	@FXML
 	public void onClick_chkIsWindowsAuth(ActionEvent event) {
 		boolean checked = chkIsWindowsAuth.isSelected();
@@ -180,8 +189,7 @@ public class DatabaseOptionsController implements IController, Initializable {
 	}
 
 	@Override
-	public void setCreateSchema(boolean createSchema) {
-		this.createSchema = createSchema;
-		
+	public Parent getGraphicComponent() {
+		return viewRootNode;
 	}
 }

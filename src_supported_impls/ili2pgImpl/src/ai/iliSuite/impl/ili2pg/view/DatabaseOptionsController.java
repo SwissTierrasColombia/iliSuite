@@ -1,5 +1,6 @@
 package ai.iliSuite.impl.ili2pg.view;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,9 +12,11 @@ import java.util.ResourceBundle;
 import ai.iliSuite.impl.controller.IController;
 import ai.iliSuite.impl.dbconn.AbstractConnection;
 import ai.iliSuite.impl.ili2pg.EnumIli2pgParams;
+import ai.iliSuite.view.util.navigation.ResourceUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
@@ -42,6 +45,17 @@ public class DatabaseOptionsController implements IController, Initializable {
 	private List<Node> listOfRequired;
 	
 	private boolean createSchema;
+	private Parent viewRootNode;
+	
+	public DatabaseOptionsController(AbstractConnection connection, boolean createSchema) throws IOException {
+		this.connection = connection;
+		this.createSchema = createSchema;
+		
+		String strBundlePath = "ai.iliSuite.impl.ili2pg.resources.application";
+		String strResourcePath = "/ai/iliSuite/impl/ili2pg/view/DatabaseOptions.fxml";
+		// TODO Posible carga de componentes antes de ser necesario
+		viewRootNode = ResourceUtil.loadResource(strResourcePath, strBundlePath, this);
+	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -139,12 +153,7 @@ public class DatabaseOptionsController implements IController, Initializable {
 	}
 
 	@Override
-	public void setConnection(AbstractConnection connection) {
-		this.connection = connection; 
-	}
-
-	@Override
-	public void setCreateSchema(boolean createSchema) {
-		this.createSchema = createSchema;
+	public Parent getGraphicComponent() {
+		return viewRootNode;
 	}
 }
