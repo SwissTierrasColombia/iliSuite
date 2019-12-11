@@ -61,7 +61,7 @@ public class GeneratePhysicalModelController implements ParamsController, DbSele
 		EventHandler<ActionEvent> finish = 
 				(ActionEvent e) -> { if(finishHandler != null) { finishHandler.handle(e); }};
 		
-		dbSelectionScreen = new DatabaseOptionsView(this);
+		dbSelectionScreen = new DatabaseOptionsView(this, this);
 		modelConvertOptions = new ModelConvertOptionsView(this);
 
 		wizard = new Wizard();
@@ -162,7 +162,7 @@ public class GeneratePhysicalModelController implements ParamsController, DbSele
 	}
 
 	@Override
-	public void setDatabase(String dbKey) {
+	public void databaseSelected(String dbKey) {
 		dbImpl = PluginsLoader.getPluginByKey(dbKey);
 		model.setDbImpl(dbImpl);
 		
@@ -181,6 +181,12 @@ public class GeneratePhysicalModelController implements ParamsController, DbSele
 		if(customPanel != null) {
 			modelConvertOptions.setCustomPanel(customPanel);
 		}
+	}
+
+	@Override
+	public boolean databaseConnecting(Map<String, String> connectionParams) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

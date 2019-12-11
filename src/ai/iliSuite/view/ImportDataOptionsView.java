@@ -101,6 +101,7 @@ public class ImportDataOptionsView extends StepViewController implements Initial
 	private Parent viewRootNode;
 	private ParamsController controller;
 	private Map<String,String> params;
+	private List<String> datasetList;
 	
 	public ImportDataOptionsView(ParamsController controller) throws IOException {
 		// XXX Posible carga de componentes antes de ser necesario
@@ -111,22 +112,12 @@ public class ImportDataOptionsView extends StepViewController implements Initial
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		applicationBundle = resources;
-		/*try{
-			isScoped = scope.isScoped();
-		}catch(SQLException|ClassNotFoundException e){
-			e.printStackTrace();
-		}finally{
-			if(!isScoped){
-				radio_update.setDisable(true);
-				radio_replace.setDisable(true);
-				radio_delete.setDisable(true);
-			}
-			tf_datasetEditable.setDisable(true);
-			tf_datasetSelectable.setDisable(true);
-			btn_browseDataset.setDisable(true);			
-		}*/
+
 		addInitListeners();
 		
+		tf_datasetEditable.setDisable(true);
+		tf_datasetSelectable.setDisable(true);
+		btn_browseDataset.setDisable(true);
 		chk_disableRounding.setSelected(true);
 		
 		tf_modelDir.setText(Config.getInstance().getModelDir());
@@ -237,7 +228,20 @@ public class ImportDataOptionsView extends StepViewController implements Initial
 
 	@FXML
 	private void handleAddDatasetButton(ActionEvent e) {
-		// FIX add scope
+		ArrayList<String> selectedValues = new ArrayList<>();
+
+		if (!tf_datasetSelectable.getText().isEmpty()) {
+			selectedValues = new ArrayList<String>(Arrays.asList(tf_datasetSelectable.getText().split(";")));
+		}
+
+		MultipleSelectionDialog dialog = new MultipleSelectionDialog(datasetList, selectedValues,SelectionMode.SINGLE);
+
+		dialog.setTitle(applicationBundle.getString("general.dataset"));
+		Optional<List<String>> result = dialog.showAndWait();
+
+		if (result.isPresent()) {
+			tf_datasetSelectable.setText(String.join(";", result.get()));
+		}
 	}
 
 	@FXML
@@ -417,5 +421,19 @@ public class ImportDataOptionsView extends StepViewController implements Initial
 			updateParams();
 			controller.addParams(params);
 		}
+	}
+
+	public void setScoped(boolean isScoped) {
+		this.isScoped = isScoped;
+		
+		if(!isScoped){
+			radio_update.setDisable(true);
+			radio_replace.setDisable(true);
+			radio_delete.setDisable(true);
+		}
+	}
+
+	public void setDatasetList(List<String> datasetList) {
+		this.datasetList = datasetList;
 	}
 }

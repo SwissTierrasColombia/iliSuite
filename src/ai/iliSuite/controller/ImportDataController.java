@@ -1,6 +1,7 @@
 package ai.iliSuite.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,6 +49,8 @@ public class ImportDataController implements DbSelectorController, ParamsControl
 	
 	private Thread commandExecutionThread;
 	
+	private AbstractConnection connection;
+	
 	public ImportDataController(Ili2db model) throws IOException {
 		this.model = model;
 		paramsList = new ArrayList<Map<String, String>>();
@@ -76,7 +79,7 @@ public class ImportDataController implements DbSelectorController, ParamsControl
 		EventHandler<ActionEvent> finish = 
 				(ActionEvent e) -> { if(finishHandler != null) { finishHandler.handle(e); }};
 		
-		dbSelectionScreen = new DatabaseOptionsView(this);
+		dbSelectionScreen = new DatabaseOptionsView(this, this);
 		importDataOptions = new ImportDataOptionsView(this);
 
 		wizard = new Wizard();
@@ -154,11 +157,11 @@ public class ImportDataController implements DbSelectorController, ParamsControl
 	}
 	
 	@Override
-	public void setDatabase(String dbKey) {
+	public void databaseSelected(String dbKey) {
 		dbImpl = PluginsLoader.getPluginByKey(dbKey);
 		model.setDbImpl(dbImpl);
 		
-		AbstractConnection connection = dbImpl.getConnector();
+		connection = dbImpl.getConnector();
 		IController dbPanel;
 		try {
 			dbPanel = dbImpl.getController(connection, false);
@@ -177,5 +180,22 @@ public class ImportDataController implements DbSelectorController, ParamsControl
 	@Override
 	public void setOnGoBack(EventHandler<ActionEvent> handler) {
 		this.goBackHandler = handler;
+	}
+
+	@Override
+	public boolean databaseConnecting(Map<String, String> connectionParams) {
+		Ili2DbScope scope = dbImpl.getScope(connection);
+		
+		try {
+			boolean isScoped = scope.isScoped();
+			importDataOptions.setScoped(isScoped);
+			
+			importDataOptions.setDatasetList(scope.getDatasetList());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return true;
 	}
 }

@@ -259,8 +259,6 @@ public class ExportDataOptionsView  extends StepViewController implements Initia
 				if(result.isPresent()){
 					tf_dataset.setText(String.join(";", result.get()));
 				}
-			} catch (ClassNotFoundException e1) {
-				e1.printStackTrace();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -287,7 +285,7 @@ public class ExportDataOptionsView  extends StepViewController implements Initia
 					tf_baskets.setText(String.join(";", result.get()));
 				}
 			
-			}catch(ClassNotFoundException | SQLException e1){
+			}catch(SQLException e1){
 				e1.printStackTrace();
 			}
 
@@ -314,7 +312,7 @@ public class ExportDataOptionsView  extends StepViewController implements Initia
 					tf_topics.setText(String.join(";", result.get()));
 				}
 			
-			}catch(ClassNotFoundException | SQLException e1){
+			}catch(SQLException e1){
 				e1.printStackTrace();
 			}
 		}else if(source == btn_addModels){
@@ -339,7 +337,7 @@ public class ExportDataOptionsView  extends StepViewController implements Initia
 					tf_models.setText(String.join(";", result.get()));
 				}
 			
-			}catch(ClassNotFoundException | SQLException e1){
+			}catch(SQLException e1){
 				e1.printStackTrace();
 			}
 		}
@@ -440,15 +438,5 @@ public class ExportDataOptionsView  extends StepViewController implements Initia
 			controller.addParams(params);
 		}
 	}
-	
-//	public void setCustomPanelSchemaImport(PanelCustomizable customPanelSchemaImport) {
-//		this.customPanelSchemaImport = customPanelSchemaImport;
-//		
-//		if(this.customPanelSchemaImport != null) {
-//			Tab tab = new Tab(customPanelSchemaImport.getName());
-//			tab.setContent(customPanelSchemaImport.getPanel());
-//			tabOptions.getTabs().add(tab);
-//		}
-//	}
 
 }

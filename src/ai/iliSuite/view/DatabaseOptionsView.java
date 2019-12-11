@@ -3,6 +3,7 @@ package ai.iliSuite.view;
 import java.io.IOException;
 import java.util.Map;
 
+import ai.iliSuite.controller.DbSelectorController;
 import ai.iliSuite.controller.ParamsController;
 import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.impl.controller.IController;
@@ -12,15 +13,19 @@ import ai.iliSuite.view.wizard.StepViewController;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 
+
 public class DatabaseOptionsView extends StepViewController {
 
 	private BorderPane mainPane;	
 	private ParamsController controller;
 	private Map<String,String> params;
 	private IController dbPanel;
-		 
-	public DatabaseOptionsView(ParamsController controller) {
+	private DbSelectorController dbController;
+	
+	public DatabaseOptionsView(ParamsController controller, DbSelectorController dbController) {
 		this.controller = controller;
+		this.dbController = dbController;
+		
 		mainPane = new BorderPane();
 		mainPane.prefWidth(700);
 		mainPane.prefHeight(335);
@@ -39,6 +44,7 @@ public class DatabaseOptionsView extends StepViewController {
 				controller.removeParams(params);
 			}
 			controller.addParams(params);
+			dbController.databaseConnecting(params);
 		}
 	}
 

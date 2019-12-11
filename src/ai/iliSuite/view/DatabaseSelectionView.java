@@ -126,7 +126,7 @@ public class DatabaseSelectionView  extends StepViewController implements Initia
 		args.setCancel(cancel);
 		
 		if(!cancel) {
-			controller.setDatabase(selectedDatabase);
+			controller.databaseSelected(selectedDatabase);
 		}
 	}
 	

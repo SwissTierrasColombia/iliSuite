@@ -73,7 +73,7 @@ public class ExportDataController implements ParamsController, DbSelectorControl
 		EventHandler<ActionEvent> finish = 
 				(ActionEvent e) -> { if(finishHandler != null) { finishHandler.handle(e); }};
 		
-		dbSelectionScreen = new DatabaseOptionsView(this);
+		dbSelectionScreen = new DatabaseOptionsView(this, this);
 		exportDataOptions = new ExportDataOptionsView(this);
 
 		wizard = new Wizard();
@@ -96,7 +96,7 @@ public class ExportDataController implements ParamsController, DbSelectorControl
 		}
 	}
 	@Override
-	public void setDatabase(String dbKey) {
+	public void databaseSelected(String dbKey) {
 		dbImpl = PluginsLoader.getPluginByKey(dbKey);
 		model.setDbImpl(dbImpl);
 		AbstractConnection connection = dbImpl.getConnector();
@@ -172,6 +172,12 @@ public class ExportDataController implements ParamsController, DbSelectorControl
 	@Override
 	public void setOnGoBack(EventHandler<ActionEvent> handler) {
 		this.goBackHandler = handler;
+	}
+
+	@Override
+	public boolean databaseConnecting(Map<String, String> connectionParams) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }
