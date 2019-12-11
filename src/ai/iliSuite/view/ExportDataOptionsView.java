@@ -3,7 +3,6 @@ package ai.iliSuite.view;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,7 +13,6 @@ import java.util.ResourceBundle;
 
 import ai.iliSuite.application.data.Config;
 import ai.iliSuite.controller.ParamsController;
-import ai.iliSuite.impl.dbconn.Ili2DbScope;
 import ai.iliSuite.util.params.EnumParams;
 import ai.iliSuite.view.dialog.ModelDirDialog;
 import ai.iliSuite.view.dialog.MultipleSelectionDialog;
@@ -80,13 +78,16 @@ public class ExportDataOptionsView  extends StepViewController implements Initia
 	@FXML
 	private TextField tf_modelDir;
 	
-	private  Ili2DbScope scope;
-	
 	private ArrayList<Node> disableList;
 
 	private Parent viewRootNode;
 	private ParamsController controller;
 	private Map<String,String> params;
+	
+	private List<String> datasetList;
+	private List<String> topicList;
+	private List<String> modelList;
+	private List<String> basketList;
 	
 	public ExportDataOptionsView(ParamsController controller) throws IOException {
 		// XXX Posible carga de componentes antes de ser necesario
@@ -114,64 +115,26 @@ public class ExportDataOptionsView  extends StepViewController implements Initia
 		disableList.add(btn_addModels);
 	}
 	
-	public void setScope(Ili2DbScope scope) {
-		// FIX Scope doesn't work
-		this.scope = scope;
-		
-		disableList = new ArrayList<>();
-		disableList.add(tf_dataset);
-		disableList.add(tf_baskets);
-		disableList.add(tf_topics);
-		disableList.add(tf_models);
-		disableList.add(btn_addDataset);
-		disableList.add(btn_addBaskets);
-		disableList.add(btn_addTopics);
-		disableList.add(btn_addModels);
-		/*try{
-			if(false) {//!scope.isScoped()){
-				disableList.add(radio_baskets);
-				disableList.add(radio_dataset);
-				disableList.add(radio_topics);
-			}
-		}catch(SQLException|ClassNotFoundException e){
-			e.printStackTrace();
-		}finally{		*/
-			disableFields(disableList);
-		//}
-	}
-	
 	private void addInitListeners(){
 				
 		tg_selectedScope.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 		         if (tg_selectedScope.getSelectedToggle() == radio_dataset){
 		        	 enableOnly(tf_dataset, btn_addDataset);
-		        	 tf_dataset.setStyle(null);
-		        	 tf_baskets.setStyle(null);
-		        	 tf_models.setStyle(null);
-		        	 tf_topics.setStyle(null);
 		         }
 		         else if(tg_selectedScope.getSelectedToggle() == radio_baskets){
 		        	 enableOnly(tf_baskets, btn_addBaskets);
-		        	 tf_dataset.setStyle(null);
-		        	 tf_baskets.setStyle(null);
-		        	 tf_models.setStyle(null);
-		        	 tf_topics.setStyle(null);
 		         }
 		         else if(tg_selectedScope.getSelectedToggle() == radio_topics){
 		        	 enableOnly(tf_topics, btn_addTopics);
-		        	 tf_dataset.setStyle(null);
-		        	 tf_baskets.setStyle(null);
-		        	 tf_models.setStyle(null);
-		        	 tf_topics.setStyle(null);
 		         }
 		         else if(tg_selectedScope.getSelectedToggle() == radio_models){
 		        	 enableOnly(tf_models, btn_addModels);
-		        	 tf_dataset.setStyle(null);
-		        	 tf_baskets.setStyle(null);
-		        	 tf_models.setStyle(null);
-		        	 tf_topics.setStyle(null);
 		         }
+	        	 tf_dataset.setStyle(null);
+	        	 tf_baskets.setStyle(null);
+	        	 tf_models.setStyle(null);
+	        	 tf_topics.setStyle(null);
 		     } 
 		});
 		tf_xtfFilePath.textProperty().addListener(new ChangeListener<String>() {
@@ -238,108 +201,38 @@ public class ExportDataOptionsView  extends StepViewController implements Initia
 		}
 	}
 
+	private void openMultipleSelectionDialog(TextField textList, List<String> valuesList, String titleKey) {
+		ArrayList<String> selectedValues = new ArrayList<>();
+		
+		if(!textList.getText().isEmpty()){
+			selectedValues = new ArrayList<String>(Arrays.asList(textList.getText().split(";")));
+		}
+		
+		MultipleSelectionDialog dialog = new MultipleSelectionDialog(valuesList, selectedValues, SelectionMode.MULTIPLE);
+
+		dialog.setTitle(applicationBundle.getString(titleKey));
+		Optional<List<String>> result = dialog.showAndWait();
+
+		if(result.isPresent()){
+			textList.setText(String.join(";", result.get()));
+		}
+	}
+	
 	public void handleAddButtons(ActionEvent e) throws IOException {
 		Button source = (Button) e.getSource();
 		
 		if (source == btn_addDataset) {
 			enableOnly(tf_dataset, btn_addDataset);
-			
-			try {
-				ArrayList<String> selectedValues = new ArrayList<>();
-				
-				if(!tf_dataset.getText().isEmpty()){
-					selectedValues = new ArrayList<String>(Arrays.asList(tf_dataset.getText().split(";")));
-				}
-				
-				MultipleSelectionDialog dialog = new MultipleSelectionDialog(scope.getDatasetList(), selectedValues, SelectionMode.MULTIPLE);
-
-				dialog.setTitle(applicationBundle.getString("general.dataset"));
-				Optional<List<String>> result = dialog.showAndWait();
-
-				if(result.isPresent()){
-					tf_dataset.setText(String.join(";", result.get()));
-				}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
+			openMultipleSelectionDialog(tf_dataset, datasetList, "general.dataset");
 		}else if(source == btn_addBaskets){
 			enableOnly(tf_baskets, btn_addBaskets);
-
-			try{
-				List<String> baskets = scope.getBasketList();
-				// TODO Deberia asignarse null inicialmente
-				ArrayList<String> selectedValues = new ArrayList<>();
-			
-				if(!tf_baskets.getText().isEmpty()){
-					selectedValues = new ArrayList<String>(Arrays.asList(tf_baskets.getText().split(";")));
-				}
-				
-				MultipleSelectionDialog dialog = 
-						new MultipleSelectionDialog(baskets, selectedValues, SelectionMode.MULTIPLE);
-				
-				dialog.setTitle(applicationBundle.getString("general.baskets"));
-				
-				Optional<List<String>> result = dialog.showAndWait();
-
-				if(result.isPresent()){
-					tf_baskets.setText(String.join(";", result.get()));
-				}
-			
-			}catch(SQLException e1){
-				e1.printStackTrace();
-			}
-
+			openMultipleSelectionDialog(tf_baskets, basketList, "general.baskets");
 		}else if(source == btn_addTopics){
 			enableOnly(tf_topics, btn_addTopics);
-			
-			try{
-				List<String> topics = scope.getTopicList();
-				// TODO Deberia asignarse null inicialmente
-				ArrayList<String> selectedValues = new ArrayList<>();
-			
-				if(!tf_topics.getText().isEmpty()){
-					selectedValues = new ArrayList<String>(Arrays.asList(tf_topics.getText().split(";")));
-				}
-				
-				MultipleSelectionDialog dialog = 
-						new MultipleSelectionDialog(topics, selectedValues, SelectionMode.MULTIPLE);
-				
-				dialog.setTitle(applicationBundle.getString("general.topics"));
-				
-				Optional<List<String>> result = dialog.showAndWait();
-
-				if(result.isPresent()){
-					tf_topics.setText(String.join(";", result.get()));
-				}
-			
-			}catch(SQLException e1){
-				e1.printStackTrace();
-			}
+			openMultipleSelectionDialog(tf_topics, topicList, "general.topics");
 		}else if(source == btn_addModels){
 			enableOnly(tf_models, btn_addModels);
-						try{
-				List<String> models = scope.getModelList();
-				// TODO Debería asignarse null inicialmente
-				ArrayList<String> selectedValues = new ArrayList<>();
-			
-				if(!tf_models.getText().isEmpty()){
-					selectedValues = new ArrayList<String>(Arrays.asList(tf_models.getText().split(";")));
-				}
-				
-				MultipleSelectionDialog dialog = 
-						new MultipleSelectionDialog(models, selectedValues, SelectionMode.MULTIPLE);
-				
-				dialog.setTitle(applicationBundle.getString("general.models"));
-				
-				Optional<List<String>> result = dialog.showAndWait();
-
-				if(result.isPresent()){
-					tf_models.setText(String.join(";", result.get()));
-				}
-			
-			}catch(SQLException e1){
-				e1.printStackTrace();
-			}
+			openMultipleSelectionDialog(tf_models, modelList, "general.models");
 		}
 	}
 	
@@ -437,6 +330,37 @@ public class ExportDataOptionsView  extends StepViewController implements Initia
 			updateParams();
 			controller.addParams(params);
 		}
+	}
+
+	public void setDatasetList(List<String> datasetList) {
+		this.datasetList = datasetList;
+	}
+
+	public void setTopicList(List<String> topicList) {
+		this.topicList = topicList;
+	}
+
+	public void setModelList(List<String> modelList) {
+		this.modelList = modelList;
+	}
+
+	public void setBasketList(List<String> basketList) {
+		this.basketList = basketList;
+	}
+	
+	public void setScoped(boolean isScoped) {
+		if(!isScoped){
+			disableList.add(radio_baskets);
+			disableList.add(radio_dataset);
+			disableList.add(radio_topics);
+		} else {
+			disableList.remove(radio_baskets);
+			disableList.remove(radio_dataset);
+			disableList.remove(radio_topics);
+		}
+		radio_baskets.setDisable(!isScoped);
+		radio_dataset.setDisable(!isScoped);
+		radio_topics.setDisable(!isScoped);
 	}
 
 }

@@ -1,6 +1,7 @@
 package ai.iliSuite.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +13,7 @@ import ai.iliSuite.impl.DbDescription;
 import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.impl.controller.IController;
 import ai.iliSuite.impl.dbconn.AbstractConnection;
+import ai.iliSuite.impl.dbconn.Ili2DbScope;
 import ai.iliSuite.util.exception.ExitException;
 import ai.iliSuite.util.params.EnumParams;
 import ai.iliSuite.util.plugin.PluginsLoader;
@@ -44,6 +46,8 @@ public class ExportDataController implements ParamsController, DbSelectorControl
 	private ImplFactory dbImpl;
 	
 	private Thread commandExecutionThread;
+	
+	private AbstractConnection connection;
 	
 	public ExportDataController(Ili2db model) throws IOException {
 		this.model = model;
@@ -99,7 +103,7 @@ public class ExportDataController implements ParamsController, DbSelectorControl
 	public void databaseSelected(String dbKey) {
 		dbImpl = PluginsLoader.getPluginByKey(dbKey);
 		model.setDbImpl(dbImpl);
-		AbstractConnection connection = dbImpl.getConnector();
+		connection = dbImpl.getConnector();
 		IController dbPanel;
 		try {
 			dbPanel = dbImpl.getController(connection, false);
@@ -176,7 +180,18 @@ public class ExportDataController implements ParamsController, DbSelectorControl
 
 	@Override
 	public boolean databaseConnecting(Map<String, String> connectionParams) {
-		// TODO Auto-generated method stub
+		Ili2DbScope scope = dbImpl.getScope(connection);
+		try {
+			boolean isScoped = scope.isScoped();
+			exportDataOptions.setScoped(isScoped);
+			exportDataOptions.setBasketList(scope.getBasketList());
+			exportDataOptions.setDatasetList(scope.getDatasetList());
+			exportDataOptions.setModelList(scope.getModelList());
+			exportDataOptions.setTopicList(scope.getTopicList());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return true;
 	}
 
