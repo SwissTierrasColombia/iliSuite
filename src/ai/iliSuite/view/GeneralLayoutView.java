@@ -133,8 +133,7 @@ public class GeneralLayoutView implements Initializable {
 	}
 	
 	
-	private void changeTitle(EnumPaths iconPath, String title){
-		//TODO cambiar a una mejor forma de cargar, se pone de manera temporal
+	public void changeTitle(EnumPaths iconPath, String title){
 		lbl_functionTitle.setText(title);
 
 		String url = getClass().getResource(iconPath.getPath()).toExternalForm();
@@ -147,7 +146,7 @@ public class GeneralLayoutView implements Initializable {
 		return viewRootNode;
 	}
 	
-	// XXX This funtion is misnamed 'drawPage'
+	// XXX This function is misnamed 'drawPage'
 	public void drawPage(Parent content) {
 		contentPane.getChildren().setAll(content);
 	}
