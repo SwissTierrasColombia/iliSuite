@@ -34,14 +34,15 @@ public class DatabaseOptionsView extends StepViewController {
 	@Override
 	public void goForward(StepArgs args) {
 		super.goForward(args);
+		Map<String, String> oldParams = params;
 		params = dbPanel.getParams();		
 		boolean isValid = (params != null);
 
 		args.setCancel(!isValid);
 				
 		if (isValid) {
-			if(params != null) {
-				controller.removeParams(params);
+			if(oldParams != null) {
+				controller.removeParams(oldParams);
 			}
 			controller.addParams(params);
 			dbController.databaseConnecting(params);
