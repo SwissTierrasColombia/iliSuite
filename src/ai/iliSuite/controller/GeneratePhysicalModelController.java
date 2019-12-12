@@ -17,6 +17,7 @@ import ai.iliSuite.impl.dbconn.AbstractConnection;
 import ai.iliSuite.util.exception.ExitException;
 import ai.iliSuite.util.params.EnumParams;
 import ai.iliSuite.util.plugin.PluginsLoader;
+import ai.iliSuite.util.wizard.BuilderWizard;
 import ai.iliSuite.view.DatabaseOptionsView;
 import ai.iliSuite.view.DatabaseSelectionView;
 import ai.iliSuite.view.FinishActionView;
@@ -64,9 +65,8 @@ public class GeneratePhysicalModelController implements ParamsController, DbSele
 		dbSelectionScreen = new DatabaseOptionsView(this, this);
 		modelConvertOptions = new ModelConvertOptionsView(this);
 
-		wizard = new Wizard();
-		wizard.setMargin(new Insets(15));
-		wizard.setHasExecution(true);
+		wizard = BuilderWizard.buildMainWizard();
+		
 		wizard.setOnBack(goBack);
 		wizard.setOnCancel(goBack);
 		wizard.setOnFinish(finish);

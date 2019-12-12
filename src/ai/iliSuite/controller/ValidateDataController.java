@@ -7,6 +7,7 @@ import java.util.List;
 
 import ai.iliSuite.base.InterlisExecutable;
 import ai.iliSuite.util.exception.ExitException;
+import ai.iliSuite.util.wizard.BuilderWizard;
 import ai.iliSuite.view.FinishActionView;
 import ai.iliSuite.view.ValidateOptionsView;
 import ai.iliSuite.view.wizard.EmptyWizardException;
@@ -32,9 +33,7 @@ public class ValidateDataController implements ParamsController {
 	public ValidateDataController(InterlisExecutable interlisExecutable) throws IOException {
 		this.interlisExecutable = interlisExecutable;
 		paramsList = new ArrayList<Map<String, String>>();
-		wizard = new Wizard();
-		wizard.setMargin(new Insets(15));
-		wizard.setHasExecution(true);
+		wizard = BuilderWizard.buildMainWizard();
 		wizard.add(new ValidateOptionsView(this));
 		wizard.add(new FinishActionView(this));
 		

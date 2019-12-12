@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import ai.iliSuite.base.InterlisExecutable;
+import ai.iliSuite.util.wizard.BuilderWizard;
 import ai.iliSuite.view.OpenUmlEditorView;
 import ai.iliSuite.view.wizard.EmptyWizardException;
 import ai.iliSuite.view.wizard.Wizard;
@@ -31,9 +32,8 @@ public class OpenUmlEditorController implements ParamsController {
 		EventHandler<ActionEvent> finish = 
 				(ActionEvent e) -> { if(finishHandler != null) { finishHandler.handle(e); }};
 
-		wizard = new Wizard();
-		wizard.setMargin(new Insets(15));
-		wizard.setHasExecution(true);
+		wizard = BuilderWizard.buildMainWizard();
+		
 		wizard.setOnBack(goBack);
 		wizard.setOnCancel(goBack);
 		wizard.setOnFinish(finish);
