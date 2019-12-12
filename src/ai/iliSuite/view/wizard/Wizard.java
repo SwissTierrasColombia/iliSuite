@@ -12,6 +12,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Region;
 
 public class Wizard extends BaseWizard implements Initializable {
 	private ResourceBundle applicationBundle;
@@ -23,9 +24,14 @@ public class Wizard extends BaseWizard implements Initializable {
 	@FXML
 	private Button btnNext;
 	@FXML
-	private Button btnCancel;	
+	private Button btnCancel;
+	// FIX Wizard should not content Pane
 	@FXML
 	private BorderPane contentPane;
+	
+	private double prefHeight;
+	private double maxHeight;
+	private double minHeight;
 
 	public Wizard() throws IOException {
 		mainView = ResourceUtil.loadResource(EnumPaths.WIZARD_LAYOUT, EnumPaths.RESOURCE_BUNDLE, this);
@@ -37,6 +43,8 @@ public class Wizard extends BaseWizard implements Initializable {
 		btnBack.setOnAction((ActionEvent e) -> { this.goBack(); });
 		btnNext.setOnAction((ActionEvent e) -> { this.goForward(); });
 		btnCancel.setOnAction((ActionEvent e) -> { this.cancel(); });
+		
+		prefHeight = maxHeight = minHeight = BorderPane.USE_COMPUTED_SIZE;
 	}
 
 	// XXX different to parent
@@ -46,8 +54,13 @@ public class Wizard extends BaseWizard implements Initializable {
 
 	@Override
 	protected void drawPage(StepViewController item) {
-		Parent content = item.getGraphicComponent();
+		// FIX Casting is not type-safety
+		Region content = (Region) item.getGraphicComponent();
 		BorderPane.setMargin(content, margin);
+		content.setPrefHeight(prefHeight);
+		content.setMaxHeight(maxHeight);
+		content.setMinHeight(minHeight);
+		
 		contentPane.setCenter(content);
 	}
 
@@ -68,5 +81,17 @@ public class Wizard extends BaseWizard implements Initializable {
 	
 	public void setMargin(Insets margin) {
 		this.margin = margin;
+	}
+
+	public void setPrefHeight(double prefHeight) {
+		this.prefHeight = prefHeight;
+	}
+
+	public void setMaxHeight(double maxHeight) {
+		this.maxHeight = maxHeight;
+	}
+
+	public void setMinHeight(double minHeight) {
+		this.minHeight = minHeight;
 	}
 }
