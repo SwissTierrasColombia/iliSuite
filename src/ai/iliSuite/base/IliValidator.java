@@ -24,7 +24,7 @@ public class IliValidator implements InterlisExecutable {
 
 	@Override
 	public List<String> getCommand() {
-		HashMap<String, String> params = (HashMap<String, String>) paramsMap.clone();
+		HashMap<String, String> params = new HashMap<String, String>(paramsMap);
 		List<String> result = new ArrayList<String>();
 		String finalPath = params.get(EnumParams.FILE_NAME.getName());
 		

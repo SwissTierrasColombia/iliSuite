@@ -21,6 +21,7 @@ import ch.interlis.ilirepository.impl.RepositoryAccess;
 
 public class ModelSearch {
 
+	@SuppressWarnings("rawtypes")
 	public static List<String> search(String URIs) {
 
 		ArrayList<String> modelURIs = new ArrayList<String>(Arrays.asList(URIs.split(";")));

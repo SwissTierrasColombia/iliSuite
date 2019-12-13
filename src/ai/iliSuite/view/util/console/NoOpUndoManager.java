@@ -3,7 +3,7 @@ import org.reactfx.value.Val;
 import javafx.beans.value.ObservableBooleanValue;
 import org.fxmisc.undo.UndoManager;
 
-public class NoOpUndoManager implements UndoManager{
+public class NoOpUndoManager implements UndoManager<String>{
 	private final Val<Boolean> alwaysFalse = Val.constant(false);
 
     @Override public boolean undo() { return false; }
@@ -15,8 +15,8 @@ public class NoOpUndoManager implements UndoManager{
     @Override public boolean isPerformingAction() { return false; }
     @Override public boolean isAtMarkedPosition() { return false; }
     
-    @Override public Val nextUndoProperty() { return null; }
-    @Override public Val nextRedoProperty() { return null; }
+    @Override public Val<String> nextUndoProperty() { return null; }
+    @Override public Val<String> nextRedoProperty() { return null; }
     @Override public ObservableBooleanValue performingActionProperty() { return null; }
     @Override public UndoPosition getCurrentPosition() { return null; }
     @Override public ObservableBooleanValue atMarkedPositionProperty() { return null; }

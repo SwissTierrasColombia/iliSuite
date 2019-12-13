@@ -1,8 +1,6 @@
 package ai.iliSuite.impl.ili2fgdb;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import ai.iliSuite.impl.DbDescription;
@@ -17,8 +15,6 @@ import ai.iliSuite.impl.ili2fgdb.dbconn.Ili2fgdbScope;
 import ai.iliSuite.impl.ili2fgdb.view.DatabaseOptionsController;
 import ch.ehi.ili2db.AbstractMain;
 import ch.ehi.ili2fgdb.FgdbMain;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 
 
 public class Ili2fgdbImpl implements ImplFactory {

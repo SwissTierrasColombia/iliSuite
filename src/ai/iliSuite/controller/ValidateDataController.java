@@ -2,8 +2,8 @@ package ai.iliSuite.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 import ai.iliSuite.base.InterlisExecutable;
 import ai.iliSuite.util.exception.ExitException;
@@ -16,7 +16,6 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 
 public class ValidateDataController implements ParamsController {

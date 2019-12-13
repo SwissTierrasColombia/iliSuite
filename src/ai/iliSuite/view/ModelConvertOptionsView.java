@@ -13,7 +13,6 @@ import java.util.ResourceBundle;
 
 import ai.iliSuite.application.data.Config;
 import ai.iliSuite.controller.ParamsController;
-import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.impl.PanelCustomizable;
 import ai.iliSuite.util.params.EnumParams;
 import ai.iliSuite.util.procedures.ModelSearch;

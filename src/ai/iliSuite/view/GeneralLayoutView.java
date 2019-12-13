@@ -38,10 +38,7 @@ public class GeneralLayoutView implements Initializable {
 	private ResourceBundle bundle;
 	private Parent viewRootNode;
 	
-	private GeneralController controller;
-	
 	public GeneralLayoutView(GeneralController controller) throws IOException {
-		this.controller = controller;
 		viewRootNode = ResourceUtil.loadResource(EnumPaths.GENERAL_LAYOUT, EnumPaths.RESOURCE_BUNDLE, this);
 	}
 	

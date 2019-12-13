@@ -299,18 +299,6 @@ public class ValidateOptionsView extends StepViewController implements Initializ
 		}
 	}
 
-	public void onClickBtnBrowseLogFile(ActionEvent event) {
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.getExtensionFilters()
-				.addAll(new ExtensionFilter(applicationBundle.getString("general.file.extension.log"), "*.log"));
-
-		// TODO Validar titulo
-		fileChooser.setTitle(applicationBundle.getString("general.file.choose"));
-
-		Window window = ((Node) event.getSource()).getScene().getWindow();
-		File selectedFile = fileChooser.showSaveDialog(window);
-	}
-
 	public void onClickBtnBrowseLogXtfFile(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.getExtensionFilters()

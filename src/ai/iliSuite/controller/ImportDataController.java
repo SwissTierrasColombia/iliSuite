@@ -10,9 +10,7 @@ import java.util.Map.Entry;
 
 import ai.iliSuite.base.Ili2db;
 import ai.iliSuite.impl.DbDescription;
-import ai.iliSuite.impl.EnumCustomPanel;
 import ai.iliSuite.impl.ImplFactory;
-import ai.iliSuite.impl.PanelCustomizable;
 import ai.iliSuite.impl.controller.IController;
 import ai.iliSuite.impl.dbconn.AbstractConnection;
 import ai.iliSuite.impl.dbconn.Ili2DbScope;
@@ -30,7 +28,6 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 
 public class ImportDataController implements DbSelectorController, ParamsController {
