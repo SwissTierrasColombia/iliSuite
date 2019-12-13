@@ -97,11 +97,6 @@ public class FinishActionView  extends StepViewController  implements Initializa
 			}
 		};
 	}
-	
-	@FXML
-	private void btnExecute_click() {
-		controller.execute();
-	}
 
 	@Override
 	public Parent getGraphicComponent() {

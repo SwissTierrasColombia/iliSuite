@@ -68,7 +68,7 @@ public class Wizard extends BaseWizard implements Initializable {
 	protected void loadedPage() {
 		String buttonTextKey = "";
 		if(this.index == this.steps.size()-1) {
-			if(this.hasExecution && !this.execute)
+			if(this.hasExecution && !this.executed)
 				buttonTextKey = "buttons.execute";
 			else
 				buttonTextKey = "buttons.finish";
@@ -93,5 +93,14 @@ public class Wizard extends BaseWizard implements Initializable {
 
 	public void setMinHeight(double minHeight) {
 		this.minHeight = minHeight;
+	}
+	
+	@Override
+	public void setExecuted(boolean executed) {
+		super.setExecuted(executed);
+	}
+	
+	public void setNextDisable(boolean value) {
+		btnNext.setDisable(value);
 	}
 }

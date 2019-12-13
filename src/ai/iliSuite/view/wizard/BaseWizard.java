@@ -10,7 +10,7 @@ public abstract class BaseWizard {
 	protected List<StepViewController> steps;
 	protected int index = -1;
 	protected boolean hasExecution;
-	protected boolean execute;
+	protected boolean executed;
 	protected EventHandler<ActionEvent> finishHandler;
 	protected EventHandler<ActionEvent> cancelHandler;
 	protected EventHandler<ActionEvent> backHandler;
@@ -48,12 +48,9 @@ public abstract class BaseWizard {
 				nextItem.loadedPage(new StepArgs());
 			} else {
 				index = steps.size()-1;
-				if(hasExecution && !execute) {
-					execute = true;
+				if(hasExecution && !executed) {
 					if(executeHandler != null)
 						executeHandler.handle(new ActionEvent());
-					// FIX move to other method
-					this.loadedPage();
 				} else if (finishHandler != null) {
 					finishHandler.handle(new ActionEvent());
 				}
@@ -140,5 +137,14 @@ public abstract class BaseWizard {
 
 	public void setHasExecution(boolean hasExecution) {
 		this.hasExecution = hasExecution;
+	}
+
+	public boolean isExecuted() {
+		return executed;
+	}
+
+	public void setExecuted(boolean executed) {
+		this.executed = executed;
+		loadedPage();
 	}
 }

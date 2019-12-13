@@ -141,9 +141,17 @@ public class GeneratePhysicalModelController implements ParamsController, DbSele
 			}
 		};
 		task.setOnSucceeded(workerStateEvent ->{
-			
-			});
+			wizard.setNextDisable(false);
+			if(booleanResult.getValue())
+				wizard.setExecuted(true);
+		});
+		
+		task.setOnFailed(workerStateEvent -> {
+			wizard.setNextDisable(false);
+		});
+		
 		booleanResult.bind(task.valueProperty());
+		wizard.setNextDisable(true);
 		
 		commandExecutionThread = new Thread(task);
 		commandExecutionThread.start();
