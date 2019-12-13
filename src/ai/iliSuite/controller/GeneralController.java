@@ -49,7 +49,7 @@ public class GeneralController {
 		return scene;
 	}
 	
-	public void changeAction(EnumActions action) {
+	public void changeAction(EnumIliSuiteActions action) {
 		ParamsController actionController = null;
 		try {
 			actionController = getControllerFromAction(action);
@@ -61,36 +61,36 @@ public class GeneralController {
 		}
 	}
 	
-	public ParamsController getControllerFromAction(EnumActions action) throws IOException{		
+	public ParamsController getControllerFromAction(EnumIliSuiteActions action) throws IOException{		
 		ParamsController result = null;
 		EnumPaths iconPath = null;
 		String textTitle = "";
 		
-		if(action == EnumActions.VALIDATE_DATA) {
+		if(action == EnumIliSuiteActions.VALIDATE_DATA) {
 			InterlisExecutable model = new IliValidator();
 			result = new ValidateDataController(model);
 			
 			iconPath = EnumPaths.VALIDATE_ICON;
 			textTitle = bundle.getString("main.function.validateData.title");
-		} else if(action == EnumActions.GENERATE_PHYSICAL_MODEL) {
+		} else if(action == EnumIliSuiteActions.GENERATE_PHYSICAL_MODEL) {
 			Ili2db model = new Ili2db();
 			result = new GeneratePhysicalModelController(model);
 			
 			iconPath = EnumPaths.GENERATEPHYSICALMODEL_ICON;
 			textTitle = bundle.getString("main.function.generatePhysicalModel.title");
-		} else if(action == EnumActions.EXPORT_DATA) {
+		} else if(action == EnumIliSuiteActions.EXPORT_DATA) {
 			Ili2db model = new Ili2db();
 			result = new ExportDataController(model);
 			
 			iconPath = EnumPaths.EXPORT_ICON;
 			textTitle = bundle.getString("main.function.exportData.title");
-		} else if(action == EnumActions.IMPORT_DATA) {
+		} else if(action == EnumIliSuiteActions.IMPORT_DATA) {
 			Ili2db model = new Ili2db();
 			result = new ImportDataController(model);
 			
 			iconPath = EnumPaths.IMPORT_ICON;
 			textTitle = bundle.getString("main.function.importData.title");
-		} else if(action == EnumActions.OPEN_UML_EDITOR) {
+		} else if(action == EnumIliSuiteActions.OPEN_UML_EDITOR) {
 			InterlisExecutable model = new UmlEditor();
 			result = new OpenUmlEditorController(model);
 			

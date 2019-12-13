@@ -29,12 +29,9 @@ public abstract class AbstractConnection {
 		
 		try {
 			Class.forName(getDriver());
-		
-			// TODO
-			Map<String,String> params = getConnectionParams();
 			
-			if(params.containsKey("user")&&params.containsKey("password"))
-				conn = DriverManager.getConnection(getUrl(),params.get("user"),params.get("password"));
+			if(connectionParams.containsKey("user") && connectionParams.containsKey("password"))
+				conn = DriverManager.getConnection(getUrl(), connectionParams.get("user"), connectionParams.get("password"));
 			else{
 				conn = DriverManager.getConnection(getUrl()); 
 			}

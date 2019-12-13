@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import ai.iliSuite.controller.EnumActions;
+import ai.iliSuite.controller.EnumIliSuiteActions;
 import ai.iliSuite.controller.GeneralController;
 import ai.iliSuite.view.util.navigation.EnumPaths;
 import ai.iliSuite.view.util.navigation.ResourceUtil;
@@ -26,8 +26,7 @@ import javafx.stage.Stage;
 
 public class MainOptionsView implements Initializable {
 
-	// XXX the name is too generic
-	private EnumActions selectedAction;
+	private EnumIliSuiteActions selectedIliSuiteAction;
 	
 	private ResourceBundle bundle;
 
@@ -101,27 +100,27 @@ public class MainOptionsView implements Initializable {
 				if (newToggle == null) {
 					lbl_helpTitle.setText("");
 					txt_helpContent.setText("");
-					selectedAction = null;
+					selectedIliSuiteAction = null;
 				} else if (newToggle == btn_openUmlEditor) {
 					lbl_helpTitle.setText(bundle.getString("main.openUmlEditor"));
 					txt_helpContent.setText(bundle.getString("main.content.openUmlEditor"));
-					selectedAction = EnumActions.OPEN_UML_EDITOR;
+					selectedIliSuiteAction = EnumIliSuiteActions.OPEN_UML_EDITOR;
 				} else if (newToggle == btn_generatePhysicalModel) {
 					lbl_helpTitle.setText(bundle.getString("main.generatePhysicalModel"));
 					txt_helpContent.setText(bundle.getString("main.content.generatePhysicalModel"));
-					selectedAction = EnumActions.GENERATE_PHYSICAL_MODEL;
+					selectedIliSuiteAction = EnumIliSuiteActions.GENERATE_PHYSICAL_MODEL;
 				} else if (newToggle == btn_importData) {
 					lbl_helpTitle.setText(bundle.getString("main.importOrModifyData"));
 					txt_helpContent.setText(bundle.getString("main.content.importOrModifyData"));
-					selectedAction = EnumActions.IMPORT_DATA;
+					selectedIliSuiteAction = EnumIliSuiteActions.IMPORT_DATA;
 				} else if (newToggle == btn_validateData) {
 					lbl_helpTitle.setText(bundle.getString("main.validateData"));
 					txt_helpContent.setText(bundle.getString("main.content.validateData"));
-					selectedAction = EnumActions.VALIDATE_DATA;
+					selectedIliSuiteAction = EnumIliSuiteActions.VALIDATE_DATA;
 				} else if (newToggle == btn_exportData) {
 					lbl_helpTitle.setText(bundle.getString("main.exportData"));
 					txt_helpContent.setText(bundle.getString("main.content.exportData"));
-					selectedAction = EnumActions.EXPORT_DATA;
+					selectedIliSuiteAction = EnumIliSuiteActions.EXPORT_DATA;
 				}
 
 			}
@@ -130,7 +129,7 @@ public class MainOptionsView implements Initializable {
 
 	
 	public void goForward(ActionEvent e) {
-		controller.changeAction(selectedAction);
+		controller.changeAction(selectedIliSuiteAction);
 	}
 	
 	// XXX Create interface with 'getGraphicComponent' method
@@ -138,7 +137,7 @@ public class MainOptionsView implements Initializable {
 		return viewRootNode;
 	}
 
-	public EnumActions getSelectedAction() {
-		return selectedAction;
+	public EnumIliSuiteActions getSelectedAction() {
+		return selectedIliSuiteAction;
 	}
 }
