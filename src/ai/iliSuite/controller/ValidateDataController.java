@@ -2,11 +2,13 @@ package ai.iliSuite.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ai.iliSuite.base.InterlisExecutable;
+import ai.iliSuite.base.IliExecutable;
 import ai.iliSuite.util.exception.ExitException;
+import ai.iliSuite.util.params.ParamsUtil;
 import ai.iliSuite.util.wizard.BuilderWizard;
 import ai.iliSuite.view.FinishActionView;
 import ai.iliSuite.view.ValidateOptionsView;
@@ -19,7 +21,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Parent;
 
 public class ValidateDataController implements ParamsController {
-	private InterlisExecutable interlisExecutable;
+	private IliExecutable interlisExecutable;
 	
 	private List<Map<String, String>> paramsList;
 	private Wizard wizard;
@@ -29,7 +31,7 @@ public class ValidateDataController implements ParamsController {
 	
 	private Thread commandExecutionThread;
 	
-	public ValidateDataController(InterlisExecutable interlisExecutable) throws IOException {
+	public ValidateDataController(IliExecutable interlisExecutable) throws IOException {
 		this.interlisExecutable = interlisExecutable;
 		paramsList = new ArrayList<Map<String, String>>();
 		wizard = BuilderWizard.buildMainWizard();
@@ -77,23 +79,30 @@ public class ValidateDataController implements ParamsController {
 	}
 	
 	public String getTextParams() {
-		Map<String, String> params = interlisExecutable.getParams();
+		List<String> command = getCommand();
+		
+		return ParamsUtil.getStringArgs(command, true);
+	}
+	
+	private List<String> getCommand(){
+		Map<String, String> params = new HashMap<String, String>();
 		
 		for(Map<String, String> item:paramsList) {
 			params.putAll(item);
 		}
-		
-		return interlisExecutable.getArgs(true);
+		return ParamsUtil.getCommand(params);
 	}
 
 	@Override
 	public boolean execute() {
 		SimpleBooleanProperty booleanResult = new SimpleBooleanProperty();
+		List<String> command = getCommand();
+		
 		Task<Boolean> task = new Task<Boolean>(){
 			@Override
 			protected Boolean call() throws Exception {
 				try {
-					interlisExecutable.run();
+					interlisExecutable.run(command);
 					return true;
 				} catch (ExitException e) {
 					System.out.println(e.status);

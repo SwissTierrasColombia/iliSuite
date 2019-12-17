@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import ai.iliSuite.base.Ili2db;
+import ai.iliSuite.base.IliExecutable;
 import ai.iliSuite.impl.DbDescription;
 import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.impl.controller.IController;
@@ -16,6 +16,7 @@ import ai.iliSuite.impl.dbconn.AbstractConnection;
 import ai.iliSuite.impl.dbconn.Ili2DbScope;
 import ai.iliSuite.util.exception.ExitException;
 import ai.iliSuite.util.params.EnumParams;
+import ai.iliSuite.util.params.ParamsUtil;
 import ai.iliSuite.util.plugin.PluginsLoader;
 import ai.iliSuite.util.wizard.BuilderWizard;
 import ai.iliSuite.view.DatabaseOptionsView;
@@ -31,7 +32,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Parent;
 
 public class ExportDataController implements ParamsController, DbSelectorController {
-	private Ili2db model;
+	private IliExecutable model;
 	private List<Map<String,String>> paramsList;
 	private Wizard wizard;
 	
@@ -49,8 +50,7 @@ public class ExportDataController implements ParamsController, DbSelectorControl
 	
 	private AbstractConnection connection;
 	
-	public ExportDataController(Ili2db model) throws IOException {
-		this.model = model;
+	public ExportDataController() throws IOException {
 		paramsList = new ArrayList<Map<String, String>>();
 		initLstDbDescription();
 		initWizard();
@@ -100,7 +100,7 @@ public class ExportDataController implements ParamsController, DbSelectorControl
 	@Override
 	public void databaseSelected(String dbKey) {
 		dbImpl = PluginsLoader.getPluginByKey(dbKey);
-		model.setDbImpl(dbImpl);
+		model = dbImpl.getInterlisExecutable();
 		connection = dbImpl.getConnector();
 		IController dbPanel;
 		try {
@@ -129,25 +129,30 @@ public class ExportDataController implements ParamsController, DbSelectorControl
 
 	@Override
 	public String getTextParams() {
-		// FIX repeated body
-		Map<String, String> params = model.getParams();
+		List<String> command = getCommand();
+		return ParamsUtil.getStringArgs(command, true);
+	}
+	
+	private List<String> getCommand(){
+		Map<String, String> params = new HashMap<String, String>();
 		params.put(EnumParams.DATA_EXPORT.getName(), null);
 		for(Map<String, String> item:paramsList) {
 			params.putAll(item);
 		}
-
-		return model.getArgs(true);
+		return ParamsUtil.getCommand(params);
 	}
 
 	@Override
 	public boolean execute() {
 		// FIX repeated body
 		SimpleBooleanProperty booleanResult = new SimpleBooleanProperty();
+		List<String> command = getCommand();
+		
 		Task<Boolean> task = new Task<Boolean>(){
 			@Override
 			protected Boolean call() throws Exception {
 				try {
-					model.run();
+					model.run(command);
 					return true;
 				} catch (ExitException e) {
 					System.out.println(e.status);

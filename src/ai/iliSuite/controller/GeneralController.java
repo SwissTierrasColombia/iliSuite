@@ -3,10 +3,9 @@ package ai.iliSuite.controller;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
-import ai.iliSuite.base.Ili2db;
-import ai.iliSuite.base.IliValidator;
-import ai.iliSuite.base.InterlisExecutable;
+import ai.iliSuite.base.IliExecutable;
 import ai.iliSuite.base.UmlEditor;
+import ai.iliSuite.base.IliValidator;
 import ai.iliSuite.view.GeneralLayoutView;
 import ai.iliSuite.view.MainOptionsView;
 import ai.iliSuite.view.util.navigation.EnumPaths;
@@ -67,31 +66,28 @@ public class GeneralController {
 		String textTitle = "";
 		
 		if(action == EnumIliSuiteActions.VALIDATE_DATA) {
-			InterlisExecutable model = new IliValidator();
+			IliExecutable model = new IliValidator();
 			result = new ValidateDataController(model);
 			
 			iconPath = EnumPaths.VALIDATE_ICON;
 			textTitle = bundle.getString("main.function.validateData.title");
 		} else if(action == EnumIliSuiteActions.GENERATE_PHYSICAL_MODEL) {
-			Ili2db model = new Ili2db();
-			result = new GeneratePhysicalModelController(model);
+			result = new GeneratePhysicalModelController();
 			
 			iconPath = EnumPaths.GENERATEPHYSICALMODEL_ICON;
 			textTitle = bundle.getString("main.function.generatePhysicalModel.title");
 		} else if(action == EnumIliSuiteActions.EXPORT_DATA) {
-			Ili2db model = new Ili2db();
-			result = new ExportDataController(model);
+			result = new ExportDataController();
 			
 			iconPath = EnumPaths.EXPORT_ICON;
 			textTitle = bundle.getString("main.function.exportData.title");
 		} else if(action == EnumIliSuiteActions.IMPORT_DATA) {
-			Ili2db model = new Ili2db();
-			result = new ImportDataController(model);
+			result = new ImportDataController();
 			
 			iconPath = EnumPaths.IMPORT_ICON;
 			textTitle = bundle.getString("main.function.importData.title");
 		} else if(action == EnumIliSuiteActions.OPEN_UML_EDITOR) {
-			InterlisExecutable model = new UmlEditor();
+			IliExecutable model = new UmlEditor();
 			result = new OpenUmlEditorController(model);
 			
 			iconPath = EnumPaths.OPEN_UML_EDITOR;

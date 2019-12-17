@@ -3,6 +3,7 @@ package ai.iliSuite.impl.ili2gpkg;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
+import ai.iliSuite.base.IliExecutable;
 import ai.iliSuite.impl.DbDescription;
 import ai.iliSuite.impl.EnumCustomPanel;
 import ai.iliSuite.impl.ImplFactory;
@@ -42,9 +43,8 @@ public class Ili2gpkgImpl implements ImplFactory{
 	}
 
 	@Override
-	public int runMain(String[] args) {
-		(new GpkgMain()).domain(args);
-		return 0;
+	public IliExecutable getInterlisExecutable() {
+		return new GpkgExecutable();
 	}
 
 	@Override
@@ -56,5 +56,4 @@ public class Ili2gpkgImpl implements ImplFactory{
 	public AbstractConnection getConnector() {
 		return new SqlLiteConnection();
 	}
-
 }

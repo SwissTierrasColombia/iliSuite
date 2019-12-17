@@ -3,6 +3,7 @@ package ai.iliSuite.impl.ili2fgdb;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
+import ai.iliSuite.base.IliExecutable;
 import ai.iliSuite.impl.DbDescription;
 import ai.iliSuite.impl.EnumCustomPanel;
 import ai.iliSuite.impl.ImplFactory;
@@ -42,9 +43,8 @@ public class Ili2fgdbImpl implements ImplFactory {
 	}
 
 	@Override
-	public int runMain(String[] args) {
-		(new FgdbMain()).domain(args);
-		return 0;
+	public IliExecutable getInterlisExecutable() {
+		return new FgdbExecutable();
 	}
 
 	@Override

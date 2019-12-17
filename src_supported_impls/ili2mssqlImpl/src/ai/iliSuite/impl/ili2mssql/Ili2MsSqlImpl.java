@@ -3,6 +3,7 @@ package ai.iliSuite.impl.ili2mssql;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
+import ai.iliSuite.base.IliExecutable;
 import ai.iliSuite.impl.DbDescription;
 import ai.iliSuite.impl.EnumCustomPanel;
 import ai.iliSuite.impl.ImplFactory;
@@ -37,10 +38,8 @@ public class Ili2MsSqlImpl implements ImplFactory {
 	}
 
 	@Override
-	public int runMain(String[] args) {
-		(new MsSqlMain()).domain(args);
-		
-		return 0;
+	public IliExecutable getInterlisExecutable() {
+		return new MssqlExecutable();
 	}
 
 	@Override

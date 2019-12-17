@@ -1,34 +1,15 @@
 package ai.iliSuite.base;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 
-public class UmlEditor implements InterlisExecutable {
+public class UmlEditor implements IliExecutable {
 	@Override
-	public void run() {
+	public void run(List<String> params) {
 		try {
-
 			Runtime.getRuntime().exec("java -jar ./programs/umleditor-3.6.6/umleditor.jar");
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
-	@Override
-	public List<String> getCommand() {
-		return null;
-	}
-
-	@Override
-	public String getArgs(boolean hideSensitiveData) {
-		return null;
-	}
-
-	@Override
-	public HashMap<String, String> getParams() {
-		return null;
-	}
-
 }

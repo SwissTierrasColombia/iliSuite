@@ -3,6 +3,7 @@ package ai.iliSuite.impl.ili2pg;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
+import ai.iliSuite.base.IliExecutable;
 import ai.iliSuite.impl.DbDescription;
 import ai.iliSuite.impl.EnumCustomPanel;
 import ai.iliSuite.impl.ImplFactory;
@@ -37,11 +38,8 @@ public class Ili2pgImpl implements ImplFactory {
 	}
 
 	@Override
-	public int runMain(String[] args) {
-		
-		(new PgMain()).domain(args);
-		
-		return 0;
+	public IliExecutable getInterlisExecutable() {
+		return new PgExecutable();
 	}
 
 	@Override
