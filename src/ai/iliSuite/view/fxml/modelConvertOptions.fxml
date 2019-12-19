@@ -49,7 +49,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField fx:id="tf_iliFilePath" editable="false" prefHeight="31.0" prefWidth="266.0" GridPane.columnIndex="2">
+                        <TextField fx:id="tf_iliFilePath" editable="true" prefHeight="31.0" prefWidth="266.0" GridPane.columnIndex="2">
                            <GridPane.margin>
                               <Insets left="20.0" />
                            </GridPane.margin>
