@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <SplitPane dividerPositions="0.3" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane maxHeight="100.0" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <GridPane layoutX="-18.0" layoutY="8.0" prefHeight="66.0" prefWidth="698.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="534.0" minWidth="10.0" prefWidth="141.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="547.0" minWidth="10.0" prefWidth="421.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="342.0" minWidth="10.0" prefWidth="136.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                     	<Label text="%general.modelDir" textAlignment="CENTER" GridPane.halignment="CENTER" />
+                        <TextField fx:id="tf_modelDir" editable="false" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="%help.tooltip.general.modeldir" />
+                           </tooltip>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#onClickSetModelDir" text="%buttons.browse" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                     </children>
+                  </GridPane>
+                  <GridPane layoutX="14.0" layoutY="66.0" prefHeight="36.0" prefWidth="690.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="51.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="176.0" minWidth="10.0" prefWidth="144.0" />
+                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="144.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="283.0" minWidth="10.0" prefWidth="277.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="136.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TextField fx:id="tf_iliFilePath" editable="false" prefHeight="31.0" prefWidth="266.0" GridPane.columnIndex="2">
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#onClickBrowseIliFile" text="%buttons.browse" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+                        <RadioButton fx:id="radio_inputFile" contentDisplay="CENTER" mnemonicParsing="false" text="%generatePhysicalModel.iliFile" textAlignment="CENTER">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="tg_inputSelection" />
+                           </toggleGroup>
+                           <GridPane.margin>
+                              <Insets left="5.0" />
+                           </GridPane.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="radio_inputModels" mnemonicParsing="false" text="%general.models" toggleGroup="$tg_inputSelection" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="5.0" />
+                           </GridPane.margin>
+                        </RadioButton>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TabPane fx:id="tabOptions" prefHeight="222.0" prefWidth="698.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <tabs>
+                        <Tab text="%generatePhysicalModel.mappings">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <HBox layoutX="59.0" layoutY="30.0" prefHeight="193.0" prefWidth="698.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: darkgray; -fx-border-radius: 15px;">
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <RadioButton fx:id="radio_noSmart" layoutX="5.0" layoutY="50.0" mnemonicParsing="false" text="%generatePhysicalModel.inheritance.noSmart">
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font>
+                                                   <toggleGroup>
+                                                      <ToggleGroup fx:id="tg_inheritance" />
+                                                   </toggleGroup>
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.inheritance.noSmart" />
+                                                   </tooltip></RadioButton>
+                                                <RadioButton fx:id="radio_smart1" layoutX="5.0" layoutY="80.0" mnemonicParsing="false" text="%generatePhysicalModel.inheritance.smart1" toggleGroup="$tg_inheritance">
+                                                	<font>
+                                                      <Font size="13.0" />
+                                                   </font>
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.inheritance.smart1" />
+                                                   </tooltip></RadioButton>
+                                                <RadioButton fx:id="radio_smart2" layoutX="5.0" layoutY="110.0" mnemonicParsing="false" text="%generatePhysicalModel.inheritance.smart2" toggleGroup="$tg_inheritance">
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font>
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.inheritance.smart2" />
+                                                   </tooltip></RadioButton>
+                                                <Label alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="-33.0" layoutY="7.0" prefHeight="15.0" prefWidth="230.0" text="%generatePhysicalModel.inheritance" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font name="Arial" size="15.0" />
+                                                   </font></Label>
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: darkgray; -fx-border-radius: 15px;">
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <RadioButton fx:id="radio_createEnumTabs" layoutX="5.0" layoutY="45.0" mnemonicParsing="false" text="%generatePhysicalModel.enumeration.createEnumTabs">
+                                                   <toggleGroup>
+                                                      <ToggleGroup fx:id="tg_creationEnums" />
+                                                   </toggleGroup>
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.enumeration.createEnumTabs" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></RadioButton>
+                                                <RadioButton fx:id="radio_createEnumTabsWithId" layoutX="5.0" layoutY="70.0" mnemonicParsing="false" text="%generatePhysicalModel.enumeration.createEnumTabsWithId" toggleGroup="$tg_creationEnums">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.enumeration.createEnumTabsWithId" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></RadioButton>
+                                                <RadioButton fx:id="radio_createSingleEnumTab" layoutX="5.0" layoutY="95.0" mnemonicParsing="false" text="%generatePhysicalModel.enumeration.createSingleEnumTab" toggleGroup="$tg_creationEnums">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.enumeration.createSingleEnumTab" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></RadioButton>
+                                                <RadioButton fx:id="radio_createEnumTxtCol" layoutX="5.0" layoutY="120.0" mnemonicParsing="false" text="%generatePhysicalModel.enumeration.createEnumTxtCol" toggleGroup="$tg_creationEnums">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.enumeration.createEnumTxtCol" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></RadioButton>
+                                                <CheckBox fx:id="chk_beautifyEnumDispName" layoutX="5.0" layoutY="145.0" mnemonicParsing="false" text="%generatePhysicalModel.enumeration.beautifyEnumDispName">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.enumeration.beautifyEnumDispName" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></CheckBox>
+                                                <Label alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="-33.0" layoutY="6.0" prefHeight="17.0" prefWidth="230.0" text="%generatePhysicalModel.enumeration" textAlignment="CENTER" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: darkgray; -fx-border-radius: 15px;">
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <CheckBox fx:id="chk_coalesceCatalogueRef" layoutX="5.0" layoutY="45.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.coalesceCatalogueRef">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.structures.coalesceCatalogueRef" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></CheckBox>
+                                                <CheckBox fx:id="chk_coalesceMultisurface" layoutX="5.0" layoutY="70.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.coalesceMultisurface">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.structures.coalesceMultisurface" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></CheckBox>
+                                                <CheckBox fx:id="chk_expandMultiLingual" layoutX="5.0" layoutY="95.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.expandMultiLingual">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.structures.expandMultiLingual" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></CheckBox>
+                                                <CheckBox fx:id="chk_coalesceMultiLine" layoutX="5.0" layoutY="120.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.coalesceMultiLine">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.structures.coalesceMultiLine" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font>
+                                                </CheckBox>
+                                                <CheckBox layoutX="5.0" layoutY="145.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.coalesceArray">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.structures.coalesceArray" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font>
+                                                </CheckBox>
+                                                <CheckBox layoutX="5.0" layoutY="170.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.coalesceMultiPoint">
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font>
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.structures.coalesceMultiPoint" />
+                                                   </tooltip>
+                                                </CheckBox>
+                                                <Label alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="-26.0" layoutY="6.0" prefHeight="17.0" prefWidth="217.0" text="%generatePhysicalModel.structures" textAlignment="CENTER" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: darkgray; -fx-border-radius: 15px;">
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <Label layoutX="5.0" layoutY="33.0" text="%generatePhysicalModel.geometry.defaultSrsAuth">
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></Label>
+                                                <TextField fx:id="tf_srsAuth" layoutX="5.0" layoutY="49.0" prefHeight="25.0" prefWidth="140.0">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.geometry.defaultSrsAuth" />
+                                                   </tooltip></TextField>
+                                                <TextField fx:id="tf_srsCode" layoutX="5.0" layoutY="92.0" prefHeight="25.0" prefWidth="140.0">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.geometry.defaultSrsCode" />
+                                                   </tooltip></TextField>
+                                                <Label layoutX="5.0" layoutY="76.0" text="%generatePhysicalModel.geometry.defaultSrsCode">
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></Label>
+                                                <CheckBox fx:id="chk_strokeArgs" layoutX="5.0" layoutY="125.0" mnemonicParsing="false" text="%generatePhysicalModel.geometry.strokeArcs">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.geometry.strokeArcs" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></CheckBox>
+                                                <CheckBox fx:id="chk_oneGeomPerTable" layoutX="5.0" layoutY="150.0" mnemonicParsing="false" text="%generatePhysicalModel.geometry.oneGeomPerTable">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.geometry.oneGeomPerTable" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></CheckBox>
+                                                <Label alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="-24.0" layoutY="6.0" prefHeight="17.0" prefWidth="214.0" text="%generatePhysicalModel.geometry" textAlignment="CENTER" />
+                                             </children>
+                                          </Pane>
+                                       </children>
+                                    </HBox>
+                                 </children></AnchorPane>
+                          </content>
+                        </Tab>
+                      <Tab text="%generatePhysicalModel.ddl">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <HBox alignment="CENTER" layoutX="-19.0" layoutY="64.0" prefHeight="201.0" prefWidth="698.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: darkgray; -fx-border-radius: 15px;">
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <CheckBox fx:id="chk_disableNameOptimization" layoutX="5.0" layoutY="45.0" mnemonicParsing="false" text="%generatePhysicalModel.ddlNames.disableNameOptimization">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.ddlNames.disableNameOptimization" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></CheckBox>
+                                                <CheckBox fx:id="chk_nameByTopic" layoutX="5.0" layoutY="75.0" mnemonicParsing="false" text="%generatePhysicalModel.ddlNames.nameByTopic">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.ddlNames.nameByTopic" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></CheckBox>
+                                                <Label layoutX="5.0" layoutY="105.0" text="%generatePhysicalModel.ddlNames.maxNameLength">
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></Label>
+                                                <TextField fx:id="tf_maxNameLength" layoutX="122.0" layoutY="100.0" prefHeight="25.0" prefWidth="56.0">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.ddlNames.maxNameLength" />
+                                                   </tooltip></TextField>
+                                                <Label alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="-4.0" layoutY="6.0" prefHeight="17.0" prefWidth="208.0" text="%generatePhysicalModel.ddlNames" textAlignment="CENTER" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: darkgray; -fx-border-radius: 15px;">
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <CheckBox fx:id="chk_sqlEnableNull" layoutX="5.0" layoutY="45.0" mnemonicParsing="false" text="%generatePhysicalModel.constrainsCreation.sqlEnableNull">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.constrainsCreation.sqlEnableNull" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></CheckBox>
+                                                <CheckBox fx:id="chk_createFk" layoutX="5.0" layoutY="70.0" mnemonicParsing="false" text="%generatePhysicalModel.constrainsCreation.createFk">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.constrainsCreation.createFk" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></CheckBox>
+                                                <CheckBox fx:id="chk_createUnique" layoutX="5.0" layoutY="95.0" mnemonicParsing="false" text="%generatePhysicalModel.constrainsCreation.createUnique">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.constrainsCreation.createUnique" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></CheckBox>
+                                                <CheckBox fx:id="chk_createNumChecks" layoutX="5.0" layoutY="120.0" mnemonicParsing="false" text="%generatePhysicalModel.constrainsCreation.createNumChecks">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.constrainsCreation.createNumChecks" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></CheckBox>
+                                                <Label alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="-25.0" layoutY="6.0" prefHeight="17.0" prefWidth="250.0" text="%generatePhysicalModel.constrainsCreation" textAlignment="CENTER" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: darkgray; -fx-border-radius: 15px;">
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <CheckBox fx:id="chk_createGeomIdx" layoutX="5.0" layoutY="45.0" mnemonicParsing="false" text="%generatePhysicalModel.indexCreation.createGeomIdx">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.indexCreation.createGeomIdx" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></CheckBox>
+                                                <CheckBox fx:id="chk_createFkIdx" layoutX="5.0" layoutY="70.0" mnemonicParsing="false" text="%generatePhysicalModel.indexCreation.createFkIdx">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.indexCreation.createFkIdx" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></CheckBox>
+                                                <Label alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="-9.0" layoutY="6.0" prefHeight="17.0" prefWidth="219.0" text="%generatePhysicalModel.indexCreation" textAlignment="CENTER" />
+                                             </children>
+                                          </Pane>
+                                       </children>
+                                    </HBox>
+                                 </children></AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="%generatePhysicalModel.meta_miscellaneous">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="201.0" prefWidth="698.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Pane prefHeight="191.0" prefWidth="330.0" style="-fx-border-color: darkgray; -fx-border-radius: 15px;">
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <GridPane layoutX="12.0" layoutY="39.0" prefHeight="150.0" prefWidth="318.0">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="10.0" prefWidth="171.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="123.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                   <children>
+                                                   	  <Pane prefHeight="200.0" prefWidth="200.0">
+                                                         <children>
+                                                            <Label layoutY="10.0" text="%generatePhysicalModel.metainformation.t_id_name">
+                                                               <font>
+                                                                  <Font size="13.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="tf_t_id_name" layoutX="66.0" layoutY="5.0" prefHeight="29.0" prefWidth="86.0">
+                                                               <tooltip>
+                                                                  <Tooltip text="%help.tooltip.generatePhysicalModel.metainformation.t_id_name" />
+                                                               </tooltip>
+                                                               <font>
+                                                                  <Font size="13.0" />
+                                                               </font>
+                                                            </TextField>
+                                                         </children>
+                                                      </Pane>
+                                                      <CheckBox fx:id="chk_importTid" mnemonicParsing="false" text="%generatePhysicalModel.metainformation.importTid" GridPane.columnIndex="1">
+                                                         <tooltip>
+                                                            <Tooltip text="%help.tooltip.generatePhysicalModel.metainformation.importTid" />
+                                                         </tooltip>
+                                                         <font>
+                                                            <Font size="13.0" />
+                                                         </font>
+                                                      </CheckBox>
+                                                      <CheckBox fx:id="chk_createStdCols" mnemonicParsing="false" text="%generatePhysicalModel.metainformation.createStdCols" GridPane.rowIndex="1">
+                                                         <tooltip>
+                                                            <Tooltip text="%help.tooltip.generatePhysicalModel.metainformation.createStdCols" />
+                                                         </tooltip>
+                                                         <font>
+                                                            <Font size="13.0" />
+                                                         </font>
+                                                      </CheckBox>
+                                                      <CheckBox fx:id="chk_createTypeDiscriminator" mnemonicParsing="false" text="%generatePhysicalModel.metainformation.createTypeDiscriminator" GridPane.rowIndex="2">
+                                                         <tooltip>
+                                                            <Tooltip text="%help.tooltip.generatePhysicalModel.metainformation.createTypeDiscriminator" />
+                                                         </tooltip>
+                                                         <font>
+                                                            <Font size="13.0" />
+                                                         </font>
+                                                      </CheckBox>
+                                                      <CheckBox fx:id="chk_iliMetaAttrs" mnemonicParsing="false" text="%generatePhysicalModel.metainformation.iliMetaAttrs" GridPane.rowIndex="3">
+                                                         <tooltip>
+                                                            <Tooltip text="%help.tooltip.generatePhysicalModel.metainformation.iliMetaAttrs" />
+                                                         </tooltip>
+                                                         <font>
+                                                            <Font size="13.0" />
+                                                         </font>
+                                                      </CheckBox>
+                                                      <CheckBox fx:id="chk_createBasketCol" mnemonicParsing="false" onAction="#onSelectCreateBasketCol" text="%generatePhysicalModel.metainformation.createBasketCol" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                         <tooltip>
+                                                            <Tooltip text="%help.tooltip.generatePhysicalModel.metainformation.createBasketCol" />
+                                                         </tooltip>
+                                                         <font>
+                                                            <Font size="13.0" />
+                                                         </font>
+                                                      </CheckBox>
+                                                      <CheckBox fx:id="chk_createDatasetCol" mnemonicParsing="false" onAction="#onSelectCreateDatasetCol" text="%generatePhysicalModel.metainformation.createDatasetCol" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                         <tooltip>
+                                                            <Tooltip text="%help.tooltip.generatePhysicalModel.metainformation.createDatasetCol" />
+                                                         </tooltip>
+                                                         <font>
+                                                            <Font size="13.0" />
+                                                         </font>
+                                                      </CheckBox>
+                                                      <CheckBox fx:id="chk_createMetaInfo" mnemonicParsing="false" text="%generatePhysicalModel.metainformation.createMetaInfo" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                         <tooltip>
+                                                            <Tooltip text="%help.tooltip.generatePhysicalModel.metainformation.createMetaInfo" />
+                                                         </tooltip>
+                                                         <font>
+                                                            <Font size="13.0" />
+                                                         </font>
+                                                      </CheckBox>
+                                                      
+                                                   </children>
+                                                </GridPane>
+                                                <Label alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="27.0" layoutY="4.0" prefHeight="17.0" prefWidth="246.0" text="%generatePhysicalModel.metainformation" textAlignment="CENTER" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="200.0" prefWidth="330.0" style="-fx-border-color: darkgray; -fx-border-radius: 15px;">
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <CheckBox fx:id="chk_ver4translation" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" text="%generatePhysicalModel.miscellaneous.ver4-translation">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.miscellaneous.ver4-translation" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></CheckBox>
+                                                <Label layoutX="14.0" layoutY="56.0" text="%generatePhysicalModel.miscellaneous.idSeqMin">
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></Label>
+                                                <Label layoutX="150.0" layoutY="56.0" text="%generatePhysicalModel.miscellaneous.idSeqMax">
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></Label>
+                                                <TextField fx:id="tf_idSeqMin" layoutX="79.0" layoutY="53.0" prefHeight="25.0" prefWidth="59.0">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.miscellaneous.idSeqMin" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></TextField>
+                                                <TextField fx:id="tf_idSeqMax" layoutX="216.0" layoutY="53.0" prefHeight="25.0" prefWidth="59.0">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.miscellaneous.idSeqMax" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></TextField>
+                                                <TextField fx:id="tf_createScriptPath" layoutX="14.0" layoutY="96.0" prefHeight="25.0" prefWidth="205.0">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.miscellaneous.createscript" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></TextField>
+                                                <Label layoutX="14.0" layoutY="78.0" text="%generatePhysicalModel.miscellaneous.createscript">
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></Label>
+                                                <Button layoutX="225.0" layoutY="97.0" mnemonicParsing="false" onAction="#onClickBrowseCreateScript" text="%buttons.browse">
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></Button>
+                                                <Button layoutX="225.0" layoutY="145.0" mnemonicParsing="false" onAction="#onClickBrowseDropScript" text="%buttons.browse">
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></Button>
+                                                <Label layoutX="14.0" layoutY="125.0" text="%generatePhysicalModel.miscellaneous.dropscript">
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></Label>
+                                                <TextField fx:id="tf_dropScriptPath" layoutX="14.0" layoutY="144.0" prefHeight="25.0" prefWidth="205.0">
+                                                   <tooltip>
+                                                      <Tooltip text="%help.tooltip.generatePhysicalModel.miscellaneous.dropscript" />
+                                                   </tooltip>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font></TextField>
+                                                <Label alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="38.0" layoutY="4.0" prefHeight="17.0" prefWidth="225.0" text="%generatePhysicalModel.miscellaneous" />
+                                             </children>
+                                          </Pane>
+                                       </children>
+                                    </HBox>
+                                 </children></AnchorPane>
+                        </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </center>
+</BorderPane>

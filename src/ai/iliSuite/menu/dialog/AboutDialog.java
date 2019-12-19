@@ -17,6 +17,7 @@ import javafx.util.Callback;
 
 import org.interlis2.validator.Main;
 
+import ai.iliSuite.impl.DbDescription;
 import ai.iliSuite.impl.ImplFactory;
 import ai.iliSuite.util.plugin.PluginsLoader;
 import ai.iliSuite.view.util.navigation.EnumPaths;
@@ -55,11 +56,11 @@ public class AboutDialog extends Dialog<ButtonType> implements Initializable {
 		
 		for (Entry<String, ImplFactory> item : lstPlugin.entrySet()) {
 			if (item.getValue() instanceof ImplFactory) {
-				ImplFactory itemPlugin = (ImplFactory) item.getValue();
+				DbDescription dbDesc = item.getValue().getDbDescription();
 				
 				infoPlugin += 
 					String.format(templateAppDescription,
-					itemPlugin.getAppName(), itemPlugin.getAppVersion());
+							dbDesc.getAppName(), dbDesc.getAppVersion());
 			}
 		}
 		

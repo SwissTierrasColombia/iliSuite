@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import ai.iliSuite.view.util.navigation.EnumPaths;
@@ -18,7 +17,6 @@ import javafx.scene.control.Dialog;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.util.Callback;
 
 public class HelpDialog extends Dialog<Boolean> implements Initializable {
 

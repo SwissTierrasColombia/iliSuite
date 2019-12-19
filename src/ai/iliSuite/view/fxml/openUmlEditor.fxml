@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="446.0" minWidth="10.0" percentWidth="60.0" prefWidth="418.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="345.0" minWidth="10.0" percentWidth="40.0" prefWidth="242.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
+         <children>
+            <TextFlow prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%openUmlEditor.description" />
+               </children>
+               <GridPane.margin>
+                  <Insets top="60.0" />
+               </GridPane.margin>
+            </TextFlow>
+            <ImageView fitHeight="183.0" fitWidth="266.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+               <image>
+                  <Image url="@../../resources/images/uml.png" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

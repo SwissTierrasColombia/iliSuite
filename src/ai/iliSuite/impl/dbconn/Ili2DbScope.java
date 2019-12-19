@@ -15,11 +15,11 @@ public abstract class Ili2DbScope{
 		this.connection = connection;
 	}
 	
-	public boolean isScoped() throws ClassNotFoundException, SQLException{
+	public boolean isScoped() throws SQLException{
 		return isScoped(null);
 	}
 
-	protected boolean isScoped(String query) throws ClassNotFoundException, SQLException {
+	protected boolean isScoped(String query) throws SQLException {
 		boolean result = false;
 		Connection conn = null;
 		
@@ -55,11 +55,11 @@ public abstract class Ili2DbScope{
 		return result;
 	}
 	
-	public List<String> getDatasetList() throws ClassNotFoundException, SQLException{
+	public List<String> getDatasetList() throws SQLException{
 		return getDatasetList(null);
 	}
 
-	protected List<String> getDatasetList(String query) throws ClassNotFoundException, SQLException {
+	protected List<String> getDatasetList(String query) throws SQLException {
 		List<String> result = new ArrayList<>();
 
 		Connection conn = null;
@@ -91,11 +91,11 @@ public abstract class Ili2DbScope{
 		return result;
 	}
 	
-	public List<String> getBasketList() throws ClassNotFoundException, SQLException{
+	public List<String> getBasketList() throws SQLException{
 		return getBasketList(null);
 	}
 
-	protected List<String> getBasketList(String query) throws ClassNotFoundException, SQLException {
+	protected List<String> getBasketList(String query) throws SQLException {
 		List<String> result = new ArrayList<>();
 		Connection conn = null;
 		
@@ -130,11 +130,11 @@ public abstract class Ili2DbScope{
 		return result;
 	}
 
-	public List<String> getTopicList() throws ClassNotFoundException, SQLException{
+	public List<String> getTopicList() throws SQLException{
 		return getTopicList(null);
 	}
 	
-	protected List<String> getTopicList(String query) throws ClassNotFoundException, SQLException {
+	protected List<String> getTopicList(String query) throws SQLException {
 		List<String> result = new ArrayList<>();
 		Connection conn = null;
 		
@@ -170,11 +170,11 @@ public abstract class Ili2DbScope{
 		return result;	
 	}
 	
-	public List<String> getModelList() throws ClassNotFoundException, SQLException{
+	public List<String> getModelList() throws SQLException{
 		return getModelList(null);
 	}
 
-	protected List<String> getModelList(String query) throws ClassNotFoundException, SQLException {
+	protected List<String> getModelList(String query) throws SQLException {
 		List<String> result = new ArrayList<>();
 		Connection conn = null;
 		

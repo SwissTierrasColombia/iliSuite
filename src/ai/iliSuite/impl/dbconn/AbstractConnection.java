@@ -24,17 +24,19 @@ public abstract class AbstractConnection {
 		return result;
 	}
 	
-	public Connection getConnection() throws SQLException, ClassNotFoundException {
+	public Connection getConnection() throws SQLException {
 		Connection conn = null;
-		Class.forName(getDriver());
 		
-		// TODO
-		Map<String,String> params = getConnectionParams();
-		
-		if(params.containsKey("user")&&params.containsKey("password"))
-			conn = DriverManager.getConnection(getUrl(),params.get("user"),params.get("password"));
-		else{
-			conn = DriverManager.getConnection(getUrl()); 
+		try {
+			Class.forName(getDriver());
+			
+			if(connectionParams.containsKey("user") && connectionParams.containsKey("password"))
+				conn = DriverManager.getConnection(getUrl(), connectionParams.get("user"), connectionParams.get("password"));
+			else{
+				conn = DriverManager.getConnection(getUrl()); 
+			}
+		} catch (ClassNotFoundException e) {
+			throw new SQLException("Failed to load JDBC Driver");
 		}
 		
 		return conn;
