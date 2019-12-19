@@ -9,6 +9,7 @@ public enum EnumIli2ora {
 	DB_DATABASE("--dbdatabase", true),
 	DB_SCHEMA("--dbschema", true),
 	DB_USER("--dbusr", true),
+	DB_SERVICE("--dbservice", true),
 	DB_PWD("--dbpwd", true);
 
 	private final String name;

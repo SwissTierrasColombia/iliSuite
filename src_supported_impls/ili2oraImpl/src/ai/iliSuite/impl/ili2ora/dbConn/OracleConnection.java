@@ -30,13 +30,13 @@ public class OracleConnection  extends AbstractConnection {
 		String strDbHost = params.get("host")!=null&&!params.get("host").isEmpty()? params.get("host") : DB_HOST;
 		String strPort = params.get("port")!=null && !params.get("port").isEmpty()? params.get("port") : DB_PORT;
 		String strDbdatabase = params.get("databaseName") != null && !params.get("databaseName").isEmpty()? ":" + params.get("databaseName") : "";
-		String strService = ""; // dbservice != null && !dbservice.isEmpty()? "/" + dbservice : "";
+		String strService = params.get("dbservice") != null && !params.get("dbservice").isEmpty()? "/" + params.get("dbservice") : "";
 		
-		String subProtocol = "jdbc:oracle:thin:@";
+		String subProtocol = getServerStringConnection();
 		
-//		if(dbservice != null && !dbservice.isEmpty()) {
-//			subProtocol += "//";
-//		}
+		if(params.get("dbservice") != null && !params.get("dbservice").isEmpty()) {
+			subProtocol += "//";
+		}
 		return subProtocol + strDbHost + ":" + strPort + strDbdatabase + strService;
 
 	}
@@ -48,7 +48,6 @@ public class OracleConnection  extends AbstractConnection {
 		Statement statement = conn.createStatement();
 		try {
 			ResultSet rs = statement.executeQuery(
-					   
 					"SELECT username FROM dba_users WHERE username = '" + schema + "'");
 			
 			while (rs.next()) {

@@ -12,11 +12,16 @@ import java.util.ResourceBundle;
 import ai.iliSuite.impl.controller.IController;
 import ai.iliSuite.impl.dbconn.AbstractConnection;
 import ai.iliSuite.impl.ili2ora.EnumIli2ora;
+import ai.iliSuite.impl.ili2ora.EnumOraConnType;
+import ai.iliSuite.util.KeyValuePair;
 import ai.iliSuite.view.util.navigation.ResourceUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
@@ -30,6 +35,8 @@ public class DatabaseOptionsController implements IController, Initializable {
 	private TextField txt_host;
 	@FXML
 	private TextField txt_port;
+	@FXML
+	private ComboBox<KeyValuePair<EnumOraConnType, String>> cbxConnectionType;
 	@FXML
 	private TextField txt_databaseName;
 	@FXML
@@ -68,6 +75,12 @@ public class DatabaseOptionsController implements IController, Initializable {
 		
 		txt_host.setPromptText(applicationBundle.getString("default.database.host"));
 		txt_port.setPromptText(applicationBundle.getString("default.database.port"));
+		@SuppressWarnings("unchecked")
+		ObservableList<KeyValuePair<EnumOraConnType, String>> items = FXCollections.observableArrayList(
+				new KeyValuePair<EnumOraConnType, String>(EnumOraConnType.SID, "SID"),
+				new KeyValuePair<EnumOraConnType, String>(EnumOraConnType.SERVICE, "Service Name"));
+		cbxConnectionType.getItems().addAll(items);
+		cbxConnectionType.getSelectionModel().selectFirst();
 	}
 
 	@Override
@@ -81,17 +94,20 @@ public class DatabaseOptionsController implements IController, Initializable {
 			String databaseName = txt_databaseName.getText() != null && !txt_databaseName.getText().isEmpty()
 					? txt_databaseName.getText() : null;
 			String databaseSchema = txt_databaseSchema.getText() != null && !txt_databaseSchema.getText().isEmpty() ? txt_databaseSchema.getText() : null;
-
 			String user = txt_user.getText() != null && !txt_user.getText().isEmpty() ? txt_user.getText() : null;
 			String pass = txt_password.getText() != null && !txt_password.getText().isEmpty() ? txt_password.getText()
 					: null;
+			boolean isService = cbxConnectionType.getValue().getKey() == EnumOraConnType.SERVICE;
 
 			Map<String, String> params = new HashMap<String, String>();
 
 			// TODO parametros en enumeracion
 			params.put("host", host);
 			params.put("port", port);
-			params.put("databaseName", databaseName);
+			if(!isService)
+				params.put("databaseName", databaseName);
+			else
+				params.put("dbservice", databaseName);
 			params.put("databaseSchema", databaseSchema);
 			params.put("user", user);
 			params.put("password", pass);
@@ -117,8 +133,12 @@ public class DatabaseOptionsController implements IController, Initializable {
 					if (port != null)
 						result.put(EnumIli2ora.DB_PORT.getName(), port);
 
-					if (databaseName != null)
-						result.put(EnumIli2ora.DB_DATABASE.getName(), databaseName);
+					if (databaseName != null) {
+						if(!isService)
+							result.put(EnumIli2ora.DB_DATABASE.getName(), databaseName);
+						else
+							result.put(EnumIli2ora.DB_SERVICE.getName(), databaseName);
+					}
 					if(databaseSchema!=null)
 						result.put(EnumIli2ora.DB_SCHEMA.getName(), databaseSchema);
 					if (user != null)
