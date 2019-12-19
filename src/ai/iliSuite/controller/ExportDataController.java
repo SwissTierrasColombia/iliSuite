@@ -139,6 +139,8 @@ public class ExportDataController implements ParamsController, DbSelectorControl
 		for(Map<String, String> item:paramsList) {
 			params.putAll(item);
 		}
+		ParamsUtil.addCommonParameters(params);
+		
 		return ParamsUtil.getCommand(params);
 	}
 
