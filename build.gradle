@@ -1,11 +1,12 @@
 apply plugin: "java"
 apply plugin: "maven"
 
-
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
 
 compileJava.options.encoding = 'UTF-8'
+
+def distDir = "$buildDir/dist"
 
 repositories {
 	flatDir {
@@ -66,4 +67,35 @@ dependencies {
 	implementation group: 'ch.ehi', name: 'fgdb4j', version: "1.1.1"
 	implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.8.11.2'
 	implementation group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '6.4.0.jre7'
+}
+
+task mainJar(type: Jar) {
+	baseName = 'iliSuite'
+    from sourceSets.main.output
+  manifest {
+    attributes(
+      "Main-Class": "ai.iliSuite.application.MainPreLoad",
+      "Class-Path": configurations.runtimeClasspath.collect { 'ilisuite_lib/'+it.getName() }.join(' '))
+  }   
+}
+
+task cpDistFiles(dependsOn: mainJar, type: Copy){
+	into "$distDir"
+	// jar
+	from("$buildDir/libs/iliSuite.jar")
+	//libs
+	from(configurations.compileClasspath){
+		into 'ilisuite_lib'
+	}
+	// others
+	from("docs/iliSuite_help_es.pdf")
+	from ("$projectDir") {
+		include "help/**", "programs/**", '.defaultConfig.properties'
+	}
+}
+
+task iliSuiteBindist(dependsOn: cpDistFiles, type: Zip) {
+   	baseName = 'iliSuite_bin'
+	destinationDir = file("$buildDir/bindist")
+    from "$distDir"
 }
