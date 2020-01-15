@@ -5,7 +5,7 @@ apply plugin: "maven"
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
 
-compileJava.options.encoding = 'US-ASCII'
+compileJava.options.encoding = 'UTF-8'
 
 repositories {
 	flatDir {
@@ -20,35 +20,25 @@ repositories {
 
 sourceSets {
 	main {
-		java {
-			srcDirs=['src']
-		}
-	}
-	ili2fgdb {
-		java {
-			srcDirs=['src_supported_impls/ili2fgdbImpl/src']
-		}
-	}
-	ili2gpkg {
-		java {
-			srcDirs=['src_supported_impls/ili2gpkgImpl/src']
-		}
-	}
-	ili2mssql {
-		java {
-			srcDirs=['src_supported_impls/ili2mssqlImpl/src']
-		}
-	}
-	ili2ora {
-		java {
-			srcDirs=['src_supported_impls/ili2oraImpl/src']
-		}
-	}
-	ili2pg {
-		java {
-			srcDirs=['src_supported_impls/ili2pgImpl/src']
-		}
-	}
+        java {
+            srcDirs=[
+            'src',
+            'src_supported_impls/ili2fgdbImpl/src',
+            'src_supported_impls/ili2gpkgImpl/src',
+            'src_supported_impls/ili2mssqlImpl/src',
+            'src_supported_impls/ili2oraImpl/src',
+            'src_supported_impls/ili2pgImpl/src']
+        }
+        resources {
+    		srcDirs=[
+            'src',
+            'src_supported_impls/ili2fgdbImpl/src',
+            'src_supported_impls/ili2gpkgImpl/src',
+            'src_supported_impls/ili2mssqlImpl/src',
+            'src_supported_impls/ili2oraImpl/src',
+            'src_supported_impls/ili2pgImpl/src']
+    	}
+    }
 }
 
 dependencies {
