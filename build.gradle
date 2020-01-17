@@ -7,6 +7,13 @@ compileJava.options.encoding = 'UTF-8'
 
 def distDir = "$buildDir/dist"
 
+def props = new Properties()
+file("src/ai/iliSuite/resources/languages/application.properties").withInputStream { 
+	stream -> props.load(stream)
+}
+
+def appVersion = props.getProperty("general.version")
+
 repositories {
 	flatDir {
 		dirs 'libs'
@@ -93,7 +100,23 @@ task cpDistFiles(dependsOn: mainJar, type: Copy){
 	}
 }
 
-task installerWin(dependsOn: cpDistFiles, type: Exec) {
+task updVersionInScriptInstaller {
+	doLast {
+		def is = file("src_installer/win/ilisuite.iss")
+		def newContent = new StringBuffer()
+		is.eachLine {
+			def line = it
+			if(it.contains('#define MyAppVersion ')) {
+				line = "#define MyAppVersion \"$appVersion\""
+			}
+			newContent << line + '\r\n'
+		}
+		
+		is.write newContent.toString()
+	}
+}
+
+task installerWin(dependsOn: [cpDistFiles, updVersionInScriptInstaller], type: Exec) {
 	commandLine 'ISCC', "$projectDir\\src_installer\\win\\ilisuite.iss"
 	doLast {
 		if(execResult.getExitValue() != 0) {
