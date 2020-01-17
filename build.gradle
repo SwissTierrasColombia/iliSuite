@@ -1,5 +1,4 @@
 apply plugin: "java"
-apply plugin: "maven"
 
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
@@ -21,25 +20,25 @@ repositories {
 
 sourceSets {
 	main {
-        java {
-            srcDirs=[
-            'src',
-            'src_supported_impls/ili2fgdbImpl/src',
-            'src_supported_impls/ili2gpkgImpl/src',
-            'src_supported_impls/ili2mssqlImpl/src',
-            'src_supported_impls/ili2oraImpl/src',
-            'src_supported_impls/ili2pgImpl/src']
-        }
-        resources {
-    		srcDirs=[
-            'src',
-            'src_supported_impls/ili2fgdbImpl/src',
-            'src_supported_impls/ili2gpkgImpl/src',
-            'src_supported_impls/ili2mssqlImpl/src',
-            'src_supported_impls/ili2oraImpl/src',
-            'src_supported_impls/ili2pgImpl/src']
-    	}
-    }
+		java {
+			srcDirs=[
+			'src',
+			'src_supported_impls/ili2fgdbImpl/src',
+			'src_supported_impls/ili2gpkgImpl/src',
+			'src_supported_impls/ili2mssqlImpl/src',
+			'src_supported_impls/ili2oraImpl/src',
+			'src_supported_impls/ili2pgImpl/src']
+		}
+		resources {
+			srcDirs=[
+			'src',
+			'src_supported_impls/ili2fgdbImpl/src',
+			'src_supported_impls/ili2gpkgImpl/src',
+			'src_supported_impls/ili2mssqlImpl/src',
+			'src_supported_impls/ili2oraImpl/src',
+			'src_supported_impls/ili2pgImpl/src']
+		}
+	}
 }
 
 dependencies {
@@ -71,12 +70,12 @@ dependencies {
 
 task mainJar(type: Jar) {
 	baseName = 'iliSuite'
-    from sourceSets.main.output
-  manifest {
-    attributes(
-      "Main-Class": "ai.iliSuite.application.MainPreLoad",
-      "Class-Path": configurations.runtimeClasspath.collect { 'ilisuite_lib/'+it.getName() }.join(' '))
-  }   
+	from sourceSets.main.output
+	manifest {
+	attributes(
+		"Main-Class": "ai.iliSuite.application.MainPreLoad",
+		"Class-Path": configurations.runtimeClasspath.collect { 'ilisuite_lib/'+it.getName() }.join(' '))
+	}
 }
 
 task cpDistFiles(dependsOn: mainJar, type: Copy){
@@ -94,8 +93,24 @@ task cpDistFiles(dependsOn: mainJar, type: Copy){
 	}
 }
 
+task installerWin(dependsOn: cpDistFiles, type: Exec) {
+	commandLine 'ISCC', "$projectDir\\src_installer\\win\\ilisuite.iss"
+	doLast {
+		if(execResult.getExitValue() != 0) {
+			def warningMessage = 'Remember to add the InnoSetup directory to the System\'s Path environment variable!!!'
+			println warningMessage
+			println warningMessage
+			println warningMessage
+		}
+	}
+}
+
 task iliSuiteBindist(dependsOn: cpDistFiles, type: Zip) {
-   	baseName = 'iliSuite_bin'
+	baseName = 'iliSuite_bin'
 	destinationDir = file("$buildDir/bindist")
-    from "$distDir"
+	from "$distDir"
+}
+
+if(System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+	iliSuiteBindist.finalizedBy installerWin
 }
