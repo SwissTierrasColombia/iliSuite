@@ -279,7 +279,7 @@ public class ImportDataOptionsView extends StepViewController implements Initial
 		}else {
 			tf_modelDir.setStyle(null);
 			List<String> models = ModelSearch.search(tf_modelDir.getText());//SEARCH in modeldir
-			
+			models.sort(null);
 			List<String> selected = new ArrayList<String>();
 			if(!tf_modelNames.getText().isEmpty())
 				selected = Arrays.asList(tf_modelNames.getText().split(";"));

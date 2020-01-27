@@ -361,7 +361,7 @@ public class ModelConvertOptionsView extends StepViewController implements Initi
 			}else {
 				tf_modelDir.setStyle(null);
 				List<String> models = ModelSearch.search(tf_modelDir.getText());//SEARCH in modeldir
-				
+				models.sort(null);
 				List<String> selected = new ArrayList<String>();
 				if(!tf_iliFilePath.getText().isEmpty() && !tf_iliFilePath.getText().endsWith(".ili"))
 					selected = Arrays.asList(tf_iliFilePath.getText().split(";"));

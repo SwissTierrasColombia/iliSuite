@@ -334,18 +334,22 @@ public class ExportDataOptionsView  extends StepViewController implements Initia
 
 	public void setDatasetList(List<String> datasetList) {
 		this.datasetList = datasetList;
+		this.datasetList.sort(null);
 	}
 
 	public void setTopicList(List<String> topicList) {
 		this.topicList = topicList;
+		this.topicList.sort(null);
 	}
 
 	public void setModelList(List<String> modelList) {
 		this.modelList = modelList;
+		this.modelList.sort(null);
 	}
 
 	public void setBasketList(List<String> basketList) {
 		this.basketList = basketList;
+		this.basketList.sort(null);
 	}
 	
 	public void setScoped(boolean isScoped) {
