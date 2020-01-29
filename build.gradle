@@ -13,7 +13,7 @@ def distDir = "$buildDir/dist"
 def ili2dbVersion = '4.3.0'
 
 def props = new Properties()
-file("src/ai/iliSuite/resources/languages/application.properties").withInputStream { 
+file("src/ai/ilisuite/resources/languages/application.properties").withInputStream { 
 	stream -> props.load(stream)
 }
 
@@ -86,7 +86,7 @@ task mainJar(type: Jar) {
 	from sourceSets.main.output
 	manifest {
 	attributes(
-		"Main-Class": "ai.iliSuite.application.MainPreLoad",
+		"Main-Class": "ai.ilisuite.application.MainPreLoad",
 		"Class-Path": configurations.runtimeClasspath.collect { 'ilisuite_lib/'+it.getName() }.join(' '))
 	}
 }
