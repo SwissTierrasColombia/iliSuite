@@ -1,7 +1,10 @@
-apply plugin: "java"
+plugins {
+	id 'org.sonarqube' version '2.8'
+	id 'java'
+}
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
 compileJava.options.encoding = 'UTF-8'
 
