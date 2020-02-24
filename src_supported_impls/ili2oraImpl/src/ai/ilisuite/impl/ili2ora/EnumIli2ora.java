@@ -10,7 +10,10 @@ public enum EnumIli2ora {
 	DB_SCHEMA("--dbschema", true),
 	DB_USER("--dbusr", true),
 	DB_SERVICE("--dbservice", true),
-	DB_PWD("--dbpwd", true);
+	DB_PWD("--dbpwd", true),
+	GENERAL_TABLESPACE("--generalTablespace",true),
+	INDEX_TABLESPACE("--indexTablespace",true),
+	LOB_TABLESPACE("--lobTablespace",true);
 
 	private final String name;
 	private final boolean needParam;

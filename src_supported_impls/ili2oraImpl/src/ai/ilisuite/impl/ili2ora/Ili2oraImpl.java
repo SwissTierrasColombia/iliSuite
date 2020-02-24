@@ -14,6 +14,7 @@ import ai.ilisuite.impl.dbconn.Ili2DbScope;
 import ai.ilisuite.impl.ili2ora.dbConn.Ili2OraScope;
 import ai.ilisuite.impl.ili2ora.dbConn.OracleConnection;
 import ai.ilisuite.impl.ili2ora.view.DatabaseOptionsController;
+import ai.ilisuite.impl.ili2ora.SchemaImportPanel;
 import ch.ehi.ili2db.AbstractMain;
 import ch.ehi.ili2ora.OraMain;
 
@@ -49,7 +50,12 @@ public class Ili2oraImpl implements ImplFactory{
 	
 	@Override
 	public PanelCustomizable getCustomPanel(EnumCustomPanel panelType) {
-		return null;
+		PanelCustomizable result = null;
+		
+		if(panelType == EnumCustomPanel.SCHEMA_IMPORT)
+			result = new SchemaImportPanel();
+		
+		return result;
 	}
 
 	@Override
