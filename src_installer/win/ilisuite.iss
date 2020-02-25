@@ -1,5 +1,5 @@
 #define MyAppName "iliSuite"
-#define MyAppVersion "1.3.1"
+#define MyAppVersion "1.3.2-20200225_SNR"
 #define MyAppPublisher "Agencia de implementación"
 #define MyAppURL "https://www.proadmintierra.info/"
 
