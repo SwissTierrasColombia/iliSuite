@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -29,6 +30,7 @@
             <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="35.0" minHeight="0.0" prefHeight="35.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="35.0" minHeight="0.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="110.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
@@ -45,7 +47,7 @@
             <TextField fx:id="txt_user" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <PasswordField fx:id="txt_password" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             
-            <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="7">
+            <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="8">
                <content>
                   <TextFlow prefHeight="56.0" prefWidth="460.0">
                      <children>
@@ -54,6 +56,7 @@
                   </TextFlow>
                </content>
             </ScrollPane>
+            <CheckBox fx:id="chkCheckSchema" mnemonicParsing="false" text="%checkSchema" GridPane.columnIndex="1" GridPane.rowIndex="7" />
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />

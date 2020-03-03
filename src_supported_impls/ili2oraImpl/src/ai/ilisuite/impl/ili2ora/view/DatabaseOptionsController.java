@@ -21,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -47,6 +48,8 @@ public class DatabaseOptionsController implements IController, Initializable {
 	private PasswordField txt_password;
 	@FXML
 	private Text lbl_connectionResult;
+	@FXML
+	private CheckBox chkCheckSchema;
 
 	private AbstractConnection connection;
 
@@ -81,6 +84,8 @@ public class DatabaseOptionsController implements IController, Initializable {
 				new KeyValuePair<EnumOraConnType, String>(EnumOraConnType.SERVICE, "Service Name"));
 		cbxConnectionType.getItems().addAll(items);
 		cbxConnectionType.getSelectionModel().selectFirst();
+		chkCheckSchema.setVisible(!createSchema);
+		chkCheckSchema.setSelected(true);
 	}
 
 	@Override
@@ -117,7 +122,7 @@ public class DatabaseOptionsController implements IController, Initializable {
 			boolean validConnection = false;
 			try {
 				validConnection = connection.isValid();
-				if(databaseSchema!=null && !createSchema)
+				if(databaseSchema!=null && !createSchema && chkCheckSchema.isSelected())
 					validConnection = validConnection && connection.checkSchema(databaseSchema);
 			} catch (ClassNotFoundException | SQLException e) {
 
