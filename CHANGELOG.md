@@ -1,7 +1,12 @@
 Changelog
 ============
 
-v1.3.2 (2019-12-19)
+v1.3.3 (2020-03-03)
+------------------------------
+
+-	Workaround: Add checkbox to skip schema verification for Oracle
+
+v1.3.2 (2020-02-25)
 ------------------------------
 
 -	Add support for Oracle tablespace
