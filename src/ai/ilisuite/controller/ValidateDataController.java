@@ -90,6 +90,7 @@ public class ValidateDataController implements ParamsController {
 		for(Map<String, String> item:paramsList) {
 			params.putAll(item);
 		}
+		ParamsUtil.addCommonParameters(params);
 		return ParamsUtil.getCommand(params);
 	}
 
