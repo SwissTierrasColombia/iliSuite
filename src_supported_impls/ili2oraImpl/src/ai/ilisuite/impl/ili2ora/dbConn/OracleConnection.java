@@ -48,12 +48,13 @@ public class OracleConnection  extends AbstractConnection {
 		Statement statement = conn.createStatement();
 		try {
 			ResultSet rs = statement.executeQuery(
-					"SELECT username FROM dba_users WHERE username = '" + schema + "'");
+					"SELECT username FROM all_users WHERE username = '" + schema + "'");
 			
 			while (rs.next()) {
 				schemaExist = true;
 				break;
 			}
+			// FIXME throw exception when there is a case false?
 			if (!schemaExist)
 				throw new SQLException("Schema error");
 	
