@@ -19,11 +19,18 @@ public enum EnumPaths {
 	MULTIPLE_SELECTION_DIALOG("/ai/ilisuite/view/dialog/multipleSelectionDialog.fxml"), //FIX it's not used
 	
 	APP_ICON("/ai/ilisuite/resources/images/app.png"),
-	UMLEDITOR_ICON("/ai/ilisuite/resources/images/edit.png"), //FIX it's not used
-	GENERATEPHYSICALMODEL_ICON("/ai/ilisuite/resources/images/db.png"), //FIX it's not used
-	IMPORT_ICON("/ai/ilisuite/resources/images/import.png"), //FIX it's not used
-	VALIDATE_ICON("/ai/ilisuite/resources/images/check.png"), //FIX it's not used
-	EXPORT_ICON("/ai/ilisuite/resources/images/export.png"); //FIX it's not used
+	UMLEDITOR_ICON("/ai/ilisuite/resources/images/edit.png"),
+	GENERATEPHYSICALMODEL_ICON("/ai/ilisuite/resources/images/db.png"),
+	IMPORT_ICON("/ai/ilisuite/resources/images/import.png"),
+	VALIDATE_ICON("/ai/ilisuite/resources/images/check.png"),
+	EXPORT_ICON("/ai/ilisuite/resources/images/export.png"),
+	
+	CSS_MAIN_PATH("/ai/ilisuite/resources/css/styles.css"),
+	APP_ICON_128("/ai/ilisuite/resources/images/icon128.png"),
+	APP_ICON_64("/ai/ilisuite/resources/images/icon64.png"),
+	APP_ICON_48("/ai/ilisuite/resources/images/icon48.png"),
+	APP_ICON_32("/ai/ilisuite/resources/images/icon32.png"),
+	APP_ICON_16("/ai/ilisuite/resources/images/icon16.png");
 	
 	private final String path;
 	

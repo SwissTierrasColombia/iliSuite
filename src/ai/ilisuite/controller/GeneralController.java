@@ -90,7 +90,7 @@ public class GeneralController {
 			IliExecutable model = new UmlEditor();
 			result = new OpenUmlEditorController(model);
 			
-			iconPath = EnumPaths.OPEN_UML_EDITOR;
+			iconPath = EnumPaths.UMLEDITOR_ICON;
 			textTitle = bundle.getString("main.function.openUml.title");
 		}
 		if(result != null) {

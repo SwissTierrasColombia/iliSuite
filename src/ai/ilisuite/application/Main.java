@@ -10,6 +10,7 @@ import ai.ilisuite.application.data.Config;
 import ai.ilisuite.controller.GeneralController;
 import ai.ilisuite.util.exception.IliSuiteSecurityManager;
 import ai.ilisuite.util.plugin.PluginsLoader;
+import ai.ilisuite.view.util.navigation.EnumPaths;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -89,13 +90,13 @@ public class Main extends Application {
 		try {
 			List<Image> icons = new ArrayList<Image>();
 
-			icons.add(new Image(getClass().getResource("/ai/ilisuite/resources/images/icon128.png").toExternalForm()));
-			icons.add(new Image(getClass().getResource("/ai/ilisuite/resources/images/icon64.png").toExternalForm()));
-			icons.add(new Image(getClass().getResource("/ai/ilisuite/resources/images/icon32.png").toExternalForm()));
-			icons.add(new Image(getClass().getResource("/ai/ilisuite/resources/images/icon48.png").toExternalForm()));
-			icons.add(new Image(getClass().getResource("/ai/ilisuite/resources/images/icon16.png").toExternalForm()));
+			icons.add(new Image(getClass().getResource(EnumPaths.APP_ICON_128.getPath()).toExternalForm()));
+			icons.add(new Image(getClass().getResource(EnumPaths.APP_ICON_64.getPath()).toExternalForm()));
+			icons.add(new Image(getClass().getResource(EnumPaths.APP_ICON_48.getPath()).toExternalForm()));
+			icons.add(new Image(getClass().getResource(EnumPaths.APP_ICON_32.getPath()).toExternalForm()));
+			icons.add(new Image(getClass().getResource(EnumPaths.APP_ICON_16.getPath()).toExternalForm()));
 
-			String cssPath = getClass().getResource("/ai/ilisuite/resources/css/styles.css").toExternalForm();
+			String cssPath = getClass().getResource(EnumPaths.CSS_MAIN_PATH.getPath()).toExternalForm();
 
 			GeneralController generalController = new GeneralController(); 
 			Scene scene = generalController.getScene(cssPath);
