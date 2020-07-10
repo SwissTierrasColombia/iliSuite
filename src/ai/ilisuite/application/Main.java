@@ -8,7 +8,6 @@ import java.util.Locale;
 
 import ai.ilisuite.application.data.Config;
 import ai.ilisuite.controller.GeneralController;
-import ai.ilisuite.util.exception.IliSuiteSecurityManager;
 import ai.ilisuite.util.plugin.PluginsLoader;
 import ai.ilisuite.view.util.navigation.EnumPaths;
 import javafx.application.Application;
@@ -25,7 +24,6 @@ public class Main extends Application {
 	
 	@Override
 	public void init() throws InterruptedException {
-		System.setSecurityManager(new IliSuiteSecurityManager());
 		Thread.sleep(1000 * 2);
 		try {
 			String ds = System.getProperty("file.separator");

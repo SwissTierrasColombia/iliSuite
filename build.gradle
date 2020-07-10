@@ -10,7 +10,7 @@ compileJava.options.encoding = 'UTF-8'
 
 def distDir = "$buildDir/dist"
 
-def ili2dbVersion = '4.4.0'
+def ili2dbVersion = '4.4.3'
 
 def props = new Properties()
 file("src/ai/ilisuite/resources/languages/application.properties").withInputStream { 
@@ -58,22 +58,10 @@ sourceSets {
 
 dependencies {
 	// libs
-	implementation group: 'ch.interlis', name: 'iox-ili', version: '1.20.16'
-	implementation group: 'ch.interlis', name: 'ili2c-tool', version: '5.0.2'
-	implementation group: 'ch.interlis', name: 'ili2c-core', version: '5.0.2'
-	implementation group: 'ch.ehi', name: 'ehisqlgen', version: '1.13.8'
-	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.7'
-	implementation group: 'net.iharder', name: 'base64', version: '2.3.9'
+	implementation group: 'ch.interlis', name: 'iox-ili', version: '1.21.0+'
+	implementation group: 'ch.interlis', name: 'ili2c-tool', version: '5.1.0+'
+	implementation group: 'ch.interlis', name: 'ili2c-core', version: '5.1.0+'
 	implementation group: 'org.fxmisc.richtext', name: 'richtextfx', version: '0.9.0'
-	implementation group: 'ch.interlis', name: 'ilivalidator', version: '1.11.3'
-	// ili2db
-	implementation group: 'ch.interlis', name: 'ili2db', version: "$ili2dbVersion"
-	implementation group: 'ch.interlis', name: 'ili2fgdb', version: "$ili2dbVersion"
-	implementation group: 'ch.interlis', name: 'ili2gpkg', version: "$ili2dbVersion"
-	implementation group: 'ch.interlis', name: 'ili2mssql', version: "$ili2dbVersion"
-	//implementation group: 'ch.interlis', name: 'ili2ora', version: "$ili2dbVersion" // temporary disabled
-	implementation name: "ili2oraLib-$ili2dbVersion"
-	implementation group: 'ch.interlis', name: 'ili2pg', version: "$ili2dbVersion"
 	//drivers dbs
 	implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.4.jre6'
 	implementation group: 'ch.ehi', name: 'fgdb4j', version: "1.1.1"

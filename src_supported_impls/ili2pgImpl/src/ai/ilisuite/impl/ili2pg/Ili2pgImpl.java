@@ -3,7 +3,6 @@ package ai.ilisuite.impl.ili2pg;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
-import ai.ilisuite.base.IliExecutable;
 import ai.ilisuite.impl.DbDescription;
 import ai.ilisuite.impl.EnumCustomPanel;
 import ai.ilisuite.impl.ImplFactory;
@@ -14,8 +13,6 @@ import ai.ilisuite.impl.dbconn.Ili2DbScope;
 import ai.ilisuite.impl.ili2pg.dbconn.Ili2PgScope;
 import ai.ilisuite.impl.ili2pg.dbconn.PostgresConnection;
 import ai.ilisuite.impl.ili2pg.view.DatabaseOptionsController;
-import ch.ehi.ili2db.AbstractMain;
-import ch.ehi.ili2pg.PgMain;
 
 
 public class Ili2pgImpl implements ImplFactory {
@@ -23,11 +20,11 @@ public class Ili2pgImpl implements ImplFactory {
 	@Override
 	public DbDescription getDbDescription() {
 		ResourceBundle bundle = ResourceBundle.getBundle("ai.ilisuite.impl.ili2pg.resources.application");
-		AbstractMain mainApp = new PgMain();
+
 		String dbName = "Postgresql";
 		String helpText = bundle.getString("database.description");
-		String appName = mainApp.getAPP_NAME();
-		String appVersion = mainApp.getVersion();
+		String appName = "ili2pg";
+		String appVersion = "4.4.3";
 		
 		return new DbDescription(appName, appVersion, dbName, helpText);
 	}
@@ -35,11 +32,6 @@ public class Ili2pgImpl implements ImplFactory {
 	@Override
 	public IController getController(AbstractConnection connection, boolean createSchema) throws IOException {
 		return new DatabaseOptionsController(connection, createSchema);
-	}
-
-	@Override
-	public IliExecutable getInterlisExecutable() {
-		return new PgExecutable();
 	}
 
 	@Override

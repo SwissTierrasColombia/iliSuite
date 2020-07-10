@@ -3,7 +3,7 @@ package ai.ilisuite.controller;
 import java.io.IOException;
 import java.util.Map;
 
-import ai.ilisuite.base.IliExecutable;
+import ai.ilisuite.base.UmlEditor;
 import ai.ilisuite.util.wizard.BuilderWizard;
 import ai.ilisuite.view.OpenUmlEditorView;
 import ai.ilisuite.view.wizard.EmptyWizardException;
@@ -14,13 +14,13 @@ import javafx.scene.Parent;
 
 
 public class OpenUmlEditorController implements ParamsController {
-	private IliExecutable model;
+	private UmlEditor model;
 	private Wizard wizard;
 	
 	private EventHandler<ActionEvent> finishHandler;
 	private EventHandler<ActionEvent> goBackHandler;
 	
-	public OpenUmlEditorController(IliExecutable model) throws IOException {
+	public OpenUmlEditorController(UmlEditor model) throws IOException {
 		this.model = model;
 		initWizard();
 	}
@@ -36,7 +36,7 @@ public class OpenUmlEditorController implements ParamsController {
 		wizard.setOnBack(goBack);
 		wizard.setOnCancel(goBack);
 		wizard.setOnFinish(finish);
-		wizard.setOnExecute((ActionEvent e) -> model.run(null));
+		wizard.setOnExecute((ActionEvent e) -> model.run());
 
 		wizard.add(new OpenUmlEditorView());
 
@@ -86,4 +86,7 @@ public class OpenUmlEditorController implements ParamsController {
 		return wizard.getGraphicComponent();
 	}
 
+	@Override
+	public void cancelExecution() {	
+	}
 }

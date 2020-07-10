@@ -31,7 +31,7 @@ public class ParamsUtil {
 		}
 		
 		if(finalPath != null && !finalPath.isEmpty())
-			result.add(finalPath);
+			result.add("\"" + finalPath+"\"");
 		
 		return result;
 	}

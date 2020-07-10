@@ -63,7 +63,7 @@ public class DatabaseOptionsController implements IController, Initializable {
 	public Map<String, String> getParams() {
 		Map<String, String> result = null;
 
-		if (validateRequiredFields()) { // TODO Agregar validaci�n de campos
+		if (validateRequiredFields()) { // TODO Agregar validacion de campos
 
 			String file = txtFile.getText();
 

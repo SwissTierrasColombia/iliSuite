@@ -3,8 +3,6 @@ package ai.ilisuite.controller;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
-import ai.ilisuite.base.IliExecutable;
-import ai.ilisuite.base.IliValidator;
 import ai.ilisuite.base.UmlEditor;
 import ai.ilisuite.view.GeneralLayoutView;
 import ai.ilisuite.view.MainOptionsView;
@@ -14,9 +12,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 
 public class GeneralController {
-	// XXX concrete (view)
 	private GeneralLayoutView view;
-	// XXX Program to interfaces, not implementations
 	private MainOptionsView main;
 	
 	private ResourceBundle bundle;
@@ -52,8 +48,9 @@ public class GeneralController {
 		ParamsController actionController = null;
 		try {
 			actionController = getControllerFromAction(action);
-			view.drawPage(actionController.getGraphicComponent());
-
+			if(actionController!=null) {
+				view.drawPage(actionController.getGraphicComponent());
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,8 +63,7 @@ public class GeneralController {
 		String textTitle = "";
 		
 		if(action == EnumIliSuiteActions.VALIDATE_DATA) {
-			IliExecutable model = new IliValidator();
-			result = new ValidateDataController(model);
+			result = new ValidateDataController();
 			
 			iconPath = EnumPaths.VALIDATE_ICON;
 			textTitle = bundle.getString("main.function.validateData.title");
@@ -87,7 +83,7 @@ public class GeneralController {
 			iconPath = EnumPaths.IMPORT_ICON;
 			textTitle = bundle.getString("main.function.importData.title");
 		} else if(action == EnumIliSuiteActions.OPEN_UML_EDITOR) {
-			IliExecutable model = new UmlEditor();
+			UmlEditor model = new UmlEditor();
 			result = new OpenUmlEditorController(model);
 			
 			iconPath = EnumPaths.UMLEDITOR_ICON;

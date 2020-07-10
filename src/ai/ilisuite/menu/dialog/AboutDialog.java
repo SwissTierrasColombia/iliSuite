@@ -15,8 +15,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Callback;
 
-import org.interlis2.validator.Main;
-
 import ai.ilisuite.impl.DbDescription;
 import ai.ilisuite.impl.ImplFactory;
 import ai.ilisuite.util.plugin.PluginsLoader;
@@ -43,9 +41,6 @@ public class AboutDialog extends Dialog<ButtonType> implements Initializable {
 		String umlEditor = String.format(templateAppDescription,
 				arg1.getString("general.umlEditorName"), arg1.getString("general.umlEditorVersion"));
 		
-		String iliValidatorInfo = 
-				String.format(templateAppDescription, Main.APP_NAME, Main.getVersion());
-		
 		String infoPlugin = "";
 		
 		infoPlugin += iliSuiteInfo;
@@ -63,8 +58,6 @@ public class AboutDialog extends Dialog<ButtonType> implements Initializable {
 							dbDesc.getAppName(), dbDesc.getAppVersion());
 			}
 		}
-		
-		infoPlugin += iliValidatorInfo;
 		
 		txt_version.setText(infoPlugin);
 	}

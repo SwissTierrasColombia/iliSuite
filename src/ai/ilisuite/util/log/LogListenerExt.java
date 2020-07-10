@@ -1,18 +1,17 @@
 package ai.ilisuite.util.log;
 import org.fxmisc.richtext.StyleClassedTextArea;
-import ch.ehi.basics.logging.AbstractFilteringListener;
 import javafx.application.Platform;
 
-public class LogListenerExt extends AbstractFilteringListener {
+public class LogListenerExt implements LogListener {
 
 	private StyleClassedTextArea out;
 
-	public LogListenerExt(StyleClassedTextArea out, String logfileName) {
+	public LogListenerExt(StyleClassedTextArea out) {
 		this.out = out;
 	}
 
 	@Override
-	public void outputMsgLine(int arg0, int arg1, String msg) {
+	public void writeMessage(String msg, boolean isErrorStream) {
 
 		Platform.runLater(new Runnable() {
 			@Override

@@ -6,40 +6,40 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ai.ilisuite.base.IliExecutable;
-import ai.ilisuite.util.exception.ExitException;
+import ai.ilisuite.IliExec;
+import ai.ilisuite.util.log.LogListenerExt;
 import ai.ilisuite.util.params.ParamsUtil;
 import ai.ilisuite.util.wizard.BuilderWizard;
 import ai.ilisuite.view.FinishActionView;
 import ai.ilisuite.view.ValidateOptionsView;
 import ai.ilisuite.view.wizard.EmptyWizardException;
 import ai.ilisuite.view.wizard.Wizard;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.concurrent.Task;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
 
 public class ValidateDataController implements ParamsController {
-	private IliExecutable interlisExecutable;
-	
 	private List<Map<String, String>> paramsList;
 	private Wizard wizard;
 	
 	private EventHandler<ActionEvent> finishHandler;
 	private EventHandler<ActionEvent> goBackHandler;
 	
-	private Thread commandExecutionThread;
+	private IliExec exec;
 	
-	public ValidateDataController(IliExecutable interlisExecutable) throws IOException {
-		this.interlisExecutable = interlisExecutable;
+	private FinishActionView finalStep;
+	
+	public ValidateDataController() throws IOException {
 		paramsList = new ArrayList<Map<String, String>>();
 		wizard = BuilderWizard.buildMainWizard();
 		wizard.add(new ValidateOptionsView(this));
-		wizard.add(new FinishActionView(this));
+		finalStep = new FinishActionView(this);
+
+		wizard.add(finalStep);
 		
 		EventHandler<ActionEvent> goBack = 
-				(ActionEvent e) -> { if(goBackHandler != null) { goBackHandler.handle(e); }};
+				(ActionEvent e) -> { cancelExecution(); if(goBackHandler != null) { goBackHandler.handle(e); }};
 		EventHandler<ActionEvent> finish = 
 				(ActionEvent e) -> { if(finishHandler != null) { finishHandler.handle(e); }};
 		
@@ -96,38 +96,38 @@ public class ValidateDataController implements ParamsController {
 
 	@Override
 	public boolean execute() {
-		SimpleBooleanProperty booleanResult = new SimpleBooleanProperty();
 		List<String> command = getCommand();
 		
-		Task<Boolean> task = new Task<Boolean>(){
-			@Override
-			protected Boolean call() throws Exception {
-				try {
-					interlisExecutable.run(command);
-					return true;
-				} catch (ExitException e) {
-					System.out.println(e.status);
-					return false;
-				}
-			}
-		};
-		task.setOnSucceeded(workerStateEvent ->{
-			wizard.setNextDisable(false);
-			
-			if(booleanResult.getValue())
+		LogListenerExt log = new LogListenerExt(finalStep.getTxtConsole());
+		
+		exec = new IliExec("java -jar ./programs/ilivalidator-1.11.6-bindist/ilivalidator-1.11.6.jar");
+
+		exec.addListener(log);
+		String[] list = command.toArray(new String[] {});
+		
+		exec.setOnSucceeded((ActionEvent e) ->{
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+				wizard.setNextDisable(false);
 				wizard.setExecuted(true);
+				}});
 		});
 		
-		task.setOnFailed(workerStateEvent -> {
-			wizard.setNextDisable(false);
-		});
-		
-		booleanResult.bind(task.valueProperty());
 		wizard.setNextDisable(true);
 		
-		commandExecutionThread = new Thread(task);
-		commandExecutionThread.start();
+		exec.setOnFailed(workerStateEvent -> {
+			wizard.setNextDisable(false);
+		});
 		
+		exec.exec(list);
 		return true;
+	}
+	
+	@Override
+	public void cancelExecution() {
+		wizard.setNextDisable(false);
+		wizard.setExecuted(false);
+		if(exec!=null) exec.cancelExecution();
 	}
 }
