@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
@@ -168,28 +178,28 @@
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </HBox.margin>
                                              <children>
-                                                <CheckBox fx:id="chk_coalesceCatalogueRef" layoutX="5.0" layoutY="45.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.coalesceCatalogueRef">
+                                                <CheckBox fx:id="chk_coalesceCatalogueRef" layoutX="6.0" layoutY="32.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.coalesceCatalogueRef">
                                                    <tooltip>
                                                       <Tooltip text="%help.tooltip.generatePhysicalModel.structures.coalesceCatalogueRef" />
                                                    </tooltip>
                                                    <font>
                                                       <Font size="13.0" />
                                                    </font></CheckBox>
-                                                <CheckBox fx:id="chk_coalesceMultisurface" layoutX="5.0" layoutY="70.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.coalesceMultisurface">
+                                                <CheckBox fx:id="chk_coalesceMultisurface" layoutX="6.0" layoutY="57.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.coalesceMultisurface">
                                                    <tooltip>
                                                       <Tooltip text="%help.tooltip.generatePhysicalModel.structures.coalesceMultisurface" />
                                                    </tooltip>
                                                    <font>
                                                       <Font size="13.0" />
                                                    </font></CheckBox>
-                                                <CheckBox fx:id="chk_expandMultiLingual" layoutX="5.0" layoutY="95.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.expandMultiLingual">
+                                                <CheckBox fx:id="chk_expandMultiLingual" layoutX="6.0" layoutY="82.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.expandMultiLingual">
                                                    <tooltip>
                                                       <Tooltip text="%help.tooltip.generatePhysicalModel.structures.expandMultiLingual" />
                                                    </tooltip>
                                                    <font>
                                                       <Font size="13.0" />
                                                    </font></CheckBox>
-                                                <CheckBox fx:id="chk_coalesceMultiLine" layoutX="5.0" layoutY="120.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.coalesceMultiLine">
+                                                <CheckBox fx:id="chk_coalesceMultiLine" layoutX="6.0" layoutY="107.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.coalesceMultiLine">
                                                    <tooltip>
                                                       <Tooltip text="%help.tooltip.generatePhysicalModel.structures.coalesceMultiLine" />
                                                    </tooltip>
@@ -197,7 +207,7 @@
                                                       <Font size="13.0" />
                                                    </font>
                                                 </CheckBox>
-                                                <CheckBox layoutX="5.0" layoutY="145.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.coalesceArray">
+                                                <CheckBox layoutX="6.0" layoutY="132.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.coalesceArray">
                                                    <tooltip>
                                                       <Tooltip text="%help.tooltip.generatePhysicalModel.structures.coalesceArray" />
                                                    </tooltip>
@@ -205,7 +215,7 @@
                                                       <Font size="13.0" />
                                                    </font>
                                                 </CheckBox>
-                                                <CheckBox layoutX="5.0" layoutY="170.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.coalesceMultiPoint">
+                                                <CheckBox layoutX="6.0" layoutY="157.0" mnemonicParsing="false" text="%generatePhysicalModel.structures.coalesceMultiPoint">
                                                    <font>
                                                       <Font size="13.0" />
                                                    </font>

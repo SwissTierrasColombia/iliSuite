@@ -64,13 +64,7 @@ public class OpenUmlEditorController implements ParamsController {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public boolean execute() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+	
 	@Override
 	public void setOnFinish(EventHandler<ActionEvent> handler) {
 		this.finishHandler = handler;
@@ -84,9 +78,5 @@ public class OpenUmlEditorController implements ParamsController {
 	@Override
 	public Parent getGraphicComponent() {
 		return wizard.getGraphicComponent();
-	}
-
-	@Override
-	public void cancelExecution() {	
 	}
 }

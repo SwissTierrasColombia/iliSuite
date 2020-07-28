@@ -26,14 +26,18 @@ public class ParamsUtil {
 			result.add(key);
 			
 			if(value != null && !value.isEmpty() && !value.equals("true")){
-				result.add(value);
+				result.add(getWrappedValue(value));
 			}
 		}
 		
 		if(finalPath != null && !finalPath.isEmpty())
-			result.add("\"" + finalPath+"\"");
+			result.add(getWrappedValue(finalPath));
 		
 		return result;
+	}
+	
+	static private String getWrappedValue(String value) {
+		return value.contains(" ")? "\""+value+"\"":value;
 	}
 
 	static public String getStringArgs(List<String> params, boolean hideSensitiveData) {

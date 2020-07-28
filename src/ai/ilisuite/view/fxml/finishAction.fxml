@@ -1,22 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <VBox fx:id="verticalWrapper" prefHeight="142.0" prefWidth="518.0" BorderPane.alignment="CENTER">
+   <top>
+      <AnchorPane prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TextFlow prefHeight="61.0" prefWidth="671.0">
+            <TextFlow prefHeight="16.0" prefWidth="506.0" AnchorPane.bottomAnchor="26.799999999999997" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="10.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%general.finishMessage" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%general.finishMessage" wrappingWidth="522.5666046142578" />
                </children>
             </TextFlow>
+            <ProgressIndicator fx:id="progressIndicator" style="-fx-border-width: 0;" visible="false" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
          </children>
-      </VBox>
+      </AnchorPane>
+   </top>
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TreeView fx:id="processTree" prefHeight="282.0" prefWidth="531.0" />
+            <AnchorPane fx:id="infoPanel" visible="false">
+               <children>
+                  <TextArea fx:id="registerReport" editable="false" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
    </center>
 </BorderPane>

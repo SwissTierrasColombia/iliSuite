@@ -12,10 +12,9 @@ public interface ParamsController {
 	public Parent getGraphicComponent();
 	
 	public String getTextParams();
-	public boolean execute();
-	
-	public void cancelExecution();
 	
 	public void setOnFinish(EventHandler<ActionEvent> handler);
 	public void setOnGoBack(EventHandler<ActionEvent> handler);
+	
+	// 
 }

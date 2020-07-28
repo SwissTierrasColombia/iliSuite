@@ -1,4 +1,4 @@
-package ai.ilisuite;
+package ai.ilisuite.base;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.fxmisc.richtext.StyleClassedTextArea;
 
-import ai.ilisuite.util.log.LogListener;
+import ai.ilisuite.base.log.IliAppStreamProcessor;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.concurrent.Task;
@@ -18,7 +18,7 @@ import javafx.concurrent.Task;
 public class IliExec {
 	
 	private Process proc;
-	private List<LogListener> observers;
+	private List<IliAppStreamProcessor> observers;
 	private String app;
 	protected EventHandler<ActionEvent> onSucceeded;
 	protected EventHandler<ActionEvent> onFailed;
@@ -29,24 +29,26 @@ public class IliExec {
 		this.app = app;
 	}
 	
-	public void addListener(LogListener listener) {
+	public void addListener(IliAppStreamProcessor listener) {
 		observers.add(listener);
 	}
 	
-	public void removeListener(LogListener listener) {
+	public void removeListener(IliAppStreamProcessor listener) {
 		observers.remove(listener);
 	}
 	
 	public void cancelExecution() {
-		if(proc!=null) {
-			proc.destroy();
-		}
+		if(proc!=null) proc.destroy();
 	}
 	
 	private void sendMessage(String message, boolean isErrorStream) {
-		for(LogListener listener:observers) {
+		for(IliAppStreamProcessor listener:observers)
 			listener.writeMessage(message, isErrorStream);
-		}
+	}
+	
+	private void finishWriting() {
+		for(IliAppStreamProcessor listener:observers)
+			listener.finishWriting();
 	}
 
 	public void exec(String[] params) {
@@ -54,14 +56,14 @@ public class IliExec {
 			
 			proc = Runtime.getRuntime().exec(app + " " +  String.join(" ",params));
 			
-            ExecutableStream errorGobbler = new 
+            ExecutableStream errorStream = new 
                     ExecutableStream(proc.getErrorStream(), true);            
                 
-            ExecutableStream outputGobbler = new 
+            ExecutableStream outputStream = new 
                 ExecutableStream(proc.getInputStream(), false);
             
-    		Thread errorThread = new Thread(errorGobbler);
-    		Thread outputThread = new Thread(outputGobbler);
+    		Thread errorThread = new Thread(errorStream);
+    		Thread outputThread = new Thread(outputStream);
     		errorThread.start();
             outputThread.start();
             
@@ -74,6 +76,8 @@ public class IliExec {
 					} catch (InterruptedException e) {
 						result = -1;
 					}
+					finishWriting();
+					
 					if(result==0 && onSucceeded != null) {
 						ActionEvent arg0 = new ActionEvent();
 						onSucceeded.handle(arg0);
