@@ -1,0 +1,33 @@
+Info: dburl <jdbc:sqlite:E:\tmp\snr2a.gpkg>
+Info: dbusr <>
+Info: ili2gpkg-4.4.3-658b7daf37ba45ed2330ca3e3a3c3d59c96e91fa
+Info: ili2c-5.1.0-20200501
+Info: iox-ili-1.21.0-731076775d8b9bd0599802cf5a0324bc3a1c21d8
+Info: java.version 1.8.0_241
+Info: user.name <PC3>
+Info: maxMemory 3697664 KB
+Info: currentTime 2020-08-03 15:44:31
+Info: dburl <jdbc:sqlite:E:\tmp\snr2a.gpkg>
+Info: dbusr <>
+Info: databaseProduct <SQLite>
+Info: databaseVersion <3.8.11>
+Info: driverName <SQLiteJDBC>
+Info: driverVersion <native>
+Info: compile models...
+Info: setRepositories(): uri <E:\compara_2.9.6\LADM_COL-2_9_6_mssql\Operacion23> (IliManager.java:86)
+Info: lookup model <Datos_Gestor_Catastral_V2_9_6> in repository <E:\compara_2.9.6\LADM_COL-2_9_6_mssql\Operacion23/>
+Info: getIliFiles(): scan ili-files in folder <E:\compara_2.9.6\LADM_COL-2_9_6_mssql\Operacion23/>... (RepositoryAccess.java:101)
+Warning: Folder E:\compara_2.9.6\LADM_COL-2_9_6_mssql\Operacion23 doesn't exist; ignored
+Info: getIliSite(): read ilisite.xml from <E:\compara_2.9.6\LADM_COL-2_9_6_mssql\Operacion23>... (RepositoryAccess.java:157)
+Error: Datos_Gestor_Catastral_V2_9_6: model not found
+Error:     ch.interlis.ilirepository.IliManager.getConfigWithFiles(IliManager.java:212)
+Error:     ch.interlis.ili2c.Main.runCompiler(Main.java:642)
+Error:     ch.ehi.ili2db.base.Ili2db.runSchemaImport(Ili2db.java:1097)
+Error:     ch.ehi.ili2db.base.Ili2db.run(Ili2db.java:227)
+Error:     ch.ehi.ili2db.AbstractMain.domain(AbstractMain.java:555)
+Error:     ch.ehi.ili2gpkg.GpkgMain.main(GpkgMain.java:67)
+compiler failed
+    ch.ehi.ili2db.base.Ili2db.runSchemaImport(Ili2db.java:1100)
+    ch.ehi.ili2db.base.Ili2db.run(Ili2db.java:227)
+    ch.ehi.ili2db.AbstractMain.domain(AbstractMain.java:555)
+    ch.ehi.ili2gpkg.GpkgMain.main(GpkgMain.java:67)

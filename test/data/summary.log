@@ -1,0 +1,17 @@
+Info: ilivalidator-1.11.6-fdec8ad57adf786b3acffd2a17cd95f65f4b2032
+Info: ili2c-5.1.1-20200501
+Info: iox-ili-1.21.0-731076775d8b9bd0599802cf5a0324bc3a1c21d8
+Info: User <PC3>
+Info: Start date 2020-08-03 16:19
+Info: maxMemory 3697664 KB
+Info: validate data...
+Info: assume unknown external objects
+Info: first validation pass...
+Info: second validation pass...
+Info: E:\snr_export_faca_2_9_6.xtf: Datos_SNR_V2_9_6.Datos_SNR BID=Datos_SNR_V2_9_6.Datos_SNR
+Info:   27439 objects in CLASS Datos_SNR_V2_9_6.Datos_SNR.SNR_Derecho
+Info:   27439 objects in CLASS Datos_SNR_V2_9_6.Datos_SNR.SNR_Fuente_Derecho
+Info:   27439 objects in CLASS Datos_SNR_V2_9_6.Datos_SNR.SNR_Predio_Registro
+Info:   30198 objects in CLASS Datos_SNR_V2_9_6.Datos_SNR.SNR_Titular
+Info:   40255 objects in CLASS Datos_SNR_V2_9_6.Datos_SNR.snr_titular_derecho
+Info: ...validation done

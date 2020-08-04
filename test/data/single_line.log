@@ -1,0 +1,20 @@
+Info: dburl <jdbc:sqlite:E:\tmp\snr2a.gpkg>
+Info: dbusr <>
+Info: ili2gpkg-4.4.3-658b7daf37ba45ed2330ca3e3a3c3d59c96e91fa
+Info: ili2c-5.1.0-20200501
+Info: iox-ili-1.21.0-731076775d8b9bd0599802cf5a0324bc3a1c21d8
+Info: java.version 1.8.0_241
+Info: user.name <PC3>
+Info: maxMemory 3697664 KB
+Info: currentTime 2020-08-03 15:48:51
+Info: dburl <jdbc:sqlite:E:\tmp\snr2a.gpkg>
+Info: dbusr <>
+Info: databaseProduct <SQLite>
+Info: databaseVersion <3.8.11>
+Info: driverName <SQLiteJDBC>
+Info: driverVersion <native>
+Info: compile models...
+Info: lookup model <Datos_Gestor_Catastral_V2_9_6> in repository <E:\compara_2.9.6\LADM_COL-2_9_6_mssql\Operacion23/>
+Warning: Folder E:\compara_2.9.6\LADM_COL-2_9_6_mssql\Operacion23 doesn't exist; ignored
+Error: Datos_Gestor_Catastral_V2_9_6: model not found
+compiler failed

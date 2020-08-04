@@ -1,0 +1,28 @@
+Info: ilivalidator-1.11.6-fdec8ad57adf786b3acffd2a17cd95f65f4b2032
+Info: ili2c-5.1.1-20200501
+Info: iox-ili-1.21.0-731076775d8b9bd0599802cf5a0324bc3a1c21d8
+Info: User <PC3>
+Info: Start date 2020-08-03 18:47
+Info: maxMemory 3697664 KB
+Info: dataFile <E:\test_export_data2323 - Copy.xtf>
+Info:       5 objects in CLASS LADM_COL_V1_3.LADM_Nucleo.col_miembros
+Info:     596 objects in CLASS LADM_COL_V1_3.LADM_Nucleo.col_puntoCcl
+Info:      57 objects in CLASS LADM_COL_V1_3.LADM_Nucleo.col_rrrFuente
+Info:      69 objects in CLASS LADM_COL_V1_3.LADM_Nucleo.col_ueBaunit
+Info:       2 objects in CLASS LADM_COL_V1_3.LADM_Nucleo.col_ueFuente
+Info:       2 objects in CLASS Operacion_V2_9_6.Operacion.OP_Agrupacion_Interesados
+Info:      17 objects in CLASS Operacion_V2_9_6.Operacion.OP_Construccion
+Info:      52 objects in CLASS Operacion_V2_9_6.Operacion.OP_Derecho
+Info:      50 objects in CLASS Operacion_V2_9_6.Operacion.OP_FuenteAdministrativa
+Info:       2 objects in CLASS Operacion_V2_9_6.Operacion.OP_FuenteEspacial
+Info:      36 objects in CLASS Operacion_V2_9_6.Operacion.OP_Interesado
+Info:       4 objects in CLASS Operacion_V2_9_6.Operacion.OP_Interesado_Contacto
+Info:     154 objects in CLASS Operacion_V2_9_6.Operacion.OP_Lindero
+Info:      51 objects in CLASS Operacion_V2_9_6.Operacion.OP_Predio
+Info:      53 objects in CLASS Operacion_V2_9_6.Operacion.OP_PuntoLevantamiento
+Info:     390 objects in CLASS Operacion_V2_9_6.Operacion.OP_PuntoLindero
+Info:       5 objects in CLASS Operacion_V2_9_6.Operacion.OP_Restriccion
+Info:       1 objects in CLASS Operacion_V2_9_6.Operacion.OP_ServidumbrePaso
+Info:      52 objects in CLASS Operacion_V2_9_6.Operacion.OP_Terreno
+Info:      29 objects in CLASS Operacion_V2_9_6.Operacion.OP_UnidadConstruccion
+Info: ...validation failed

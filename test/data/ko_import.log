@@ -1,0 +1,23 @@
+Info: dburl <jdbc:sqlite:E:\tmp\snr12.gpkg>
+Info: dbusr <>
+Info: ili2gpkg-4.4.3-658b7daf37ba45ed2330ca3e3a3c3d59c96e91fa
+Info: ili2c-5.1.0-20200501
+Info: iox-ili-1.21.0-731076775d8b9bd0599802cf5a0324bc3a1c21d8
+Info: java.version 1.8.0_241
+Info: user.name <PC3>
+Info: maxMemory 3697664 KB
+Info: currentTime 2020-08-03 17:06:10
+Info: dbusr <>
+Info: databaseProduct <SQLite>
+Info: databaseVersion <3.8.11>
+Info: driverName <SQLiteJDBC>
+Info: driverVersion <native>
+Info: compile models...
+Info: process data file...
+Info: data <E:\test_export_failed.xtf>
+Info: assume unknown external objects
+Info: disable rounding
+Info: first validation pass...
+Info: Basket Operacion_V2_9_6.Operacion(oid Operacion_V2_9_6.Operacion)...
+Info: validate target of role LADM_COL_V1_3.LADM_Nucleo.col_ueFuente.fuente_espacial...
+...import failed
