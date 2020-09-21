@@ -114,7 +114,7 @@ public class ModelConvertOptionsView extends StepViewController implements Initi
 	@FXML
 	private CheckBox chk_iliMetaAttrs;
 	@FXML
-	private CheckBox chk_importTid;
+	private CheckBox chk_createTidColumn;
 	@FXML
 	private CheckBox chk_createBasketCol;
 	@FXML
@@ -526,8 +526,8 @@ public class ModelConvertOptionsView extends StepViewController implements Initi
 		if(chk_iliMetaAttrs.isSelected())
 			params.put(EnumParams.ILI_META_ATTRS.getName(), "true");
 
-		if(chk_importTid.isSelected())
-			params.put(EnumParams.IMPORT_TID.getName(), "true");
+		if(chk_createTidColumn.isSelected())
+			params.put(EnumParams.CREATE_TID_COLUM.getName(), "true");
 
 		if(chk_createBasketCol.isSelected())
 			params.put(EnumParams.CREATE_BASKET_COL.getName(), "true");

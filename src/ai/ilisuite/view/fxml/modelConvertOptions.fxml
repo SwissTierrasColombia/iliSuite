@@ -408,9 +408,9 @@
                                                             </TextField>
                                                          </children>
                                                       </Pane>
-                                                      <CheckBox fx:id="chk_importTid" mnemonicParsing="false" text="%generatePhysicalModel.metainformation.importTid" GridPane.columnIndex="1">
+                                                      <CheckBox fx:id="chk_createTidColumn" mnemonicParsing="false" text="%generatePhysicalModel.metainformation.createTidColumn" GridPane.columnIndex="1">
                                                          <tooltip>
-                                                            <Tooltip text="%help.tooltip.generatePhysicalModel.metainformation.importTid" />
+                                                            <Tooltip text="%help.tooltip.generatePhysicalModel.metainformation.createTidColumn" />
                                                          </tooltip>
                                                          <font>
                                                             <Font size="13.0" />

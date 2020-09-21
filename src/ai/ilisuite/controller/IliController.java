@@ -140,6 +140,8 @@ public abstract class IliController implements ParamsController, IliMessageRecei
 	public boolean execute() {
 		List<String> command = getCommand();
 		
+		finalStep.reset();
+		
 		exec = new IliExec(getExecutablePath());
 		
 		exec.addListener(new IliAppMessagesClasifier(this));

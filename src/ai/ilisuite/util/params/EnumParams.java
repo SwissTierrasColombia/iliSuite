@@ -100,7 +100,6 @@ public enum EnumParams {
 	COALESCE_MULTI_POINT("--coalesceMultiPoint", false),
 	EXPORT_MODELS("--exportModels", true),
 	// GUI("--gui", false), 
-	IMPORT_BID("--importBid", false),
 	ILIGML20("--ILIGML20", false),
 	ILI_META_ATTRS("--iliMetaAttrs", true),
 	KEEP_AREA_REF("--keepAreaRef", false),
@@ -111,7 +110,12 @@ public enum EnumParams {
 	VER4NO_SCHEMA_IMPORT("--ver4-noSchemaImport", false),
 	
 	DISABLE_ROUNDING("--disableRounding", false),
-	FILE_NAME("ili_xtf_file", true);
+	FILE_NAME("ili_xtf_file", true),
+
+	// Options ili2db4
+	IMPORT_BID("--importBid", false),	
+	CREATE_TID_COLUM("--createTidCol", false);
+	
 	
 	private final String name;
 	private final boolean needParam;

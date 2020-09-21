@@ -206,7 +206,7 @@ public class FinishActionView  extends StepViewController  implements Initializa
 				break;
 			case Other:
 				node = others;
-				nodeTitle = strWarnings;
+				nodeTitle = strOthers;
 				break;
 			default:
 			}
