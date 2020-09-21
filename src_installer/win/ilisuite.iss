@@ -1,5 +1,5 @@
 #define MyAppName "iliSuite"
-#define MyAppVersion "1.3.2-20200225_SNR"
+#define MyAppVersion "1.3.3-20200303_SNR"
 #define MyAppPublisher "Agencia de implementación"
 #define MyAppURL "https://www.proadmintierra.info/"
 
@@ -56,7 +56,7 @@ Name: "{group}\{#MyAppName}"; Filename: "{code:getPathJava}"; WorkingDir: "{app}
 Name: "{group}\Ayuda iliSuite"; Filename: "{app}\iliSuite_help_es.pdf"; Languages: spanish
 
 [Run]
-Filename: "{code:getPathJava}"; WorkingDir: "{app}"; Parameters: "-jar {app}\{#MyAppJarName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: shellexec postinstall skipifsilent
+Filename: "{code:getPathJava}"; WorkingDir: "{app}"; Parameters: "-jar ""{app}\{#MyAppJarName}"""; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: shellexec postinstall skipifsilent
 
 #define REG_PATH_JAVA32 'SOFTWARE\WOW6432node\JavaSoft'
 #define REG_PATH_JAVA 'SOFTWARE\JavaSoft'
