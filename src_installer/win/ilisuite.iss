@@ -73,7 +73,7 @@ Filename: "{code:getPathJava}"; WorkingDir: "{app}"; Parameters: "-jar ""{app}\{
 BeveledLabel=iliSuite v{#MyAppVersion}
 
 [CustomMessages]
-english.jre_error=You must install Java Runtime Environment JRE™ version 1.8 or later.
+english.jre_error=You must install Java Runtime Environment JRE™ version 1.8
 english.jrepage_title=Select JRE
 english.jrepage_description=Select JRE version that will be used for {#MyAppName}
 english.jrepage_content=Select an option, then click Next to continue.
@@ -82,7 +82,7 @@ english.jrepage_nooption=Please, select an option
 spanish.jrepage_title=Seleccione JRE
 spanish.jrepage_description=Seleccione la versión del JRE que utilizará {#MyAppName}
 spanish.jrepage_content=Seleccione una opción y haga clic en Siguiente para continuar.
-spanish.jre_error=Debe instalar Java Runtime Environment JRE™ versión 1.8 o superior.
+spanish.jre_error=Debe instalar Java Runtime Environment JRE™ versión 1.8
 spanish.jrepage_nooption=Por favor, seleccione una opción
 
 [Dirs]
@@ -149,17 +149,9 @@ begin
 	itemMicroA := StrToInt(itemVersion[0]);
 	itemMicroB := StrToInt(itemVersion[1]);
 
-	if itemMajor > {#JAVA_MAJOR} then
+	if itemMajor = {#JAVA_MAJOR} then
 	begin
-		Result := True;
-	end
-	else if itemMajor = {#JAVA_MAJOR} then
-	begin
-		if itemMinor > {#JAVA_MINOR} then
-		begin
-			return := True;
-		end
-		else if itemMinor = {#JAVA_MINOR} then
+    if itemMinor = {#JAVA_MINOR} then
 		begin
 			if itemMicroA > {#JAVA_MICRO_A} then
 			begin
