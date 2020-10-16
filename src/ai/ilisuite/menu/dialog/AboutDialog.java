@@ -28,6 +28,8 @@ public class AboutDialog extends Dialog<ButtonType> implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		ResourceBundle versionBundle = ResourceBundle.getBundle(EnumPaths.VERSION_BUNDLE.getPath());
+
 		String ls = System.getProperty("line.separator");
 		
 		String vtxt = arg1.getString("general.versionText");
@@ -36,18 +38,20 @@ public class AboutDialog extends Dialog<ButtonType> implements Initializable {
 		Map<String, ImplFactory> lstPlugin = PluginsLoader.getPlugins();
 
 		String iliSuiteInfo = String.format(templateAppDescription,
-				arg1.getString("general.appName"), arg1.getString("general.version"));
+				arg1.getString("general.appName"), versionBundle.getString("version"));
 		
 		String umlEditor = String.format(templateAppDescription,
-				arg1.getString("general.umlEditorName"), arg1.getString("general.umlEditorVersion"));
+				arg1.getString("general.umlEditorName"), versionBundle.getString("umlEditorVersion"));
+		
+		String ilivalidator = String.format(templateAppDescription, 
+				arg1.getString("general.ilivalidatorName"), versionBundle.getString("ilivalidatorVersion"));
 		
 		String infoPlugin = "";
 		
-		infoPlugin += iliSuiteInfo;
-		
+		infoPlugin += iliSuiteInfo;		
 		infoPlugin += arg1.getString("dialog.about.otherProjects")+ ls + ls;
-		
 		infoPlugin += umlEditor;
+		infoPlugin += ilivalidator;
 		
 		for (Entry<String, ImplFactory> item : lstPlugin.entrySet()) {
 			if (item.getValue() instanceof ImplFactory) {

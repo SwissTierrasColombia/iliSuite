@@ -23,3 +23,6 @@ iliToolSuite.out.xml
 /.gradle/
 src/ai/iliSuite/base/TestModel.java
 /build/
+Version.properties
+/programs/
+ojdbc*

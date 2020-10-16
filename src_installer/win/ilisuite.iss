@@ -1,9 +1,9 @@
 #define MyAppName "iliSuite"
-#define MyAppVersion "1.3.3-20200303_SNR"
+#define MyAppVersion "1.3.4"
 #define MyAppPublisher "Agencia de implementación"
 #define MyAppURL "https://www.proadmintierra.info/"
 
-#define MyAppJarName "iliSuite.jar"
+#define MyAppJarName "iliSuite"
 #define SourcePath "..\..\build\dist"
 #define OutputDirectory "..\..\build\bindist"
 
@@ -42,7 +42,7 @@ Name: "german"; MessagesFile: "compiler:Languages\German.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}";
 
 [Files]
-Source: "{#SourcePath}\ilisuite.jar"; DestDir: "{app}"; Flags: ignoreversion nocompression
+Source: "{#SourcePath}\{#MyAppJarName}-{#MyAppVersion}.jar"; DestDir: "{app}"; Flags: ignoreversion nocompression
 Source: ".\images\ilisuite.ico"; DestDir: "{app}"; Flags: ignoreversion nocompression
 Source: "{#SourcePath}\iliSuite_help_es.pdf"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourcePath}\help\*"; DestDir: "{app}\help"; Flags: ignoreversion createallsubdirs recursesubdirs
@@ -51,12 +51,12 @@ Source: "{#SourcePath}\programs\*"; DestDir: "{app}\programs"; Flags: ignorevers
 Source: "{#SourcePath}\.defaultConfig.properties"; DestDir: "{app}"
 
 [Icons]
-Name: "{commondesktop}\{#MyAppName}"; Filename: "{code:getPathJava}"; WorkingDir: "{app}"; IconFilename: "{app}\ilisuite.ico"; Parameters: "-jar ""{app}\{#MyAppJarName}"""; Tasks: desktopicon
-Name: "{group}\{#MyAppName}"; Filename: "{code:getPathJava}"; WorkingDir: "{app}"; IconFilename: "{app}\ilisuite.ico"; Parameters: "-jar ""{app}\{#MyAppJarName}"""
+Name: "{commondesktop}\{#MyAppName}"; Filename: "{code:getPathJava}"; WorkingDir: "{app}"; IconFilename: "{app}\ilisuite.ico"; Parameters: "-jar ""{app}\{#MyAppJarName}-{#MyAppVersion}.jar"""; Tasks: desktopicon
+Name: "{group}\{#MyAppName}"; Filename: "{code:getPathJava}"; WorkingDir: "{app}"; IconFilename: "{app}\ilisuite.ico"; Parameters: "-jar ""{app}\{#MyAppJarName}-{#MyAppVersion}.jar"""
 Name: "{group}\Ayuda iliSuite"; Filename: "{app}\iliSuite_help_es.pdf"; Languages: spanish
 
 [Run]
-Filename: "{code:getPathJava}"; WorkingDir: "{app}"; Parameters: "-jar ""{app}\{#MyAppJarName}"""; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: shellexec postinstall skipifsilent
+Filename: "{code:getPathJava}"; WorkingDir: "{app}"; Parameters: "-jar ""{app}\{#MyAppJarName}-{#MyAppVersion}.jar"""; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: shellexec postinstall skipifsilent
 
 #define REG_PATH_JAVA32 'SOFTWARE\WOW6432node\JavaSoft'
 #define REG_PATH_JAVA 'SOFTWARE\JavaSoft'

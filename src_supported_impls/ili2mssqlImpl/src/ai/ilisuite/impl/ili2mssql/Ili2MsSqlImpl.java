@@ -20,10 +20,11 @@ public class Ili2MsSqlImpl implements ImplFactory {
 	@Override
 	public DbDescription getDbDescription() {
 		ResourceBundle bundle = ResourceBundle.getBundle("ai.ilisuite.impl.ili2mssql.resources.application");
+		ResourceBundle version = ResourceBundle.getBundle("ai.ilisuite.impl.ili2mssql.Version");
 		String dbName = "MsSQL Server";
 		String helpText = bundle.getString("database.description");
 		String appName = "ili2mssql";
-		String appVersion = "4.4.3"; //FIX hardcode
+		String appVersion = version.getString("version");
 		return new DbDescription(appName, appVersion, dbName, helpText);
 	}
 	

@@ -20,11 +20,12 @@ public class Ili2fgdbImpl implements ImplFactory {
 	@Override
 	public DbDescription getDbDescription() {
 		ResourceBundle bundle = ResourceBundle.getBundle("ai.ilisuite.impl.ili2fgdb.resources.application");
-		
+		ResourceBundle version = ResourceBundle.getBundle("ai.ilisuite.impl.ili2fgdb.Version");
+
 		String dbName = "File Geodatabase";
 		String helpText = bundle.getString("database.description");
 		String appName = "ili2fgdb";
-		String appVersion = "4.4.3";
+		String appVersion = version.getString("version");
 		
 		return new DbDescription(appName, appVersion, dbName, helpText);
 	}

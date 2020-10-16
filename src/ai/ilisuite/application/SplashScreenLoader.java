@@ -29,7 +29,7 @@ public class SplashScreenLoader extends Preloader {
 	}
 
 	public Scene createScene() throws IOException {
-		bundle = ResourceBundle.getBundle(EnumPaths.RESOURCE_BUNDLE.getPath());
+		bundle = ResourceBundle.getBundle(EnumPaths.VERSION_BUNDLE.getPath());
 		FXMLLoader loader = new FXMLLoader(SplashScreenLoader.class.getResource("splashScreenLoader.fxml"), bundle);
 
 		Parent root = (Parent) loader.load();

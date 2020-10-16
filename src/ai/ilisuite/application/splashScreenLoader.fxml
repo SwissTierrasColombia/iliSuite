@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -15,6 +12,6 @@
             <Image url="@../resources/images/splash.png" />
          </image>
       </ImageView>
-      <Text fill="#5680c6" layoutX="444.0" layoutY="298.0" strokeLineJoin="ROUND" strokeWidth="0.0" style="-fx-font-weight: bold;" text="%general.version" textAlignment="RIGHT" />
+      <Text fill="#5680c6" layoutX="496.0" layoutY="313.0" strokeLineJoin="ROUND" strokeWidth="0.0" style="-fx-font-weight: bold;" text="%version" textAlignment="RIGHT" wrappingWidth="100" />
    </children>
 </AnchorPane>

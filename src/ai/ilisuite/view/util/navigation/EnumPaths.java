@@ -3,6 +3,7 @@ package ai.ilisuite.view.util.navigation;
 public enum EnumPaths {
 	
 	RESOURCE_BUNDLE("ai.ilisuite.resources.languages.application"),
+	VERSION_BUNDLE("ai.ilisuite.application.Version"),
 	
 	GENERAL_LAYOUT("/ai/ilisuite/view/fxml/generalLayout.fxml"),
 	MAIN_OPTIONS("/ai/ilisuite/view/fxml/mainOptions.fxml"),

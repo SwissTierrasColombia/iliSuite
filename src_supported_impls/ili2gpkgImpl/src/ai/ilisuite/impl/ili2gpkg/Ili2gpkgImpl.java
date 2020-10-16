@@ -20,11 +20,12 @@ public class Ili2gpkgImpl implements ImplFactory{
 	@Override
 	public DbDescription getDbDescription() {
 		ResourceBundle bundle = ResourceBundle.getBundle("ai.ilisuite.impl.ili2gpkg.resources.application");
+		ResourceBundle version = ResourceBundle.getBundle("ai.ilisuite.impl.ili2gpkg.Version");
 		
 		String dbName = "Geopackage";
 		String helpText = bundle.getString("database.description");
 		String appName = "ili2gpkg";
-		String appVersion = "4.4.3";
+		String appVersion = version.getString("version");
 		
 		return new DbDescription(appName, appVersion, dbName, helpText);
 	}

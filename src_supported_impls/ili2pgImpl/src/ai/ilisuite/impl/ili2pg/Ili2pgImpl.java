@@ -20,11 +20,12 @@ public class Ili2pgImpl implements ImplFactory {
 	@Override
 	public DbDescription getDbDescription() {
 		ResourceBundle bundle = ResourceBundle.getBundle("ai.ilisuite.impl.ili2pg.resources.application");
+		ResourceBundle version = ResourceBundle.getBundle("ai.ilisuite.impl.ili2pg.Version");
 
 		String dbName = "Postgresql";
 		String helpText = bundle.getString("database.description");
 		String appName = "ili2pg";
-		String appVersion = "4.4.3";
+		String appVersion = version.getString("version");
 		
 		return new DbDescription(appName, appVersion, dbName, helpText);
 	}

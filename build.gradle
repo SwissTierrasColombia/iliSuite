@@ -1,7 +1,10 @@
 plugins {
 	id 'org.sonarqube' version '2.8'
 	id 'java'
+	id "de.undercouch.download" version "4.1.1"
 }
+
+version '1.3.4'
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
@@ -10,14 +13,15 @@ compileJava.options.encoding = 'UTF-8'
 
 def distDir = "$buildDir/dist"
 
-def ili2dbVersion = '4.4.3'
+def ili2dbVersion = '4.4.4'
+def ilivalidatorVersion = '1.11.8'
+def umlEditorVersion = '3.6.7'
 
-def props = new Properties()
-file("src/ai/ilisuite/resources/languages/application.properties").withInputStream { 
-	stream -> props.load(stream)
-}
+def ili2dbApps = ['pg', 'mssql', 'ora', 'gpkg', 'fgdb']
 
-def appVersion = props.getProperty("general.version")
+def ili2dbLink = 'https://jars.interlis.ch/ch/interlis/ili2%s/%s/ili2%s-%s-bindist.zip'
+def ilivalidatorLink = 'https://jars.interlis.ch/ch/interlis/ilivalidator/' + ilivalidatorVersion + '/ilivalidator-' + ilivalidatorVersion + '-bindist.zip'
+def umlEditorLink = 'https://github.com/SwissTierrasColombia/umleditor/releases/download/v' + umlEditorVersion + '/umleditor-' + umlEditorVersion + '.zip'
 
 repositories {
 	flatDir {
@@ -63,9 +67,9 @@ sourceSets {
 
 dependencies {
 	// libs
-	implementation group: 'ch.interlis', name: 'iox-ili', version: '1.21.0+'
-	implementation group: 'ch.interlis', name: 'ili2c-tool', version: '5.1.0+'
-	implementation group: 'ch.interlis', name: 'ili2c-core', version: '5.1.0+'
+	implementation group: 'ch.interlis', name: 'iox-ili', version: '1.21.3'
+	implementation group: 'ch.interlis', name: 'ili2c-tool', version: '5.1.4'
+	implementation group: 'ch.interlis', name: 'ili2c-core', version: '5.1.4'
 	implementation group: 'org.fxmisc.richtext', name: 'richtextfx', version: '0.9.0'
 	//drivers dbs
 	implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.4.jre6'
@@ -73,10 +77,73 @@ dependencies {
 	implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.8.11.2'
 	implementation group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '6.4.0.jre7'
 	
+	implementation fileTree(dir: "libs", includes: ['*.jar'])
 	testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
 
-task mainJar(type: Jar) {
+ext.getLinks = {
+	def links = []
+	
+	ili2dbApps.each	{ value -> links.add( String.format(ili2dbLink, value, ili2dbVersion, value, ili2dbVersion)) }
+	return links
+}
+
+task generateVersions {
+	doLast {
+		def versionProps = new Properties()
+		versionProps.setProperty('version', "$project.version")
+		versionProps.setProperty('umlEditorVersion', "$umlEditorVersion")
+		versionProps.setProperty('ilivalidatorVersion', "$ilivalidatorVersion")
+
+		def versionPropsFile = new File("src/ai/ilisuite/application/Version.properties")
+		versionPropsFile.getParentFile().mkdirs();
+		def writer = versionPropsFile.newWriter()
+		versionProps.store(writer, null);
+		writer.close()
+		def versionIli2dbs = new Properties()
+		versionIli2dbs.setProperty('version', "$ili2dbVersion")
+		
+		ili2dbApps.each { app ->
+			def path = "src_supported_impls/ili2$app" + 
+					"Impl/src/ai/ilisuite/impl/ili2$app/Version.properties"
+			 
+			def versionPropsFile2 = new File(path)
+			versionPropsFile2.getParentFile().mkdirs();
+			def writer2 = versionPropsFile2.newWriter()
+			versionIli2dbs.store(writer2, null);
+			writer2.close()
+		}
+	}
+}
+
+task copyPrograms {
+	doLast{
+		download {
+			src ([umlEditorLink, ilivalidatorLink]  + getLinks())
+			dest "$buildDir/tmp"
+			overwrite false
+		}
+		ili2dbApps.each { app ->
+			copy {
+				def name = "ili2${app}-${ili2dbVersion}-bindist.zip"
+				from zipTree("$buildDir/tmp/$name")
+				into "programs/ili2db"
+			}
+		}
+		copy {
+			def name = "ilivalidator-${ilivalidatorVersion}-bindist"
+			from zipTree("$buildDir/tmp/${name}.zip")
+			into "programs/$name"
+		}
+		copy {
+			def name = "/umleditor-${umlEditorVersion}"
+			from zipTree("$buildDir/tmp/${name}.zip")
+			into "programs/$name"
+		}
+	}
+}
+
+task mainJar(dependsOn: generateVersions, type: Jar) {
 	archiveBaseName = 'iliSuite'
 	from sourceSets.main.output
 	manifest {
@@ -86,18 +153,21 @@ task mainJar(type: Jar) {
 	}
 }
 
-task cpDistFiles(dependsOn: mainJar, type: Copy){
+task cpDistFiles(dependsOn: [mainJar, copyPrograms], type: Copy){
 	into "$distDir"
 	// jar
-	from("$buildDir/libs/iliSuite.jar")
+	from("$buildDir/libs/iliSuite-${project.version}.jar")
 	//libs
-	from(configurations.compileClasspath){
+	from(configurations.runtimeClasspath){
 		into 'ilisuite_lib'
 	}
 	// others
 	from("docs/iliSuite_help_es.pdf")
 	from ("$projectDir") {
 		include "help/**", "programs/**", '.defaultConfig.properties'
+	}
+	from ("libs") {
+		into 'programs/ili2db/libs'
 	}
 }
 
@@ -108,7 +178,7 @@ task updVersionInScriptInstaller {
 		is.eachLine {
 			def line = it
 			if(it.contains('#define MyAppVersion ')) {
-				line = "#define MyAppVersion \"$appVersion\""
+				line = "#define MyAppVersion \"$project.version\""
 			}
 			newContent << line + '\r\n'
 		}
@@ -138,3 +208,5 @@ task iliSuiteBindist(dependsOn: cpDistFiles, type: Zip) {
 if(System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
 	iliSuiteBindist.finalizedBy installerWin
 }
+
+clean.dependsOn('generateVersions')

@@ -21,11 +21,12 @@ public class Ili2oraImpl implements ImplFactory{
 	@Override
 	public DbDescription getDbDescription() {
 		ResourceBundle bundle = ResourceBundle.getBundle("ai.ilisuite.impl.ili2ora.resources.application");
+		ResourceBundle version = ResourceBundle.getBundle("ai.ilisuite.impl.ili2ora.Version");
 
 		String dbName = "Oracle database";
 		String helpText = bundle.getString("database.description");
 		String appName = "ili2ora";
-		String appVersion = "4.4.3"; //FIX hardcode
+		String appVersion = version.getString("version");
 		
 		return new DbDescription(appName, appVersion, dbName, helpText);
 	}

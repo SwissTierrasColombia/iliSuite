@@ -61,20 +61,17 @@ public class ImportDataController extends IliController implements DbSelectorCon
 
 	@Override
 	protected void addCustomParams(Map<String, String> params) {
-		// FIX there are other process: update, delete...
-		params.put(EnumParams.DATA_IMPORT.getName(), null);
 	}
 
 	@Override
 	protected String getExecutablePath() {
 		DbDescription dbDesc = dbImpl.getDbDescription();
 		
-		String basePath = "programs/";
+		String basePath = "programs/ili2db/";
 		String AppNameAndVersion = dbDesc.getAppName() + "-" + dbDesc.getAppVersion(); 
-		String jarPath = AppNameAndVersion + "-bindist/" + AppNameAndVersion + ".jar";
 		String javaExec = "java -jar";
 		
-		File file = new File(basePath + jarPath);
+		File file = new File(basePath + AppNameAndVersion + ".jar");
 		
 		return javaExec + " \"" + file.getAbsolutePath() + "\"";
 	}
