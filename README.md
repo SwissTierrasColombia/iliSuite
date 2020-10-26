@@ -16,6 +16,6 @@ Java Runtime Environment (JRE) versión 8.
 
 ## Instalación
 
-Para el SO Windows descargue el instalador de la última versión [acá](https://github.com/SwissTierrasColombia/iliSuite/releases/download/v1.3.0/iliSuite_setup.exe).
+Para el SO Windows descargue el instalador de la última versión [acá](https://github.com/SwissTierrasColombia/iliSuite/releases/download/v1.3.4/iliSuite_setup.exe).
 
-También puede descargar los archivos de distribución [aquí](https://github.com/SwissTierrasColombia/iliSuite/releases/download/v1.3.0/iliSuite.zip), extraerlos en una carpeta de su elección y ejecutar **iliSuite** escribiendo en la consola ``java -jar ilisuite.jar``
+También puede descargar los archivos de distribución [aquí](https://github.com/SwissTierrasColombia/iliSuite/releases/download/v1.3.4/iliSuite_bin-1.3.4.zip), extraerlos en una carpeta de su elección y ejecutar **iliSuite** escribiendo en la consola ``java -jar ilisuite.jar``
