@@ -13,13 +13,20 @@ compileJava.options.encoding = 'UTF-8'
 
 def distDir = "$buildDir/dist"
 
-def ili2dbVersion = '4.4.4'
-def ilivalidatorVersion = '1.11.8'
+def ili2dbVersion = '4.4.3'
+def ilivalidatorVersion = '1.11.6'
 def umlEditorVersion = '3.6.7'
 
 def ili2dbApps = ['pg', 'mssql', 'ora', 'gpkg', 'fgdb']
+def ili2dbProps = [
+	mssql: [ linkPath: 'https://github.com/SwissTierrasColombia/ili2db/releases/download/ili2mssql-{version}/'
+			 , zipFileName: 'ili2mssql-{version}.zip']
+]
 
-def ili2dbLink = 'https://jars.interlis.ch/ch/interlis/ili2%s/%s/ili2%s-%s-bindist.zip'
+def ili2dbDefaultProps =
+	[ linkPath: 'https://jars.interlis.ch/ch/interlis/ili2{app}/{version}/'
+	  , zipFileName: 'ili2{app}-{version}-bindist.zip']
+
 def ilivalidatorLink = 'https://jars.interlis.ch/ch/interlis/ilivalidator/' + ilivalidatorVersion + '/ilivalidator-' + ilivalidatorVersion + '-bindist.zip'
 def umlEditorLink = 'https://github.com/SwissTierrasColombia/umleditor/releases/download/v' + umlEditorVersion + '/umleditor-' + umlEditorVersion + '.zip'
 
@@ -67,9 +74,9 @@ sourceSets {
 
 dependencies {
 	// libs
-	implementation group: 'ch.interlis', name: 'iox-ili', version: '1.21.3'
-	implementation group: 'ch.interlis', name: 'ili2c-tool', version: '5.1.4'
-	implementation group: 'ch.interlis', name: 'ili2c-core', version: '5.1.4'
+    implementation group: 'ch.interlis', name: 'iox-ili', version: '1.21.0+'
+    implementation group: 'ch.interlis', name: 'ili2c-tool', version: "5.1.0+"
+    implementation group: 'ch.interlis', name: 'ili2c-core', version: "5.1.0"
 	implementation group: 'org.fxmisc.richtext', name: 'richtextfx', version: '0.9.0'
 	//drivers dbs
 	implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.4.jre6'
@@ -81,10 +88,21 @@ dependencies {
 	testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
 
+ext.getLinkOrZipName = { app, onlyZipName ->
+	def props = null
+	if(ili2dbProps.get(app) == null){
+		props = ili2dbDefaultProps
+	} else {
+		props = ili2dbProps.get(app)
+	}
+	def link = (!onlyZipName? props['linkPath']:'') + props['zipFileName'] 
+	return  link.replace('{app}', app).replace('{version}', ili2dbVersion);
+}
+
 ext.getLinks = {
 	def links = []
 	
-	ili2dbApps.each	{ value -> links.add( String.format(ili2dbLink, value, ili2dbVersion, value, ili2dbVersion)) }
+	ili2dbApps.each	{ app -> links.add(getLinkOrZipName(app, false)) }
 	return links
 }
 
@@ -125,7 +143,7 @@ task copyPrograms {
 		}
 		ili2dbApps.each { app ->
 			copy {
-				def name = "ili2${app}-${ili2dbVersion}-bindist.zip"
+				def name = getLinkOrZipName(app, true)
 				from zipTree("$buildDir/tmp/$name")
 				into "programs/ili2db"
 			}
