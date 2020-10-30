@@ -7,8 +7,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.fxmisc.richtext.StyleClassedTextArea;
-
 import ai.ilisuite.base.log.IliAppStreamProcessor;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -108,8 +106,6 @@ public class IliExec {
 	class ExecutableStream extends Task<Boolean> {
 	    InputStream is;
 	    boolean isErrorStream;
-	    
-	    StyleClassedTextArea outText;
 	    
 	    ExecutableStream(InputStream is, boolean isErrorStream) {
 	        this.is = is;

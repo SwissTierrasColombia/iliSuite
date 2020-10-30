@@ -12,7 +12,6 @@ import ai.ilisuite.impl.ImplFactory;
 import ai.ilisuite.impl.controller.IController;
 import ai.ilisuite.impl.dbconn.AbstractConnection;
 import ai.ilisuite.impl.dbconn.Ili2DbScope;
-import ai.ilisuite.util.params.EnumParams;
 import ai.ilisuite.util.plugin.PluginsLoader;
 import ai.ilisuite.view.DatabaseOptionsView;
 import ai.ilisuite.view.DatabaseSelectionView;

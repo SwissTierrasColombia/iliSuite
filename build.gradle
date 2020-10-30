@@ -15,7 +15,7 @@ def distDir = "$buildDir/dist"
 
 def ili2dbVersion = '4.4.3'
 def ilivalidatorVersion = '1.11.6'
-def umlEditorVersion = '3.6.7'
+def umlEditorVersion = '3.6.8'
 
 def ili2dbApps = ['pg', 'mssql', 'ora', 'gpkg', 'fgdb']
 def ili2dbProps = [
@@ -74,10 +74,8 @@ sourceSets {
 
 dependencies {
 	// libs
-    implementation group: 'ch.interlis', name: 'iox-ili', version: '1.21.0+'
-    implementation group: 'ch.interlis', name: 'ili2c-tool', version: "5.1.0+"
-    implementation group: 'ch.interlis', name: 'ili2c-core', version: "5.1.0"
-	implementation group: 'org.fxmisc.richtext', name: 'richtextfx', version: '0.9.0'
+    implementation group: 'ch.interlis', name: 'ili2c-tool', version: "5.1.1"
+    implementation group: 'ch.interlis', name: 'ili2c-core', version: "5.1.1"
 	//drivers dbs
 	implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.4.jre6'
 	implementation group: 'ch.ehi', name: 'fgdb4j', version: "1.1.1"
