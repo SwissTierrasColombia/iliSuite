@@ -37,19 +37,20 @@ public abstract class Ili2DbScope{
 			if(query==null)
 				rs = statement.executeQuery("SELECT setting FROM " + schema + "t_ili2db_settings" + " WHERE tag = 'ch.ehi.ili2db.BasketHandling'");
 			else{
-				String[] queryWithoutSchema = query.split("-__SCHEMA__-");
-				String queryPreSchema = queryWithoutSchema[0];
-				String queryPostSchema = queryWithoutSchema[1];
-				
-				rs = statement.executeQuery(queryPreSchema+schema+queryPostSchema);
+				query = query.replace("-__SCHEMA__-", schema);
+				rs = statement.executeQuery(query);
 			}
 			while (rs.next()) {
 				String setting = rs.getString("setting");
-				if (setting != null && setting.equals("readWrite"))
+				if (setting != null && setting.equals("readWrite")) {
 					result = true;
+					break;
+				}
 			}
-		} finally {
-
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+			finally {
 			conn.close();
 		}
 		return result;
@@ -113,17 +114,17 @@ public abstract class Ili2DbScope{
 			if(query==null)
 				rs = statement.executeQuery("SELECT DISTINCT t_ili_tid FROM "+schema+"t_ili2db_basket WHERE t_ili_tid IS NOT NULL");
 			else{
-				String[] queryWithoutSchema = query.split("-__SCHEMA__-");
-				String queryPreSchema = queryWithoutSchema[0];
-				String queryPostSchema = queryWithoutSchema[1];
-				
-				rs = statement.executeQuery(queryPreSchema+schema+queryPostSchema);
+				query = query.replace("-__SCHEMA__-", schema);
+				rs = statement.executeQuery(query);
 			}
 			while(rs.next()){
 				String name = rs.getString("t_ili_tid");
-				result.add(name);
+				if(name!=null) result.add(name);
 			}
-		}finally{
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally{
 		
 			conn.close();
 		}
@@ -152,11 +153,8 @@ public abstract class Ili2DbScope{
 			if(query==null)
 				rs = statement.executeQuery("SELECT DISTINCT topic FROM "+schema+"t_ili2db_basket");
 			else{
-				String[] queryWithoutSchema = query.split("-__SCHEMA__-");
-				String queryPreSchema = queryWithoutSchema[0];
-				String queryPostSchema = queryWithoutSchema[1];
-				
-				rs = statement.executeQuery(queryPreSchema+schema+queryPostSchema);
+				query = query.replace("-__SCHEMA__-", schema);
+				rs = statement.executeQuery(query);
 			}
 				
 			while(rs.next()){
@@ -192,11 +190,8 @@ public abstract class Ili2DbScope{
 			if(query==null)
 				rs = statement.executeQuery("SELECT DISTINCT modelname FROM "+schema+"t_ili2db_model");
 			else{
-				String[] queryWithoutSchema = query.split("-__SCHEMA__-");
-				String queryPreSchema = queryWithoutSchema[0];
-				String queryPostSchema = queryWithoutSchema[1];
-				
-				rs = statement.executeQuery(queryPreSchema+schema+queryPostSchema);
+				query = query.replace("-__SCHEMA__-", schema);
+				rs = statement.executeQuery(query);
 			}
 				
 			while(rs.next()){

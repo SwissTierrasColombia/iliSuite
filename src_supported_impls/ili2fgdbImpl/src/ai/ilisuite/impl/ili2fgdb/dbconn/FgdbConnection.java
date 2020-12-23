@@ -5,11 +5,12 @@ import java.util.Map;
 
 import ai.ilisuite.impl.dbconn.AbstractConnection;
 
+
 public class FgdbConnection extends AbstractConnection {
 
 	@Override
 	protected String getDriver() {
-		return "ch.ehi.ili2fgdb.jdbc.FgdbDriver";
+		return ch.ehi.ili2fgdb.jdbc.FgdbDriver.class.getName();
 	}
 
 	@Override

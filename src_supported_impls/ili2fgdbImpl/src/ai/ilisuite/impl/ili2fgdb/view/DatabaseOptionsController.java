@@ -3,6 +3,7 @@ package ai.ilisuite.impl.ili2fgdb.view;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
@@ -38,6 +40,8 @@ public class DatabaseOptionsController implements IController, Initializable {
 
 	@FXML
 	private Button btnBrowse;
+	@FXML
+	private Text lbl_connectionResult;
 	
 	private List<Node> listOfRequired;
 	private Parent viewRootNode;
@@ -75,8 +79,22 @@ public class DatabaseOptionsController implements IController, Initializable {
 
 			result = new HashMap<String, String>();
 
-			if (file != null)
-				result.put("--dbfile", file);
+			boolean validConnection=false;
+			
+			try {
+				validConnection = connection.isValid();
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+
+				lbl_connectionResult.setText(e.getLocalizedMessage());
+				validConnection = false;
+			} catch (Exception E) {
+				E.printStackTrace();
+			}
+			finally {
+				if (validConnection && file != null)
+					result.put("--dbfile", file);
+			}
 
 		}
 
